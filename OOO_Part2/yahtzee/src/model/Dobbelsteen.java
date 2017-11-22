@@ -3,7 +3,7 @@ package model;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Dobbelsteen {
-	int dobbelsteen;
+	private int dobbelsteen;
 	
 	public Dobbelsteen(int dobbelsteen) {
 		this.setDobbelsteen(dobbelsteen);
@@ -13,7 +13,7 @@ public class Dobbelsteen {
 		return dobbelsteen;
 	}
 
-	public void setDobbelsteen(int dobbelsteen) {
+	private void setDobbelsteen(int dobbelsteen) {
 		int randomNum = ThreadLocalRandom.current().nextInt(1, 5);
 		this.dobbelsteen = randomNum;
 	}
