@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.Speler;
 
 public class Spel {
  private List<Speler> spelers = new ArrayList<>();
@@ -37,3 +38,5 @@ public class Spel {
  	}
  	
  	}
+
+
