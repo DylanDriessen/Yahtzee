@@ -1,18 +1,21 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import model.Speler;
 
 public class Spel {
- private List<Speler> spelers = new ArrayList<>();
+	private Map<String, Speler> spelers = new HashMap<String, Speler>();
  
  	public void voegToe(Speler speler){
  		if(spelers == null){
  			throw new IllegalArgumentException();
  		}
  		
- 		spelers.add(speler);
+ 		spelers.put(speler.getNaam(), speler);
  		
  	}
  	
@@ -20,23 +23,18 @@ public class Spel {
  		spelers.remove(speler);
  		
  	}
- 	public Speler getPlayer(Speler speler){
- 		try{
- 			for(Speler s: spelers){
- 		
- 			if(s.equals(speler)){
- 				return speler;
- 			}
- 		}
- 		}
- 		catch(IllegalArgumentException e){
- 			throw new IllegalArgumentException();
- 		}
+ 	public Speler getPlayer(String naam){
+ 		if(naam == null){
+			throw new DomainException("No id given");
+		}
+		return spelers.get(naam);
+	}
  	
- 		return null;
+ 	
+ 	public List<Speler> getAll(){
+		return new ArrayList<Speler>(spelers.values());	
  		
  	}
- 	
- 	}
+ }
 
 
