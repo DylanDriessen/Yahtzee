@@ -13,6 +13,10 @@ public class Speler {
 		
 	}
 	
+	public Speler() {
+		
+	}
+
 	public String getNaam() {
 		return naam;
 	}

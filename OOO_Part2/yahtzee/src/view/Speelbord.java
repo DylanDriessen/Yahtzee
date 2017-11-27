@@ -3,17 +3,23 @@ package view;
 
 
 import java.awt.ScrollPane;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
 
 import controller.SpelController;
 import javafx.application.Application;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import model.Dobbelsteen;
+import model.Spel;
 import model.Speler;
 import view.AskPlayers;
 import javafx.application.Application;
@@ -22,15 +28,24 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class Speelbord extends Application {
+	
+	private SimpleIntegerProperty property = new SimpleIntegerProperty();
+	private Dobbelsteen dobbel = new Dobbelsteen();
+	private Maakcontent content = new Maakcontent();
+	private ArrayList<Dice> dices = new ArrayList<>();
+	
+	
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -39,35 +54,39 @@ public class Speelbord extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		
 		
-		SpelController persons = new SpelController();
-		AskPlayers player = new AskPlayers();
-		
-		for(int i = 0; i < 2; i++){
-			String naam1 = player.askNewPlayer();
-			Speler speler1 =new Speler(naam1);
-			persons.voegSpelerToe(speler1);
+			int counter;
+			
+			SpelController persons = new SpelController();
+			AskPlayers player = new AskPlayers();
+			MakeNewBoard board = new MakeNewBoard();
+			
+			String input = "";
+			String message = "Druk \n 1 om een naam toe te voegen \n 0 om te stoppen" ;
+			
+			
+			while (!input.equals("0")){
+				input = JOptionPane.showInputDialog(message);
+				if(input.equals("1")){
+				String naam = player.askNewPlayer();
+				Speler speler = new Speler(naam);
+				persons.voegSpelerToe(speler);
+				
+					
+			}	
 		}
-		
-		List<Speler> spelers = persons.getAll();
-		
-		Group root = new Group();
-	    Scene scene = new Scene(root, 300, 130, Color.WHITE);
-
-		GridPane gridpane = new GridPane();
-		gridpane.setPadding(new Insets(5));
-	    gridpane.setHgap(10);
-	    gridpane.setVgap(10);
-		primaryStage.setTitle(spelers.get(0).getNaam());
-		Label label = new Label(spelers.get(0).getNaam());
-		gridpane.add(label, 0, 0);
-		root.getChildren().add(gridpane);
-		primaryStage.setScene(scene);
-		primaryStage.show();
-		
-	
-		
-		
+			List<Speler> spelers = persons.getAll();
+			
+			
+			for(Speler s: spelers){
+				System.out.println(s.getNaam());
+				board.makeBoard(primaryStage, s.getNaam(),content.maakContent());
+				
+			}
+			
 	}
-
+	
 	
 }
+
+	
+

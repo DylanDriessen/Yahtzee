@@ -8,14 +8,16 @@ import java.util.Map;
 import model.Speler;
 
 public class Spel {
-	private Map<String, Speler> spelers = new HashMap<String, Speler>();
+	private ArrayList<Speler> spelers;
  
- 	public void voegToe(Speler speler){
- 		if(spelers == null){
- 			throw new IllegalArgumentException();
- 		}
- 		
- 		spelers.put(speler.getNaam(), speler);
+ 	
+	public Spel(){
+		spelers = new ArrayList<>();
+	}
+	
+	
+	public void voegToe(Speler speler){
+ 		spelers.add(speler);
  		
  	}
  	
@@ -25,14 +27,19 @@ public class Spel {
  	}
  	public Speler getPlayer(String naam){
  		if(naam == null){
-			throw new DomainException("No id given");
+			throw new DomainException("No name given");
 		}
-		return spelers.get(naam);
+		for(Speler s: spelers){
+			if(s.getNaam().equals(naam)){
+				return s;
+			}
+		}
+		return null;
 	}
  	
  	
- 	public List<Speler> getAll(){
-		return new ArrayList<Speler>(spelers.values());	
+ 	public List<Speler> getAllPlayers(){
+		return spelers;	
  		
  	}
  }

@@ -22,12 +22,12 @@ public class SpelController{
 		spel.deleteSpeler(speler);
 	}
 	
-	public Speler getSpeler(String id){
-		return spel.getPlayer(id);
+	public Speler getSpeler(String naam){
+		return spel.getPlayer(naam);
 	}
 	
 	public List<Speler> getAll(){
-		return spel.getAll();
+		return spel.getAllPlayers();
 	}
 	
 }

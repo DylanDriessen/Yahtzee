@@ -3,19 +3,21 @@ package model;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Dobbelsteen {
-	private int dobbelsteen;
 	
-	public Dobbelsteen(int dobbelsteen) {
-		this.setDobbelsteen(dobbelsteen);
+	public static final int MIN_VALUE = 1;
+	public static final int MAX_VALUE = 6;
+	
+	
+	
+	
+	
+	public Dobbelsteen() {
+		
 	}
 
-	public int getDobbelsteen() {
-		return dobbelsteen;
-	}
-
-	private void setDobbelsteen(int dobbelsteen) {
-		int randomNum = ThreadLocalRandom.current().nextInt(1, 5);
-		this.dobbelsteen = randomNum;
+	
+	public int getRandomNumber(){
+		return ThreadLocalRandom.current().nextInt(MIN_VALUE, MAX_VALUE+1);
 	}
 
 }
