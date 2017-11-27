@@ -8,21 +8,25 @@ import javafx.scene.layout.Pane;
 
 public class Maakcontent {
 
+	private Dice dice = new Dice();
+	private Dice dice2 = new Dice();
+	private Dice dice3 = new Dice();
+	private Dice dice4 = new Dice();
+	private Dice dice5 = new Dice();
 	
+	
+	public void RollAllDices(){
+		dice.roll();
+		dice2.roll();
+		dice3.roll();
+		dice4.roll();
+		dice5.roll();
+	}
 	
 	public Pane maakContent(){
 		Label root = new Label();
 		Pane root2 = new Pane();
-		Dice dice = new Dice(); // Dobbelstenen aanmaken
-		Dice dice2 = new Dice();
-		Dice dice3 = new Dice();
-		Dice dice4 = new Dice();
-		Dice dice5 = new Dice();
 		
-		
-		
-		
-				
 		dice.setTranslateX(100);
 		dice.setTranslateY(200);
 		

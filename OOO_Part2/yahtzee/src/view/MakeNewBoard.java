@@ -6,6 +6,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -16,6 +17,8 @@ import model.Speler;
 import model.enums.Categories;
 
 public class MakeNewBoard {
+	
+	Maakcontent content = new Maakcontent();
 	
 	public MakeNewBoard(){
 		
@@ -45,7 +48,11 @@ public class MakeNewBoard {
 	categories.setTranslateY(300);
 	gridpane.add(name, 0, 0);
 	gridpane.add(categories, 0, 0);
-	root.getChildren().addAll(gridpane,name);
+	Button btn = new Button("klik hier");
+	btn.setOnMouseClicked(event -> content.RollAllDices());
+	btn.setTranslateX(250);
+	btn.setTranslateY(350);
+	root.getChildren().addAll(gridpane,name,btn);
 	primaryStage.setScene(scene2);
 	primaryStage.show();
 	

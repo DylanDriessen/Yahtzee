@@ -86,6 +86,8 @@ public class Speelbord extends Application {
 				
 			}
 			
+			
+			
 	}
 	
 	
