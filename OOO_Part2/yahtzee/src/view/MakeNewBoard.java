@@ -18,14 +18,11 @@ import model.enums.Categories;
 
 public class MakeNewBoard {
 	
-<<<<<<< HEAD
 	Maakcontent content = new Maakcontent();
-=======
 	private Label label;
 	private Label name;
 	private ComboBox<Categories> categories;
 	private GridPane gridpane;
->>>>>>> 69b42e8a9581c846a3c6338a6cdcef92e7060605
 	
 	public MakeNewBoard(){
 		
@@ -51,16 +48,13 @@ public class MakeNewBoard {
 	categories.setTranslateX(100);
 	categories.setTranslateY(300);
 	gridpane.add(categories, 0, 0);
-<<<<<<< HEAD
 	Button btn = new Button("klik hier");
 	btn.setOnMouseClicked(event -> content.RollAllDices());
 	btn.setTranslateX(250);
 	btn.setTranslateY(350);
 	root.getChildren().addAll(gridpane,name,btn);
-=======
 	gridpane.add(scene, 0, 0);
 	root.getChildren().addAll(gridpane,name);
->>>>>>> 69b42e8a9581c846a3c6338a6cdcef92e7060605
 	primaryStage.setScene(scene2);
 	primaryStage.show();
 	
