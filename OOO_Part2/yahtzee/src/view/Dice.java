@@ -25,8 +25,7 @@ public class Dice extends StackPane{
 	public final SimpleIntegerProperty property = new SimpleIntegerProperty();
 	Dobbelsteen dobbelsteen;
 	ArrayList<String> numbers = new ArrayList<>();
-	public static final int MIN_VALUE = 1;
-	public static final int MAX_VALUE = 6;
+	
 	
 	public Dice(){
 		Rectangle rect = new Rectangle(50 , 50);
