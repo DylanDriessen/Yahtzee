@@ -72,7 +72,7 @@ public class Speelbord extends Application {
 				persons.voegSpelerToe(speler);
 				input = JOptionPane.showInputDialog(message);
 				}
-				if(!input.equals("1")){
+				else if(!input.equals("1") || !input.equals("0")){
 					input = JOptionPane.showInputDialog(error);
 				}
 				
