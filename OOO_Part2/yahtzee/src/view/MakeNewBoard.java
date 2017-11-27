@@ -14,12 +14,14 @@ import model.Speler;
 
 public class MakeNewBoard {
 	
-	
 	public MakeNewBoard(){
 		
 	}
 	
 	
+	
+	
+
 	public void makeBoard(Stage primaryStage, String naam,Pane scene) throws Exception {
 	Group root = new Group();
     Scene scene2 = new Scene(root, 1400, 800, Color.BEIGE);

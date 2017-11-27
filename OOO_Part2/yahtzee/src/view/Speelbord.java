@@ -45,7 +45,7 @@ public class Speelbord extends Application {
 	private Maakcontent content = new Maakcontent();
 	private ArrayList<Dice> dices = new ArrayList<>();
 	
-	
+ 
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -78,9 +78,11 @@ public class Speelbord extends Application {
 			
 			
 			for(Speler s: spelers){
+				Stage stage = new Stage();
+
 				MakeNewBoard board = new MakeNewBoard();
 				System.out.println(s.getNaam());
-				board.makeBoard(primaryStage, s.getNaam(),content.maakContent());
+				board.makeBoard(stage, s.getNaam(),content.maakContent());
 				
 			}
 			
