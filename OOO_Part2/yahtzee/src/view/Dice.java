@@ -2,6 +2,8 @@ package view;
 
 
 
+import java.util.ArrayList;
+
 import javafx.animation.RotateTransition;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.ActionEvent;
@@ -19,6 +21,7 @@ import model.Dobbelsteen;
 public class Dice extends StackPane{
 	public final SimpleIntegerProperty property = new SimpleIntegerProperty();
 	Dobbelsteen dobbelsteen;
+	ArrayList<String> numbers = new ArrayList<>();
 	
 	public static final int MIN_VALUE = 1;
 	public static final int MAX_VALUE = 6;
@@ -41,8 +44,14 @@ public class Dice extends StackPane{
 		r.setOnFinished(event ->   {
 			 property.set((int) ((Math.random()*(MAX_VALUE - MIN_VALUE + 1 )) + MIN_VALUE) ) ;// hier wordt de dobbelsteen gerandomized + casten naar een integer.
 		});
-		
-		
 		r.play();
+		numbers.add(Integer.toString(property.getValue()));
+		System.out.println(numbers);
 	}
+	
+	public int returnNumber(){
+		return property.getValue();
+	}
+	
+	
 }

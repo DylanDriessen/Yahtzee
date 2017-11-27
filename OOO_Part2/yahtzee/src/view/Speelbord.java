@@ -1,6 +1,6 @@
+
+
 package view;
-
-
 
 import java.awt.ScrollPane;
 import java.util.ArrayList;
@@ -79,6 +79,7 @@ public class Speelbord extends Application {
 			
 			for(Speler s: spelers){
 				Stage stage = new Stage();
+
 				MakeNewBoard board = new MakeNewBoard();
 				System.out.println(s.getNaam());
 				board.makeBoard(stage, s.getNaam(),content.maakContent());

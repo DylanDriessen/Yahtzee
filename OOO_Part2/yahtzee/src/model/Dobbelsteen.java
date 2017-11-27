@@ -2,6 +2,8 @@ package model;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+import javafx.beans.property.SimpleIntegerProperty;
+
 public class Dobbelsteen {
 	
 	public static final int MIN_VALUE = 1;
@@ -9,15 +11,20 @@ public class Dobbelsteen {
 	
 	
 	
-	
+	public final SimpleIntegerProperty property = new SimpleIntegerProperty();
 	
 	public Dobbelsteen() {
 		
 	}
 
 	
-	public int getRandomNumber(){
-		return ThreadLocalRandom.current().nextInt(MIN_VALUE, MAX_VALUE+1);
+	
+	public void setRandomNumber(){
+		property.set((int) ((Math.random()*(MAX_VALUE - MIN_VALUE + 1 )) + MIN_VALUE) ) ;
+		System.out.println(property);
 	}
+	
+	
+	
 
 }
