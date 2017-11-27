@@ -10,7 +10,7 @@ public class Speler {
 	public Speler(String naam){
 		this.setNaam(naam);
 		
-		
+	
 	}
 	
 	public Speler() {
