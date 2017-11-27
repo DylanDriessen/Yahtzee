@@ -39,14 +39,14 @@ public class Dice extends StackPane{
 	}
 	
 	public void roll(){
-		RotateTransition r = new RotateTransition(Duration.seconds(1), this); // this als een node want we extenden van StackPane
-		r.setFromAngle(0);
-		r.setToAngle(360); // de graden dat de dobbelsteen gaat draaien
-		r.setOnFinished(event ->   {
-			 property.set((int) ((Math.random()*(MAX_VALUE - MIN_VALUE + 1 )) + MIN_VALUE) ) ;// hier wordt de dobbelsteen gerandomized + casten naar een integer.
-		});
-		r.play();
-		numbers.add(Integer.toString(property.getValue()));
+//		RotateTransition r = new RotateTransition(Duration.seconds(1), this); // this als een node want we extenden van StackPane
+//		r.setFromAngle(0);
+//		r.setToAngle(360); // de graden dat de dobbelsteen gaat draaien
+//		r.setOnFinished(event ->   {
+//			 property.set((int) ((Math.random()*(MAX_VALUE - MIN_VALUE + 1 )) + MIN_VALUE) ) ;// hier wordt de dobbelsteen gerandomized + casten naar een integer.
+//		});
+//		r.play();
+//		numbers.add(Integer.toString(property.getValue()));
 		System.out.println(numbers);
 	}
 	

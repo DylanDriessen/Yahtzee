@@ -24,12 +24,12 @@ public class MakeNewBoard {
 		
 	}
 	
-	public void makeBoard(Stage primaryStage, String naam,Pane scene) throws Exception {
+	public void makeBoard(Stage primaryStage, String naam,Pane dices) throws Exception {
 	
 		
 		
 	Group root = new Group();
-    Scene scene2 = new Scene(root, 1400, 800, Color.BEIGE);
+    Scene scene = new Scene(root, 1400, 800, Color.BEIGE);
 
 	GridPane gridpane = new GridPane();
 	gridpane.setPadding(new Insets(5));
@@ -51,9 +51,9 @@ public class MakeNewBoard {
 	btn.setOnMouseClicked(event -> content.RollAllDices());
 	btn.setTranslateX(250);
 	btn.setTranslateY(350);
-	gridpane.add(scene, 0, 0);
+	gridpane.add(dices, 0, 0);
 	root.getChildren().addAll(gridpane,name,btn);
-	primaryStage.setScene(scene2);
+	primaryStage.setScene(scene);
 	primaryStage.show();
 	
 }
