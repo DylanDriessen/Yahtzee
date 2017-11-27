@@ -43,7 +43,7 @@ public class Dice extends StackPane{
 		r.setFromAngle(0);
 		r.setToAngle(360); // de graden dat de dobbelsteen gaat draaien
 		//r.setOnFinished(event ->   {
-			 property.set((int) ((Math.random()*(MAX_VALUE - MIN_VALUE + 1 )) + MIN_VALUE) ) ;// hier wordt de dobbelsteen gerandomized + casten naar een integer.
+			// property.set((int) ((Math.random()*(MAX_VALUE - MIN_VALUE + 1 )) + MIN_VALUE) ) ;// hier wordt de dobbelsteen gerandomized + casten naar een integer.
 		//});
 		r.play();
 		numbers.add(Integer.toString(property.getValue()));
