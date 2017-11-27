@@ -1,16 +1,19 @@
 package view;
 
 import controller.SpelController;
+import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.Speler;
+import model.enums.Categories;
 
 public class MakeNewBoard {
 	
@@ -28,11 +31,16 @@ public class MakeNewBoard {
     gridpane.setVgap(10);
 	primaryStage.setTitle("Yahtzee");
 	Label label = new Label("Yahtzee");
-	Label name = new Label(naam + "is aan de beurt");
+	Label name = new Label(naam + " is aan de beurt");
+	ComboBox<Categories> categories = new ComboBox<>();
+	categories.setItems(FXCollections.observableArrayList(Categories.values()));
 	gridpane.add(scene, 0, 0);
 	name.setTranslateX(600);
 	name.setTranslateY(200);
+	categories.setTranslateX(50);
+	categories.setTranslateY(300);
 	gridpane.add(name, 0, 0);
+	gridpane.add(categories, 0, 0);
 	root.getChildren().addAll(gridpane,name);
 	primaryStage.setScene(scene2);
 	primaryStage.show();
