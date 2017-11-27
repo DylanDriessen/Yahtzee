@@ -10,7 +10,7 @@ public class SpelController{
 	private Spel spel;
 	
 	public SpelController(){
-		spel = new Spel();
+		this.spel = new Spel();
 	}
 	
 	
@@ -18,7 +18,7 @@ public class SpelController{
 		spel.voegToe(speler);
 	}
 	
-	public void DeleteSpeler(Speler speler){
+	public void deleteSpeler(Speler speler){
 		spel.deleteSpeler(speler);
 	}
 	
