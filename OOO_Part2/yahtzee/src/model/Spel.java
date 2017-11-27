@@ -11,7 +11,7 @@ public class Spel {
 	private Map<String, Speler> spelers = new HashMap<String, Speler>();
  
  	public void voegToe(Speler speler){
- 		if(spelers == null){
+ 		if(speler == null){
  			throw new IllegalArgumentException();
  		}
  		
@@ -20,7 +20,7 @@ public class Spel {
  	}
  	
  	public void deleteSpeler(Speler speler){
- 		spelers.remove(speler);
+ 		spelers.remove(speler.getId());
  		
  	}
  	public Speler getPlayer(String naam){

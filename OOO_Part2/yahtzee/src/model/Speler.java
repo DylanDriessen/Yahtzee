@@ -25,9 +25,9 @@ public class Speler {
 		return id;
 	}
 	
-	private void setID(String id){
-		id = UUID.randomUUID().toString();
-		this.id = id;
+	private void setID(){
+		this.id = UUID.randomUUID().toString();
+		
 	}
 }
 
