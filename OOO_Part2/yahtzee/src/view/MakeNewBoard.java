@@ -18,41 +18,49 @@ import model.enums.Categories;
 
 public class MakeNewBoard {
 	
+<<<<<<< HEAD
 	Maakcontent content = new Maakcontent();
+=======
+	private Label label;
+	private Label name;
+	private ComboBox<Categories> categories;
+	private GridPane gridpane;
+>>>>>>> 69b42e8a9581c846a3c6338a6cdcef92e7060605
 	
 	public MakeNewBoard(){
 		
 	}
 	
-	
-	
-	
-
 	public void makeBoard(Stage primaryStage, String naam,Pane scene) throws Exception {
 	Group root = new Group();
     Scene scene2 = new Scene(root, 1400, 800, Color.BEIGE);
 
-	GridPane gridpane = new GridPane();
+	gridpane = new GridPane();
 	gridpane.setPadding(new Insets(5));
     gridpane.setHgap(10);
     gridpane.setVgap(10);
 	primaryStage.setTitle("Yahtzee");
-	Label label = new Label("Yahtzee");
-	Label name = new Label(naam + " is aan de beurt");
-	ComboBox<Categories> categories = new ComboBox<>();
-	categories.setItems(FXCollections.observableArrayList(Categories.values()));
-	gridpane.add(scene, 0, 0);
+	label = new Label("Yahtzee");
+	name = new Label(naam + " is aan de beurt");
 	name.setTranslateX(600);
 	name.setTranslateY(200);
-	categories.setTranslateX(50);
-	categories.setTranslateY(300);
 	gridpane.add(name, 0, 0);
+	categories = new ComboBox<>();
+	categories.setItems(FXCollections.observableArrayList(Categories.values()));
+	categories.setPromptText("Categories");
+	categories.setTranslateX(100);
+	categories.setTranslateY(300);
 	gridpane.add(categories, 0, 0);
+<<<<<<< HEAD
 	Button btn = new Button("klik hier");
 	btn.setOnMouseClicked(event -> content.RollAllDices());
 	btn.setTranslateX(250);
 	btn.setTranslateY(350);
 	root.getChildren().addAll(gridpane,name,btn);
+=======
+	gridpane.add(scene, 0, 0);
+	root.getChildren().addAll(gridpane,name);
+>>>>>>> 69b42e8a9581c846a3c6338a6cdcef92e7060605
 	primaryStage.setScene(scene2);
 	primaryStage.show();
 	
