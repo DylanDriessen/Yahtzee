@@ -17,22 +17,9 @@ import model.Speler;
 import model.enums.Categories;
 
 public class MakeNewBoard {
-	
-<<<<<<< HEAD
-	Maakcontent content = new Maakcontent();
-	private Label label;
-	private Label name;
-	private ComboBox<Categories> categories;
-	private GridPane gridpane;
-=======
 
 	Maakcontent content = new Maakcontent();
 
-	
-	
-	
->>>>>>> 37d21588b74125aa0d9e67efa86117b370d1e136
-	
 	public MakeNewBoard(){
 		
 	}
@@ -60,24 +47,12 @@ public class MakeNewBoard {
 	categories.setTranslateX(100);
 	categories.setTranslateY(300);
 	gridpane.add(categories, 0, 0);
-<<<<<<< HEAD
-=======
-
->>>>>>> 37d21588b74125aa0d9e67efa86117b370d1e136
 	Button btn = new Button("klik hier");
 	btn.setOnMouseClicked(event -> content.RollAllDices());
 	btn.setTranslateX(250);
 	btn.setTranslateY(350);
-<<<<<<< HEAD
-	root.getChildren().addAll(gridpane,name,btn);
-	gridpane.add(scene, 0, 0);
-	root.getChildren().addAll(gridpane,name);
-=======
-	
-
 	gridpane.add(scene, 0, 0);
 	root.getChildren().addAll(gridpane,name,btn);
->>>>>>> 37d21588b74125aa0d9e67efa86117b370d1e136
 	primaryStage.setScene(scene2);
 	primaryStage.show();
 	
