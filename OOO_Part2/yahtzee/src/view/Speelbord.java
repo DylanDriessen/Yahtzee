@@ -62,17 +62,21 @@ public class Speelbord extends Application {
 			
 			String input = "";
 			String message = "Druk \n 1 om een naam toe te voegen \n 0 om te stoppen" ;
+			String error = "Gelieve 1 of 0 in te voeren \n Druk \n 1 om een naam toe te voegen \n 0 om te stoppen";
 			
-			
+			input = JOptionPane.showInputDialog(message);
 			while (!input.equals("0")){
-				input = JOptionPane.showInputDialog(message);
 				if(input.equals("1")){
 				String naam = player.askNewPlayer();
 				Speler speler = new Speler(naam);
 				persons.voegSpelerToe(speler);
+				input = JOptionPane.showInputDialog(message);
+				}
+				if(!input.equals("1")){
+					input = JOptionPane.showInputDialog(error);
+				}
 				
 					
-			}	
 		}
 			List<Speler> spelers = persons.getAll();
 			
