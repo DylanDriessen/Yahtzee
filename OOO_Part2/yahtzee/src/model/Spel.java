@@ -19,8 +19,7 @@ public class Spel {
 	
 	public void voegToe(Speler speler){
  		spelers.add(speler);
- 	
- 		
+ 		//test
  	}
  	
  	public void deleteSpeler(Speler speler){
