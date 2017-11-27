@@ -21,10 +21,9 @@ public class MakeNewBoard {
 
 	Maakcontent content = new Maakcontent();
 
-	private Label label;
-	private Label name;
-	private ComboBox<Categories> categories;
-	private GridPane gridpane;
+	
+	
+	
 	
 	public MakeNewBoard(){
 		
@@ -37,17 +36,17 @@ public class MakeNewBoard {
 	Group root = new Group();
     Scene scene2 = new Scene(root, 1400, 800, Color.BEIGE);
 
-	gridpane = new GridPane();
+	GridPane gridpane = new GridPane();
 	gridpane.setPadding(new Insets(5));
     gridpane.setHgap(10);
     gridpane.setVgap(10);
 	primaryStage.setTitle("Yahtzee");
-	label = new Label("Yahtzee");
+	Label name = new Label("Yahtzee");
 	name = new Label(naam + " is aan de beurt");
 	name.setTranslateX(600);
 	name.setTranslateY(200);
 	gridpane.add(name, 0, 0);
-	categories = new ComboBox<>();
+	ComboBox<Categories> categories = new ComboBox<>();
 	categories.setItems(FXCollections.observableArrayList(Categories.values()));
 	categories.setPromptText("Categories");
 	categories.setTranslateX(100);
@@ -58,10 +57,10 @@ public class MakeNewBoard {
 	btn.setOnMouseClicked(event -> content.RollAllDices());
 	btn.setTranslateX(250);
 	btn.setTranslateY(350);
-	root.getChildren().addAll(gridpane,name,btn);
+	
 
 	gridpane.add(scene, 0, 0);
-	root.getChildren().addAll(gridpane,name);
+	root.getChildren().addAll(gridpane,name,btn);
 	primaryStage.setScene(scene2);
 	primaryStage.show();
 	
