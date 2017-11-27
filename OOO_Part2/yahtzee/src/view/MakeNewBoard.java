@@ -14,6 +14,12 @@ import model.Speler;
 
 public class MakeNewBoard {
 	
+	
+	public MakeNewBoard(){
+		
+	}
+	
+	
 	public void makeBoard(Stage primaryStage, String naam,Pane scene) throws Exception {
 	Group root = new Group();
     Scene scene2 = new Scene(root, 1400, 800, Color.BEIGE);
@@ -24,7 +30,7 @@ public class MakeNewBoard {
     gridpane.setVgap(10);
 	primaryStage.setTitle("Yahtzee");
 	Label label = new Label("Yahtzee");
-	Label name = new Label(naam + "is aan de beurt");
+	Label name = new Label(naam + " is aan de beurt");
 	gridpane.add(scene, 0, 0);
 	name.setTranslateX(600);
 	name.setTranslateY(200);

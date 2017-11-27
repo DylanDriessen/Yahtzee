@@ -1,6 +1,6 @@
+
+
 package view;
-
-
 
 import java.awt.ScrollPane;
 import java.util.ArrayList;
@@ -58,7 +58,7 @@ public class Speelbord extends Application {
 			
 			SpelController persons = new SpelController();
 			AskPlayers player = new AskPlayers();
-			MakeNewBoard board = new MakeNewBoard();
+			
 			
 			String input = "";
 			String message = "Druk \n 1 om een naam toe te voegen \n 0 om te stoppen" ;
@@ -78,6 +78,7 @@ public class Speelbord extends Application {
 			
 			
 			for(Speler s: spelers){
+				MakeNewBoard board = new MakeNewBoard();
 				System.out.println(s.getNaam());
 				board.makeBoard(primaryStage, s.getNaam(),content.maakContent());
 				

@@ -1,11 +1,14 @@
 package view;
 
+import java.util.ArrayList;
+
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 
 public class Maakcontent {
 
+	
 	
 	public Pane maakContent(){
 		Label root = new Label();
@@ -18,6 +21,8 @@ public class Maakcontent {
 		
 		
 		
+		
+				
 		dice.setTranslateX(100);
 		dice.setTranslateY(200);
 		
