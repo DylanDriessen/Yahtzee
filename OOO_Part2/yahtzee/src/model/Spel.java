@@ -10,7 +10,7 @@ import model.Speler;
 public class Spel {
 	private ArrayList<Speler> spelers;
  
-<<<<<<< HEAD
+
  	
 	public Spel(){
 		spelers = new ArrayList<>();
@@ -19,14 +19,7 @@ public class Spel {
 	
 	public void voegToe(Speler speler){
  		spelers.add(speler);
-=======
- 	public void voegToe(Speler speler){
- 		if(speler == null){
- 			throw new IllegalArgumentException();
- 		}
- 		
- 		spelers.put(speler.getNaam(), speler);
->>>>>>> e6cb358e464ee460e822173e25e05ad9d5279e44
+ 	
  		
  	}
  	
