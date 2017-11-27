@@ -3,8 +3,6 @@ package view;
 
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 import javafx.animation.RotateTransition;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -26,6 +24,8 @@ public class Dice extends StackPane{
 	Dobbelsteen dobbelsteen;
 	ArrayList<String> numbers = new ArrayList<>();
 	
+	public static final int MIN_VALUE = 1;
+	public static final int MAX_VALUE = 6;
 	
 	public Dice(){
 		Rectangle rect = new Rectangle(50 , 50);
@@ -38,47 +38,24 @@ public class Dice extends StackPane{
 		//this.setOnMouseClicked(event -> replaceDice()); // wanneer de dobbelsteen wordt geklikt roep de methode roll op 
 	}
 	
-<<<<<<< HEAD
 	public void roll(){
-//		RotateTransition r = new RotateTransition(Duration.seconds(1), this); // this als een node want we extenden van StackPane
-//		r.setFromAngle(0);
-//		r.setToAngle(360); // de graden dat de dobbelsteen gaat draaien
-//		r.setOnFinished(event ->   {
-//			 property.set((int) ((Math.random()*(MAX_VALUE - MIN_VALUE + 1 )) + MIN_VALUE) ) ;// hier wordt de dobbelsteen gerandomized + casten naar een integer.
-//		});
-//		r.play();
-//		numbers.add(Integer.toString(property.getValue()));
-=======
-	public int roll(){
-//		RotateTransition r = new RotateTransition(Duration.seconds(1), this); // this als een node want we extenden van StackPane
-//		r.setFromAngle(0);
-//		r.setToAngle(360); // de graden dat de dobbelsteen gaat draaien
-//		r.setOnFinished(event ->   
-//			 this.randomize() // hier wordt de dobbelsteen gerandomized + casten naar een integer
-//			 );
-//		r.play();
-//		numbers.add(Integer.toString(property.getValue()));
-//		System.out.println(numbers);
-		
-		int rand = this.randomize();
-		numbers.add(Integer.toString(rand));
->>>>>>> 0bf27b00d63ee93035dc6c5eb0027c34918ac9d1
+		RotateTransition r = new RotateTransition(Duration.seconds(1), this); // this als een node want we extenden van StackPane
+		r.setFromAngle(0);
+		r.setToAngle(360); // de graden dat de dobbelsteen gaat draaien
+		r.setOnFinished(event ->   {
+			 property.set((int) ((Math.random()*(MAX_VALUE - MIN_VALUE + 1 )) + MIN_VALUE) ) ;// hier wordt de dobbelsteen gerandomized + casten naar een integer.
+		});
+		r.play();
+		numbers.add(Integer.toString(property.getValue()));
 		System.out.println(numbers);
-		return rand;
 	}
 	
-	
-	
-	
-	
-	public void replaceDice(Dice dice, int y){
-		dice.setTranslateX(100 + y);
-		dice.setTranslateY(100 );
+	public int returnNumber(){
+		return property.getValue();
 	}
 	
-	private int randomize(){
-		Random random = new Random();
-		int numberShowing = random.nextInt(6)+1;
-		return numberShowing;
+	public void replaceDice(){
+	
+	
 	}
 	}
