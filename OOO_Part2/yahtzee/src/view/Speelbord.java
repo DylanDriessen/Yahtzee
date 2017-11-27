@@ -84,8 +84,7 @@ public class Speelbord extends Application {
 			for(Speler s: spelers){
 				Stage stage = new Stage();
 
-				MakeNewBoard board = new MakeNewBoard();
-				System.out.println(s.getNaam());
+				MakeNewBoard board = new MakeNewBoard();	
 				board.makeBoard(stage, s.getNaam(),content.maakContent());
 				
 			}

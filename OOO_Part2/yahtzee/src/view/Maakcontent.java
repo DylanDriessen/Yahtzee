@@ -24,8 +24,15 @@ public class Maakcontent {
 	}
 	
 	public Pane maakContent(){
+		
+		
 		Label root = new Label();
 		Pane root2 = new Pane();
+		Dice dice = new Dice();
+		Dice dice2 = new Dice();
+		Dice dice3 = new Dice();
+		Dice dice4 = new Dice();
+		Dice dice5 = new Dice();
 		
 		dice.setTranslateX(100);
 		dice.setTranslateY(200);
