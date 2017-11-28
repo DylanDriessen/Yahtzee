@@ -25,6 +25,7 @@ public class Dice extends StackPane{
 	public final SimpleIntegerProperty property = new SimpleIntegerProperty();
 	Dobbelsteen dobbelsteen;
 	ArrayList<String> numbers = new ArrayList<>();
+	int rand = 0;
 	
 	
 	public Dice(){
@@ -32,10 +33,10 @@ public class Dice extends StackPane{
 		
 		Text text = new Text();
 		text.setFill(Color.WHITE); // de cijfers in de dobbelstenen
-		text.textProperty().bind(property.asString());
+		text.setText("Hallo");
 		this.setAlignment(Pos.CENTER);
 		getChildren().addAll(rect,text);
-		//this.setOnMouseClicked(event -> replaceDice()); // wanneer de dobbelsteen wordt geklikt roep de methode roll op 
+		
 	}
 	
 	public int roll(){
@@ -48,16 +49,11 @@ public class Dice extends StackPane{
 //		r.play();
 //		numbers.add(Integer.toString(property.getValue()));
 //		System.out.println(numbers);
-		
-		int rand = this.randomize();
+		rand = this.randomize();
 		numbers.add(Integer.toString(rand));
 		System.out.println(numbers);
 		return rand;
 	}
-	
-	
-	
-	
 	
 	public void replaceDice(Dice dice, int y){
 		dice.setTranslateX(100 + y);

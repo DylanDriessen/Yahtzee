@@ -78,12 +78,12 @@ public class Speelbord extends Application {
 				
 					
 		}
+			
 			List<Speler> spelers = persons.getAll();
 			
 			
 			for(Speler s: spelers){
 				Stage stage = new Stage();
-
 				MakeNewBoard board = new MakeNewBoard();	
 				board.makeBoard(stage, s.getNaam(),content.maakContent());
 				

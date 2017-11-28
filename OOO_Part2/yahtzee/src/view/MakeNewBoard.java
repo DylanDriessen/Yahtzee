@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Speler;
 import model.enums.Categories;
@@ -33,6 +34,7 @@ public class MakeNewBoard {
 
 	GridPane gridpane = new GridPane();
 	gridpane.setPadding(new Insets(5));
+	Text text = new Text();
     gridpane.setHgap(10);
     gridpane.setVgap(10);
 	primaryStage.setTitle("Yahtzee");
@@ -49,6 +51,7 @@ public class MakeNewBoard {
 	gridpane.add(categories, 0, 0);
 	Button btn = new Button("klik hier");
 	btn.setOnMouseClicked(event -> content.RollAllDices());
+	
 	btn.setTranslateX(250);
 	btn.setTranslateY(350);
 	gridpane.add(dices, 0, 0);
