@@ -8,7 +8,7 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
-import controller.SpelController;
+import controller.YahtzeeController;
 import javafx.application.Application;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -18,9 +18,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import model.Dobbelsteen;
-import model.Spel;
-import model.Speler;
+import model.board.Dice;
+import model.board.MakeNewBoard;
+
+import model.game.Game;
+import model.player.Player;
 import view.AskPlayers;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -41,9 +43,9 @@ import javafx.stage.Stage;
 public class Speelbord extends Application {
 	
 	private SimpleIntegerProperty property = new SimpleIntegerProperty();
-	private Dobbelsteen dobbel = new Dobbelsteen();
+	private Dice dobbel = new Dice();
 	private Maakcontent content = new Maakcontent();
-	private ArrayList<Dice> dices = new ArrayList<>();
+	private ArrayList<DiceFactory> dices = new ArrayList<>();
 	
  
 	public static void main(String[] args) {
@@ -56,7 +58,7 @@ public class Speelbord extends Application {
 		
 			int counter;
 			
-			SpelController persons = new SpelController();
+			YahtzeeController persons = new YahtzeeController();
 			AskPlayers player = new AskPlayers();
 			
 			
@@ -68,7 +70,7 @@ public class Speelbord extends Application {
 			while (!input.equals("0")){
 				if(input.equals("1")){
 				String naam = player.askNewPlayer();
-				Speler speler = new Speler(naam);
+				Player speler = new Player(naam);
 				persons.voegSpelerToe(speler);
 				input = JOptionPane.showInputDialog(message);
 				}
@@ -78,11 +80,13 @@ public class Speelbord extends Application {
 				
 					
 		}
+
 			
-			List<Speler> spelers = persons.getAll();
+			List<Player> players = persons.getAll();
+
 			
 			
-			for(Speler s: spelers){
+			for(Player s: players){
 				Stage stage = new Stage();
 				MakeNewBoard board = new MakeNewBoard();	
 				board.makeBoard(stage, s.getNaam(),content.maakContent());

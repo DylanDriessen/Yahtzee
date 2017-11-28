@@ -6,13 +6,14 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 
+
 public class Maakcontent {
 
-	private Dice dice = new Dice();
-	private Dice dice2 = new Dice();
-	private Dice dice3 = new Dice();
-	private Dice dice4 = new Dice();
-	private Dice dice5 = new Dice();
+	private DiceFactory dice = new DiceFactory();
+	private DiceFactory dice2 = new DiceFactory();
+	private DiceFactory dice3 = new DiceFactory();
+	private DiceFactory dice4 = new DiceFactory();
+	private DiceFactory dice5 = new DiceFactory();
 	
 	
 	public void RollAllDices(){
@@ -28,11 +29,11 @@ public class Maakcontent {
 		
 		Label root = new Label();
 		Pane root2 = new Pane();
-		Dice dice = new Dice();
-		Dice dice2 = new Dice();
-		Dice dice3 = new Dice();
-		Dice dice4 = new Dice();
-		Dice dice5 = new Dice();
+		DiceFactory dice = new DiceFactory();
+		DiceFactory dice2 = new DiceFactory();
+		DiceFactory dice3 = new DiceFactory();
+		DiceFactory dice4 = new DiceFactory();
+		DiceFactory dice5 = new DiceFactory();
 		
 		dice.setOnMouseClicked(event-> dice.replaceDice(dice,0));
 		dice.setTranslateX(100);

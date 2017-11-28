@@ -17,18 +17,18 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-import model.Dobbelsteen;
+import model.board.Dice;
 
 
 
-public class Dice extends StackPane{
+public class DiceFactory extends StackPane{
 	public final SimpleIntegerProperty property = new SimpleIntegerProperty();
-	Dobbelsteen dobbelsteen;
+	Dice dobbelsteen;
 	ArrayList<String> numbers = new ArrayList<>();
 	int rand = 0;
 	
 	
-	public Dice(){
+	public DiceFactory(){
 		Rectangle rect = new Rectangle(50 , 50);
 		
 		Text text = new Text();
@@ -55,7 +55,13 @@ public class Dice extends StackPane{
 		return rand;
 	}
 	
-	public void replaceDice(Dice dice, int y){
+
+	
+	
+	
+	
+	public void replaceDice(DiceFactory dice, int y){
+
 		dice.setTranslateX(100 + y);
 		dice.setTranslateY(100 );
 	}

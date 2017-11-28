@@ -1,19 +1,19 @@
-package model;
+package model.player;
 
 import java.util.UUID;
 
-public class Speler {
+public class Player {
 	
 	private String naam;
 	private String id;
 
-	public Speler(String naam){
+	public Player(String naam){
 		this.setNaam(naam);
 		
 	
 	}
 	
-	public Speler() {
+	public Player() {
 		
 	}
 

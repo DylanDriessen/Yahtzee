@@ -1,6 +1,6 @@
-package view;
+package model.board;
 
-import controller.SpelController;
+import controller.YahtzeeController;
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
@@ -14,8 +14,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import model.Speler;
 import model.enums.Categories;
+import model.player.Player;
+import view.Maakcontent;
 
 public class MakeNewBoard {
 
