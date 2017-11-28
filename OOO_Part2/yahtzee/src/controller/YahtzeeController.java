@@ -4,10 +4,10 @@ import java.util.List;
 
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import model.board.MakeContent;
-import model.board.MakeNewBoard;
 import model.game.Game;
 import model.player.Player;
+import view.board.MakeContent;
+import view.board.MakeNewBoard;
 
 public class YahtzeeController{
 	

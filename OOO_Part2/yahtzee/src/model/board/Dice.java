@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
+import javafx.animation.RotateTransition;
 import javafx.beans.binding.IntegerExpression;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.geometry.Pos;
@@ -11,6 +12,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 import model.factory.DiceFactory;
 
 public class 	Dice extends StackPane {
@@ -23,15 +25,15 @@ public class 	Dice extends StackPane {
 	
 	public final SimpleIntegerProperty property = new SimpleIntegerProperty();
 	
-	
+	Text text = new Text();
 	
 	
 	public Dice() {
 		Rectangle rect = new Rectangle(50 , 50);
 		
-		Text text = new Text();
+		
 		text.setFill(Color.WHITE); // de cijfers in de dobbelstenen
-		text.setText("Hallo");
+		text.setText("0");
 		this.setAlignment(Pos.CENTER);
 		getChildren().addAll(rect,text);
 		
@@ -40,21 +42,29 @@ public class 	Dice extends StackPane {
 
 	
 	
-	public int roll(){
-//		RotateTransition r = new RotateTransition(Duration.seconds(1), this); // this als een node want we extenden van StackPane
-//		r.setFromAngle(0);
-//		r.setToAngle(360); // de graden dat de dobbelsteen gaat draaien
-//		r.setOnFinished(event ->   
-//			 this.randomize() // hier wordt de dobbelsteen gerandomized + casten naar een integer
-//			 );
-//		r.play();
-//		numbers.add(Integer.toString(property.getValue()));
-//		System.out.println(numbers);
+	public int getRand() {
+		return rand;
+	}
+
+
+
+
+	public void setRand(int rand) {
+		this.rand = this.randomize();
+	}
+
+
+
+
+	public void roll(){
+		RotateTransition r = new RotateTransition(Duration.seconds(1), this); // this als een node want we extenden van StackPane
+		r.setFromAngle(0);
+		r.setToAngle(360); // de graden dat de dobbelsteen gaat draaien
 		rand = this.randomize();
-		
+		text.setText(Integer.toString(rand));
 		numbers.add(Integer.toString(rand));
 		System.out.println(numbers);
-		return rand;
+		
 	}
 	
 
@@ -63,7 +73,6 @@ public class 	Dice extends StackPane {
 	
 	
 	public void replaceDice(Dice dice, int y){
-
 		dice.setTranslateX(100 + y);
 		dice.setTranslateY(100 );
 		
