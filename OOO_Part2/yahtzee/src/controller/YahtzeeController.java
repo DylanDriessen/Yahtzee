@@ -2,12 +2,18 @@ package controller;
 
 import java.util.List;
 
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import model.board.MakeContent;
+import model.board.MakeNewBoard;
 import model.game.Game;
 import model.player.Player;
 
 public class YahtzeeController{
 	
 	private Game spel;
+	private MakeContent content = new MakeContent();
+	private MakeNewBoard board = new MakeNewBoard();
 	
 	public YahtzeeController(){
 		this.spel = new Game();
@@ -29,5 +35,14 @@ public class YahtzeeController{
 	public List<Player> getAll(){
 		return spel.getAllPlayers();
 	}
+	
+	public Pane makeContent(){
+		return content.maakContent() ;
+	}
+	
+	public void makeNewBoard(Stage primaryStage, String naam,Pane dices) throws Exception {
+		board.makeBoard(primaryStage, naam, this.makeContent());
+	}
+	
 	
 }
