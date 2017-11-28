@@ -3,6 +3,7 @@ package model.game.state;
 import exception.DomainException;
 import model.board.Dice;
 import model.game.Game;
+import model.player.Player;
 
 public class NewState implements GameState {
 	
@@ -14,9 +15,15 @@ public class NewState implements GameState {
 	
 	@Override
 	public void leftClicked(Dice dices){
-		if(!dices.rolled()){
-			throw new DomainException("First roll the dices");
-		}
+//		if(!dices.rolled()){
+//			throw new DomainException("First roll the dices");
+//		}
+	}
+
+	@Override
+	public void leftClicked(Dice dices, Player player) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

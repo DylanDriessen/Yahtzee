@@ -14,10 +14,16 @@ public class StartedState implements GameState {
 
 	@Override
 	public void leftClicked(Dice dices, Player player) {
-		if(dices.rolled()){
-			return;
-		}
-		if()
+//		if(dices.rolled()){
+//			return;
+//		}
+//		if()
+//		// TODO Auto-generated method stub
+//		
+	}
+
+	@Override
+	public void leftClicked(Dice dices) {
 		// TODO Auto-generated method stub
 		
 	}
