@@ -19,7 +19,7 @@ public class 	Dice extends StackPane {
 	public static final int MAX_VALUE = 6;
 	private int rand = 0;
 	ArrayList<String> numbers = new ArrayList<>();
-	
+	private boolean hold = false;
 	
 	public final SimpleIntegerProperty property = new SimpleIntegerProperty();
 	
@@ -63,9 +63,10 @@ public class 	Dice extends StackPane {
 	
 	
 	public void replaceDice(Dice dice, int y){
-
+		dice.setHold(true);
 		dice.setTranslateX(100 + y);
 		dice.setTranslateY(100 );
+		
 		
 	}
 	
@@ -76,6 +77,11 @@ public class 	Dice extends StackPane {
 	}
 	
 	
+	private void setHold(boolean hold) {
+		this.hold = hold;
+	}
 	
-
+	public boolean getHold() {
+		return this.hold;
+	}
 }
