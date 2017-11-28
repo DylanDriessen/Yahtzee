@@ -47,16 +47,18 @@ public class MakeNewBoard {
 	ComboBox<Categories> categories = new ComboBox<>();
 	categories.setItems(FXCollections.observableArrayList(Categories.values()));
 	categories.setPromptText("Categories");
-	categories.setTranslateX(100);
-	categories.setTranslateY(300);
+	categories.setTranslateX(290);
+	categories.setTranslateY(350);
 	gridpane.add(categories, 0, 0);
-	Button btn = new Button("klik hier");
+	Button btn = new Button("Roll Dices");
 	btn.setOnMouseClicked(event -> content.RollAllDices());
-	
-	btn.setTranslateX(250);
-	btn.setTranslateY(350);
+	btn.setTranslateX(300);
+	btn.setTranslateY(300);
+	Button turn = new Button("Next players turn");
+	turn.setTranslateX(500);
+	turn.setTranslateY(360);
 	gridpane.add(dices, 0, 0);
-	root.getChildren().addAll(gridpane,name,btn);
+	root.getChildren().addAll(gridpane,name,btn,turn);
 	primaryStage.setScene(scene);
 	primaryStage.show();
 	
