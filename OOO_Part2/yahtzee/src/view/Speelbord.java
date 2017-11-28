@@ -19,12 +19,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.board.Dice;
-import model.board.MakeContent;
-import model.board.MakeNewBoard;
 import model.factory.DiceFactory;
 import model.game.Game;
 import model.player.Player;
 import view.AskPlayers;
+import view.board.MakeContent;
+import view.board.MakeNewBoard;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -90,7 +90,7 @@ public class Speelbord extends Application {
 			
 			for(Player s: players){
 				Stage stage = new Stage();
-				
+				MakeNewBoard board = new MakeNewBoard();	
 				controller.makeNewBoard(stage, s.getNaam(),controller.makeContent());
 				
 			}

@@ -1,7 +1,8 @@
-package model.board;
+package view.board;
 
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import model.board.Dice;
 import model.factory.DiceFactory;
 
 public class MakeContent {
@@ -44,4 +45,11 @@ public Pane maakContent(){
 		
 		return root2;
 	}
+
+public void replaceDice(Dice dice, int y){
+	dice.setTranslateX(100 + y);
+	dice.setTranslateY(100 );
+	
+}
+
 }

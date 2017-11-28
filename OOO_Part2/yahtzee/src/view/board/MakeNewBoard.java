@@ -1,4 +1,4 @@
-package model.board;
+package view.board;
 
 import javax.swing.JOptionPane;
 
@@ -19,7 +19,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.enums.Categories;
 import model.player.Player;
-import model.board.MakeContent;
 import model.board.RollAllDices;
 
 public class MakeNewBoard {
