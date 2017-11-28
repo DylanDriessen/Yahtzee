@@ -55,7 +55,6 @@ public class MakeNewBoard {
 	categories.setTranslateX(290);
 	categories.setTranslateY(350);
 	gridpane.add(categories, 0, 0);
-<<<<<<< HEAD
 	Button btn = new Button("Roll Dices");
 	btn.setOnMouseClicked(event -> content.RollAllDices());
 	btn.setTranslateX(300);
@@ -63,13 +62,6 @@ public class MakeNewBoard {
 	Button turn = new Button("Next players turn");
 	turn.setTranslateX(500);
 	turn.setTranslateY(360);
-=======
-	Button btn = new Button("klik hier");
-	btn.setOnMouseClicked(event -> rolldices.RollAllDices());
-	
-	btn.setTranslateX(250);
-	btn.setTranslateY(350);
->>>>>>> e10b6f02b1354226ebaefef3d1049bfb861d4d72
 	gridpane.add(dices, 0, 0);
 	root.getChildren().addAll(gridpane,name,btn,turn);
 	primaryStage.setScene(scene);

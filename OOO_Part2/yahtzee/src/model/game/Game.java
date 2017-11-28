@@ -27,7 +27,7 @@ public class Game {
  		spelers.remove(speler.getId());
  		
  	}
- 	public Player getPlayer(String naam){
+ 	public Player playerIsInGame(String naam){
  		if(naam == null){
 			throw new DomainException("No name given");
 		}
@@ -38,6 +38,30 @@ public class Game {
 		}
 		return null;
 	}
+ 	
+ 	public String getNextPlayer(String naam){
+ 		int i = 0;
+ 		for(Player s: spelers){
+			if(s.getNaam().equals(naam)){
+				return spelers.get(i+1).getNaam();
+			}if(i == spelers.size()){
+				return spelers.get(0).getNaam();
+			}else{
+				i++;
+			}
+		}
+		return spelers.get(i+1).getNaam();
+ 	}
+ 	public String getPlayer(String naam){
+ 		int i = 0;
+ 		for(Player s: spelers){
+			if(s.getNaam().equals(naam)){
+				return spelers.get(i).getNaam();
+			}
+			i++;
+		}
+		return spelers.get(i).getNaam();
+ 	}
  	
  	
  	public List<Player> getAllPlayers(){

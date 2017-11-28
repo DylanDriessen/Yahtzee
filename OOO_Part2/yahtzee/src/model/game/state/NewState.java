@@ -15,17 +15,16 @@ public class NewState implements GameState {
 	
 	@Override
 	public void leftClicked(Dice dices){
-//		if(!dices.rolled()){
-//			throw new DomainException("First roll the dices");
-//		}
+		if(!dices.getHold()){
+			throw new DomainException("First roll the dices");
+		}
 	}
 
 	@Override
-	public void leftClicked(Dice dices, Player player) {
+	public void leftClicked(Dice dices, Player player, Game game) {
 		// TODO Auto-generated method stub
 		
-	}
-	
+	}	
 	
 	
 }
