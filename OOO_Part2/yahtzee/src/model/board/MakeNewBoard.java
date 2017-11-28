@@ -1,6 +1,9 @@
 package model.board;
 
+import javax.swing.JOptionPane;
+
 import controller.YahtzeeController;
+import exception.DomainException;
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
@@ -16,11 +19,13 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.enums.Categories;
 import model.player.Player;
-import view.Maakcontent;
+import model.board.MakeContent;
+import model.board.RollAllDices;
 
 public class MakeNewBoard {
 
-	Maakcontent content = new Maakcontent();
+	MakeContent content = new MakeContent();
+	RollAllDices rolldices= new RollAllDices();
 
 	public MakeNewBoard(){
 		
@@ -29,7 +34,7 @@ public class MakeNewBoard {
 	public void makeBoard(Stage primaryStage, String naam,Pane dices) throws Exception {
 	
 		
-		
+		try{
 	Group root = new Group();
     Scene scene = new Scene(root, 1400, 800, Color.BEIGE);
 
@@ -50,6 +55,7 @@ public class MakeNewBoard {
 	categories.setTranslateX(290);
 	categories.setTranslateY(350);
 	gridpane.add(categories, 0, 0);
+<<<<<<< HEAD
 	Button btn = new Button("Roll Dices");
 	btn.setOnMouseClicked(event -> content.RollAllDices());
 	btn.setTranslateX(300);
@@ -57,10 +63,22 @@ public class MakeNewBoard {
 	Button turn = new Button("Next players turn");
 	turn.setTranslateX(500);
 	turn.setTranslateY(360);
+=======
+	Button btn = new Button("klik hier");
+	btn.setOnMouseClicked(event -> rolldices.RollAllDices());
+	
+	btn.setTranslateX(250);
+	btn.setTranslateY(350);
+>>>>>>> e10b6f02b1354226ebaefef3d1049bfb861d4d72
 	gridpane.add(dices, 0, 0);
 	root.getChildren().addAll(gridpane,name,btn,turn);
 	primaryStage.setScene(scene);
 	primaryStage.show();
+		}
+		
+		catch(DomainException e){
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
 	
 }
 }

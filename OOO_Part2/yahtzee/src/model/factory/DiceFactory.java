@@ -1,4 +1,4 @@
-package view;
+package model.factory;
 
 
 
@@ -39,36 +39,5 @@ public class DiceFactory extends StackPane{
 		
 	}
 	
-	public int roll(){
-//		RotateTransition r = new RotateTransition(Duration.seconds(1), this); // this als een node want we extenden van StackPane
-//		r.setFromAngle(0);
-//		r.setToAngle(360); // de graden dat de dobbelsteen gaat draaien
-//		r.setOnFinished(event ->   
-//			 this.randomize() // hier wordt de dobbelsteen gerandomized + casten naar een integer
-//			 );
-//		r.play();
-//		numbers.add(Integer.toString(property.getValue()));
-//		System.out.println(numbers);
-		rand = this.randomize();
-		numbers.add(Integer.toString(rand));
-		System.out.println(numbers);
-		return rand;
-	}
-	
 
-	
-	
-	
-	
-	public void replaceDice(DiceFactory dice, int y){
-
-		dice.setTranslateX(100 + y);
-		dice.setTranslateY(100 );
-	}
-	
-	private int randomize(){
-		Random random = new Random();
-		int numberShowing = random.nextInt(6)+1;
-		return numberShowing;
-	}
 	}

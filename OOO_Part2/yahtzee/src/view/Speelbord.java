@@ -19,8 +19,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.board.Dice;
+import model.board.MakeContent;
 import model.board.MakeNewBoard;
-
+import model.factory.DiceFactory;
 import model.game.Game;
 import model.player.Player;
 import view.AskPlayers;
@@ -44,8 +45,9 @@ public class Speelbord extends Application {
 	
 	private SimpleIntegerProperty property = new SimpleIntegerProperty();
 	private Dice dobbel = new Dice();
-	private Maakcontent content = new Maakcontent();
+	private MakeContent content = new MakeContent();
 	private ArrayList<DiceFactory> dices = new ArrayList<>();
+	private YahtzeeController controller = new YahtzeeController();
 	
  
 	public static void main(String[] args) {
@@ -88,8 +90,8 @@ public class Speelbord extends Application {
 			
 			for(Player s: players){
 				Stage stage = new Stage();
-				MakeNewBoard board = new MakeNewBoard();	
-				board.makeBoard(stage, s.getNaam(),content.maakContent());
+				
+				controller.makeNewBoard(stage, s.getNaam(),controller.makeContent());
 				
 			}
 			

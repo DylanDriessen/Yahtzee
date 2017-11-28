@@ -1,39 +1,23 @@
-package view;
+package model.board;
 
-import java.util.ArrayList;
-
-import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import model.factory.DiceFactory;
 
-
-public class Maakcontent {
-
-	private DiceFactory dice = new DiceFactory();
-	private DiceFactory dice2 = new DiceFactory();
-	private DiceFactory dice3 = new DiceFactory();
-	private DiceFactory dice4 = new DiceFactory();
-	private DiceFactory dice5 = new DiceFactory();
+public class MakeContent {
 	
 	
-	public void RollAllDices(){
-		dice.roll();
-		dice2.roll();
-		dice3.roll();
-		dice4.roll();
-		dice5.roll();
-	}
-	
-	public Pane maakContent(){
+
+public Pane maakContent(){
 		
 		
 		Label root = new Label();
 		Pane root2 = new Pane();
-		DiceFactory dice = new DiceFactory();
-		DiceFactory dice2 = new DiceFactory();
-		DiceFactory dice3 = new DiceFactory();
-		DiceFactory dice4 = new DiceFactory();
-		DiceFactory dice5 = new DiceFactory();
+		Dice dice = new Dice();
+		Dice dice2 = new Dice();
+		Dice dice3 = new Dice();
+		Dice dice4 = new Dice();
+		Dice dice5 = new Dice();
 		
 		dice.setOnMouseClicked(event-> dice.replaceDice(dice,0));
 		dice.setTranslateX(100);
@@ -56,9 +40,6 @@ public class Maakcontent {
 		dice5.setTranslateY(200);
 		
 		root2.getChildren().addAll(dice,dice2,dice3,dice4,dice5);
-		
-		
-		
 		
 		
 		return root2;
