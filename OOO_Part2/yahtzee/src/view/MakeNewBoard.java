@@ -1,6 +1,6 @@
 package view;
 
-import controller.SpelController;
+import controller.YahtzeeController;
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
@@ -13,8 +13,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import model.Speler;
 import model.enums.Categories;
+import model.player.Player;
 
 public class MakeNewBoard {
 

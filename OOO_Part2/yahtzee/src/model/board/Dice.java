@@ -1,10 +1,10 @@
-package model;
+package model.board;
 
 import java.util.concurrent.ThreadLocalRandom;
 
 import javafx.beans.property.SimpleIntegerProperty;
 
-public class 	Dobbelsteen {
+public class 	Dice {
 	
 	public static final int MIN_VALUE = 1;
 	public static final int MAX_VALUE = 6;
@@ -13,7 +13,7 @@ public class 	Dobbelsteen {
 	
 	public final SimpleIntegerProperty property = new SimpleIntegerProperty();
 	
-	public Dobbelsteen() {
+	public Dice() {
 		
 	}
 

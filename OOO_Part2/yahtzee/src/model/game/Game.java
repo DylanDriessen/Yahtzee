@@ -1,36 +1,37 @@
-package model;
+package model.game;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import model.Speler;
+import exception.DomainException;
+import model.player.Player;
 
-public class Spel {
-	private ArrayList<Speler> spelers;
+public class Game {
+	private ArrayList<Player> spelers;
  
 
  	
-	public Spel(){
+	public Game(){
 		spelers = new ArrayList<>();
 	}
 	
 	
-	public void voegToe(Speler speler){
+	public void voegToe(Player speler){
  		spelers.add(speler);
  		//test
  	}
  	
- 	public void deleteSpeler(Speler speler){
+ 	public void deleteSpeler(Player speler){
  		spelers.remove(speler.getId());
  		
  	}
- 	public Speler getPlayer(String naam){
+ 	public Player getPlayer(String naam){
  		if(naam == null){
 			throw new DomainException("No name given");
 		}
-		for(Speler s: spelers){
+		for(Player s: spelers){
 			if(s.getNaam().equals(naam)){
 				return s;
 			}
@@ -39,7 +40,7 @@ public class Spel {
 	}
  	
  	
- 	public List<Speler> getAllPlayers(){
+ 	public List<Player> getAllPlayers(){
 		return spelers;	
  		
  	}
