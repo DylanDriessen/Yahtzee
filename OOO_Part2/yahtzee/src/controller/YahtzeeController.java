@@ -1,9 +1,12 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import model.board.Dice;
+import model.board.RollAllDices;
 import model.game.Game;
 import model.player.Player;
 import view.board.MakeContent;
@@ -14,6 +17,7 @@ public class YahtzeeController{
 	private Game spel;
 	
 	private MakeNewBoard board = new MakeNewBoard();
+	private RollAllDices cup = new RollAllDices();
 	
 	public YahtzeeController(){
 		this.spel = new Game();
@@ -38,9 +42,12 @@ public class YahtzeeController{
 		return spel.getAllPlayers();
 	}
 	
+	public ArrayList<Dice> getAllDices(){
+		return cup.getAllDices();
+	}
 	
-	
-	
-	
+	public void rollDices() {
+		cup.rollAllDices();
+	}
 	
 }
