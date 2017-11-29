@@ -15,7 +15,7 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 import model.factory.DiceFactory;
 
-public class 	Dice extends StackPane {
+public class Dice extends StackPane {
 	
 	/*public static final int MIN_VALUE = 1;
 	public static final int MAX_VALUE = 6;
@@ -26,7 +26,6 @@ public class 	Dice extends StackPane {
 	
 	//Text text = new Text();
 	private int eyes;
-	
 	
 	public Dice() {
 		

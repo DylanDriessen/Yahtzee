@@ -19,85 +19,70 @@ import model.factory.DiceFactory;
 public class MakeContent extends StackPane {
 	
 	List<Dice> dices = new ArrayList<>();
-	private int x = 100;
+	List<Label> labels = new ArrayList<>();
+	private Pane root2 = new Pane();
+	private int x1 = 100;
+	private int x2 = 100;
 	private int y = 200;
 	
-
-	private SimpleIntegerProperty property = new SimpleIntegerProperty();
-	
-	
-	
-	public  MakeContent(SimpleIntegerProperty property){
-		Rectangle rect = new Rectangle(50 , 50);
-		Text text = new Text();
-		text.setFill(Color.WHITE); // de cijfers in de dobbelstenen
-		text.textProperty().bind(property.asString());
-		
-		this.setAlignment(Pos.CENTER);
-		getChildren().addAll(rect,text);
+	public MakeContent(){
+		prepareLabels();
+		for(int i = 0; i <= 4; i++){
+			Rectangle rect = new Rectangle(50 , 50);
+			labels.get(i).setTranslateX(x1);
+			labels.get(i).setTranslateY(y);
+			x1 = x1 + 100;
+			this.setAlignment(Pos.CENTER);
+			root2.getChildren().add(labels.get(i));
+			System.out.println(i + " " + labels.get(i).getText());
+		}
 	}
 	
-	
-	
-	
-	
-	public Pane maakContent() {
-		
-		
-	
-		Pane root2 = new Pane();
+	public Pane maakContent() {	
 		
 		for(int i = 0; i <= 4; i++){
 			
 			Dice dice = new Dice();
 			dices.add(dice);
-			MakeContent content = new MakeContent(property);
 			
-			
-			
-			dice.setTranslateX(x);
+			dice.setTranslateX(x2);
 			dice.setTranslateY(y);
-			content.setTranslateX(x);
-			content.setTranslateY(y);
-			x = x + 100; 
+			x2 = x2 + 100; 
 			
-			
-			root2.getChildren().addAll(content,dice);
-		
-			
+			root2.getChildren().add(dice);
 		}
-		
 		
 		Button btn = new Button("Roll Dices");
 		btn.setOnMouseClicked(event -> this.AllDices());
 		btn.setTranslateX(300);
 		btn.setTranslateY(300);
 		
-		
 		root2.getChildren().add(btn);
 		
 		return root2;
 	}
 	
-	
-	
+	public void prepareLabels() {	
+		
+		for(int i = 0; i <= 4; i++){
+			Label label = new Label();
+			label.setTextFill(Color.WHITE);
+			label.setStyle("-fx-background-color: black; -fx-padding: 10px 20px 10px 20px;");
+			labels.add(label);
+		}
+	}
 
 	public void replaceDice(Dice dice, int y){
 		dice.setTranslateX(100 + y);
 		dice.setTranslateY(100 );
-	
-		
 	}
 
 	public void AllDices(){
-		for(Dice d: dices){
-			d.roll();
-			property.set(d.getEyes());
-			
-			
-			
+		for(int i=0;i<dices.size();i++){
+			dices.get(i).roll();
+			labels.get(i).setText(Integer.toString(dices.get(i).getEyes()));
+			System.out.println(dices.get(i).getEyes());
+		}	
 	}
-		
-}
 
 }

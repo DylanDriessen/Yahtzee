@@ -25,7 +25,7 @@ import model.board.RollAllDices;
 public class MakeNewBoard {
 
 	
-	RollAllDices rolldices= new RollAllDices();
+	RollAllDices rolldices = new RollAllDices();
 
 	public MakeNewBoard(){
 		
@@ -56,21 +56,10 @@ public class MakeNewBoard {
 	categories.setTranslateX(290);
 	categories.setTranslateY(350);
 	gridpane.add(categories, 0, 0);
-
-	
-	
 	
 	Button turn = new Button("Next players turn");
 	turn.setTranslateX(500);
 	turn.setTranslateY(360);
-
-	
-	
-	
-
-
-	
-	
 
 	gridpane.add(dices, 0, 0);
 	System.out.println(dices);

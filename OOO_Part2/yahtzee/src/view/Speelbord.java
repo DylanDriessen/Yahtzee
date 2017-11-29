@@ -43,10 +43,7 @@ import javafx.stage.Stage;
 
 public class Speelbord extends Application {
 	
-	
-	private SimpleIntegerProperty property = new SimpleIntegerProperty();
-	private MakeContent content = new MakeContent(property);
-	
+	private MakeContent content = new MakeContent();
  
 	public static void main(String[] args) {
 		launch(args);
@@ -55,12 +52,8 @@ public class Speelbord extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
-		
-			
-			
 			YahtzeeController persons = new YahtzeeController();
 			AskPlayers player = new AskPlayers();
-			
 			
 			String input = "";
 			String message = "Druk \n 1 om een naam toe te voegen \n 0 om te stoppen" ;
