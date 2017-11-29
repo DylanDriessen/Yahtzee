@@ -43,12 +43,10 @@ import javafx.stage.Stage;
 
 public class Speelbord extends Application {
 	
-	private SimpleIntegerProperty property = new SimpleIntegerProperty();
-	private Dice dobbel = new Dice();
-	private MakeContent content = new MakeContent();
-	private ArrayList<DiceFactory> dices = new ArrayList<>();
-	private YahtzeeController controller = new YahtzeeController();
 	
+	
+	private MakeContent content = new MakeContent();
+	private MakeNewBoard board = new MakeNewBoard();
  
 	public static void main(String[] args) {
 		launch(args);
@@ -58,7 +56,7 @@ public class Speelbord extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		
 		
-			int counter;
+			
 			
 			YahtzeeController persons = new YahtzeeController();
 			AskPlayers player = new AskPlayers();
@@ -91,7 +89,7 @@ public class Speelbord extends Application {
 			for(Player s: players){
 				Stage stage = new Stage();
 				MakeNewBoard board = new MakeNewBoard();	
-				controller.makeNewBoard(stage, s.getNaam(),controller.makeContent());
+				board.makeBoard(stage, s.getNaam(),content.maakContent());
 				
 			}
 			
