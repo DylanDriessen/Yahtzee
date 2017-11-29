@@ -12,7 +12,7 @@ import view.board.MakeNewBoard;
 public class YahtzeeController{
 	
 	private Game spel;
-	private MakeContent content = new MakeContent();
+	
 	private MakeNewBoard board = new MakeNewBoard();
 	
 	public YahtzeeController(){
@@ -28,7 +28,9 @@ public class YahtzeeController{
 		spel.deleteSpeler(speler);
 	}
 	
-	public Player getSpeler(String naam){
+	public String getSpeler(String naam){
+		
+		
 		return spel.getPlayer(naam);
 	}
 	
@@ -36,13 +38,9 @@ public class YahtzeeController{
 		return spel.getAllPlayers();
 	}
 	
-	public Pane makeContent(){
-		return content.maakContent() ;
-	}
 	
-	public void makeNewBoard(Stage primaryStage, String naam,Pane dices) throws Exception {
-		board.makeBoard(primaryStage, naam, this.makeContent());
-	}
+	
+	
 	
 	
 }

@@ -28,14 +28,17 @@ public class MakeContent extends StackPane {
 	
 	
 	
-	public  MakeContent(){
+	public  MakeContent(SimpleIntegerProperty property){
 		Rectangle rect = new Rectangle(50 , 50);
 		Text text = new Text();
 		text.setFill(Color.WHITE); // de cijfers in de dobbelstenen
 		text.textProperty().bind(property.asString());
+		
 		this.setAlignment(Pos.CENTER);
 		getChildren().addAll(rect,text);
 	}
+	
+	
 	
 	
 	
@@ -49,7 +52,8 @@ public class MakeContent extends StackPane {
 			
 			Dice dice = new Dice();
 			dices.add(dice);
-			MakeContent content = new MakeContent();
+			MakeContent content = new MakeContent(property);
+			System.out.println(property);
 			
 			
 			dice.setTranslateX(x);
@@ -68,27 +72,7 @@ public class MakeContent extends StackPane {
 		
 		
 		
-		
-		/*dice.setOnMouseClicked(event-> dice.replaceDice(dice,0));
-		dice.setTranslateX(100);
-		dice.setTranslateY(200);
-		
-		dice2.setOnMouseClicked(event -> dice2.replaceDice(dice2,100));
-		dice2.setTranslateX(200);
-		dice2.setTranslateY(200);
-		
-		dice3.setOnMouseClicked(event -> dice3.replaceDice(dice3,200));
-		dice3.setTranslateX(300);
-		dice3.setTranslateY(200);
-		
-		dice4.setOnMouseClicked(event -> dice4.replaceDice(dice4,300));
-		dice4.setTranslateX(400);
-		dice4.setTranslateY(200);
-		
-		dice5.setOnMouseClicked(event -> dice5.replaceDice(dice5,400));
-		dice5.setTranslateX(500);
-		dice5.setTranslateY(200);
-		*/
+	
 		
 		
 		Button btn = new Button("Roll Dices");
@@ -121,11 +105,13 @@ public class MakeContent extends StackPane {
 		
 	}
 
-	private void AllDices(){
+	public void AllDices(){
 		for(Dice d: dices){
 			d.roll();
 			property.set(d.getEyes());
+			System.out.println(d.getEyes());
 			System.out.println(property);
+			
 			
 	}
 		
