@@ -26,15 +26,16 @@ public class MakeContent extends StackPane {
 	private int y = 200;
 	
 	public MakeContent(){
+		//Hele constructor mag in SimpleFactory komen
 		prepareLabels();
 		for(int i = 0; i <= 4; i++){
-			Rectangle rect = new Rectangle(50 , 50);
+			//Rectangle rect = new Rectangle(50 , 50);
 			labels.get(i).setTranslateX(x1);
 			labels.get(i).setTranslateY(y);
 			x1 = x1 + 100;
 			this.setAlignment(Pos.CENTER);
 			root2.getChildren().add(labels.get(i));
-			System.out.println(i + " " + labels.get(i).getText());
+			//System.out.println(i + " " + labels.get(i).getText());
 		}
 	}
 
@@ -73,16 +74,17 @@ public class MakeContent extends StackPane {
 		}
 	}
 
-	public void replaceDice(Dice dice, int y){
-		dice.setTranslateX(100 + y);
-		dice.setTranslateY(100 );
-	}
-
+//	public void replaceDice(Dice dice, int y){
+//		dice.setTranslateX(100 + y);
+//		dice.setTranslateY(100 );
+//	}
+	
+	// Code voor Dice
 	public void AllDices(){
 		for(int i=0;i<dices.size();i++){
 			dices.get(i).roll();
 			labels.get(i).setText(Integer.toString(dices.get(i).getEyes()));
-			System.out.println(dices.get(i).getEyes());
+			//System.out.println(dices.get(i).getEyes());
 		}	
 
 	}

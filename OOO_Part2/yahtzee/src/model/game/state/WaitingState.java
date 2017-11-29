@@ -8,7 +8,7 @@ public class WaitingState implements GameState {
 
 	@Override
 	public void leftClicked(Dice dices, Player player, Game game) {
-		if(!player.getNaam().equals(game.getPlayer(player.getNaam())));
+//		if(!player.getNaam().equals(game.getPlayer(player.getNaam())));
 		
 	}
 
@@ -16,6 +16,5 @@ public class WaitingState implements GameState {
 	public void leftClicked(Dice dices) {
 		// TODO Auto-generated method stub
 		
-	}
-	
+	}	
 }

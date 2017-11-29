@@ -23,6 +23,8 @@ import model.board.Dice;
 import model.board.RollAllDices;
 
 public class MakeNewBoard {
+	
+	//Wordt GameFrame
 
 	
 	RollAllDices rolldices = new RollAllDices();
@@ -45,24 +47,29 @@ public class MakeNewBoard {
     gridpane.setHgap(10);
     gridpane.setVgap(10);
 	primaryStage.setTitle("Yahtzee");
+	//gridpane.add(name, 0, 0);
+
+
+
+	gridpane.add(dices, 0, 0);
+	//System.out.println(dices);
+	
+	//GameButtons
 	Label name = new Label("Yahtzee");
 	name = new Label(naam + " is aan de beurt");
 	name.setTranslateX(600);
 	name.setTranslateY(200);
-	gridpane.add(name, 0, 0);
 	ComboBox<Categories> categories = new ComboBox<>();
 	categories.setItems(FXCollections.observableArrayList(Categories.values()));
 	categories.setPromptText("Categories");
 	categories.setTranslateX(290);
 	categories.setTranslateY(350);
 	gridpane.add(categories, 0, 0);
-	
 	Button turn = new Button("Next players turn");
 	turn.setTranslateX(500);
 	turn.setTranslateY(360);
-
-	gridpane.add(dices, 0, 0);
-	System.out.println(dices);
+	//einde
+	
 	
 	root.getChildren().addAll(gridpane,name,turn);
 	primaryStage.setScene(scene);
