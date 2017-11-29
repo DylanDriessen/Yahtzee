@@ -22,7 +22,7 @@ public class Dice extends StackPane {
 	private int rand = 0;
 	ArrayList<String> numbers = new ArrayList<>();
 	private boolean hold = false;*/
-	
+	private boolean rolled = false;
 	
 	//Text text = new Text();
 	private int eyes;
@@ -88,4 +88,12 @@ public class Dice extends StackPane {
 		return this.hold;
 	}
 	*/
+	
+	public void setRolled(boolean roll) {
+		this.rolled = roll;
+	}
+	
+	public boolean getRolled() {
+		return this.rolled;
+	}
 }

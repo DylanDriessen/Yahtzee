@@ -43,7 +43,14 @@ import javafx.stage.Stage;
 
 public class Speelbord extends Application {
 	
+<<<<<<< HEAD
 	private MakeContent content = new MakeContent();
+=======
+	
+	private SimpleIntegerProperty property = new SimpleIntegerProperty();
+	
+	
+>>>>>>> 3950270ce3c0e1419a406ccc310d7acb46c4c4ae
  
 	public static void main(String[] args) {
 		launch(args);
@@ -81,7 +88,7 @@ public class Speelbord extends Application {
 			for(Player s: players){
 				Stage stage = new Stage();
 				MakeNewBoard board = new MakeNewBoard();	
-				
+				MakeContent content = new MakeContent(property);
 				board.makeBoard(stage, s.getNaam(),content.maakContent());
 				
 			}

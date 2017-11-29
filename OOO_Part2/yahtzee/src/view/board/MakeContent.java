@@ -38,7 +38,20 @@ public class MakeContent extends StackPane {
 		}
 	}
 	
+<<<<<<< HEAD
 	public Pane maakContent() {	
+=======
+	
+	
+	
+	
+	public Pane maakContent() {
+		x = 100;
+		
+		
+	
+		Pane root2 = new Pane();
+>>>>>>> 3950270ce3c0e1419a406ccc310d7acb46c4c4ae
 		
 		for(int i = 0; i <= 4; i++){
 			
@@ -78,11 +91,21 @@ public class MakeContent extends StackPane {
 	}
 
 	public void AllDices(){
+<<<<<<< HEAD
 		for(int i=0;i<dices.size();i++){
 			dices.get(i).roll();
 			labels.get(i).setText(Integer.toString(dices.get(i).getEyes()));
 			System.out.println(dices.get(i).getEyes());
 		}	
+=======
+		for(Dice d: dices){
+			d.roll();
+			property.set(d.getEyes());
+			
+			
+			
+			
+>>>>>>> 3950270ce3c0e1419a406ccc310d7acb46c4c4ae
 	}
 
 }
