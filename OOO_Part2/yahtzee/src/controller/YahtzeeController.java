@@ -42,11 +42,7 @@ public class YahtzeeController{
 		return spel.getAllPlayers();
 	}
 	
-	public Player getInGamePlayer() {
-		return spel.inGamePlayer();
-	}
-	
-	public void setNextPlayer() {
+	public void nextTurn() {
 		spel.setNextPlayer();
 	}
 	

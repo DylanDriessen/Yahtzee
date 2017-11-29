@@ -94,6 +94,11 @@ public class Game {
  		int i = 0;
  		int x = 0;
  		boolean found = false;
+ 		
+ 		if(spelers == null || spelers.isEmpty() || spelers.size() <= 1) {
+ 			throw new DomainException("Give at least 2 players");
+ 		}
+ 		
  		for (Player player : spelers) {
  			if(player.getTrun() && !spelers.get(spelers.size()-1).equals(player)) {
  				found = true;
