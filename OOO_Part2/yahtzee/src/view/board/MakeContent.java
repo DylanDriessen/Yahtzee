@@ -43,7 +43,7 @@ public class MakeContent extends StackPane {
 	
 	public Pane maakContent() {
 		
-		
+		x = 100;
 	
 		Pane root2 = new Pane();
 		
