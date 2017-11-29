@@ -45,7 +45,7 @@ public class Speelbord extends Application {
 	
 	
 	private SimpleIntegerProperty property = new SimpleIntegerProperty();
-	private MakeContent content = new MakeContent(property);
+	
 	
  
 	public static void main(String[] args) {
@@ -88,7 +88,7 @@ public class Speelbord extends Application {
 			for(Player s: players){
 				Stage stage = new Stage();
 				MakeNewBoard board = new MakeNewBoard();	
-				
+				MakeContent content = new MakeContent(property);
 				board.makeBoard(stage, s.getNaam(),content.maakContent());
 				
 			}
