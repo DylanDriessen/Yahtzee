@@ -46,7 +46,7 @@ public class Speelbord extends Application {
 	
 	
 	private MakeContent content = new MakeContent();
-	private MakeNewBoard board = new MakeNewBoard();
+	
  
 	public static void main(String[] args) {
 		launch(args);
