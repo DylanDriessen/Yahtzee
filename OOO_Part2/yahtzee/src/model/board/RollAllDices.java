@@ -27,11 +27,11 @@ public class RollAllDices {
 
 
 	public void rollAllDices(){
-		dice.roll(); 
-		dice2.roll();
-		dice3.roll();
-		dice4.roll();
-		dice5.roll();
+		for (Dice dice : dices) {
+			if(dice.getRolled() == false) {
+				dice.roll();
+			}
+		}
 	
 		
 	

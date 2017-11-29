@@ -16,7 +16,6 @@ public class YahtzeeController{
 	
 	private Game spel;
 	
-	private MakeNewBoard board = new MakeNewBoard();
 	private RollAllDices cup = new RollAllDices();
 	
 	public YahtzeeController(){

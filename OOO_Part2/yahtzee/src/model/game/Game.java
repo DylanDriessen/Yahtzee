@@ -24,19 +24,22 @@ public class Game {
  	}
  	
  	public void deleteSpeler(Player speler){
- 		spelers.remove(speler.getId());
+ 		spelers.remove(speler);
  		
  	}
  	public Player playerIsInGame(String naam){
  		if(naam == null){
 			throw new DomainException("No name given");
 		}
+ 		
 		for(Player s: spelers){
 			if(s.getNaam().equals(naam)){
 				return s;
 			}
 		}
-		return null;
+		
+		throw new DomainException("Player does not exists");
+		
 	}
  	
  	public String getNextPlayer(String naam){
