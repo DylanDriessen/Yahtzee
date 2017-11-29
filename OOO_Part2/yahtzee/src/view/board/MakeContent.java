@@ -42,6 +42,7 @@ public class MakeContent extends StackPane {
 	
 	
 	public Pane maakContent() {
+		x = 100;
 		
 		x = 100;
 	
