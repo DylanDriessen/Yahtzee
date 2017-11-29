@@ -37,8 +37,10 @@ public class MakeContent extends StackPane {
 			System.out.println(i + " " + labels.get(i).getText());
 		}
 	}
+
 	public Pane maakContent() {	
 
+		
 		for(int i = 0; i <= 4; i++){
 			
 			Dice dice = new Dice();
