@@ -21,7 +21,6 @@ public class MakeContent extends StackPane {
 	List<Dice> dices = new ArrayList<>();
 	private int x = 100;
 	private int y = 200;
-	private int random = 0;
 	
 
 	private SimpleIntegerProperty property = new SimpleIntegerProperty();
@@ -53,7 +52,7 @@ public class MakeContent extends StackPane {
 			Dice dice = new Dice();
 			dices.add(dice);
 			MakeContent content = new MakeContent(property);
-			System.out.println(property);
+			
 			
 			
 			dice.setTranslateX(x);
@@ -69,23 +68,8 @@ public class MakeContent extends StackPane {
 		}
 		
 		
-		
-		
-		
-	
-		
-		
 		Button btn = new Button("Roll Dices");
 		btn.setOnMouseClicked(event -> this.AllDices());
-		
-		
-		
-		
-		
-		
-		//For loop in dices schrijven! 
-		
-		
 		btn.setTranslateX(300);
 		btn.setTranslateY(300);
 		
@@ -109,8 +93,7 @@ public class MakeContent extends StackPane {
 		for(Dice d: dices){
 			d.roll();
 			property.set(d.getEyes());
-			System.out.println(d.getEyes());
-			System.out.println(property);
+			
 			
 			
 	}

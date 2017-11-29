@@ -84,12 +84,11 @@ public class Speelbord extends Application {
 			
 			List<Player> players = persons.getAll();
 
-			
-			
+				
 			for(Player s: players){
 				Stage stage = new Stage();
 				MakeNewBoard board = new MakeNewBoard();	
-				property = new SimpleIntegerProperty();
+				
 				board.makeBoard(stage, s.getNaam(),content.maakContent());
 				
 			}
