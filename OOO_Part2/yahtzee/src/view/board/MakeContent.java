@@ -42,12 +42,14 @@ public class MakeContent extends StackPane {
 	
 	
 	public Pane maakContent() {
+		x = 100;
 		
 		
 	
 		Pane root2 = new Pane();
 		
 		for(int i = 0; i <= 4; i++){
+			x =100;
 			
 			Dice dice = new Dice();
 			dices.add(dice);
