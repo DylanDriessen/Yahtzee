@@ -33,7 +33,7 @@ public class Game {
 		}
  		
 		for(Player s: spelers){
-			if(s.getNaam().equals(naam)){
+			if(s.getTrun()){
 				return s;
 			}
 		}
@@ -55,15 +55,33 @@ public class Game {
 		}
 		return spelers.get(i+1).getNaam();
  	}
- 	public String getPlayer(String naam){
+ 	
+ 	public Player getPlayer(Player player){
  		int i = 0;
  		for(Player s: spelers){
-			if(s.getNaam().equals(naam)){
-				return spelers.get(i).getNaam();
+			if(s.equals(player)){
+				return spelers.get(i);
 			}
 			i++;
 		}
-		return spelers.get(i).getNaam();
+		return spelers.get(i);
+ 	}
+ 	
+ 	
+ 	
+ 	
+ 	public Player inGamePlayer() {
+ 		if(spelers.isEmpty()) {
+ 			throw new DomainException("No players");
+ 		}
+ 		
+ 		for (Player player : spelers) {
+ 			if (player.getTrun()) {
+ 				return player;
+ 			}
+ 		}
+ 		
+ 		return spelers.get(0);
  	}
  	
  	
@@ -71,6 +89,30 @@ public class Game {
 		return spelers;	
  		
  	}
+ 	
+ 	public void setNextPlayer() {
+ 		int i = 0;
+ 		int x = 0;
+ 		boolean found = false;
+ 		for (Player player : spelers) {
+ 			if(player.getTrun() && !spelers.get(spelers.size()-1).equals(player)) {
+ 				found = true;
+ 				player.setTurn(false);
+ 				x = i + 1;
+ 			} else if (spelers.get(spelers.size()-1).equals(player)) {
+ 				x = 0;
+ 			}
+ 			i++;
+ 		}
+ 		
+ 		if (!found) {
+ 			spelers.get(0).setTurn(true);
+ 		} else {
+ 			spelers.get(x).setTurn(true);
+ 		}
+ 	}
+ 	
+ 	
  }
 
 

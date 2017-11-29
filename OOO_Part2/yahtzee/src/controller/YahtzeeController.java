@@ -22,6 +22,7 @@ public class YahtzeeController{
 		this.spel = new Game();
 	}
 	
+	//Player methods
 	
 	public void voegSpelerToe(Player speler){
 		spel.voegToe(speler);
@@ -31,15 +32,25 @@ public class YahtzeeController{
 		spel.deleteSpeler(speler);
 	}
 	
-	public String getSpeler(String naam){
+	public Player getSpeler(Player player){
 		
 		
-		return spel.getPlayer(naam);
+		return spel.getPlayer(player);
 	}
 	
 	public List<Player> getAll(){
 		return spel.getAllPlayers();
 	}
+	
+	public Player getInGamePlayer() {
+		return spel.inGamePlayer();
+	}
+	
+	public void setNextPlayer() {
+		spel.setNextPlayer();
+	}
+	
+	//RollDice methods
 	
 	public ArrayList<Dice> getAllDices(){
 		return cup.getAllDices();
