@@ -1,5 +1,3 @@
-/application/
-/controller/
-/exception/
-/model/
 /view/
+/model/
+/controller/
