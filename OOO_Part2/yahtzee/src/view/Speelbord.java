@@ -80,8 +80,8 @@ public class Speelbord extends Application {
 			
 			List<PersonalGame> players = persons.getAll();
 
-				
-			for(PersonalGame s: players){
+			for (int i = players.size()-1; i >= 0;i--){	
+			PersonalGame s = players.get(i);
 				Stage stage = new Stage();
 				MakeNewBoard board = new MakeNewBoard();	
 				MakeContent content = new MakeContent();

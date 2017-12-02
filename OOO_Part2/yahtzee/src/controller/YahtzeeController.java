@@ -41,7 +41,7 @@ public class YahtzeeController{
 		return spel.getAllPlayers();
 	}
 	
-		//Speler beëindigt beurt
+		//Speler beindigt beurt
 	//public void endTurn(int turn, List<Integer> diceEyes) {  
 	//	spel.inGamePlayer().addDicesThrown(turn, diceEyes);
 	//	cup.resetDices();
