@@ -32,12 +32,15 @@ public class RollAllDices {
 				dice.roll();
 			}
 		}
-	
-		
-	
 	}
 	
 	public ArrayList<Dice> getAllDices(){ 
 		return this.dices;
+	}
+	
+	public void resetDices() {
+		for (Dice dice : dices) {
+			dice.resetEyes();
+		}
 	}
 }

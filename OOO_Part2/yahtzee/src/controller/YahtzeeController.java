@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import model.board.Dice;
 import model.board.RollAllDices;
 import model.game.Game;
+import model.game.PersonalGame;
 import model.player.Player;
 import view.board.MakeContent;
 import view.board.MakeNewBoard;
@@ -24,27 +25,28 @@ public class YahtzeeController{
 	
 	//Player methods
 	
-	public void voegSpelerToe(Player speler){
-		spel.voegToe(speler);
+	public void voegSpelerToe(PersonalGame personalGame){
+		spel.addPersonalGame(personalGame);
 	}
 	
-	public void deleteSpeler(Player speler){
-		spel.deleteSpeler(speler);
+	public void deleteSpeler(PersonalGame personalGame){
+		spel.deletePersonalGame(personalGame);
 	}
 	
 	public Player getSpeler(Player player){
-		
-		
 		return spel.getPlayer(player);
 	}
 	
-	public List<Player> getAll(){
+	public ArrayList<PersonalGame> getAll(){
 		return spel.getAllPlayers();
 	}
 	
-	public void nextTurn() {
-		spel.setNextPlayer();
-	}
+		//Speler beindigt beurt
+	//public void endTurn(int turn, List<Integer> diceEyes) {  
+	//	spel.inGamePlayer().addDicesThrown(turn, diceEyes);
+	//	cup.resetDices();
+	//	spel.setNextPlayer();
+	//}
 	
 	//RollDice methods
 	

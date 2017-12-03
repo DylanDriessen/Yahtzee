@@ -21,6 +21,7 @@ import javafx.stage.Stage;
 import model.board.Dice;
 import model.factory.DiceFactory;
 import model.game.Game;
+import model.game.PersonalGame;
 import model.player.Player;
 import view.AskPlayers;
 import view.board.MakeContent;
@@ -65,7 +66,8 @@ public class Speelbord extends Application {
 				if(input.equals("1")){
 				String naam = player.askNewPlayer();
 				Player speler = new Player(naam);
-				persons.voegSpelerToe(speler);
+				PersonalGame ps = new PersonalGame(speler, null);
+				persons.voegSpelerToe(ps);
 				input = JOptionPane.showInputDialog(message);
 				}
 				else if(!input.equals("1") || !input.equals("0")){
@@ -76,14 +78,14 @@ public class Speelbord extends Application {
 		}
 
 			
-			List<Player> players = persons.getAll();
+			List<PersonalGame> players = persons.getAll();
 
-				
-			for(Player s: players){
+			for (int i = players.size()-1; i >= 0;i--){	
+			PersonalGame s = players.get(i);
 				Stage stage = new Stage();
 				MakeNewBoard board = new MakeNewBoard();	
 				MakeContent content = new MakeContent();
-				board.makeBoard(stage, s.getNaam(),content.maakContent());
+				board.makeBoard(stage, s.getPlayer().getNaam(),content.maakContent());
 				
 			}
 			

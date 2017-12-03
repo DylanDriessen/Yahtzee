@@ -96,4 +96,8 @@ public class Dice extends StackPane {
 	public boolean getRolled() {
 		return this.rolled;
 	}
+	
+	public void resetEyes() {
+		this.eyes = 0;
+	}
 }
