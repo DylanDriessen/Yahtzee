@@ -25,6 +25,6 @@ public class NewState implements GameState {
 		// TODO Auto-generated method stub
 		
 	}	
-	
+
 	
 }

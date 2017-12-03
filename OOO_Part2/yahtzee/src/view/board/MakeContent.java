@@ -63,6 +63,8 @@ public class MakeContent extends StackPane {
 		return root2;
 	}
 	
+	
+	
 	public void prepareLabels() {	
 		
 		for(int i = 0; i <= 4; i++){
