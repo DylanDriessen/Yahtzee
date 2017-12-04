@@ -2,7 +2,7 @@
 
 package view;
 
-import java.awt.ScrollPane;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,41 +10,24 @@ import javax.swing.JOptionPane;
 
 import controller.YahtzeeController;
 import javafx.application.Application;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.FlowPane;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import model.board.Dice;
-import model.factory.DiceFactory;
-import model.game.Game;
 import model.game.PersonalGame;
 import model.player.Player;
 import view.AskPlayers;
 import view.board.MakeContent;
-import view.board.MakeNewBoard;
-import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Insets;
-import javafx.scene.Group;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
+
+import view.gameframe.GameFrame;
+
 
 public class Speelbord extends Application {
 	
-	private MakeContent content = new MakeContent();
+	
 
  
 	public static void main(String[] args) {
@@ -54,6 +37,7 @@ public class Speelbord extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
+			
 			YahtzeeController persons = new YahtzeeController();
 			AskPlayers player = new AskPlayers();
 			
@@ -78,14 +62,22 @@ public class Speelbord extends Application {
 		}
 
 			
+			
+		
+		
+			
+			
+			
+			
 			List<PersonalGame> players = persons.getAll();
 
 			for (int i = players.size()-1; i >= 0;i--){	
 			PersonalGame s = players.get(i);
 				Stage stage = new Stage();
-				MakeNewBoard board = new MakeNewBoard();	
+				GameFrame frame = new GameFrame();
 				MakeContent content = new MakeContent();
-				board.makeBoard(stage, s.getPlayer().getNaam(),content.maakContent());
+				frame.makeFrameWithRoll(primaryStage, s.getPlayer().getNaam(), content.maakContent());
+				
 				
 			}
 			
