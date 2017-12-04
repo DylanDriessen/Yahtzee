@@ -5,63 +5,87 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.player.Player;
 
 
 public class AskPlayers {
+	ArrayList<String> result = new ArrayList<>();
 	
-	private List<String> result = new ArrayList<>();
-
-	/*public List<String> AddSpeler(Stage stage){
-		
-		
+	/*public ArrayList<String> askJavaFxPlayer(Stage stage){
+		ArrayList<String> result = new ArrayList<>();
+		stage.setTitle("Aanmelden");
 		Group root = new Group();
-		List<String> result = new ArrayList<>();
+		Scene scene = new Scene(root,220,110, Color.BEIGE);
+		GridPane pane = new GridPane();
+		pane.setHgap(10);
+		pane.setVgap(10);
+		TextField field = new TextField();
+		Button next = new Button("next");
+		next.setTranslateX(110);
+		next.setTranslateY(55);
+		next.setOnMouseClicked(event -> result.add(field.getText()));
+		Button play = new Button("Play Game");
+		play.setOnMouseClicked(event -> cancel(stage));
+		play.setTranslateX(15);
+		play.setTranslateY(55);
 		
-	    Scene scene = new Scene(root, 1400, 800, Color.BEIGE);
-	    GridPane gridpane = new GridPane();
-		gridpane.setPadding(new Insets(5));
-		gridpane.setHgap(10);
-		gridpane.setVgap(10);
-		stage.setTitle("Yahtzee");
-		Text text = new Text("What's your name");
-		TextField nameField = new TextField();
-		Button btn = new Button("Ok");		
-		String naam = nameField.getText();
-		result.add(naam);
-		Button btn = new Button("Ok");
-		btn.setOnMouseClicked(event -> result.add(naam));
-		Button btnCancel = new Button("Stop");
-		btnCancel.setOnMouseClicked(event -> Cancel());
 		
-		root.getChildren().addAll(text,btn,nameField);
+		field.setOnKeyPressed(new EventHandler<KeyEvent>() {
+			
+			@Override
+			public void handle(KeyEvent event) {
+				System.out.println("2");
+				if (event.getCode() == KeyCode.ENTER){
+				
+				String naam = event.getCharacter();
+				System.out.println(naam);
+				result.add(naam);
+				}
+			}
+		});
+		
+		
+		root.getChildren().addAll(pane,field,next,play);
+		stage.setScene(scene);
 		stage.show();
 		
 		return result;
 	}
-	
 	*/
 	
-
 	
-	private void Cancel() {
-		System.exit(0);
+	public Player askPlayer(){
+		Stage stage = new Stage();
+		Group root = new Group();
+		Scene scene = new Scene(root, 220, 220, Color.BEIGE);
+		stage.setScene(scene);
+		TextField field = new TextField("What's your name");
+		String naam = field.getText();
+		Player player = new Player(naam);
+		root.getChildren().addAll(field);
+		stage.show();
+		return player;
+	}
+	
+
+	private void cancel(Stage stage){
+		stage.close();
 	}
 
-
-
-
-
 	
-
+	
 
 
 

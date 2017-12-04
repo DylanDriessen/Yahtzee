@@ -3,28 +3,45 @@ package model.game.state;
 import exception.DomainException;
 import model.board.Dice;
 import model.game.Game;
+import model.game.PersonalGame;
 import model.player.Player;
 
 public class NewState implements GameState {
+
 	
-	Game game = new Game();
+	 PersonalGame personalGame;
+
+		public NewState(PersonalGame newPersonalGame) {
+			personalGame = newPersonalGame;
+		}
 	
-	public NewState(Game game){
-		this.game = game;
-	}
+	
 	
 	@Override
-	public void leftClicked(Dice dices){
-//		if(!dices.getHold()){
-//			throw new DomainException("First roll the dices");
-//		}
+	public void newState() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
-	public void leftClicked(Dice dices, Player player, Game game) {
+	public void waitingState() {
 		// TODO Auto-generated method stub
 		
-	}	
+	}
+
+	@Override
+	public void startedState() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void finishedState() {
+		// TODO Auto-generated method stub
+		
+	}
 	
+	
+
 	
 }
