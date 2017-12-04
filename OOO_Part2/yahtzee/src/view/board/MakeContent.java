@@ -74,10 +74,10 @@ public class MakeContent extends StackPane {
 		}
 	}
 
-//	public void replaceDice(Dice dice, int y){
-//		dice.setTranslateX(100 + y);
-//		dice.setTranslateY(100 );
-//	}
+	//public void replaceDice(Dice dice, int y){
+	//	dice.setTranslateX(100 + y);
+	//	dice.setTranslateY(100 );
+	//}
 	
 	// Code voor Dice
 	public void AllDices(){

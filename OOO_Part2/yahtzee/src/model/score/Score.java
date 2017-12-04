@@ -7,6 +7,7 @@ public class Score {
 		super();
 		this.score = score;
 	}
+	
 
 	public int getScore() {
 		return score;
