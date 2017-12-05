@@ -25,6 +25,7 @@ import view.AskPlayers;
 import view.board.MakeContent;
 import view.facade.IViewFacade;
 import view.facade.ViewFacade;
+import view.dice.DiceCreator;
 import view.gameframe.GameFrame;
 
 
@@ -64,10 +65,9 @@ public class Speelbord extends Application {
 			Stage stage = new Stage();
 			GameFrame frame = new GameFrame();
 			MakeContent content = new MakeContent();
-			frame.makeFrameWithRoll(primaryStage, s.getPlayer().getNaam(), content.maakContent());
-			System.out.println("testttt");
+			frame.makeFrameWithRoll(primaryStage, s.getPlayer().getNaam());
+			}
 		}
-	}
 	
 	public void askPlayersName(String message){
 		List<String> result = new ArrayList<>();

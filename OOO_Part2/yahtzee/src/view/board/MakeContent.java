@@ -15,32 +15,29 @@ import javafx.scene.text.Text;
 import model.board.Dice;
 import model.board.RollAllDices;
 import model.factory.DiceFactory;
+import view.dice.DiceCreator;
 
 public class MakeContent extends StackPane {
 	
-	List<Dice> dices = new ArrayList<>();
-	List<Label> labels = new ArrayList<>();
+	List<Dice> dices;
+	List<Label> labels;
 	private Pane root2 = new Pane();
 	private int x1 = 100;
 	private int x2 = 100;
 	private int y = 200;
+	DiceCreator creator;
 	
 	public MakeContent(){
-		//Hele constructor mag in SimpleFactory komen
-		prepareLabels();
-		for(int i = 0; i <= 4; i++){
-			//Rectangle rect = new Rectangle(50 , 50);
-			labels.get(i).setTranslateX(x1);
-			labels.get(i).setTranslateY(y);
-			x1 = x1 + 100;
-			this.setAlignment(Pos.CENTER);
-			root2.getChildren().add(labels.get(i));
-			//System.out.println(i + " " + labels.get(i).getText());
-		}
+		dices = new ArrayList<>();
+		labels = new ArrayList<>();
+		creator = new DiceCreator(labels, dices, root2);
+		
 	}
 
 	public Pane maakContent() {	
-
+		
+			System.out.println(labels);
+			System.out.println(dices);
 		
 		for(int i = 0; i <= 4; i++){
 			
@@ -55,7 +52,8 @@ public class MakeContent extends StackPane {
 		}
 		
 		Button btn = new Button("Roll Dices");
-		btn.setOnMouseClicked(event -> this.AllDices());
+		btn.setOnMouseClicked(event -> creator.AllDices(dices, labels));
+		
 		btn.setTranslateX(300);
 		btn.setTranslateY(300);
 		
@@ -64,31 +62,14 @@ public class MakeContent extends StackPane {
 		return root2;
 	}
 	
-	
-	
-	public void prepareLabels() {	
-		
-		for(int i = 0; i <= 4; i++){
-			Label label = new Label();
-			label.setTextFill(Color.WHITE);
-			label.setStyle("-fx-background-color: black; -fx-padding: 10px 20px 10px 20px;");
-			labels.add(label);
-		}
-	}
 
-//	public void replaceDice(Dice dice, int y){
-//		dice.setTranslateX(100 + y);
-//		dice.setTranslateY(100 );
-//	}
+
+	//public void replaceDice(Dice dice, int y){
+	//	dice.setTranslateX(100 + y);
+	//	dice.setTranslateY(100 );
+	//}
 	
 	// Code voor Dice
-	public void AllDices(){
-		for(int i=0;i<dices.size();i++){
-			dices.get(i).roll();
-			labels.get(i).setText(Integer.toString(dices.get(i).getEyes()));
-			//System.out.println(dices.get(i).getEyes());
-		}	
-
-	}
+	
 
 }

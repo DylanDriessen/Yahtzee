@@ -6,7 +6,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import model.enums.Categories;
 
-public class PlayButton {
+public class Buttons {
 
 	public Button turn(){
 		Button turn = new Button("Next players turn");
