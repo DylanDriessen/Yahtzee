@@ -2,8 +2,6 @@ package model.facade;
 
 import model.game.Game;
 import model.game.PersonalGame;
-import model.score.Score;
-
 public class ModelFacade implements IModelFacade {
 	
 Game game;
@@ -28,10 +26,7 @@ Game game;
 	public String getnaam() {
 		return game.getCurrentPersonalGame().getPlayer().getNaam();
 	}
-	@Override
-	public Score getScore() {
-		return game.getCurrentPersonalGame().getScore();
-	}
+
 	@Override
 	public PersonalGame getCurrentPersonalGame() {
 		return game.getCurrentPersonalGame();

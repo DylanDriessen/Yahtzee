@@ -1,7 +1,7 @@
-<<<<<<< HEAD
-/view/
+/MVC.ucls
+/Model.ucls
+/view.ucls
 /model/
 /controller/
-=======
-/model/
->>>>>>> a476de77da1bc884dd3bca9ed77027b42250b853
+/view/
+/application/

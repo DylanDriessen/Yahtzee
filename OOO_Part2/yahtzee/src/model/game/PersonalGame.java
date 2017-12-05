@@ -58,24 +58,9 @@ public class PersonalGame {
 	public GameState getIsWaitingState(){return waiting;}
 	public GameState getIsFinishedState(){return finished;}
 	
-	
-<<<<<<< HEAD
-	
-	
-	public PersonalGame(Player player) {
-=======
 
 	public PersonalGame(Player player) {
-		
 		this.player = player;
-
-	
-	}
-	
-	
-	public PersonalGame(Player player, int maxIndex) {
-		super();
->>>>>>> a476de77da1bc884dd3bca9ed77027b42250b853
 		this.setPlayer(player);
 		this.setMaxIndex(maxIndex);
 	}

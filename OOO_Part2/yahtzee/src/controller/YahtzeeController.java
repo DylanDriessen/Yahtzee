@@ -11,7 +11,6 @@ import model.game.Game;
 import model.game.PersonalGame;
 import model.player.Player;
 import view.board.MakeContent;
-import view.board.MakeNewBoard;
 
 public class YahtzeeController{
 	
