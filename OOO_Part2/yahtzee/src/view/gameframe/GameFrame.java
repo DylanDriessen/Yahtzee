@@ -23,7 +23,7 @@ import view.dice.DiceCreator;
 
 public class GameFrame {
 	Buttons buttons = new Buttons();
-	DiceCreator dice;
+	
 	BoardCreator board = new BoardCreator();
 	MakeContent content;
 	
@@ -31,8 +31,6 @@ public class GameFrame {
 	public void makeFrameWithRoll(Stage primaryStage, String naam){
 	
 		try{
-			
-			
 			Group root = board.newGroup();
 			Scene scene = board.newScene(root);
 			GridPane gridpane = board.maakGrid();
