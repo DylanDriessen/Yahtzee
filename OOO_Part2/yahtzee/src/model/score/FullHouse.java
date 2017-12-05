@@ -23,7 +23,7 @@ public class FullHouse implements Category {
 			if (testDice == 2) twoSameDices = testDice;
 		}
 		
-		if(twoSameDices == 0 || threeSameDices == 0) throw new DomainException("Only possible if there 3 same eyes and 2 same eyes");
+		if(twoSameDices == 0 || threeSameDices == 0) return 0;
 		
 		return 25;
 	}

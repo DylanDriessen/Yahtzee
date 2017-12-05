@@ -40,7 +40,7 @@ public class SmallStraight implements Category {
 		}
 		if(total >= 4) i = total;
 		
-		if(i < 4)throw new DomainException("No 4 sequential eyes");
+		if(i < 4) return 0;
 		
 		return 30;
 	}

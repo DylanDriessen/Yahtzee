@@ -22,7 +22,7 @@ public class Yahtzee implements Category {
 			if (sameDice == 6) yathzee = true;
 		}
 		
-		if(!yathzee) throw new DomainException("All the dices do not have the same eyes");
+		if(!yathzee) return 0;
 		
 		return 50;
 	}

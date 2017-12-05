@@ -32,7 +32,7 @@ public class LargeStraight implements Category {
 		
 		
 		
-		if(i < 5)throw new DomainException("No 4 sequential eyes");
+		if(i < 5) return 0;
 		
 		return 40;
 	}

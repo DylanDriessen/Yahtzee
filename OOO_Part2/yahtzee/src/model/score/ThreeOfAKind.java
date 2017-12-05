@@ -24,7 +24,7 @@ public class ThreeOfAKind implements Category {
 		}
 		
 		
-		if(diceNeeded == 0)throw new DomainException("Only possible if you have 3 dices with the same value");
+		if(diceNeeded == 0) return 0;
 		
 		for(Dice dice : dices) {
 			score = score + dice.getEyes();
