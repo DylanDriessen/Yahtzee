@@ -1,5 +1,6 @@
 package view.facade;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JTable;
@@ -12,6 +13,7 @@ public interface IViewFacade {
 	void makeWithoutRoll(Stage primaryStage, String name);
 	JTable getScoreboard();
 	String askPlayers();
+	void askPlayers(ArrayList<String> result);
 	
 
 }

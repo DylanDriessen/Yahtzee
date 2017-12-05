@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.ArrayList;
+
 import javafx.application.Application;
 import javafx.stage.Stage;
 import model.facade.IModelFacade;
@@ -123,7 +125,7 @@ import view.gameframe.GameFrame;
 		
 		private IModelFacade model;
 		private IViewFacade view;
-		GameFrame frame = new GameFrame();
+		private ArrayList<String> result = new ArrayList<>();
 		Stage primaryStage = new Stage();
 		
 		public YahtzeeController(IModelFacade model, IViewFacade view, Stage primaryStage) {
@@ -143,6 +145,10 @@ import view.gameframe.GameFrame;
 
 		@Override
 		public void start(Stage primaryStage) throws Exception {
-			frame.makeFrameWithRoll(primaryStage, "Bjarne ");
+			System.out.println(result);
+			view.askPlayers(result);
+			
 		}
+		
+		
 	}

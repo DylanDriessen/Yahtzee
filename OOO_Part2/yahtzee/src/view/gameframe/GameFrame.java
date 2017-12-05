@@ -1,5 +1,7 @@
 package view.gameframe;
 
+import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
@@ -10,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -76,8 +79,26 @@ public class GameFrame {
 		return null;
 	}
 	
-	public String askPlayers(){
-		return null;
+	public void askPlayers(ArrayList<String> result){
+		Stage stage = new Stage();
+        Group root = new Group();
+        Scene scene = new Scene(root, 220, 220, Color.BEIGE);
+        stage.setScene(scene);
+        TextField field = new TextField("What's your name");
+        Button btn = new Button("Cick here to enter name");
+        btn.setTranslateX(55);
+        btn.setTranslateY(55);
+        btn.setOnMouseClicked(event -> this.getNames(field.getText(), result));
+        root.getChildren().addAll(field,btn);
+        stage.show();
+        
+		
+		
+	}
+	
+	private void getNames(String name, ArrayList<String> result){
+		result.add(name);
+		System.out.println(result);
 	}
 	
 	

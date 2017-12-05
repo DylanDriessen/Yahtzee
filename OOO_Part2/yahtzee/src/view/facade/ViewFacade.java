@@ -1,5 +1,6 @@
 package view.facade;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JTable;
@@ -23,13 +24,13 @@ public class ViewFacade implements IViewFacade {
 
 	@Override
 	public void makeWithRoll(Stage primaryStage, String name) {
-		// TODO Auto-generated method stub
+		view.makeFrameWithRoll(primaryStage, name);
 		
 	}
 
 	@Override
 	public void makeWithoutRoll(Stage primaryStage, String name) {
-		// TODO Auto-generated method stub
+		view.makeFrameWithoutRoll(primaryStage, name);
 		
 	}
 
@@ -40,8 +41,13 @@ public class ViewFacade implements IViewFacade {
 	}
 
 	@Override
-	public String askPlayers() {
+	public void askPlayers(ArrayList<String> result) {
+		 view.askPlayers(result);
+	}
 
+	@Override
+	public String askPlayers() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 	
