@@ -119,8 +119,6 @@ import view.gameframe.GameFrame;
 //	
 //}
 	
-	
-
 	public class YahtzeeController extends Application{
 		
 		private IModelFacade model;

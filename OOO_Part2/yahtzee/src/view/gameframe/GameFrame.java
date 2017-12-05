@@ -14,7 +14,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import model.enums.Categories;
+import model.score.Categories;
 import view.board.BoardCreator;
 import view.board.MakeContent;
 import view.buttons.Buttons;

@@ -11,7 +11,6 @@ import model.player.Player;
 public class Game {
 	private ArrayList<PersonalGame> game;
 	private int indexNextPersonalGame;
-	private boolean turn;
  	
 	public Game(){
 		game = new ArrayList<>();
@@ -19,9 +18,10 @@ public class Game {
 	}
 	
 	
-	public void addPersonalGame(PersonalGame personalgame){
- 		game.add(personalgame);
- 		
+	public void addPersonalGame(String naam){
+		Player player = new Player(naam);
+		PersonalGame pg = new PersonalGame(player);
+ 		game.add(pg);
  	}
  	
  	public void deletePersonalGame(PersonalGame personalGame){
@@ -74,11 +74,17 @@ public class Game {
  			this.indexNextPersonalGame++;
  		}
  	}
+ 	public PersonalGame getCurrentPersonalGame(){
+ 		if (indexNextPersonalGame <= 0){
+ 			return game.get(game.size()-1);
+ 		}
+ 		return game.get(indexNextPersonalGame-1);
+ 	}
  	public void Start(){
  		if (game.size()<=1){
  			throw new IllegalArgumentException("Minimum 2 players required");
  		}
- 		else this.indexNextPersonalGame = -1; // bij setIndex wordt nog +1 gedaan om dan bij 0 te laten starten
+ 		else this.setIndexNextPersonalGame(-1);
  	}
  	 
  	

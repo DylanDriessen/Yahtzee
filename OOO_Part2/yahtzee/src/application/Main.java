@@ -16,8 +16,9 @@ import javafx.scene.layout.BorderPane;
 
 public class Main extends Application{
 	
-		YahtzeeController controller;
-	public void start(Stage primaryStage) throws Exception {
+	YahtzeeController controller;
+	@Override
+	public void start(Stage primaryStage) {
 		try {
 			IModelFacade model = new ModelFacade();
 			IViewFacade view = new ViewFacade(model);
