@@ -1,4 +1,4 @@
-package model.enums;
+package model.score;
 
 public enum Categories {
 	

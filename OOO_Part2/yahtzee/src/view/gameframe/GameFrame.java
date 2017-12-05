@@ -1,6 +1,7 @@
 package view.gameframe;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 import exception.DomainException;
 import javafx.geometry.Insets;
@@ -13,7 +14,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import model.enums.Categories;
+import model.score.Categories;
 import view.board.BoardCreator;
 import view.board.MakeContent;
 import view.buttons.Buttons;
@@ -49,6 +50,34 @@ public class GameFrame {
 		catch(DomainException e){
 			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
+	}
+	
+	public void makeFrameWithoutRoll(Stage primaryStage, String naam){
+		try{
+			Group root = board.newGroup();
+			Scene scene = board.newScene(root);
+			GridPane gridpane = board.maakGrid();
+			content = new MakeContent(); // constructor wordt opgeroepen voor zwarte vierkanten 
+			Pane dices = content.maakContent(); // dices worden aagnemaakt
+			primaryStage.setTitle("Yahtzee");
+			gridpane.add(dices, 0, 0); // hier worden de dices toegevoegd
+			Label name = buttons.setName(naam);
+			root.getChildren().addAll(name,gridpane);
+			primaryStage.setScene(scene);
+			primaryStage.show();
+			
+		}
+		catch(DomainException e){
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
+	}
+	
+	public JTable getScoreboard(){
+		return null;
+	}
+	
+	public String askPlayers(){
+		return null;
 	}
 	
 	
