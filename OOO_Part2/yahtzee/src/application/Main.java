@@ -1,36 +1,38 @@
 package application;
 	
+import javax.swing.JOptionPane;
+
+import controller.YahtzeeController;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import model.facade.IModelFacade;
 import model.facade.ModelFacade;
-import view.Speelbord;
+//import view.Speelbord;
 import view.facade.IViewFacade;
 import view.facade.ViewFacade;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 
 
-<<<<<<< HEAD
-public class Main extends Application {
-	@Override
-	public void start(Stage primaryStage) {
+public class Main extends Application{
+	
+		YahtzeeController controller;
+	public void start(Stage primaryStage) throws Exception {
 		try {
 			IModelFacade model = new ModelFacade();
 			IViewFacade view = new ViewFacade(model);
-			new YathzeeController(view, model);
+			controller = new YahtzeeController(model, view, primaryStage);
 		} catch(Exception e) {
+			JOptionPane.showInputDialog(null, "Het spel kon niet gestart worden wegens een probleem met het opstarten.\n" + e.getMessage());
 			e.printStackTrace();
 		}
 	}
-=======
-public class Main  {
 	
-	
-		public static void main(String[] args) {
->>>>>>> 962efc9294d0377854ab57becb6f1c36c49f70f0
-	
+	public static void main(String[] args) {
+		launch(args);
 	}
-
-	
 }
+
+
+
+
