@@ -2,20 +2,48 @@ package view.facade;
 
 import java.util.List;
 
+import javax.swing.JTable;
+
+import javafx.stage.Stage;
 import model.facade.IModelFacade;
 import view.AskPlayers;
+import view.gameframe.GameFrame;
 
 public class ViewFacade implements IViewFacade {
 	
-	private AskPlayers view;
+
+	private GameFrame view;
 	
 	public ViewFacade(IModelFacade model){
-		this.view = new AskPlayers();
+		this.view = new GameFrame();
+	}
+
+	
+	GameFrame frame = new GameFrame();
+
+	@Override
+	public void makeWithRoll(Stage primaryStage, String name) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void makeWithoutRoll(Stage primaryStage, String name) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public JTable getScoreboard() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String askPlayers() {
+
+		return null;
 	}
 	
-	@Override
-	public String getStringInput(String message) {
-		return this.view.getStringInput(message);
-	}
 	
 }

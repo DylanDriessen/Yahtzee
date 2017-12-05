@@ -1,6 +1,7 @@
 package view.gameframe;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 import exception.DomainException;
 import javafx.geometry.Insets;
@@ -28,7 +29,7 @@ public class GameFrame {
 	MakeContent content;
 	
 	
-	public void makeFrameWithRoll(Stage primaryStage, String naam){
+	public void makeFrameWithRoll(Stage primaryStage, String name){
 	
 		try{
 			Group root = board.newGroup();
@@ -40,8 +41,8 @@ public class GameFrame {
 			Button turn = buttons.turn();
 			gridpane.add(dices, 0, 0); // hier worden de dices toegevoegd
 			ComboBox<Categories> categories = buttons.categories();
-			Label name = buttons.setName(naam);
-			root.getChildren().addAll(turn,categories,name,gridpane);
+			Label nameLabel = buttons.setName(name);
+			root.getChildren().addAll(turn,categories,nameLabel,gridpane);
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			
@@ -49,6 +50,34 @@ public class GameFrame {
 		catch(DomainException e){
 			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
+	}
+	
+	public void makeFrameWithoutRoll(Stage primaryStage, String naam){
+		try{
+			Group root = board.newGroup();
+			Scene scene = board.newScene(root);
+			GridPane gridpane = board.maakGrid();
+			content = new MakeContent(); // constructor wordt opgeroepen voor zwarte vierkanten 
+			Pane dices = content.maakContent(); // dices worden aagnemaakt
+			primaryStage.setTitle("Yahtzee");
+			gridpane.add(dices, 0, 0); // hier worden de dices toegevoegd
+			Label name = buttons.setName(naam);
+			root.getChildren().addAll(name,gridpane);
+			primaryStage.setScene(scene);
+			primaryStage.show();
+			
+		}
+		catch(DomainException e){
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
+	}
+	
+	public JTable getScoreboard(){
+		return null;
+	}
+	
+	public String askPlayers(){
+		return null;
 	}
 	
 	
