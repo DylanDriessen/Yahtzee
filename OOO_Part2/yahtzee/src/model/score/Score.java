@@ -123,7 +123,24 @@ public class Score {
 			}
 		}
 		
-		if(sameDice < 5)throw new DomainException("Only possible if you have dices with the same value");
+		if(sameDice < 4)throw new DomainException("Only possible if you have 3 dices with the same value");
+		
+		return score;
+	}
+	
+	private int fourOfAKind(List<Dice> dices) {
+		int score = 0;
+		int sameDice = 0;
+		
+		for(Dice dice : dices) {
+			sameDice = 0;
+			
+			for(Dice dice2 : dices) {
+				if(dice.getEyes() == dice2.getEyes()) sameDice++;
+			}
+		}
+		
+		if(sameDice < 5)throw new DomainException("Only possible if you have 4 dices with the same value");
 		
 		return score;
 	}
