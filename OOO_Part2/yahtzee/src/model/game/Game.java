@@ -10,11 +10,12 @@ import model.player.Player;
 
 public class Game {
 	private ArrayList<PersonalGame> game;
- 
-
+	private int indexNextPersonalGame;
+	private boolean turn;
  	
 	public Game(){
 		game = new ArrayList<>();
+		this.setIndexNextPersonalGame(indexNextPersonalGame);
 	}
 	
 	
@@ -57,21 +58,31 @@ public class Game {
 	//	return spelers.get(i+1).getNaam();
  	//}
  	
- 	public Player getPlayer(Player player){
- 		int i = 0;
- 		for(PersonalGame s: game){
-			if(s.getPlayer().equals(player)){
-				return game.get(i).getPlayer();
-			}
-			i++;
-		}
-		return game.get(i).getPlayer();
+ 	public int getIndexNextPersonalGame(){
+ 		return indexNextPersonalGame;
  	}
  	
+ 	public PersonalGame getNextPersonalGame(){
+		return game.get(indexNextPersonalGame);
+ 	}
  	
+ 	private void setIndexNextPersonalGame(int IndexNextPlayer){
+ 		if(this.indexNextPersonalGame >= game.size()){ // mogelijke fout mss = weg
+ 			this.indexNextPersonalGame = 0;
+ 		}
+ 		else{
+ 			this.indexNextPersonalGame++;
+ 		}
+ 	}
+ 	public void Start(){
+ 		if (game.size()<=1){
+ 			throw new IllegalArgumentException("Minimum 2 players required");
+ 		}
+ 		else this.indexNextPersonalGame = -1; // bij setIndex wordt nog +1 gedaan om dan bij 0 te laten starten
+ 	}
+ 	 
  	
- 	
- 	public PersonalGame inGamePlayer(String name) {
+ 	/*public PersonalGame inGamePlayer(String name) {
  		if(game.isEmpty()) {
  			throw new DomainException("No players");
  		}
@@ -83,7 +94,7 @@ public class Game {
  		}
  		
  		throw new IllegalArgumentException("player does not exist");
- 	}
+ 	}*/
  	
  	
  	public ArrayList<PersonalGame> getAllPlayers(){
