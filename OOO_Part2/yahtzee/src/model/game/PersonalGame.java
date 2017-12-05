@@ -58,17 +58,14 @@ public class PersonalGame {
 	public GameState getIsFinishedState(){return finished;}
 	
 	
-<<<<<<< HEAD
+
 	public PersonalGame(Player player, Score score) {
 		
 		this.player = player;
 		this.score = score;
-=======
+
 	
-	
-	
-	
-	
+	}
 	
 	
 	public PersonalGame(Player player, Score score, int maxIndex) {
@@ -79,7 +76,7 @@ public class PersonalGame {
 	}
 	private void setMaxIndex(int maxIndex) {
 		this.maxIndex = maxIndex;
->>>>>>> 58f19d0a25aa0b8223e94705c061834e47b89d49
+
 	}
 	public int getMaxIndex(){
 		return maxIndex;
