@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 import exception.DomainException;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -82,23 +83,34 @@ public class GameFrame {
 	public void askPlayers(ArrayList<String> result){
 		Stage stage = new Stage();
         Group root = new Group();
-        Scene scene = new Scene(root, 220, 220, Color.BEIGE);
+        Scene scene = new Scene(root, 400, 400, Color.BEIGE);
         stage.setScene(scene);
         TextField field = new TextField("What's your name");
+        field.setTranslateX(55);
+        field.setTranslateY(55);
         Button btn = new Button("Cick here to enter name");
-        btn.setTranslateX(55);
-        btn.setTranslateY(55);
+        btn.setTranslateX(115);
+        btn.setTranslateY(115);
         btn.setOnMouseClicked(event -> this.getNames(field.getText(), result));
-        root.getChildren().addAll(field,btn);
+        Button startBtn = new Button("Start Game");
+        startBtn.setOnMouseClicked(event -> this.makeFrames(result));
+        startBtn.setTranslateX(35);
+        startBtn.setTranslateY(115);
+        root.getChildren().addAll(field,btn,startBtn);
         stage.show();
-        
-		
-		
+       }
+	
+	
+	private void makeFrames(ArrayList<String> result){
+		for(String r: result){
+			Stage stage = new Stage();
+			this.makeFrameWithRoll(stage, r);
+		}
 	}
 	
 	private void getNames(String name, ArrayList<String> result){
 		result.add(name);
-		System.out.println(result);
+		
 	}
 	
 	

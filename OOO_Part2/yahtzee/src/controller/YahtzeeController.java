@@ -143,12 +143,18 @@ import view.gameframe.GameFrame;
 			}
 		}
 
+		
+		
+		
+		
+		
 		@Override
 		public void start(Stage primaryStage) throws Exception {
-			System.out.println(result);
-			view.askPlayers(result);
-			
-		}
+			view.askPlayers(result, primaryStage);
+			}
+		
+		
+		
 		
 		
 	}

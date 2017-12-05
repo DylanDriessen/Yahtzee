@@ -41,7 +41,7 @@ public class ViewFacade implements IViewFacade {
 	}
 
 	@Override
-	public void askPlayers(ArrayList<String> result) {
+	public void askPlayers(ArrayList<String> result, Stage p) {
 		 view.askPlayers(result);
 	}
 
