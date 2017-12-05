@@ -33,8 +33,8 @@ public class YahtzeeController{
 		spel.deletePersonalGame(personalGame);
 	}
 	
-	public Player getSpeler(Player player){
-		return spel.getPlayer(player);
+	public PersonalGame getSpeler(Player player){
+		return spel.getNextPersonalGame();
 	}
 	
 	public ArrayList<PersonalGame> getAll(){

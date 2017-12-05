@@ -12,6 +12,7 @@ public class Score {
 
 	public Score() {
 	}
+	
 
 	public int getScore() {
 		return score;
