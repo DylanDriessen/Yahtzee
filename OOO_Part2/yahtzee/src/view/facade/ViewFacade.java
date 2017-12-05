@@ -11,12 +11,16 @@ import view.gameframe.GameFrame;
 
 public class ViewFacade implements IViewFacade {
 	
+
 	private GameFrame view;
 	
 	public ViewFacade(IModelFacade model){
 		this.view = new GameFrame();
 	}
+
 	
+	GameFrame frame = new GameFrame();
+
 	@Override
 	public void makeWithRoll(Stage primaryStage, String name) {
 		// TODO Auto-generated method stub
@@ -37,8 +41,9 @@ public class ViewFacade implements IViewFacade {
 
 	@Override
 	public String askPlayers() {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
+	
 	
 }
