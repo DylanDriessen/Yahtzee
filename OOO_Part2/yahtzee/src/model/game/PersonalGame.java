@@ -1,5 +1,8 @@
 package model.game;
 
+import java.util.List;
+
+import model.board.Dice;
 import model.board.Dices;
 import model.game.state.FinishedState;
 import model.game.state.GameState;
@@ -7,12 +10,16 @@ import model.game.state.NewState;
 import model.game.state.StartedState;
 import model.game.state.WaitingState;
 import model.player.Player;
+import model.score.Categories;
+import model.score.Category;
+import model.score.SimpleCatagoryClass;
 
 public class PersonalGame {
 	private Player player;
 	private int maxIndex;
-	private int score;
+	private SimpleCatagoryClass factory = new SimpleCatagoryClass();
 	private Dices dices = new Dices(maxIndex-1); 
+	private int score = 0;
 	
 	GameState waiting;
 	GameState playing;
@@ -28,8 +35,6 @@ public class PersonalGame {
 		 newGame = new NewState(this);
 		 finished = new FinishedState(this);
 		
-		 
-		 this.score = 0;
 		 gameState = newGame;
 	}
 	
@@ -82,6 +87,13 @@ public class PersonalGame {
 	
 	public Dices getDices(){
 		return dices;
+	}
+	
+	public void calculateScore(List<Dice> dices, Category categories){
+		this.score = score+factory.catagory(categories).getPoints(dices);
+	}
+	public int getScore(){
+		return this.score;
 	}
 	
 	}
