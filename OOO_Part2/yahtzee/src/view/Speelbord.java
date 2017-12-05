@@ -32,26 +32,28 @@ import view.gameframe.GameFrame;
 public class Speelbord extends Application {	
 	
 	public static void main(String[] args) {
-		try {
-			IModelFacade model = new ModelFacade();
-			IViewFacade view = new ViewFacade(model);
-			Stage primaryStage = new Stage();
-			new Speelbord(model, view, primaryStage);
-		} catch (Exception e) {
-		}
+//		try {
+//			IModelFacade model = new ModelFacade();
+//			IViewFacade view = new ViewFacade(model);
+//			Stage primaryStage = new Stage();
+//			new Speelbord(model, view, primaryStage);
+//		} catch (Exception e) {
+//		}
+		launch(args);
 	}
-
-	private final IViewFacade view;
-	private final IModelFacade model;
-	private String message;
-	private Stage primaryStage;
-	
-	public Speelbord(IModelFacade model, IViewFacade view, Stage primaryStage) throws Exception {
-		this.model = model;
-		this.view = view;
-		this.primaryStage = primaryStage;
-		System.out.println("fd");
-	}
+//
+//	private final IViewFacade view;
+//	private final IModelFacade model;
+//	private String message;
+//	private Stage primaryStage;
+//	
+//	public Speelbord(IModelFacade model, IViewFacade view, Stage primaryStage) throws Exception {
+//		this.model = model;
+//		this.view = view;
+//		System.out.println("fd");
+//		this.primaryStage = primaryStage;
+//
+//	}
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -69,13 +71,13 @@ public class Speelbord extends Application {
 			}
 		}
 	
-	public void askPlayersName(String message){
-		List<String> result = new ArrayList<>();
-		String playerName;
-		playerName = this.view.getStringInput(message);
-		result.add(playerName);
-		System.out.println("test");
-	}
+//	public void askPlayersName(String message){
+//		List<String> result = new ArrayList<>();
+//		String playerName;
+//		playerName = this.view.getStringInput(message);
+//		result.add(playerName);
+//		System.out.println("test");
+//	}
 	
 }
 
