@@ -25,8 +25,8 @@ public class YahtzeeController{
 	
 	//Player methods
 	
-	public void voegSpelerToe(PersonalGame personalGame){
-		spel.addPersonalGame(personalGame);
+	public void voegSpelerToe(String naam){
+		spel.addPersonalGame(naam);
 	}
 	
 	public void deleteSpeler(PersonalGame personalGame){
