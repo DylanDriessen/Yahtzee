@@ -12,28 +12,35 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.enums.Categories;
-import view.buttons.PlayButton;
+import view.board.BoardCreator;
+import view.board.MakeContent;
+import view.buttons.Buttons;
+import view.dice.DiceCreator;
+
 
 
 public class GameFrame {
-	PlayButton buttons = new PlayButton();
+	Buttons buttons = new Buttons();
+	DiceCreator dice;
+	BoardCreator board = new BoardCreator();
+	MakeContent content;
 	
-	public void makeFrameWithRoll(Stage primaryStage, String naam,Pane dices ){
+	
+	public void makeFrameWithRoll(Stage primaryStage, String naam){
 	
 		try{
-			Group root = new Group();
-			Scene scene = new Scene(root,1400,800,Color.BEIGE);
 			
-			GridPane gridpane = new GridPane();
-			gridpane.setPadding(new Insets(5));
-		    gridpane.setHgap(10);
-		    gridpane.setVgap(10);
+			
+			Group root = board.newGroup();
+			Scene scene = board.newScene(root);
+			GridPane gridpane = board.maakGrid();
+			content = new MakeContent(); // constructor wordt opgeroepen voor zwarte vierkanten 
+			Pane dices = content.maakContent(); // dices worden aagnemaakt
 			primaryStage.setTitle("Yahtzee");
 			Button turn = buttons.turn();
-			gridpane.add(dices, 0, 0);
+			gridpane.add(dices, 0, 0); // hier worden de dices toegevoegd
 			ComboBox<Categories> categories = buttons.categories();
 			Label name = buttons.setName(naam);
 			root.getChildren().addAll(turn,categories,name,gridpane);

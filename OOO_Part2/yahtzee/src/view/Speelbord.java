@@ -21,7 +21,7 @@ import model.game.PersonalGame;
 import model.player.Player;
 import view.AskPlayers;
 import view.board.MakeContent;
-
+import view.dice.DiceCreator;
 import view.gameframe.GameFrame;
 
 
@@ -64,7 +64,9 @@ public class Speelbord extends Application {
 			
 			
 		
-		
+			
+			
+			
 			
 			
 			
@@ -72,11 +74,10 @@ public class Speelbord extends Application {
 			List<PersonalGame> players = persons.getAll();
 
 			for (int i = players.size()-1; i >= 0;i--){	
-			PersonalGame s = players.get(i);
+				PersonalGame s = players.get(i);
 				Stage stage = new Stage();
 				GameFrame frame = new GameFrame();
-				MakeContent content = new MakeContent();
-				frame.makeFrameWithRoll(primaryStage, s.getPlayer().getNaam(), content.maakContent());
+				frame.makeFrameWithRoll(primaryStage, s.getPlayer().getNaam());
 				
 				
 			}

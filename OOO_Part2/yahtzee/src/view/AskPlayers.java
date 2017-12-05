@@ -22,8 +22,9 @@ import model.player.Player;
 
 public class AskPlayers {
 	ArrayList<String> result = new ArrayList<>();
+	String naam = null;
 	
-	/*public ArrayList<String> askJavaFxPlayer(Stage stage){
+	public ArrayList<String> askJavaFxPlayer(Stage stage){
 		ArrayList<String> result = new ArrayList<>();
 		stage.setTitle("Aanmelden");
 		Group root = new Group();
@@ -60,24 +61,26 @@ public class AskPlayers {
 		root.getChildren().addAll(pane,field,next,play);
 		stage.setScene(scene);
 		stage.show();
-		
+		System.out.println(result);
 		return result;
 	}
-	*/
 	
 	
-	public Player askPlayer(){
+	
+	/*public Player askPlayer(){
 		Stage stage = new Stage();
 		Group root = new Group();
 		Scene scene = new Scene(root, 220, 220, Color.BEIGE);
 		stage.setScene(scene);
 		TextField field = new TextField("What's your name");
-		String naam = field.getText();
+		Button btn = new Button("Cick here to enter name");
+		btn.setOnMouseClicked(event -> naam = field.getText());
+		
 		Player player = new Player(naam);
 		root.getChildren().addAll(field);
 		stage.show();
 		return player;
-	}
+	}*/
 	
 
 	private void cancel(Stage stage){

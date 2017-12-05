@@ -55,15 +55,8 @@ public class PersonalGame {
 	public GameState getIsFinishedState(){return finished;}
 	
 	
-	
-	
-	
-	
-	
-	
-	
 	public PersonalGame(Player player, Score score) {
-		super();
+		
 		this.player = player;
 		this.score = score;
 	}

@@ -7,6 +7,7 @@ import model.player.Player;
 
 public class FinishedState implements GameState {
 
+	// nu per situatie de states definieren, bij finished state kan hij niet beginnen aan een wachtende, starten	
 	
 	 PersonalGame personalGame;
 
