@@ -50,7 +50,7 @@ public class Speelbord extends Application {
 				if(input.equals("1")){
 				String naam = player.askNewPlayer();
 				Player speler = new Player(naam);
-				PersonalGame ps = new PersonalGame(speler, null);
+				PersonalGame ps = new PersonalGame(speler, null, 0);
 				persons.voegSpelerToe(ps);
 				input = JOptionPane.showInputDialog(message);
 				}

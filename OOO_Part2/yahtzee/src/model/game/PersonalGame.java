@@ -1,5 +1,6 @@
 package model.game;
 
+import model.board.Dices;
 import model.game.state.FinishedState;
 import model.game.state.GameState;
 import model.game.state.NewState;
@@ -11,6 +12,8 @@ import model.score.Score;
 public class PersonalGame {
 	private Player player;
 	private Score score;
+	private int maxIndex;
+	private Dices dices = new Dices(maxIndex-1); 
 	
 	GameState waiting;
 	GameState playing;
@@ -55,23 +58,46 @@ public class PersonalGame {
 	public GameState getIsFinishedState(){return finished;}
 	
 	
+<<<<<<< HEAD
 	public PersonalGame(Player player, Score score) {
 		
 		this.player = player;
 		this.score = score;
+=======
+	
+	
+	
+	
+	
+	
+	
+	public PersonalGame(Player player, Score score, int maxIndex) {
+		super();
+		this.setPlayer(player);
+		this.setScore(score);
+		this.setMaxIndex(maxIndex);
 	}
+	private void setMaxIndex(int maxIndex) {
+		this.maxIndex = maxIndex;
+>>>>>>> 58f19d0a25aa0b8223e94705c061834e47b89d49
+	}
+	public int getMaxIndex(){
+		return maxIndex;
+	}
+	
 	public Player getPlayer() {
 		return player;
 	}
-	public void setPlayer(Player player) {
+	private void setPlayer(Player player) {
 		this.player = player;
 	}
 	public Score getScore() {
 		return score;
 	}
-	public void setScore(Score score) {
+	private void setScore(Score score) {
 		this.score = score;
 	}
-	
-
-}
+	public Dices getDices(){
+		return dices;
+	}
+	}

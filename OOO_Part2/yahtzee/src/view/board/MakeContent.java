@@ -63,5 +63,22 @@ public class MakeContent extends StackPane {
 	}
 	
 
+<<<<<<< HEAD
+=======
+	//public void replaceDice(Dice dice, int y){
+	//	dice.setTranslateX(100 + y);
+	//	dice.setTranslateY(100 );
+	//}
+	
+	// Code voor Dice
+	public void AllDices(){
+		for(int i=0;i<dices.size();i++){
+			dices.get(i).roll();
+			labels.get(i).setText(Integer.toString(dices.get(i).getEyes()));
+			//System.out.println(dices.get(i).getEyes());
+		}	
+
+	}
+>>>>>>> 58f19d0a25aa0b8223e94705c061834e47b89d49
 
 }
