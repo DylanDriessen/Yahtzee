@@ -4,18 +4,18 @@ import java.util.List;
 
 import model.facade.IModelFacade;
 import view.AskPlayers;
+import view.gameframe.GameFrame;
 
 public class ViewFacade implements IViewFacade {
 	
-	private AskPlayers view;
 	
-	public ViewFacade(IModelFacade model){
-		this.view = new AskPlayers();
-	}
-	
+	GameFrame frame = new GameFrame();
+
 	@Override
 	public String getStringInput(String message) {
-		return this.view.getStringInput(message);
+		// TODO Auto-generated method stub
+		return null;
 	}
+	
 	
 }

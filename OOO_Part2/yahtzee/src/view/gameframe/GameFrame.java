@@ -28,7 +28,7 @@ public class GameFrame {
 	MakeContent content;
 	
 	
-	public void makeFrameWithRoll(Stage primaryStage, String naam){
+	public void makeFrameWithRoll(Stage primaryStage, String name){
 	
 		try{
 			Group root = board.newGroup();
@@ -40,8 +40,8 @@ public class GameFrame {
 			Button turn = buttons.turn();
 			gridpane.add(dices, 0, 0); // hier worden de dices toegevoegd
 			ComboBox<Categories> categories = buttons.categories();
-			Label name = buttons.setName(naam);
-			root.getChildren().addAll(turn,categories,name,gridpane);
+			Label nameLabel = buttons.setName(name);
+			root.getChildren().addAll(turn,categories,nameLabel,gridpane);
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			
