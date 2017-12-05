@@ -88,8 +88,8 @@ public class GameFrame {
         TextField field = new TextField("What's your name");
         field.setTranslateX(55);
         field.setTranslateY(55);
-        Button btn = new Button("Cick here to enter name");
-        btn.setTranslateX(115);
+        Button btn = new Button("Click here to enter name");
+        btn.setTranslateX(155);
         btn.setTranslateY(115);
         btn.setOnMouseClicked(event -> this.getNames(field.getText(), result));
         Button startBtn = new Button("Start Game");
