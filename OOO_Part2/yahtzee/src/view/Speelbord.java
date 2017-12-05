@@ -17,74 +17,65 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import model.facade.IModelFacade;
+import model.facade.ModelFacade;
 import model.game.PersonalGame;
 import model.player.Player;
 import view.AskPlayers;
 import view.board.MakeContent;
-
+import view.facade.IViewFacade;
+import view.facade.ViewFacade;
 import view.gameframe.GameFrame;
 
 
-public class Speelbord extends Application {
+public class Speelbord extends Application {	
 	
-	
-
- 
 	public static void main(String[] args) {
-		launch(args);
+		try {
+			IModelFacade model = new ModelFacade();
+			IViewFacade view = new ViewFacade(model);
+			Stage primaryStage = new Stage();
+			new Speelbord(model, view, primaryStage);
+		} catch (Exception e) {
+		}
 	}
+
+	private final IViewFacade view;
+	private final IModelFacade model;
+	private String message;
+	private Stage primaryStage;
 	
+	public Speelbord(IModelFacade model, IViewFacade view, Stage primaryStage) throws Exception {
+		this.model = model;
+		this.view = view;
+		this.primaryStage = primaryStage;
+		System.out.println("fd");
+	}
+
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		
-			
-			YahtzeeController persons = new YahtzeeController();
-			AskPlayers player = new AskPlayers();
-			
-			String input = "";
-			String message = "Druk \n 1 om een naam toe te voegen \n 0 om te stoppen" ;
-			String error = "Gelieve 1 of 0 in te voeren \n Druk \n 1 om een naam toe te voegen \n 0 om te stoppen";
-			
-			input = JOptionPane.showInputDialog(message);
-			while (!input.equals("0")){
-				if(input.equals("1")){
-				String naam = player.askNewPlayer();
-				Player speler = new Player(naam);
-				PersonalGame ps = new PersonalGame(speler, null);
-				persons.voegSpelerToe(ps);
-				input = JOptionPane.showInputDialog(message);
-				}
-				else if(!input.equals("1") || !input.equals("0")){
-					input = JOptionPane.showInputDialog(error);
-				}
-				
-					
-		}
-
-			
-			
-		
-		
-			
-			
-			
-			
-			List<PersonalGame> players = persons.getAll();
-
-			for (int i = players.size()-1; i >= 0;i--){	
+		System.out.println("START");
+		YahtzeeController persons = new YahtzeeController();
+		AskPlayers player = new AskPlayers();
+		List<String> result = player.askJavaFxPlayer(primaryStage);
+		List<PersonalGame> players = persons.getAll();
+		for (int i = players.size()-1; i >= 0;i--){	
 			PersonalGame s = players.get(i);
-				Stage stage = new Stage();
-				GameFrame frame = new GameFrame();
-				MakeContent content = new MakeContent();
-				frame.makeFrameWithRoll(primaryStage, s.getPlayer().getNaam(), content.maakContent());
-				
-				
-			}
-			
-			
-			
+			Stage stage = new Stage();
+			GameFrame frame = new GameFrame();
+			MakeContent content = new MakeContent();
+			frame.makeFrameWithRoll(primaryStage, s.getPlayer().getNaam(), content.maakContent());
+			System.out.println("testttt");
+		}
 	}
 	
+	public void askPlayersName(String message){
+		List<String> result = new ArrayList<>();
+		String playerName;
+		playerName = this.view.getStringInput(message);
+		result.add(playerName);
+		System.out.println("test");
+	}
 	
 }
 
