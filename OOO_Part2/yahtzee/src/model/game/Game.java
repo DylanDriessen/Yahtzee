@@ -103,10 +103,10 @@ public class Game {
  	}*/
  	
  	
- 	public ArrayList<PersonalGame> getAllPlayers(){
- 		ArrayList<PersonalGame> games = new ArrayList<>();
- 		for (PersonalGame Player : game){
- 			games.add(Player);
+ 	public ArrayList<String> getAllPlayersNames(){
+ 		ArrayList<String> games = new ArrayList<>();
+ 		for (int i = 0; i < game.size(); i++){
+ 			games.add(game.get(i).getPlayer().getNaam());
  		}
 		return games;	
  		
