@@ -39,6 +39,7 @@ public class PersonalGame {
 	}
 
 	public PersonalGame(Player player) {
+		
 		this.player = player;
 		this.setPlayer(player);
 		this.setMaxIndex(maxIndex);

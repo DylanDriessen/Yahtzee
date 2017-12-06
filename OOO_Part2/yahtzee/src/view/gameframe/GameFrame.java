@@ -18,6 +18,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import model.game.Game;
 import model.score.Categories;
 import view.board.BoardCreator;
 import view.board.MakeContent;
@@ -28,9 +29,9 @@ import view.dice.DiceCreator;
 
 public class GameFrame {
 	Buttons buttons = new Buttons();
-	
 	BoardCreator board = new BoardCreator();
 	MakeContent content;
+	Game game = new Game();
 	
 	
 	public void makeFrameWithRoll(Stage primaryStage, String name){
@@ -80,7 +81,7 @@ public class GameFrame {
 		return null;
 	}
 	
-	public void askPlayers(ArrayList<String> result){
+	public void askPlayers(){
 		Stage stage = new Stage();
         Group root = new Group();
         Scene scene = new Scene(root, 400, 400, Color.BEIGE);
@@ -91,9 +92,9 @@ public class GameFrame {
         Button btn = new Button("Click here to enter name");
         btn.setTranslateX(155);
         btn.setTranslateY(115);
-        btn.setOnMouseClicked(event -> this.getNames(field.getText(), result));
+        btn.setOnMouseClicked(event -> this.getNames(field.getText()));
         Button startBtn = new Button("Start Game");
-        startBtn.setOnMouseClicked(event -> this.makeFrames(result));
+        startBtn.setOnMouseClicked(event -> this.makeFrames(game.getAllNames()));
         startBtn.setTranslateX(35);
         startBtn.setTranslateY(115);
         root.getChildren().addAll(field,btn,startBtn);
@@ -108,10 +109,9 @@ public class GameFrame {
 		}
 	}
 	
-	private void getNames(String name, ArrayList<String> result){
-		result.add(name);
-		
+	private void getNames(String name ){
+		game.addPersonalGame(name);
+			
 	}
-	
 	
 }

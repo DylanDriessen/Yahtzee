@@ -150,7 +150,8 @@ import view.gameframe.GameFrame;
 		
 		@Override
 		public void start(Stage primaryStage) throws Exception {
-			view.askPlayers(result, primaryStage);
+			view.askPlayers();
+			
 			}
 		
 		
