@@ -17,11 +17,21 @@ public class Game {
 		this.setIndexNextPersonalGame(indexNextPersonalGame);
 	}
 	
+	public ArrayList<String> getAllNames(){
+		ArrayList<String> persons = new ArrayList<>();
+		for (PersonalGame ps: game){
+			persons.add(ps.getPlayer().getNaam());
+		}
+		System.out.println(persons);
+		return persons;
+	}
+	
 	
 	public void addPersonalGame(String naam){
 		Player player = new Player(naam);
 		PersonalGame pg = new PersonalGame(player);
  		game.add(pg);
+ 		
  	}
  	
  	public void deletePersonalGame(PersonalGame personalGame){
@@ -103,10 +113,10 @@ public class Game {
  	}*/
  	
  	
- 	public ArrayList<PersonalGame> getAllPlayers(){
- 		ArrayList<PersonalGame> games = new ArrayList<>();
- 		for (PersonalGame Player : game){
- 			games.add(Player);
+ 	public ArrayList<String> getAllPlayersNames(){
+ 		ArrayList<String> games = new ArrayList<>();
+ 		for (int i = 0; i < game.size(); i++){
+ 			games.add(game.get(i).getPlayer().getNaam());
  		}
 		return games;	
  		

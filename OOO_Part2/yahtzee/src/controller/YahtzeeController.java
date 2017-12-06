@@ -28,7 +28,7 @@ import view.gameframe.GameFrame;
 			try {
 		
 			} catch (Exception e) {
-				throw new IllegalArgumentException("Remi is ne vuile walon");
+				throw new IllegalArgumentException("werkt niet");
 			}
 		}
 
@@ -39,7 +39,8 @@ import view.gameframe.GameFrame;
 		
 		@Override
 		public void start(Stage primaryStage) throws Exception {
-			view.askPlayers(result, primaryStage);
+			view.askPlayers();
+			
 			}
 		
 		

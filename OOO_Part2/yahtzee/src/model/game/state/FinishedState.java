@@ -1,43 +1,34 @@
 package model.game.state;
 
+import java.util.List;
+
 import model.board.Dice;
+import model.board.Dices;
 import model.game.Game;
 import model.game.PersonalGame;
 import model.player.Player;
 
 public class FinishedState implements GameState {
 
-	// nu per situatie de states definieren, bij finished state kan hij niet beginnen aan een wachtende, starten	
-	
-	 PersonalGame personalGame;
 
-		public FinishedState(PersonalGame newPersonalGame) {
-			personalGame = newPersonalGame;
+		public FinishedState() {
+		}
+
+		@Override
+		public int getScore(Dices dices) {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+
+		@Override
+		public Dices getDices(Dices dices) {
+			// TODO Auto-generated method stub
+			return null;
 		}
 	
-	@Override
-	public void newState() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void waitingState() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void startedState() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void finishedState() {
-		// TODO Auto-generated method stub
-		
-	}
-
+		@Override
+		public String toString() {
+			return "FinishedState";
+		}
 	
 }

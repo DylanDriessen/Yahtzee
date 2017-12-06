@@ -126,23 +126,11 @@
     <end type="TARGET" refId="2"/>  
   </realization>  
   <association id="23">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="24" name="frame">        
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="24" name="view">        
         <position height="0" width="0" x="-392" y="111"/>      
       </attribute>      
       <multiplicity id="25" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-392" y="111"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="26">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="27" name="view">        
-        <position height="0" width="0" x="-392" y="111"/>      
-      </attribute>      
-      <multiplicity id="28" minimum="0" maximum="1">        
         <position height="0" width="0" x="-392" y="111"/>      
       </multiplicity>    
     </end>    

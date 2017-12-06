@@ -27,6 +27,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import model.game.Game;
 import model.score.Categories;
 import view.board.BoardCreator;
 import view.board.MakeContent;
@@ -37,9 +38,9 @@ import view.dice.DiceCreator;
 
 public class GameFrame {
 	Buttons buttons = new Buttons();
-	
 	BoardCreator board = new BoardCreator();
 	MakeContent content;
+	Game game = new Game();
 	
 	
 	public void makeFrameWithRoll(Stage primaryStage, String name){
@@ -89,6 +90,7 @@ public class GameFrame {
 		return null;
 	}
 	
+
 	public void askPlayers(ArrayList<String> result){
 		TextField field = new TextField("What's your name");
 		TableView<String> table = new TableView<>();
@@ -96,6 +98,11 @@ public class GameFrame {
 		table.setTranslateY(180);
 		TableColumn<String, String> name = new TableColumn<>("Name");
 		table.getColumns().addAll(name);
+	
+		
+		
+		
+
 		Stage stage = new Stage();
         Group root = new Group();
         Scene scene = new Scene(root, 400, 400, Color.BEIGE);
@@ -106,7 +113,7 @@ public class GameFrame {
         	@Override
 			public void handle(KeyEvent event) {
 				if(event.getCode() == KeyCode.ENTER){
-					getNames(field.getText(), result);
+					getNames(field.getText());
 				}
 				else if(event.getCode() == KeyCode.SPACE){
 					makeFrames(result);
@@ -115,15 +122,12 @@ public class GameFrame {
 		});
         field.setTranslateX(55);
         field.setTranslateY(55);
-        Button btn = new Button("Cick here to enter name");
-        btn.setTranslateX(115);
+        Button btn = new Button("Click here to enter name");
+        btn.setTranslateX(155);
         btn.setTranslateY(115);
-        btn.setOnMouseClicked(event -> this.getNames(field.getText(), result));
-       
-        
-        
+        btn.setOnMouseClicked(event -> this.getNames(field.getText()));
         Button startBtn = new Button("Start Game");
-        startBtn.setOnMouseClicked(event -> this.makeFrames(result));
+        startBtn.setOnMouseClicked(event -> this.makeFrames(game.getAllNames()));
         startBtn.setTranslateX(35);
         startBtn.setTranslateY(115);
         Label playersEntered = new Label();
@@ -143,13 +147,15 @@ public class GameFrame {
 		}
 	}
 	
-	private void getNames(String name, ArrayList<String> result){
-		result.add(name);
-		
+	private void getNames(String name ){
+		game.addPersonalGame(name);
+			
 	}
 	
+
 	
 	
 	
 	
+
 }
