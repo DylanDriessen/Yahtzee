@@ -1,10 +1,6 @@
 package view.facade;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.swing.JTable;
-
 import javafx.stage.Stage;
 
 public interface IViewFacade {

@@ -6,8 +6,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 import exception.DomainException;
-import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -23,7 +21,6 @@ import model.score.Categories;
 import view.board.BoardCreator;
 import view.board.MakeContent;
 import view.buttons.Buttons;
-import view.dice.DiceCreator;
 
 
 
