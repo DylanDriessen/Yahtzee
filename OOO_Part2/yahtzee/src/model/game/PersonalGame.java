@@ -7,7 +7,7 @@ import model.board.Dices;
 import model.game.state.FinishedState;
 import model.game.state.GameState;
 import model.game.state.NewState;
-import model.game.state.StartedState;
+import model.game.state.PlayingState;
 import model.game.state.WaitingState;
 import model.player.Player;
 import model.score.Categories;
@@ -20,49 +20,23 @@ public class PersonalGame {
 	private SimpleCatagoryClass factory = new SimpleCatagoryClass();
 	private Dices dices = new Dices(maxIndex-1); 
 	private int score = 0;
+	private GameState state;
 	
-	GameState waiting;
-	GameState playing;
-	GameState newGame;
-	GameState finished;
-	GameState gameState;
 	
 	
 	public PersonalGame(){
+		this.state = new NewState();
+	}
+	public void setState(GameState state) {
 		
-		waiting =  new WaitingState(this); //this definieert zichzelf
-		 playing = new StartedState(this);
-		 newGame = new NewState(this);
-		 finished = new FinishedState(this);
-		
-		 gameState = newGame;
+		if(state.toString().equals("PlayingState")) {
+			this.state = new PlayingState();
+		} else if(state.toString().equals("WaitingState")) {
+			this.state = new WaitingState();
+		} else if(state.toString().equals("FinishedState")) {
+			this.state = new FinishedState();
+		}
 	}
-	
-	public void setGameState(GameState newGameState){
-		gameState = newGameState;
-	}
-	
-	public void newState(){
-		gameState.newState();
-	}
-	
-	public void waitingState(){
-		gameState.waitingState();
-	}
-	
-	public void startedState(){
-		gameState.startedState();
-	}
-	
-	public void finishedState(){
-		gameState.finishedState();
-	}
-	
-	public GameState getIsPlayingState(){return playing;}
-	public GameState getIsNewState(){return newGame;}
-	public GameState getIsWaitingState(){return waiting;}
-	public GameState getIsFinishedState(){return finished;}
-	
 
 	public PersonalGame(Player player) {
 		this.player = player;

@@ -8,9 +8,10 @@ import model.game.Game;
 import model.game.PersonalGame;
 import model.player.Player;
 
-public class WaitingState implements GameState {
-	
-	public WaitingState() {
+public class PlayingState implements GameState {
+
+
+	public PlayingState() {
 	}
 
 	@Override
@@ -28,8 +29,7 @@ public class WaitingState implements GameState {
 	
 	@Override
 	public String toString() {
-		return "WaitingState";
+		return "PlayingState";
 	}
-	
-	
+
 }
