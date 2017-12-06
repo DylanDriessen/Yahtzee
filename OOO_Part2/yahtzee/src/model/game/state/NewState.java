@@ -24,8 +24,7 @@ public class NewState implements GameState {
 
 		@Override
 		public Dices getDices(Dices dices) {
-			// TODO Auto-generated method stub
-			return null;
+			throw new DomainException("This player has not played yet");
 		}
 	
 	

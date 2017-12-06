@@ -22,8 +22,7 @@ public class FinishedState implements GameState {
 
 		@Override
 		public Dices getDices(Dices dices) {
-			// TODO Auto-generated method stub
-			return null;
+			return dices;
 		}
 	
 		@Override

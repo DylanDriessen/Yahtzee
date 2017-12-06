@@ -61,13 +61,18 @@ public class PersonalGame {
 	
 	
 	public Dices getDices(){
-		return dices;
+		return this.state.getDices(dices);
 	}
 	
 	public void calculateScore(List<Dice> dices, Category categories){
 		this.score = score+factory.catagory(categories).getPoints(dices);
 	}
+	
 	public int getScore(){
+		return this.state.getScore(dices);
+	}
+	
+	public int getTotalScore() {
 		return this.score;
 	}
 	
