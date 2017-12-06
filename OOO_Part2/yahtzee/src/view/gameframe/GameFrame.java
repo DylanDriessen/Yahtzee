@@ -6,6 +6,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 import exception.DomainException;
+import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
@@ -13,7 +17,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -81,22 +90,48 @@ public class GameFrame {
 	}
 	
 	public void askPlayers(ArrayList<String> result){
+		TextField field = new TextField("What's your name");
+		TableView<String> table = new TableView<>();
+		table.setTranslateX(35);
+		table.setTranslateY(180);
+		TableColumn<String, String> name = new TableColumn<>("Name");
+		table.getColumns().addAll(name);
 		Stage stage = new Stage();
         Group root = new Group();
         Scene scene = new Scene(root, 400, 400, Color.BEIGE);
         stage.setScene(scene);
-        TextField field = new TextField("What's your name");
+        
+        field.setOnKeyPressed(new EventHandler<KeyEvent>() {
+
+        	@Override
+			public void handle(KeyEvent event) {
+				if(event.getCode() == KeyCode.ENTER){
+					getNames(field.getText(), result);
+				}
+				else if(event.getCode() == KeyCode.SPACE){
+					makeFrames(result);
+				}
+			}
+		});
         field.setTranslateX(55);
         field.setTranslateY(55);
         Button btn = new Button("Cick here to enter name");
         btn.setTranslateX(115);
         btn.setTranslateY(115);
         btn.setOnMouseClicked(event -> this.getNames(field.getText(), result));
+       
+        
+        
         Button startBtn = new Button("Start Game");
         startBtn.setOnMouseClicked(event -> this.makeFrames(result));
         startBtn.setTranslateX(35);
         startBtn.setTranslateY(115);
-        root.getChildren().addAll(field,btn,startBtn);
+        Label playersEntered = new Label();
+        playersEntered.setText("Players entered the game");
+        playersEntered.setTranslateX(35);
+        playersEntered.setTranslateY(150);
+
+        root.getChildren().addAll(field,btn,startBtn, playersEntered, table);
         stage.show();
        }
 	
@@ -112,6 +147,9 @@ public class GameFrame {
 		result.add(name);
 		
 	}
+	
+	
+	
 	
 	
 }

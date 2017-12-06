@@ -25,7 +25,7 @@ public class Buttons {
 	}
 	
 	public Label setName(String naam){
-		Label name = new Label(naam + "is aan de beurt");
+		Label name = new Label(naam + " is aan de beurt");
 		name.setTranslateX(600);
 		name.setTranslateY(200);
 		return name;
