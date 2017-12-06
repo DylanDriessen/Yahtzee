@@ -19,9 +19,6 @@ public class ViewFacade implements IViewFacade {
 		this.view = new GameFrame();
 	}
 
-	
-	GameFrame frame = new GameFrame();
-
 	@Override
 	public void makeWithRoll(Stage primaryStage, String name) {
 		view.makeFrameWithRoll(primaryStage, name);
