@@ -46,7 +46,7 @@ public class GameFrame {
 			Button turn = buttons.turn();
 			gridpane.add(dices, 0, 0); // hier worden de dices toegevoegd
 			ComboBox<Categories> categories = buttons.categories();
-			Label nameLabel = buttons.setName(game.getCurrentPersonalGame().getPlayer().getNaam());
+			Label nameLabel = buttons.setName(name);
 			root.getChildren().addAll(turn,categories,nameLabel,gridpane);
 			primaryStage.setScene(scene);
 			primaryStage.show();
@@ -94,7 +94,7 @@ public class GameFrame {
         btn.setTranslateY(115);
         btn.setOnMouseClicked(event -> this.getNames(field.getText()));
         Button startBtn = new Button("Start Game");
-        startBtn.setOnMouseClicked(event -> this.makeFrames(game.getAllPlayers()));
+        startBtn.setOnMouseClicked(event -> this.makeFrames(game.getAllNames()));
         startBtn.setTranslateX(35);
         startBtn.setTranslateY(115);
         root.getChildren().addAll(field,btn,startBtn);
@@ -102,7 +102,7 @@ public class GameFrame {
        }
 	
 	
-	private void makeFrames(ArrayList<PersonalGame> result){
+	private void makeFrames(ArrayList<String> result){
 		for(String r: result){
 			Stage stage = new Stage();
 			this.makeFrameWithRoll(stage, r);

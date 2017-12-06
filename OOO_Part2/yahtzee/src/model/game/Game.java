@@ -22,6 +22,7 @@ public class Game {
 		for (PersonalGame ps: game){
 			persons.add(ps.getPlayer().getNaam());
 		}
+		System.out.println(persons);
 		return persons;
 	}
 	
@@ -30,7 +31,7 @@ public class Game {
 		Player player = new Player(naam);
 		PersonalGame pg = new PersonalGame(player);
  		game.add(pg);
- 		System.out.println(game);
+ 		
  	}
  	
  	public void deletePersonalGame(PersonalGame personalGame){

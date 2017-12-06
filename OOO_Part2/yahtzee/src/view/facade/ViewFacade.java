@@ -41,15 +41,11 @@ public class ViewFacade implements IViewFacade {
 	}
 
 	@Override
-	public void askPlayers(ArrayList<String> result, Stage p) {
-		 view.askPlayers(result);
+	public void askPlayers() {
+		 view.askPlayers();
 	}
 
-	@Override
-	public String askPlayers() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 	
 	
 }
