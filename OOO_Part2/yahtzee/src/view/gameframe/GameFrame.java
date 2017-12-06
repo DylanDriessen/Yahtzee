@@ -91,18 +91,13 @@ public class GameFrame {
 	}
 	
 
-	public void askPlayers(ArrayList<String> result){
+	public void askPlayers(){
 		TextField field = new TextField("What's your name");
 		TableView<String> table = new TableView<>();
 		table.setTranslateX(35);
 		table.setTranslateY(180);
 		TableColumn<String, String> name = new TableColumn<>("Name");
 		table.getColumns().addAll(name);
-	
-		
-		
-		
-
 		Stage stage = new Stage();
         Group root = new Group();
         Scene scene = new Scene(root, 400, 400, Color.BEIGE);
@@ -116,7 +111,7 @@ public class GameFrame {
 					getNames(field.getText());
 				}
 				else if(event.getCode() == KeyCode.SPACE){
-					makeFrames(result);
+					makeFrames(game.getAllNames());
 				}
 			}
 		});
