@@ -1,5 +1,7 @@
 package model.facade;
 
+import java.util.ArrayList;
+
 import model.game.PersonalGame;
 
 public interface IModelFacade {
@@ -8,6 +10,7 @@ public interface IModelFacade {
 	String getnaam();
 	PersonalGame getCurrentPersonalGame();
 	PersonalGame getNextPersonalGame();
+	ArrayList<String> getALLPlayersNames();
 	
 	}
 

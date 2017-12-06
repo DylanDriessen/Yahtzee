@@ -139,7 +139,7 @@ import view.gameframe.GameFrame;
 			try {
 		
 			} catch (Exception e) {
-				throw new IllegalArgumentException("Remi is ne vuile walon");
+				throw new IllegalArgumentException("werkt niet");
 			}
 		}
 
