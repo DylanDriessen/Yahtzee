@@ -15,12 +15,20 @@ public class Dices {
 	
 	public void rollDices(){
 		for(Dice d: dices){
-			d.roll();
+			if(!d.getState().toString().equals("NotRollableState")) {
+				d.roll();
+			}
 		}
 	}
 	
 	public ArrayList<Dice> getDices(){
 		return this.dices;
+	}
+	
+	public void resetEyes() {
+		for (Dice dice : dices) {
+			dice.resetEyes();
+		}
 	}
 
 }

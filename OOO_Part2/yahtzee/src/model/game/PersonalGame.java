@@ -12,12 +12,12 @@ import model.game.state.WaitingState;
 import model.player.Player;
 import model.score.Categories;
 import model.score.Category;
-import model.score.SimpleCatagoryClass;
+import model.score.SimpleCatagoryStrategy;
 
 public class PersonalGame {
 	private Player player;
 	private int maxIndex;
-	private SimpleCatagoryClass factory = new SimpleCatagoryClass();
+	private SimpleCatagoryStrategy factory = new SimpleCatagoryStrategy();
 	private Dices dices = new Dices(maxIndex-1); 
 	private int score = 0;
 	private GameState state;
