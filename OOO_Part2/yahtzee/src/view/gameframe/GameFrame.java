@@ -9,6 +9,7 @@ import exception.DomainException;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -43,6 +44,7 @@ public class GameFrame {
 	Game game = new Game();
 	
 	
+	
 	public void makeFrameWithRoll(Stage primaryStage, String name){
 	
 		try{
@@ -56,6 +58,8 @@ public class GameFrame {
 			gridpane.add(dices, 0, 0); // hier worden de dices toegevoegd
 			ComboBox<Categories> categories = buttons.categories();
 			Label nameLabel = buttons.setName(name);
+			Button roll = this.rollButton();
+			roll.setOnMouseClicked( );;
 			root.getChildren().addAll(turn,categories,nameLabel,gridpane);
 			primaryStage.setScene(scene);
 			primaryStage.show();
@@ -91,13 +95,48 @@ public class GameFrame {
 	}
 	
 
-	public void askPlayers(){
+	
+	public TextField spelerField(){
 		TextField field = new TextField("What's your name");
+		 field.setTranslateX(55);
+	     field.setTranslateY(55);
+	     return field;
+	  }
+	
+	public TableView<String> tabelSpelers(){
 		TableView<String> table = new TableView<>();
 		table.setTranslateX(35);
 		table.setTranslateY(180);
-		TableColumn<String, String> name = new TableColumn<>("Name");
-		table.getColumns().addAll(name);
+		return table;
+	}
+	
+	
+	public Button nameButon(){
+		Button btn = new Button("Enter the game");
+		 btn.setTranslateX(155);
+	     btn.setTranslateY(115);
+	     return btn;
+	}
+	
+	
+	public Button startGame(){
+		Button startBtn = new Button("Start Game");
+		startBtn.setTranslateX(35);
+        startBtn.setTranslateY(115);
+        return startBtn;
+	}
+	
+	public  Button rollButton(){
+		Button btn = new Button("Roll Dices");
+		btn.setTranslateX(300);
+		btn.setTranslateY(300);
+	
+		return btn;
+	}
+	
+	
+	/*public void askPlayers( ActionEvent e){
+		
 		Stage stage = new Stage();
         Group root = new Group();
         Scene scene = new Scene(root, 400, 400, Color.BEIGE);
@@ -115,8 +154,7 @@ public class GameFrame {
 				}
 			}
 		});
-        field.setTranslateX(55);
-        field.setTranslateY(55);
+       
         Button btn = new Button("Click here to enter name");
         btn.setTranslateX(155);
         btn.setTranslateY(115);
@@ -129,13 +167,12 @@ public class GameFrame {
         playersEntered.setText("Players entered the game");
         playersEntered.setTranslateX(35);
         playersEntered.setTranslateY(150);
-
         root.getChildren().addAll(field,btn,startBtn, playersEntered, table);
         stage.show();
        }
 	
-	
-	private void makeFrames(ArrayList<String> result){
+	*/
+	public void makeFrames(ArrayList<String> result){
 		for(String r: result){
 			Stage stage = new Stage();
 			this.makeFrameWithRoll(stage, r);
@@ -147,7 +184,7 @@ public class GameFrame {
 			
 	}
 	
-
+	
 	
 	
 	

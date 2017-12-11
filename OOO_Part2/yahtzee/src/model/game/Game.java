@@ -5,16 +5,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import controller.Observer;
 import exception.DomainException;
+import model.game.state.GameState;
 import model.player.Player;
 
-public class Game {
+public class Game implements Subject{
+	PersonalGame info = new PersonalGame();
 	private ArrayList<PersonalGame> game;
 	private int indexNextPersonalGame;
- 	
+ 	private ArrayList<Observer> observers;
+	
 	public Game(){
 		game = new ArrayList<>();
 		this.setIndexNextPersonalGame(indexNextPersonalGame);
+		observers = new ArrayList<>();
 	}
 	
 	public ArrayList<String> getAllNames(){
@@ -66,7 +71,10 @@ public class Game {
 	//		}
 	//	}
 	//	return spelers.get(i+1).getNaam();
- 	//}
+ 	//}	
+ 	
+ 	
+ 	
  	
  	public int getIndexNextPersonalGame(){
  		return indexNextPersonalGame;
@@ -121,6 +129,29 @@ public class Game {
 		return games;	
  		
  	}
+
+	@Override
+	public void register(Observer newObserver) {
+		observers.add(newObserver);
+		
+	}
+
+	@Override
+	public void unregister(Observer deleteObserver) {
+		
+		int index = observers.indexOf(deleteObserver);
+		observers.remove(index);
+		
+	}
+
+	@Override
+	public void notifyObserver() {
+		
+		for(Observer o: observers){
+			o.update();
+		}
+		
+	}
  	
  	//public void setNextPlayer() {
  	//	int i = 0;

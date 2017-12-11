@@ -15,7 +15,7 @@ public class ViewFacade implements IViewFacade {
 
 	private GameFrame view;
 	
-	public ViewFacade(IModelFacade model){
+	public ViewFacade(){
 		this.view = new GameFrame();
 	}
 
@@ -37,10 +37,7 @@ public class ViewFacade implements IViewFacade {
 		return null;
 	}
 
-	@Override
-	public void askPlayers() {
-		 view.askPlayers();
-	}
+	
 
 	
 	

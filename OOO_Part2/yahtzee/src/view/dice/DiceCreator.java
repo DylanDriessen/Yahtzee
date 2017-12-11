@@ -47,13 +47,11 @@ public class DiceCreator extends StackPane {
 		}
 	}
 
-public void AllDices(List<Dice> result, List<Label> labels){
+	public void AllDices(List<Dice> result, List<Label> labels){
 	
-	for(int i=0;i<result.size();i++){
-		result.get(i).roll();
-		
-		
-		labels.get(i).setText(Integer.toString(result.get(i).getEyes()));
+			for(int i=0;i<result.size();i++){
+					result.get(i).roll();
+					labels.get(i).setText(Integer.toString(result.get(i).getEyes()));
 		//System.out.println(dices.get(i).getEyes());
 	}	
 }

@@ -13,7 +13,7 @@ public interface IViewFacade {
 	void makeWithoutRoll(Stage primaryStage, String name);
 	JTable getScoreboard();
 	
-	void askPlayers();
+	
 	
 
 }
