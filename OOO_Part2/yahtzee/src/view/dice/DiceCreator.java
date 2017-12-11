@@ -23,6 +23,7 @@ public class DiceCreator extends StackPane {
 		
 		
 		System.out.println(result);
+		this.prepareLabels(result);
 		for(int i = 0; i <= 4; i++){
 			result.get(i).setTranslateX(x1);
 			result.get(i).setTranslateY(y);
@@ -56,7 +57,7 @@ public class DiceCreator extends StackPane {
 		for (Label label : result){
 			label.setTextFill(Color.WHITE);
 			label.setStyle("-fx-background-color: black; -fx-padding: 10px 20px 10px 20px;");
-			
+			System.out.println("In the method");
 			i++;
 		}
 	}
