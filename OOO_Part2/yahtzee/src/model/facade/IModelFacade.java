@@ -2,15 +2,14 @@ package model.facade;
 
 import java.util.ArrayList;
 
-import model.game.PersonalGame;
 import model.player.Player;
 
 public interface IModelFacade {
 	void addPlayer(String naam);
 	void start();
 	String getnaam();
-	Player getCurrentPersonalGame();
-	Player getNextPersonalGame();
+	Player getCurrentPlayer();
+	Player getNextPlayer();
 	ArrayList<String> getALLPlayersNames();
 	
 	}

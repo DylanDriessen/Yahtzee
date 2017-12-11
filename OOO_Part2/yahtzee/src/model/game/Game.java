@@ -58,7 +58,7 @@ public class Game {
 		return persons;
 	}
 	
-	public void addPersonalGame(String naam){
+	public void addPlayer(String naam){
 		Player player = new Player(naam);
 		this.players.add(player);
  		

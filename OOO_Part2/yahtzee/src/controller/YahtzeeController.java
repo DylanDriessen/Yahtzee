@@ -11,7 +11,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.facade.IModelFacade;
-import model.game.PersonalGame;
 import view.facade.IViewFacade;
 import view.gameframe.GameFrame;
 
