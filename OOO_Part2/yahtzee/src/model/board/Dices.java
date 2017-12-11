@@ -33,5 +33,6 @@ public class Dices {
 			dice.setState(dice.getNotRolled());
 		}
 	}
+	
 
 }

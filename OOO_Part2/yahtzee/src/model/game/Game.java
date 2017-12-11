@@ -36,9 +36,12 @@ public class Game {
 	}
 	
 	public void rollDices() {
-		this.turn.rollDices();
+		this.dices.rollDices();;
 	}
 	
+	public ArrayList<Dice> getAllDices(){
+		return this.dices.getDices();
+	}
 	public void chooseDice(Dice dice) {
 		this.turn.setChosenDice(dice);
 	}
@@ -58,7 +61,7 @@ public class Game {
 		return persons;
 	}
 	
-	public void addPersonalGame(String naam){
+	public void addPlayer(String naam){
 		Player player = new Player(naam);
 		this.players.add(player);
  		

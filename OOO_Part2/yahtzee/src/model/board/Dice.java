@@ -27,7 +27,7 @@ public class Dice extends StackPane {
 	}
 	
 	public int getEyes() {
-		return eyes;
+		return this.eyes;
 	}
 	
 	public void setEyes(int eyes) {
