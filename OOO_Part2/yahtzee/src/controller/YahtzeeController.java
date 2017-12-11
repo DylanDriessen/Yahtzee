@@ -8,6 +8,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
@@ -54,10 +55,19 @@ import view.gameframe.GameFrame;
 	        Button btn = frame.nameButon();
 	        Button startBtn = frame.startGame();
 	        TextField field = frame.spelerField();
-	        TableView<String> table = frame.tabelSpelers();
-	        btn.setOnMouseClicked(event -> this.getNames(field.getText())); // namen toevoegen aan Game
+	        int y = 180;
+	        for(int i = 0; i < model.getALLPlayersNames().size(); i++){
+	        	Label naam = new Label();
+	        	naam.setText(model.getCurrentPlayer().getNaam());
+	        	naam.setTranslateX(35);
+	    		naam.setTranslateY(y);
+	    		root.getChildren().add(naam);
+	    		y += 30;
+	        }
+	        btn.setOnMouseClicked(event -> {this.getNames(field.getText());
+	        stage.close();}); // namen toevoegen aan Game
 	        startBtn.setOnMouseClicked(event -> this.makeFrames(model.getALLPlayersNames()));
-	        root.getChildren().addAll(btn,startBtn,field,table);
+	        root.getChildren().addAll(btn,startBtn,field);
 	        stage.show();
 		}
 		
@@ -99,6 +109,12 @@ import view.gameframe.GameFrame;
 		
 		private void getNames(String text) {
 			model.addPlayer(text);
+			try {
+				start(primaryStage);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		private void makeFrames(ArrayList<String> result){
@@ -107,11 +123,12 @@ import view.gameframe.GameFrame;
 			String naam = result.get(0);
 			
 			frame.makeFrameWithRoll(stage, naam, this.labels, this.RollButton());
-//			for(int i = 1; i <= result.size(); i++){
-//				Stage stage2 = new Stage();
-//				frame.makeFrameWithoutRoll(stage2, result.get(i));
-//				
-//			}
+			for(int i = 1; i <= result.size(); i++){
+				String naam2 = result.get(i);
+				Stage stage2 = new Stage();
+				frame.makeFrameWithRoll(stage2, naam2, this.labels, this.RollButton());
+				
+			}
 		}
 
 	}
