@@ -22,7 +22,7 @@ public class Main extends Application{
 		try {
 			IModelFacade model = new ModelFacade();
 			IViewFacade view = new ViewFacade();
-			controller = new YahtzeeController(model, view, primaryStage);
+			controller = new YahtzeeController(model, primaryStage);
 		} catch(Exception e) {
 			JOptionPane.showInputDialog(null, "Het spel kon niet gestart worden wegens een probleem met het opstarten.\n" + e.getMessage());
 			e.printStackTrace();

@@ -21,10 +21,10 @@ public class Player {
 		this.setNaam(naam);
 		this.score = 0;
 		
-		Categories[] categoriesEnum = Categories.values();
-		for (Categories category : categoriesEnum) {
-			this.categories.add(category);
-		}
+//		Categories[] categoriesEnum = Categories.values();
+//		for (Categories category : categoriesEnum) {
+//			this.categories.add(category);
+//		}
 	}
 	
 	public Player() {

@@ -36,9 +36,12 @@ public class Game {
 	}
 	
 	public void rollDices() {
-		this.turn.rollDices();
+		this.dices.rollDices();;
 	}
 	
+	public ArrayList<Dice> getAllDices(){
+		return this.dices.getDices();
+	}
 	public void chooseDice(Dice dice) {
 		this.turn.setChosenDice(dice);
 	}

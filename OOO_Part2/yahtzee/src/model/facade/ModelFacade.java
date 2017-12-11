@@ -2,6 +2,7 @@ package model.facade;
 
 import java.util.ArrayList;
 
+import model.board.Dice;
 import model.game.Game;
 import model.game.PersonalGame;
 import model.player.Player;
@@ -39,6 +40,15 @@ Game game;
 	public ArrayList<String> getALLPlayersNames() {
 		System.out.println("test");
 		return game.getAllPlayersNames();
+	}
+	@Override
+	public void rollDices() {
+		game.rollDices();
+		
+	}
+	@Override
+	public ArrayList<Dice> getAllDices() {
+		return game.getAllDices();
 	}
 	
 }
