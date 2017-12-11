@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -22,6 +23,7 @@ import view.board.BoardCreator;
 import view.board.MakeContent;
 import view.board.ObserverInterface;
 import view.buttons.Buttons;
+import view.scoreboard.Scoreboard;
 
 public class GameFrame implements ObserverInterface {
 	Buttons buttons = new Buttons();
@@ -38,6 +40,10 @@ public class GameFrame implements ObserverInterface {
 		
 	}
 	
+	MakeContent content = new MakeContent(i);
+	Scoreboard scoreboard = new Scoreboard();
+
+	
 	public void makeFrameWithRoll(Stage primaryStage, String name, List<Label> labels, Button button){
 	
 		try{
@@ -49,10 +55,13 @@ public class GameFrame implements ObserverInterface {
 			gridpane.add(dices, 0, 0);
 			ComboBox<Categories> categories = buttons.categories();
 			Label nameLabel = buttons.setName(name);
+			System.out.println("test");
+//			GridPane scorebord = scoreboard.setCategories();
+//			scorebord.setTranslateX(50);
+			System.out.println("test2");
 //			Button roll = this.rollButton();
 //			roll.setOnMouseClicked(event -> this.tabelSpelers());// NIET JUIST
-			root.getChildren().addAll(turn,categories,nameLabel,gridpane,button);
-		
+			root.getChildren().addAll(turn,categories,nameLabel,gridpane,button/*, scorebord*/);	
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			
@@ -62,7 +71,7 @@ public class GameFrame implements ObserverInterface {
 		}
 	}
 	
-	public void makeFrameWithoutRoll(Stage primaryStage, String naam){
+	public void makeFrameWithoutRoll(Stage primaryStage, String naam, Scoreboard scoreboard){
 		try{
 			Group root = board.newGroup();
 			Scene scene = board.newScene(root);
@@ -81,11 +90,11 @@ public class GameFrame implements ObserverInterface {
 			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 	}
-	
-	public JTable getScoreboard(){
-		return null;
-	}
-	
+//	
+//	public JTable getScoreboard(){
+//		return null;
+//	}
+//	
 
 	
 	public TextField spelerField(){
@@ -176,11 +185,6 @@ public class GameFrame implements ObserverInterface {
        }
 	
 	*/
-	
-	
-	
-	
-
 }
 
 

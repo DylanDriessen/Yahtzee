@@ -21,9 +21,6 @@ public class DiceCreator extends StackPane  {
 	List<Label> labels = new ArrayList<Label>();
 	private SubjectInterface controller;
 	
-	
-	
-	
 	// maakt de diceVorm aan
 	public DiceCreator(Pane root2, List<Label> labels){
 		System.out.println(labels);

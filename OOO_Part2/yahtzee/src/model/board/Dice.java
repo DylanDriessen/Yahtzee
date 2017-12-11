@@ -72,8 +72,4 @@ public class Dice extends StackPane {
 	public DiceState getNotRolled() {
 		return NotRolled;
 	}
-
-
-	
-	
 }

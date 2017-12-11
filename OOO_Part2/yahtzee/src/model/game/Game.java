@@ -64,14 +64,11 @@ public class Game {
 	public void addPlayer(String naam){
 		Player player = new Player(naam);
 		this.players.add(player);
- 		
  	}
  	
  	public void deletePlayer(Player player){
  		players.remove(player);
- 		
  	}
-
  	
  	public int getIndexNextPersonalGame(){
  		return indexNextPlayer;
@@ -104,46 +101,5 @@ public class Game {
  			games.add(players.get(i).getNaam());
  		}
 		return games;	
- 		
-
  	}
-
-	
- 	
- 	//public void setNextPlayer() {
- 	//	int i = 0;
- 	//	int x = 0;
- 	//	boolean found = false;
- 	//	
- 	//	if(spelers == null || spelers.isEmpty() || spelers.size() <= 1) {
- 	//		throw new DomainException("Give at least 2 players");
- 	//	}
- 	//	
- 	//	for (Player player : spelers) {
- 	//		if(player.getTrun() && !spelers.get(spelers.size()-1).equals(player)) {
- 	//			found = true;
- 	//			player.setTurn(false);
- 	//			x = i + 1;
- 	//		} else if (spelers.get(spelers.size()-1).equals(player)) {
- 	//			x = 0;
- 	//		}
- 	//		i++;
- 	//	}
- 	//	
- 	//	if (!found) {
- 	//		spelers.get(0).setTurn(true);
- 	//	} else {
- 	//		spelers.get(x).setTurn(true);
- 	//	}
- 	//}
- 	
- 	
- 
-
-
-
- 		
- 
- 
  }
-

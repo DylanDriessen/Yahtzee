@@ -15,7 +15,6 @@ public class RollableState implements DiceState {
 	@Override
 	public void rollDice() {
 		this.dice.setEyes(randomize());
-		
 	}
 	
 	private int randomize(){
@@ -27,13 +26,10 @@ public class RollableState implements DiceState {
 	@Override
 	public void chooseDice() {
 		this.dice.setState(dice.getDiceChosen());
-		
 	}
 	
 	@Override
 	public String toString() {
-		return "RollableState";
-		
+		return "RollableState";	
 	}
-	
 }
