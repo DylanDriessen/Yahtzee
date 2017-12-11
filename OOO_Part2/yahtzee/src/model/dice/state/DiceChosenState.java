@@ -14,20 +14,15 @@ public class DiceChosenState implements DiceState {
 	@Override
 	public void rollDice() {
 		throw new DomainException("Dice has been chosen and is unable to roll");
-		
 	}
 
 	@Override
 	public void chooseDice() {
 		this.dice.setState(dice.getRollable());
-		
 	}
 	
 	@Override
 	public String toString() {
 		return "DiceChosenState";
-		
 	}
-
-	
 }

@@ -14,7 +14,6 @@ public class NotRollableState implements DiceState {
 	@Override
 	public void rollDice() {
 		throw new DomainException("Can't roll the dice");
-		
 	}
 
 	@Override
@@ -25,7 +24,5 @@ public class NotRollableState implements DiceState {
 	@Override
 	public String toString() {
 		return "NotRollableState";
-		
 	}
-
 }

@@ -8,8 +8,4 @@ public interface IViewFacade {
 	void makeWithRoll(Stage primaryStage, String name);
 	void makeWithoutRoll(Stage primaryStage, String name);
 	JTable getScoreboard();
-	
-	
-	
-
 }

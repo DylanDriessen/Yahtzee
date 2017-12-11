@@ -21,9 +21,6 @@ public class DiceCreator extends StackPane implements ObserverInterface {
 	List<Label> labels = new ArrayList<>();
 	private SubjectInterface controller;
 	
-	
-	
-	
 	// maakt de diceVorm aan
 	public DiceCreator(Pane root2, SubjectInterface subject){
 		this.controller = subject;

@@ -28,5 +28,4 @@ public class FinishedState implements GameState {
 		public String toString() {
 			return "FinishedState";
 		}
-	
 }
