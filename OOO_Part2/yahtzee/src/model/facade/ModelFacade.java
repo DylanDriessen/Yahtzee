@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import model.board.Dice;
 import model.game.Game;
-import model.game.PersonalGame;
 import model.player.Player;
 public class ModelFacade implements IModelFacade {
 	
@@ -15,11 +14,11 @@ Game game;
 	}
 	@Override
 	public void addPlayer(String naam) {
-		game.addPersonalGame(naam);
+		game.addPlayer(naam);
 		System.out.println("text");
 	}
 	@Override
-	public Player getNextPersonalGame() {
+	public Player getNextPlayer() {
 		return game.getNextPlayer();
 	}
 	@Override
@@ -33,7 +32,7 @@ Game game;
 	}
 
 	@Override
-	public Player getCurrentPersonalGame() {
+	public Player getCurrentPlayer() {
 		return game.getCurrentPlayer();
 	}
 	@Override

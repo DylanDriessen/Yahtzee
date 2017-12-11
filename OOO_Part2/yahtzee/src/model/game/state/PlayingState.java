@@ -5,7 +5,6 @@ import java.util.List;
 import model.board.Dice;
 import model.board.Dices;
 import model.game.Game;
-import model.game.PersonalGame;
 import model.player.Player;
 
 public class PlayingState implements GameState {

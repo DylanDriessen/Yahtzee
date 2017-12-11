@@ -6,7 +6,6 @@ import exception.DomainException;
 import model.board.Dice;
 import model.board.Dices;
 import model.game.Game;
-import model.game.PersonalGame;
 import model.player.Player;
 
 public class NewState implements GameState {

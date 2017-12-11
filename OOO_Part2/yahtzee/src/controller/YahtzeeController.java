@@ -14,6 +14,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.board.Dice;
 import model.facade.IModelFacade;
+import view.facade.IViewFacade;
 import view.gameframe.GameFrame;
 
 
