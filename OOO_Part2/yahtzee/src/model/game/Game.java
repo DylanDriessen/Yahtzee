@@ -105,28 +105,7 @@ public class Game {
 
  	}
 
-	@Override
-	public void register(Observer newObserver) {
-		observers.add(newObserver);
-		
-	}
-
-	@Override
-	public void unregister(Observer deleteObserver) {
-		
-		int index = observers.indexOf(deleteObserver);
-		observers.remove(index);
-		
-	}
-
-	@Override
-	public void notifyObserver() {
-		
-		for(Observer o: observers){
-			o.update();
-		}
-		
-	}
+	
  	
  	//public void setNextPlayer() {
  	//	int i = 0;
