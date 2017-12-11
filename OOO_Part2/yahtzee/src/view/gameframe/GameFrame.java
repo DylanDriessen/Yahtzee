@@ -40,7 +40,6 @@ public class GameFrame implements ObserverInterface {
 		
 	}
 	
-	MakeContent content = new MakeContent(i);
 	Scoreboard scoreboard = new Scoreboard();
 
 	
