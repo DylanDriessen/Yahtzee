@@ -3,34 +3,41 @@ package view.dice;
 import java.util.ArrayList;
 import java.util.List;
 
+import controller.SubjectInterface;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import view.board.ObserverInterface;
 
-public class DiceCreator extends StackPane {
+public class DiceCreator extends StackPane implements ObserverInterface {
 	
 	
 	private int x1 = 100;
 	private int x2 = 100;
 	private int y = 200;
 	private Pane root = new Pane();
-
+	List<Label> labels = new ArrayList<>();
+	private SubjectInterface controller;
+	
+	
+	
 	
 	// maakt de diceVorm aan
-	public DiceCreator(List<Label> result, Pane root2){
-		
-		
-		System.out.println(result);
-		this.prepareLabels(result);
+	public DiceCreator(Pane root2, SubjectInterface subject){
+		this.controller = subject;
+		controller.register(this);
+		update(labels);
+		System.out.println(labels);
+		this.prepareLabels(labels);
 		for(int i = 0; i <= 4; i++){
-			result.get(i).setTranslateX(x1);
-			result.get(i).setTranslateY(y);
+			labels.get(i).setTranslateX(x1);
+			labels.get(i).setTranslateY(y);
 			x1 = x1 + 100;
 			this.setAlignment(Pos.CENTER);
-			root2.getChildren().add(result.get(i));
-			System.out.println(result.size());
+			root2.getChildren().add(labels.get(i));
+			System.out.println(labels.size());
 			this.root = root2;
 		}
 	}
@@ -57,13 +64,19 @@ public class DiceCreator extends StackPane {
 		for (Label label : result){
 			label.setTextFill(Color.WHITE);
 			label.setStyle("-fx-background-color: black; -fx-padding: 10px 20px 10px 20px;");
-			System.out.println("In the method");
+			
 			i++;
 		}
 	}
 
 	public Pane returnRoot(){
 		return root;
+	}
+
+	@Override
+	public void update(List<Label> labels) {
+		this.labels = labels;
+		
 	}
 	
 	

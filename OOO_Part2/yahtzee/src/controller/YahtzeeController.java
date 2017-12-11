@@ -14,24 +14,25 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.board.Dice;
 import model.facade.IModelFacade;
+import view.board.ObserverInterface;
 import view.facade.IViewFacade;
 import view.gameframe.GameFrame;
 
 
 	
-	public class YahtzeeController extends Application{
+	public class YahtzeeController extends Application implements SubjectInterface{
 		
 		private IModelFacade model;
-		
-		private ArrayList<String> result = new ArrayList<>();
 		Stage primaryStage = new Stage();
 		GameFrame frame = new GameFrame();
-		private int player = 0;
 		List<Label> labels = new ArrayList<>();;	
+		private ArrayList<ObserverInterface> observers = new ArrayList<>();
+
 		
 		public YahtzeeController(IModelFacade model, Stage primaryStage) {
 			this.model = model;
 			this.setDices();
+			this.notifyObserver();
 			try {
 				this.start(primaryStage);
 			} catch (Exception e1) {
@@ -48,7 +49,7 @@ import view.gameframe.GameFrame;
 		public void start(Stage primaryStage) throws Exception {
 			
 			Stage stage = new Stage();
-	        Group root = new Group();
+	        Group root = new Group();	
 	        Scene scene = new Scene(root, 400, 400, Color.BEIGE);
 	        stage.setScene(scene);
 	        Button btn = frame.nameButon();
@@ -66,7 +67,7 @@ import view.gameframe.GameFrame;
 			for(int j = 0; j <= 4; j++){
 				Label l = new Label();
 				l.setText("0");
-				System.out.println(l.getText());
+				
 				labels.add(i, l);
 				i++;
 			}
@@ -78,14 +79,13 @@ import view.gameframe.GameFrame;
 			for(Dice d: model.getAllDices()){
 				Label l = new Label();
 				l.setText(Integer.toString(d.getEyes()));
-				System.out.println(l.getText());
+				
 				labels.set(i, l);
 				
 				i++;
 			}
-			
-				System.out.println(labels);
-			
+				
+			this.notifyObserver();
 			
 		}
 		
@@ -112,6 +112,26 @@ import view.gameframe.GameFrame;
 //				frame.makeFrameWithoutRoll(stage2, result.get(i));
 //				
 //			}
+		}
+
+		@Override
+		public void register(ObserverInterface newObserver) {
+			observers.add(newObserver);
+		}
+
+		@Override
+		public void unregister(ObserverInterface deleteObserver) {
+			int index = observers.indexOf(deleteObserver);
+			observers.remove(index);
+		}
+
+		@Override
+		public void notifyObserver() {
+			System.out.println("u mama");
+			for(ObserverInterface o: observers){
+				o.update(labels);
+			}
+			
 		}
 
 	}
