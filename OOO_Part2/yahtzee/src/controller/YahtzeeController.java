@@ -27,11 +27,7 @@ import view.gameframe.GameFrame;
 		Stage primaryStage = new Stage();
 		GameFrame frame = new GameFrame();
 		private int player = 0;
-		List<Label> labels = new ArrayList<>();;
-		
-		
-		
-		
+		List<Label> labels = new ArrayList<>();;	
 		
 		public YahtzeeController(IModelFacade model, Stage primaryStage) {
 			this.model = model;
@@ -47,9 +43,6 @@ import view.gameframe.GameFrame;
 				throw new IllegalArgumentException("werkt niet");
 			}
 		}
-		
-		
-		
 
 		@Override
 		public void start(Stage primaryStage) throws Exception {
@@ -103,7 +96,6 @@ import view.gameframe.GameFrame;
 			btn.setTranslateY(300);
 			return btn;
 		}
-	
 		
 		private void getNames(String text) {
 			model.addPlayer(text);
@@ -121,8 +113,5 @@ import view.gameframe.GameFrame;
 //				
 //			}
 		}
-		
-		
-		
-		
+
 	}

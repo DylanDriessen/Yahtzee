@@ -17,9 +17,6 @@ public class MakeContent extends StackPane {
 	DiceCreator creator;
 	
 	public MakeContent(){
-		
-		
-		
 	}
 
 	public Pane maakContent(List<Label> labels) {	
