@@ -29,7 +29,7 @@ public class DiceCreator extends StackPane implements ObserverInterface {
 		this.controller = subject;
 		controller.register(this);
 		update(labels);
-		System.out.println(labels);
+		System.out.println(labels);	 
 		this.prepareLabels(labels);
 		for(int i = 0; i <= 4; i++){
 			labels.get(i).setTranslateX(x1);
