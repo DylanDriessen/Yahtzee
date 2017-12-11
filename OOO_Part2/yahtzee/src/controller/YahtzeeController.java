@@ -25,13 +25,7 @@ import view.gameframe.GameFrame;
 		Stage primaryStage = new Stage();
 		GameFrame frame = new GameFrame();
 		private int player = 0;
-		
-		
-		
-		
-		
-		
-		
+
 		public YahtzeeController(IModelFacade model, IViewFacade view, Stage primaryStage) {
 			this.model = model;
 			this.view = view;
@@ -46,9 +40,6 @@ import view.gameframe.GameFrame;
 				throw new IllegalArgumentException("werkt niet");
 			}
 		}
-		
-		
-		
 
 		@Override
 		public void start(Stage primaryStage) throws Exception {
@@ -66,9 +57,6 @@ import view.gameframe.GameFrame;
 	        stage.show();
 		}
 		
-		
-	
-		
 		private void getNames(String text) {
 			model.addPlayer(text);
 		}
@@ -83,8 +71,5 @@ import view.gameframe.GameFrame;
 				
 			}
 		}
-		
-		
-		
-		
+
 	}

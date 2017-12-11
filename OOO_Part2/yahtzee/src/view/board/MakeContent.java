@@ -41,9 +41,6 @@ public class MakeContent extends StackPane {
 			
 			root2.getChildren().add(dice);
 		}
-		
-		
-		
 		return root2;
 	}
 }
