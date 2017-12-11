@@ -21,6 +21,12 @@ public class PersonalGame {
 	private Dices dices = new Dices(maxIndex-1); 
 	private int score = 0;
 	private GameState state;
+    GameState waiting;
+    GameState playing;
+    GameState newGame;
+    GameState finished;
+    GameState gameState;
+
 	
 	
 	
@@ -39,11 +45,21 @@ public class PersonalGame {
 	}
 
 	public PersonalGame(Player player) {
-		
 		this.player = player;
 		this.setPlayer(player);
 		this.setMaxIndex(maxIndex);
+       
+        gameState = newGame;
+
 	}
+	
+	
+	
+    public void setGameState(GameState newGameState){
+        gameState = newGameState;
+    }
+   
+
 	private void setMaxIndex(int maxIndex) {
 		this.maxIndex = maxIndex;
 

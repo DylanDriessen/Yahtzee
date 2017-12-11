@@ -42,13 +42,7 @@ public class MakeContent extends StackPane {
 			root2.getChildren().add(dice);
 		}
 		
-		Button btn = new Button("Roll Dices");
-		btn.setOnMouseClicked(event -> creator.AllDices(dices, labels));
 		
-		btn.setTranslateX(300);
-		btn.setTranslateY(300);
-		
-		root2.getChildren().add(btn);
 		
 		return root2;
 	}
