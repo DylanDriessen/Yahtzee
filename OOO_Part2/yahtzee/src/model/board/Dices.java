@@ -2,6 +2,8 @@ package model.board;
 
 import java.util.ArrayList;
 
+import model.dice.state.NotRolledState;
+
 public class Dices {
 	private ArrayList<Dice> dices = new ArrayList<>();
 	
@@ -15,7 +17,7 @@ public class Dices {
 	
 	public void rollDices(){
 		for(Dice d: dices){
-			if(!d.getState().toString().equals("NotRollableState")) {
+			if(!d.getState().toString().equals("NotRollableState") || !d.getState().toString().equals("DiceChosenState")) {
 				d.roll();
 			}
 		}
@@ -25,9 +27,10 @@ public class Dices {
 		return this.dices;
 	}
 	
-	public void resetEyes() {
+	public void resetDices() {
 		for (Dice dice : dices) {
 			dice.resetEyes();
+			dice.setState(dice.getNotRolled());
 		}
 	}
 

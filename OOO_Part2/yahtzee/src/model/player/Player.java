@@ -1,10 +1,12 @@
 package model.player;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
 import exception.DomainException;
+import model.score.Categories;
 
 public class Player {
 	
@@ -12,13 +14,42 @@ public class Player {
 	private String id;
 	private boolean turn = false;
 	private HashMap<Integer, List<Integer>> dicesThrown = new HashMap<>();
+	private int score;
+	private ArrayList<Categories> categories;
 
 	public Player(String naam){
 		this.setNaam(naam);
+		this.score = 0;
+		
+		Categories[] categoriesEnum = Categories.values();
+		for (Categories category : categoriesEnum) {
+			this.categories.add(category);
+		}
 	}
 	
 	public Player() {
+		this.score = 0;
 		
+		Categories[] categoriesEnum = Categories.values();
+		for (Categories category : categoriesEnum) {
+			this.categories.add(category);
+		}
+	}
+	
+	public void removeCategory(Categories categoryToRemove) {
+		this.categories.remove(categoryToRemove);
+	}
+	
+	public ArrayList<Categories> getCategories(){
+		return this.categories;
+	}
+	
+	public int getScore() {
+		return this.score;
+	}
+	
+	public void addScore(int score) {
+		this.score = this.score + score;
 	}
 
 	public String getNaam() {
