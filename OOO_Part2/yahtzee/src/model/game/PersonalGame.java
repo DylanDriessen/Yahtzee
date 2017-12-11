@@ -65,7 +65,7 @@ public class PersonalGame {
 	}
 	
 	public void calculateScore(List<Dice> dices, Category categories){
-		this.score = score+factory.catagory(categories).getPoints(dices);
+		//this.score = score+factory.catagory(categories).getPoints(dices);
 	}
 	
 	public int getScore(){

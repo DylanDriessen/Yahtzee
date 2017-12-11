@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import model.game.Game;
 import model.game.PersonalGame;
+import model.player.Player;
 public class ModelFacade implements IModelFacade {
 	
 Game game;
@@ -17,8 +18,8 @@ Game game;
 		System.out.println("text");
 	}
 	@Override
-	public PersonalGame getNextPersonalGame() {
-		return game.getNextPersonalGame();
+	public Player getNextPersonalGame() {
+		return game.getNextPlayer();
 	}
 	@Override
 	public void start() {
@@ -27,12 +28,12 @@ Game game;
 	
 	@Override
 	public String getnaam() {
-		return game.getCurrentPersonalGame().getPlayer().getNaam();
+		return game.getCurrentPlayer().getNaam();
 	}
 
 	@Override
-	public PersonalGame getCurrentPersonalGame() {
-		return game.getCurrentPersonalGame();
+	public Player getCurrentPersonalGame() {
+		return game.getCurrentPlayer();
 	}
 	@Override
 	public ArrayList<String> getALLPlayersNames() {

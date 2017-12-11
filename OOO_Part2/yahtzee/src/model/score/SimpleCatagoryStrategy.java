@@ -8,7 +8,7 @@ public class SimpleCatagoryStrategy {
 	Category category;
 	List<Dice> dices;
 	
-	public Category catagory(Category category) {
+	public Category catagory(Categories category) {
 		if (category.equals(Categories.ACES)){
 			return new Aces();
 		} else if(category.equals(Categories.TWOS)){

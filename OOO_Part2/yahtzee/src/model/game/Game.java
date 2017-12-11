@@ -1,70 +1,103 @@
 package model.game;
 
 import java.util.ArrayList;
+
+import exception.DomainException;
+import model.board.Dice;
+import model.board.Dices;
 import model.player.Player;
+import model.score.Categories;
+import model.score.SimpleCatagoryStrategy;
+import model.turn.Turn;
 
 public class Game {
-	private ArrayList<PersonalGame> game;
-	private int indexNextPersonalGame;
+	private ArrayList<Player> players;
+	private int indexNextPlayer;
+	private Dices dices;
+	private SimpleCatagoryStrategy catagories;
+	private Turn turn;
  	
 	public Game(){
-		game = new ArrayList<>();
-		this.setIndexNextPersonalGame(indexNextPersonalGame);
+		this.players = new ArrayList<>();
+		this.setIndexNextPlayer();
+		this.dices = new Dices(5);
 	}
+	
+	public void Start(){
+ 		if (players.size()<=1){
+ 			throw new IllegalArgumentException("Minimum 2 players required");
+ 		}
+ 		else this.setIndexNextPlayer();
+ 	}
+	
+	public void nextPlayer() {
+		this.turn = new Turn(3, this.getCurrentPlayer(), this.catagories, this.dices);
+		this.setIndexNextPlayer();
+	}
+	
+	public void rollDices() {
+		this.turn.rollDices();
+	}
+	
+	public void chooseDice(Dice dice) {
+		this.turn.setChosenDice(dice);
+	}
+	
+	public void addScore(Categories category) {
+		this.getCurrentPlayer().addScore(this.turn.getScore(category));
+	}
+ 	
+	//Old Methods
 	
 	public ArrayList<String> getAllNames(){
 		ArrayList<String> persons = new ArrayList<>();
-		for (PersonalGame ps: game){
-			persons.add(ps.getPlayer().getNaam());
+		for (Player player: players){
+			persons.add(player.getNaam());
 		}
 		System.out.println(persons);
 		return persons;
 	}
+	
 	public void addPersonalGame(String naam){
 		Player player = new Player(naam);
-		PersonalGame pg = new PersonalGame(player);
- 		game.add(pg);
+		this.players.add(player);
  		
  	}
  	
- 	public void deletePersonalGame(PersonalGame personalGame){
- 		game.remove(personalGame);
+ 	public void deletePlayer(Player player){
+ 		players.remove(player);
  		
  	}
  	
  	public int getIndexNextPersonalGame(){
- 		return indexNextPersonalGame;
+ 		return indexNextPlayer;
  	}
  	
- 	public PersonalGame getNextPersonalGame(){
-		return game.get(indexNextPersonalGame);
+ 	public Player getNextPlayer(){
+		return players.get(indexNextPlayer);
  	}
  	
- 	private void setIndexNextPersonalGame(int IndexNextPlayer){
- 		if(this.indexNextPersonalGame >= game.size()){ // mogelijke fout mss = weg
- 			this.indexNextPersonalGame = 0;
+ 	private void setIndexNextPlayer(){
+ 		if(this.indexNextPlayer >= players.size()){ // mogelijke fout mss = weg
+ 			this.indexNextPlayer = 0;
  		}
  		else{
- 			this.indexNextPersonalGame++;
+ 			this.indexNextPlayer++;
  		}
  	}
- 	public PersonalGame getCurrentPersonalGame(){
- 		if (indexNextPersonalGame <= 0){
- 			return game.get(game.size()-1);
+ 	
+ 	public Player getCurrentPlayer(){
+ 		if (indexNextPlayer <= 0){
+ 			return players.get(players.size()-1);
  		}
- 		return game.get(indexNextPersonalGame-1);
+ 		return players.get(indexNextPlayer-1);
  	}
- 	public void Start(){
- 		if (game.size()<=1){
- 			throw new IllegalArgumentException("Minimum 2 players required");
- 		}
- 		else this.setIndexNextPersonalGame(-1);
- 	}
+ 	
  	
  	public ArrayList<String> getAllPlayersNames(){
  		ArrayList<String> games = new ArrayList<>();
- 		for (int i = 0; i < game.size(); i++){
- 			games.add(game.get(i).getPlayer().getNaam());
+ 		for (int i = 0; i < players.size(); i++){
+ 			games.add(players.get(i).getNaam());
  		}
 		return games;	
  		
