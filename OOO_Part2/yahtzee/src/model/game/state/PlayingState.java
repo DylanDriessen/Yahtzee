@@ -23,11 +23,8 @@ public class PlayingState implements GameState {
 	public Dices getDices(Dices dices) {
 		return dices;
 	}
-	
-	
 	@Override
 	public String toString() {
 		return "PlayingState";
 	}
-
 }

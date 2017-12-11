@@ -17,7 +17,6 @@ public class NotRolledState implements DiceState {
 	public void rollDice() {
 		this.dice.setState(dice.getRollable());
 		this.dice.setEyes(randomize());
-		
 	}
 	
 	private int randomize(){
@@ -28,8 +27,6 @@ public class NotRolledState implements DiceState {
 
 	@Override
 	public void chooseDice() {
-		throw new DomainException("Dice has not been rolled yet");
-		
+		throw new DomainException("Dice has not been rolled yet");	
 	}
-
 }

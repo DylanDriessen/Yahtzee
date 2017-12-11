@@ -16,7 +16,7 @@ public class ViewFacade implements IViewFacade {
 
 	@Override
 	public void makeWithRoll(Stage primaryStage, String name) {
-		view.makeFrameWithRoll(primaryStage, name);
+//		view.makeFrameWithRoll(primaryStage, name);
 		
 	}
 
