@@ -20,24 +20,30 @@ import javafx.stage.Stage;
 import model.score.Categories;
 import view.board.BoardCreator;
 import view.board.MakeContent;
+import view.board.ObserverInterface;
 import view.buttons.Buttons;
 
-public class GameFrame {
+public class GameFrame implements ObserverInterface {
 	Buttons buttons = new Buttons();
 	SubjectInterface i;
 	BoardCreator board = new BoardCreator();
-	MakeContent content = new MakeContent(i);
+	MakeContent content = new MakeContent();
+	Group root = board.newGroup();
+	Scene scene = board.newScene(root);
+	GridPane gridpane = board.maakGrid();
 	
+	private List<Label> labels;
 	
-
+	public GameFrame() {
+		
+	}
+	
 	public void makeFrameWithRoll(Stage primaryStage, String name, List<Label> labels, Button button){
 	
 		try{
 			
-			Group root = board.newGroup();
-			Scene scene = board.newScene(root);
-			GridPane gridpane = board.maakGrid();
-			Pane dices = content.maakContent(); // dices worden aagnemaakt
+			
+			Pane dices = content.maakContent(labels); // dices worden aagnemaakt
 			primaryStage.setTitle("Yahtzee");
 			Button turn = buttons.turn();
 			gridpane.add(dices, 0, 0);
@@ -61,7 +67,7 @@ public class GameFrame {
 			Group root = board.newGroup();
 			Scene scene = board.newScene(root);
 			GridPane gridpane = board.maakGrid();
-			content = new MakeContent(i); // constructor wordt opgeroepen voor zwarte vierkanten 
+			content = new MakeContent(); // constructor wordt opgeroepen voor zwarte vierkanten 
 //			Pane dices = content.maakContent(); // dices worden aagnemaakt
 			primaryStage.setTitle("Yahtzee");
 //			gridpane.add(dices, 0, 0); // hier worden de dices toegevoegd
@@ -122,6 +128,15 @@ public class GameFrame {
 	
 	public MakeContent getMakeContent(){
 		return this.content;
+	}
+
+	@Override
+	public void update(List<Label> labels) {
+		this.labels = labels;
+		Pane dices = content.maakContent(labels);
+		gridpane.add(dices, 0, 0);
+
+		
 	}
 	
 	/*public void askPlayers( ActionEvent e){

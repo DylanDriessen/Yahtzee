@@ -18,15 +18,13 @@ public class MakeContent extends StackPane  {
 	private int y = 200;
 	DiceCreator creator;
 	List<Label> labels = new ArrayList<>();
-	private SubjectInterface controller;
 	
-	public MakeContent(SubjectInterface s){
-	this.controller = s;
+	public MakeContent(){
 	}
 
-	public Pane maakContent() {	
+	public Pane maakContent(List<Label> labels) {	
 		Pane root2 = new Pane();
-		creator = new DiceCreator(root2,controller);
+		creator = new DiceCreator(root2, labels);
 		System.out.println(labels);
 		root2 = creator.returnRoot();
 		

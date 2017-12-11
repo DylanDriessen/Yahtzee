@@ -15,24 +15,22 @@ import javafx.stage.Stage;
 import model.board.Dice;
 import model.facade.IModelFacade;
 import view.board.ObserverInterface;
-import view.facade.IViewFacade;
 import view.gameframe.GameFrame;
 
 
 	
-	public class YahtzeeController extends Application implements SubjectInterface{
+	public class YahtzeeController extends Application implements SubjectInterface {
 		
 		private IModelFacade model;
 		Stage primaryStage = new Stage();
 		GameFrame frame = new GameFrame();
 		List<Label> labels = new ArrayList<>();;	
-		private ArrayList<ObserverInterface> observers = new ArrayList<>();
+		private ArrayList<GameFrame> observers = new ArrayList<>();
 
 		
 		public YahtzeeController(IModelFacade model, Stage primaryStage) {
 			this.model = model;
 			this.setDices();
-			this.notifyObserver();
 			try {
 				this.start(primaryStage);
 			} catch (Exception e1) {
@@ -81,11 +79,10 @@ import view.gameframe.GameFrame;
 				l.setText(Integer.toString(d.getEyes()));
 				
 				labels.set(i, l);
-				
+				notifyObserver();
 				i++;
 			}
 				
-			this.notifyObserver();
 			
 		}
 		
@@ -115,23 +112,23 @@ import view.gameframe.GameFrame;
 		}
 
 		@Override
-		public void register(ObserverInterface newObserver) {
-			observers.add(newObserver);
+		public void register(ObserverInterface o) {
+			this.observers.add((GameFrame)o);
+			
 		}
 
 		@Override
-		public void unregister(ObserverInterface deleteObserver) {
-			int index = observers.indexOf(deleteObserver);
-			observers.remove(index);
+		public void unregister(ObserverInterface o) {
+			// TODO Auto-generated method stub
+			
 		}
 
 		@Override
 		public void notifyObserver() {
-			System.out.println("u mama");
-			for(ObserverInterface o: observers){
-				o.update(labels);
-			}
+			frame.update (labels);
 			
 		}
+
+		
 
 	}

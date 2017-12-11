@@ -11,24 +11,21 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import view.board.ObserverInterface;
 
-public class DiceCreator extends StackPane implements ObserverInterface {
+public class DiceCreator extends StackPane  {
 	
 	
 	private int x1 = 100;
 	private int x2 = 100;
 	private int y = 200;
 	private Pane root = new Pane();
-	List<Label> labels = new ArrayList<>();
+	List<Label> labels = new ArrayList<Label>();
 	private SubjectInterface controller;
 	
 	
 	
 	
 	// maakt de diceVorm aan
-	public DiceCreator(Pane root2, SubjectInterface subject){
-		this.controller = subject;
-		controller.register(this);
-		update(labels);
+	public DiceCreator(Pane root2, List<Label> labels){
 		System.out.println(labels);
 		this.prepareLabels(labels);
 		for(int i = 0; i <= 4; i++){
@@ -73,11 +70,7 @@ public class DiceCreator extends StackPane implements ObserverInterface {
 		return root;
 	}
 
-	@Override
-	public void update(List<Label> labels) {
-		this.labels = labels;
-		
-	}
+	
 	
 	
 //	public void rollAllDices(List<Dice> result, List<Label> labels){
