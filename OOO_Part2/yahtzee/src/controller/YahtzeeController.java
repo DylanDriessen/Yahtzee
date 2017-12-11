@@ -8,30 +8,32 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.board.Dice;
 import model.facade.IModelFacade;
+import view.board.ObserverInterface;
 import view.facade.IViewFacade;
 import view.gameframe.GameFrame;
 
 
 	
-	public class YahtzeeController extends Application{
+	public class YahtzeeController extends Application implements SubjectInterface{
 		
 		private IModelFacade model;
-		
-		private ArrayList<String> result = new ArrayList<>();
 		Stage primaryStage = new Stage();
 		GameFrame frame = new GameFrame();
-		private int player = 0;
 		List<Label> labels = new ArrayList<>();;	
+		private ArrayList<ObserverInterface> observers = new ArrayList<>();
+
 		
 		public YahtzeeController(IModelFacade model, Stage primaryStage) {
 			this.model = model;
 			this.setDices();
+			this.notifyObserver();
 			try {
 				this.start(primaryStage);
 			} catch (Exception e1) {
@@ -48,16 +50,25 @@ import view.gameframe.GameFrame;
 		public void start(Stage primaryStage) throws Exception {
 			
 			Stage stage = new Stage();
-	        Group root = new Group();
+	        Group root = new Group();	
 	        Scene scene = new Scene(root, 400, 400, Color.BEIGE);
 	        stage.setScene(scene);
 	        Button btn = frame.nameButon();
 	        Button startBtn = frame.startGame();
 	        TextField field = frame.spelerField();
-	        TableView<String> table = frame.tabelSpelers();
-	        btn.setOnMouseClicked(event -> this.getNames(field.getText())); // namen toevoegen aan Game
+	        int y = 180;
+	        for(int i = 0; i < model.getALLPlayersNames().size(); i++){
+	        	Label naam = new Label();
+	        	naam.setText(model.getALLPlayersNames().get(i));
+	        	naam.setTranslateX(35);
+	    		naam.setTranslateY(y);
+	    		root.getChildren().add(naam);
+	    		y += 30;
+	        }
+	        btn.setOnMouseClicked(event -> {this.getNames(field.getText());
+	        stage.close();}); // namen toevoegen aan Game
 	        startBtn.setOnMouseClicked(event -> this.makeFrames(model.getALLPlayersNames()));
-	        root.getChildren().addAll(btn,startBtn,field,table);
+	        root.getChildren().addAll(btn,startBtn,field);
 	        stage.show();
 		}
 		
@@ -66,7 +77,7 @@ import view.gameframe.GameFrame;
 			for(int j = 0; j <= 4; j++){
 				Label l = new Label();
 				l.setText("0");
-				System.out.println(l.getText());
+				
 				labels.add(i, l);
 				i++;
 			}
@@ -78,13 +89,13 @@ import view.gameframe.GameFrame;
 			for(Dice d: model.getAllDices()){
 				Label l = new Label();
 				l.setText(Integer.toString(d.getEyes()));
-				System.out.println(l.getText());
-				labels.add(i, l);
+				
+				labels.set(i, l);
+				
 				i++;
 			}
-			
-				System.out.println(labels);
-			
+				
+			this.notifyObserver();
 			
 		}
 		
@@ -98,6 +109,12 @@ import view.gameframe.GameFrame;
 		
 		private void getNames(String text) {
 			model.addPlayer(text);
+			try {
+				start(primaryStage);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		private void makeFrames(ArrayList<String> result){
@@ -106,11 +123,32 @@ import view.gameframe.GameFrame;
 			String naam = result.get(0);
 			
 			frame.makeFrameWithRoll(stage, naam, this.labels, this.RollButton());
-//			for(int i = 1; i <= result.size(); i++){
-//				Stage stage2 = new Stage();
-//				frame.makeFrameWithoutRoll(stage2, result.get(i));
-//				
-//			}
+			for(int i = 1; i <= result.size(); i++){
+				String naam2 = result.get(i);
+				Stage stage2 = new Stage();
+				frame.makeFrameWithRoll(stage2, naam2, this.labels, this.RollButton());
+				
+			}
+		}
+
+		@Override
+		public void register(ObserverInterface newObserver) {
+			observers.add(newObserver);
+		}
+
+		@Override
+		public void unregister(ObserverInterface deleteObserver) {
+			int index = observers.indexOf(deleteObserver);
+			observers.remove(index);
+		}
+
+		@Override
+		public void notifyObserver() {
+			System.out.println("u mama");
+			for(ObserverInterface o: observers){
+				o.update(labels);
+			}
+			
 		}
 
 	}

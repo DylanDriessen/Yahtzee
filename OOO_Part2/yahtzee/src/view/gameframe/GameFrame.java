@@ -4,12 +4,15 @@ package view.gameframe;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+
+import controller.SubjectInterface;
 import exception.DomainException;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -23,18 +26,20 @@ import view.scoreboard.Scoreboard;
 
 public class GameFrame {
 	Buttons buttons = new Buttons();
+	SubjectInterface i;
 	BoardCreator board = new BoardCreator();
-	MakeContent content = new MakeContent();
+	MakeContent content = new MakeContent(i);
 	Scoreboard scoreboard = new Scoreboard();
+
 	
 	public void makeFrameWithRoll(Stage primaryStage, String name, List<Label> labels, Button button){
 	
 		try{
+			
 			Group root = board.newGroup();
 			Scene scene = board.newScene(root);
 			GridPane gridpane = board.maakGrid();
-			
-			Pane dices = content.maakContent(labels); // dices worden aagnemaakt
+			Pane dices = content.maakContent(); // dices worden aagnemaakt
 			primaryStage.setTitle("Yahtzee");
 			Button turn = buttons.turn();
 			gridpane.add(dices, 0, 0);
@@ -61,7 +66,7 @@ public class GameFrame {
 			Group root = board.newGroup();
 			Scene scene = board.newScene(root);
 			GridPane gridpane = board.maakGrid();
-			content = new MakeContent(); // constructor wordt opgeroepen voor zwarte vierkanten 
+			content = new MakeContent(i); // constructor wordt opgeroepen voor zwarte vierkanten 
 //			Pane dices = content.maakContent(); // dices worden aagnemaakt
 			primaryStage.setTitle("Yahtzee");
 //			gridpane.add(dices, 0, 0); // hier worden de dices toegevoegd
@@ -120,6 +125,9 @@ public class GameFrame {
 		return btn;
 	}
 	
+	public MakeContent getMakeContent(){
+		return this.content;
+	}
 	
 	/*public void askPlayers( ActionEvent e){
 		
