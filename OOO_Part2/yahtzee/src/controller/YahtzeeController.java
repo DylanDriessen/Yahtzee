@@ -86,7 +86,8 @@ import view.gameframe.GameFrame;
 				Label l = new Label();
 				l.setText(Integer.toString(d.getEyes()));
 				System.out.println(l.getText());
-				labels.add(i, l);
+				labels.set(i, l);
+				
 				i++;
 			}
 			
