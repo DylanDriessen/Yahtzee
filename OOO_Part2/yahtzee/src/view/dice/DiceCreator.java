@@ -1,6 +1,5 @@
 package view.dice;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javafx.geometry.Pos;
@@ -14,7 +13,6 @@ public class DiceCreator extends StackPane {
 	
 	
 	private int x1 = 100;
-	private int x2 = 100;
 	private int y = 200;
 
 	

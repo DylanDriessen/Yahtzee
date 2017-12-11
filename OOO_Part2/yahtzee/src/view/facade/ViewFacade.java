@@ -1,13 +1,8 @@
 package view.facade;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.swing.JTable;
-
 import javafx.stage.Stage;
 import model.facade.IModelFacade;
-import view.AskPlayers;
 import view.gameframe.GameFrame;
 
 public class ViewFacade implements IViewFacade {

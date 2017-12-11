@@ -4,7 +4,7 @@ import java.util.List;
 
 import model.board.Dice;
 
-public class SimpleCatagoryClass {
+public class SimpleCatagoryStrategy {
 	Category category;
 	List<Dice> dices;
 	

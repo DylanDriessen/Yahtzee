@@ -8,6 +8,7 @@ import java.util.Map;
 import controller.Observer;
 import exception.DomainException;
 import model.game.state.GameState;
+
 import model.player.Player;
 
 public class Game implements Subject{
@@ -30,8 +31,6 @@ public class Game implements Subject{
 		System.out.println(persons);
 		return persons;
 	}
-	
-	
 	public void addPersonalGame(String naam){
 		Player player = new Player(naam);
 		PersonalGame pg = new PersonalGame(player);
@@ -43,38 +42,7 @@ public class Game implements Subject{
  		game.remove(personalGame);
  		
  	}
- 	//public Player playerIsInGame(String naam){
- 	//	if(naam == null){
-	//		throw new DomainException("No name given");
-	//	}
- 	//	
-	//	for(Player s: game.){
-	//		if(s.getTrun()){
-	//			return s;
-	//		}
-	//	}
-	//	
-	//	throw new DomainException("Player does not exists");
-	//	
-	//}
- 	//
- 	//public PersonalGame getNextPlayer(String naam){
- 	//	return getPlayer(naam);
- 	//	int i = 0;
- 	//	for(PersonalGame s: game){
-	//		if(s.getNaam().equals(naam)){
-	//			return spelers.get(i+1).getNaam();
-	//		}if(i == spelers.size()){
-	//			return spelers.get(0).getNaam();
-	//		}else{
-	//			i++;
-	//		}
-	//	}
-	//	return spelers.get(i+1).getNaam();
- 	//}	
- 	
- 	
- 	
+
  	
  	public int getIndexNextPersonalGame(){
  		return indexNextPersonalGame;
@@ -104,22 +72,6 @@ public class Game implements Subject{
  		}
  		else this.setIndexNextPersonalGame(-1);
  	}
- 	 
- 	
- 	/*public PersonalGame inGamePlayer(String name) {
- 		if(game.isEmpty()) {
- 			throw new DomainException("No players");
- 		}
- 		
- 		for (PersonalGame player : game) {
- 			if (player.getPlayer().getNaam().equals(name)) {
- 				return player;
- 			}
- 		}
- 		
- 		throw new IllegalArgumentException("player does not exist");
- 	}*/
- 	
  	
  	public ArrayList<String> getAllPlayersNames(){
  		ArrayList<String> games = new ArrayList<>();
@@ -128,6 +80,7 @@ public class Game implements Subject{
  		}
 		return games;	
  		
+
  	}
 
 	@Override
@@ -181,6 +134,12 @@ public class Game implements Subject{
  	//}
  	
  	
- }
+ 
 
+
+
+ 		
+ 
+ 
+ }
 

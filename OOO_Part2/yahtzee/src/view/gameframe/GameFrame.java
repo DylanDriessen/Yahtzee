@@ -6,13 +6,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 import exception.DomainException;
+
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
+
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -23,7 +24,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -33,18 +33,13 @@ import model.score.Categories;
 import view.board.BoardCreator;
 import view.board.MakeContent;
 import view.buttons.Buttons;
-import view.dice.DiceCreator;
-
-
 
 public class GameFrame {
 	Buttons buttons = new Buttons();
 	BoardCreator board = new BoardCreator();
 	MakeContent content;
 	Game game = new Game();
-	
-	
-	
+
 	public void makeFrameWithRoll(Stage primaryStage, String name){
 	
 		try{
@@ -181,8 +176,13 @@ public class GameFrame {
 	
 	private void getNames(String name ){
 		game.addPersonalGame(name);
-			
-	}
+
+}
+	
+
+}
+
+
 	
 	
 	
@@ -190,4 +190,4 @@ public class GameFrame {
 	
 	
 
-}
+

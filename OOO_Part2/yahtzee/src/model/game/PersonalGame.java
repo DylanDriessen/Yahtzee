@@ -12,12 +12,12 @@ import model.game.state.WaitingState;
 import model.player.Player;
 import model.score.Categories;
 import model.score.Category;
-import model.score.SimpleCatagoryClass;
+import model.score.SimpleCatagoryStrategy;
 
 public class PersonalGame {
 	private Player player;
 	private int maxIndex;
-	private SimpleCatagoryClass factory = new SimpleCatagoryClass();
+	private SimpleCatagoryStrategy factory = new SimpleCatagoryStrategy();
 	private Dices dices = new Dices(maxIndex-1); 
 	private int score = 0;
 	private GameState state;
@@ -77,13 +77,18 @@ public class PersonalGame {
 	
 	
 	public Dices getDices(){
-		return dices;
+		return this.state.getDices(dices);
 	}
 	
 	public void calculateScore(List<Dice> dices, Category categories){
 		this.score = score+factory.catagory(categories).getPoints(dices);
 	}
+	
 	public int getScore(){
+		return this.state.getScore(dices);
+	}
+	
+	public int getTotalScore() {
 		return this.score;
 	}
 	
