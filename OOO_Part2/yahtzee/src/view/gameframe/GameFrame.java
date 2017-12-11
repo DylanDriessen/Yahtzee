@@ -19,30 +19,34 @@ import model.score.Categories;
 import view.board.BoardCreator;
 import view.board.MakeContent;
 import view.buttons.Buttons;
+import view.scoreboard.Scoreboard;
 
 public class GameFrame {
 	Buttons buttons = new Buttons();
 	BoardCreator board = new BoardCreator();
 	MakeContent content = new MakeContent();
+	Scoreboard scoreboard = new Scoreboard();
 	
-	
-
 	public void makeFrameWithRoll(Stage primaryStage, String name, List<Label> labels, Button button){
 	
 		try{
 			Group root = board.newGroup();
 			Scene scene = board.newScene(root);
 			GridPane gridpane = board.maakGrid();
+			
 			Pane dices = content.maakContent(labels); // dices worden aagnemaakt
 			primaryStage.setTitle("Yahtzee");
 			Button turn = buttons.turn();
 			gridpane.add(dices, 0, 0);
 			ComboBox<Categories> categories = buttons.categories();
 			Label nameLabel = buttons.setName(name);
+			System.out.println("test");
+//			GridPane scorebord = scoreboard.setCategories();
+//			scorebord.setTranslateX(50);
+			System.out.println("test2");
 //			Button roll = this.rollButton();
 //			roll.setOnMouseClicked(event -> this.tabelSpelers());// NIET JUIST
-			root.getChildren().addAll(turn,categories,nameLabel,gridpane,button);
-		
+			root.getChildren().addAll(turn,categories,nameLabel,gridpane,button/*, scorebord*/);	
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			
@@ -52,7 +56,7 @@ public class GameFrame {
 		}
 	}
 	
-	public void makeFrameWithoutRoll(Stage primaryStage, String naam){
+	public void makeFrameWithoutRoll(Stage primaryStage, String naam, Scoreboard scoreboard){
 		try{
 			Group root = board.newGroup();
 			Scene scene = board.newScene(root);
@@ -71,11 +75,11 @@ public class GameFrame {
 			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 	}
-	
-	public JTable getScoreboard(){
-		return null;
-	}
-	
+//	
+//	public JTable getScoreboard(){
+//		return null;
+//	}
+//	
 
 	
 	public TextField spelerField(){
