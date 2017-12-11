@@ -38,7 +38,7 @@ public class GameFrame {
 	Buttons buttons = new Buttons();
 	BoardCreator board = new BoardCreator();
 	MakeContent content;
-	Game game = new Game();
+	
 
 	public void makeFrameWithRoll(Stage primaryStage, String name){
 	
