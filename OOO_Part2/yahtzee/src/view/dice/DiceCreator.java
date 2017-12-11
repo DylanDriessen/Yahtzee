@@ -34,7 +34,12 @@ public class DiceCreator extends StackPane {
 		}
 	}
 
-	
+	public Boolean RemoveDice(){
+		boolean up = true;
+		y = y + 200;
+		return up;
+		
+	}
 
 	public void prepareLabels(List<Label> result) {	
 		
