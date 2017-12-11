@@ -59,7 +59,7 @@ import view.gameframe.GameFrame;
 	        int y = 180;
 	        for(int i = 0; i < model.getALLPlayersNames().size(); i++){
 	        	Label naam = new Label();
-	        	naam.setText(model.getCurrentPlayer().getNaam());
+	        	naam.setText(model.getALLPlayersNames().get(i));
 	        	naam.setTranslateX(35);
 	    		naam.setTranslateY(y);
 	    		root.getChildren().add(naam);
