@@ -30,30 +30,54 @@ public class DiceCreator extends StackPane  {
 	
 	public DiceCreator(){
 		
-		
+}
+	
+	
+	public Rectangle createBackDice(int x1 , int y){
+		Rectangle rect = new Rectangle(50,50,Color.BLACK);
+		rect.setTranslateX(x1);
+		rect.setTranslateY(y);
+		return rect;
 		
 	}
 	
-	public StackPane createDice(ArrayList<Integer> result){
-		StackPane pane = new StackPane();
+	
+	public ArrayList<Text> createText(ArrayList<Integer> result, int x1, int y){
 		System.out.println(result);
-		int j = 0;
-		for(int i = 0; i <=4; i++){
-			Rectangle rect = new Rectangle(50,50, Color.BLACK);
-			Text text = new Text(Integer.toString(result.get(i)));
-			text.setFill(Color.WHITE);
-			text.setTranslateX(x1);
-			text.setTranslateY(y);
-			rect.setTranslateX(x1);
-			rect.setTranslateY(y);
-			x1 = x1+100;
-			j++;
-			pane.getChildren().addAll(rect,text);
-
+		ArrayList<Text> textLijst = new ArrayList<>();
+		for(int i = 0; i <=result.size()-1; i++){
+		Text text = new Text(Integer.toString(result.get(i)));
+		text.setFill(Color.WHITE);
+		text.setTranslateX(x1);
+		text.setTranslateY(y);
+		textLijst.add(text);
+		x1 = x1+100;
 		}
-		x1 =100;
-		return pane;
+		return textLijst;
+	
 	}
+	
+	
+//	public StackPane createDice(ArrayList<Integer> result){
+//		StackPane pane = new StackPane();
+//		System.out.println(result);
+//		int j = 0;
+//		for(int i = 0; i <=4; i++){
+//			Rectangle rect = new Rectangle(50,50, Color.BLACK);
+//			Text text = new Text(Integer.toString(result.get(i)));
+//			text.setFill(Color.WHITE);
+//			text.setTranslateX(x1);
+//			text.setTranslateY(y);
+//			rect.setTranslateX(x1);
+//			rect.setTranslateY(y);
+//			x1 = x1+100;
+//			j++;
+//			pane.getChildren().addAll(rect,text);
+//
+//		}
+//		x1 =100;
+//		return pane;
+//	}
 		
 		
 	
@@ -67,28 +91,5 @@ public class DiceCreator extends StackPane  {
 
 
 		
-//		for(int i = 0; i <= 4; i++){
-//
-//			Label label = new Label();
-//			label.setTextFill(Color.WHITE);
-//			label.setStyle("-fx-background-color: black; -fx-padding: 10px 20px 10px 20px;");
-//			result.add(label);
-//			System.out.println(result.size());
-//		}
-	
-
-
-	
-
-	
-	
-	
-//	public void rollAllDices(List<Dice> result, List<Label> labels){
-//	
-//			for(int i=0;i<result.size();i++){
-//					result.get(i).roll();
-//					labels.get(i).setText(Integer.toString(result.get(i).getEyes()));
-//		//System.out.println(dices.get(i).getEyes());
-//	}	
 }
 
