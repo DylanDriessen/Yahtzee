@@ -2,8 +2,6 @@ package view.gameframe;
 
 
 import java.util.ArrayList;
-import java.util.List;
-
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import exception.DomainException;
@@ -25,9 +23,6 @@ import view.board.BoardCreator;
 import view.board.ObserverInterface;
 import view.buttons.Buttons;
 import view.dice.DiceCreator;
-
-
-
 import view.scoreboard.Scoreboard;
 
 public class GameFrame implements ObserverInterface {
