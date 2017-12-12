@@ -26,8 +26,6 @@ import view.board.ObserverInterface;
 import view.buttons.Buttons;
 import view.dice.DiceCreator;
 
-
-
 import view.scoreboard.Scoreboard;
 
 public class GameFrame implements ObserverInterface {
@@ -41,8 +39,10 @@ public class GameFrame implements ObserverInterface {
 	private int x1 = 100;
 	private int y= 200;
 	StackPane dices = new StackPane();
+	
 
 	public void makeFrameWithRoll(Stage primaryStage, String name, Button button, ArrayList<Integer> result){
+			
 			Scoreboard scoreboard = new Scoreboard();
 		try{
 			ArrayList<Text> textLijst = creator.createText(result, x1, y);
@@ -163,6 +163,8 @@ public class GameFrame implements ObserverInterface {
 	
 		return btn;
 	}
+
+	
 	
 	
 
