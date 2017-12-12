@@ -49,5 +49,9 @@ Game game;
 	public ArrayList<Dice> getAllDices() {
 		return game.getAllDices();
 	}
+	@Override
+	public int GetTurnsLeft() {
+		return 0;
+	}
 	
 }

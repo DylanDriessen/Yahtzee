@@ -2,13 +2,13 @@ package view.gameframe;
 
 
 import java.util.ArrayList;
-import java.util.List;
-
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+
 import javax.swing.plaf.synth.SynthScrollBarUI;
 
 import controller.SubjectInterface;
+
 import exception.DomainException;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -33,7 +33,6 @@ import view.scoreboard.Scoreboard;
 
 public class GameFrame implements ObserverInterface {
 	Buttons buttons = new Buttons();
-	SubjectInterface i;
 	BoardCreator board = new BoardCreator();
 	Group root = board.newGroup();
 	Scene scene = board.newScene(root);
@@ -44,22 +43,16 @@ public class GameFrame implements ObserverInterface {
 	StackPane dices = new StackPane();
 	ArrayList<Integer> opzijGezet;
 
-	public void makeFrameWithRoll(Stage primaryStage, String name, Button button, ArrayList<Integer> result){
-			opzijGezet = new ArrayList<>();
+
+			
+
+	public void makeFrameWithRoll(Stage primaryStage, String name, String currentName, Button button, ArrayList<Integer> result){
+		opzijGezet = new ArrayList<>();
 			Scoreboard scoreboard = new Scoreboard();
 		try{
 			this.setDices(result);
 			ArrayList<Text> textLijst = creator.createText(result, x1, y);
 			int length = result.size() -1;
-//			for(int i = 0; i <= 4; i++){
-//				Rectangle rect = creator.createBackDice(x1, y);
-//				
-//				rect.setOnMouseClicked(event -> this.MoveUp(x1,y));
-//				x1 = x1+100;
-//				length--;
-//				dices.getChildren().addAll(rect);
-//			}
-			
 			Rectangle dice1 = creator.dice1();
 			Rectangle dice2 = creator.dice2();
 			Rectangle dice3 = creator.dice3();
@@ -74,13 +67,16 @@ public class GameFrame implements ObserverInterface {
 			
 			primaryStage.setTitle("Yahtzee");
 			Button turn = buttons.turn();
+			turn.setOnMouseClicked(event -> this.getNextPlayer());
 			gridpane.add(dices, 0, 0);
 			ComboBox<Categories> categories = buttons.categories();
-			Label nameLabel = buttons.setName(name);
+			Label nameLabel = buttons.setName(currentName);
+			Label current = buttons.setCurrentName(name);
 			Pane scorebord = scoreboard.setCategories();
 			scorebord.setTranslateX(900);
 			scorebord.setTranslateY(150);
-			root.getChildren().addAll(turn,categories,nameLabel,gridpane,button, scorebord);	
+			root.getChildren().addAll(turn,categories,current,nameLabel,gridpane,button,scorebord);	
+
 			primaryStage.setScene(scene);
 			primaryStage.show();	
 		}
@@ -140,6 +136,9 @@ public class GameFrame implements ObserverInterface {
 		}
 		
 	}
+	public void getNextPlayer(){
+		
+	}
 	
 	public JTable getScoreboard(){
 		return null;
@@ -183,16 +182,5 @@ public class GameFrame implements ObserverInterface {
 		return btn;
 	}
 
+
 }
-
-	
-
-
-	
-	
-	
-	
-	
-	
-
-
