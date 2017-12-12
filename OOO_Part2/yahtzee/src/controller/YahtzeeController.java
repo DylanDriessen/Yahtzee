@@ -146,6 +146,10 @@ import view.gameframe.GameFrame;
 		public void notifyObserver() {
 			System.out.println("test");
 			frame.update(result);
+			for(ObserverInterface observer : observers) {
+				observer.update(result);
+			}
+
 
 			
 		}

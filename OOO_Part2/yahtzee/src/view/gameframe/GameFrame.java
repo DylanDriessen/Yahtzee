@@ -49,6 +49,7 @@ public class GameFrame implements ObserverInterface {
 			int length = result.size() -1;
 			for(int i = 0; i <= 4; i++){
 				Rectangle rect = creator.createBackDice(x1, y);
+				
 				x1 = x1+100;
 				length--;
 				dices.getChildren().addAll(rect);
@@ -77,6 +78,12 @@ public class GameFrame implements ObserverInterface {
 		}
 	}
 	
+	public boolean MoveUp(){
+		boolean up = true;
+		y = y + 100;
+		System.out.println(y);
+		return  up;
+	}
 //	public void makeFrameWithoutRoll(Stage primaryStage, String naam, Scoreboard scoreboard){
 //		try{
 //			Group root = board.newGroup();
