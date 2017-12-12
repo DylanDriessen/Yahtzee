@@ -65,7 +65,7 @@ import view.gameframe.GameFrame;
 	        }
 	        btn.setOnMouseClicked(event -> {this.getNames(field.getText());
 	        stage.close();}); // namen toevoegen aan Game
-	        startBtn.setOnMouseClicked(event -> this.makeFrames(model.getALLPlayersNames()));
+	        startBtn.setOnMouseClicked(event -> {stage.close();this.makeFrames(model.getALLPlayersNames());});
 	        root.getChildren().addAll(btn,startBtn,field);
 	        stage.show();
 		}
