@@ -12,6 +12,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.board.Dice;
 import model.facade.IModelFacade;
+import model.player.Player;
 import view.board.ObserverInterface;
 import view.gameframe.GameFrame;
 
@@ -26,6 +27,7 @@ import view.gameframe.GameFrame;
 
 		private ArrayList<ObserverInterface> observers = new ArrayList<>();
 		ArrayList<Integer> result = new ArrayList<>();
+		ArrayList<String> playerNames;
 
 		
 
@@ -69,6 +71,7 @@ import view.gameframe.GameFrame;
 	    		root.getChildren().add(naam);
 	    		y += 30;
 	        }
+	        this.playerNames = model.getALLPlayersNames();
 	        btn.setOnMouseClicked(event -> {this.getNames(field.getText());
 	        stage.close();}); // namen toevoegen aan Game
 	        startBtn.setOnMouseClicked(event -> {stage.close();this.makeFrames(model.getALLPlayersNames());});
@@ -117,17 +120,15 @@ import view.gameframe.GameFrame;
 		}
 		
 		private void makeFrames(ArrayList<String> resultNaam){
-			Stage stage = new Stage();
+	
+			for (String name : playerNames) {
+				GameFrame gameFrame = new GameFrame();
+				Stage stage = new Stage();
+				String naam = name;
+				this.observers.add(gameFrame);
+				gameFrame.makeFrameWithRoll(stage, naam, this.RollButton(), result);
+			}
 			
-			String naam = resultNaam.get(0);
-			
-			frame.makeFrameWithRoll(stage, naam, this.RollButton(), result);
-//			for(int i = 1; i <= result.size(); i++){
-//				String naam2 = result.get(i);
-//				Stage stage2 = new Stage();
-//				frame.makeFrameWithRoll(stage2, naam2, result, this.RollButton());
-//				
-//			}
 		}
 
 		@Override
@@ -145,6 +146,7 @@ import view.gameframe.GameFrame;
 		public void notifyObserver() {
 			System.out.println("test");
 			frame.update(result);
+
 			
 		}
 
