@@ -3,8 +3,6 @@ package view.gameframe;
 
 import java.util.List;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-
 import controller.SubjectInterface;
 import exception.DomainException;
 import javafx.scene.Group;
@@ -12,7 +10,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -46,24 +43,23 @@ public class GameFrame implements ObserverInterface {
 	public void makeFrameWithRoll(Stage primaryStage, String name, List<Label> labels, Button button){
 	
 		try{
-			
-			
 			Pane dices = content.maakContent(labels); // dices worden aagnemaakt
 			primaryStage.setTitle("Yahtzee");
 			Button turn = buttons.turn();
 			gridpane.add(dices, 0, 0);
 			ComboBox<Categories> categories = buttons.categories();
 			Label nameLabel = buttons.setName(name);
-			System.out.println("test");
-//			GridPane scorebord = scoreboard.setCategories();
-//			scorebord.setTranslateX(50);
-			System.out.println("test2");
+			Pane scorebord = scoreboard.setCategories();
+			scorebord.setTranslateX(900);
+			scorebord.setTranslateY(150);
+			Pane score = scoreboard.setCategoriesScore();
+			scorebord.setTranslateX(1100);
+			scorebord.setTranslateY(150);
 //			Button roll = this.rollButton();
 //			roll.setOnMouseClicked(event -> this.tabelSpelers());// NIET JUIST
-			root.getChildren().addAll(turn,categories,nameLabel,gridpane,button/*, scorebord*/);	
+			root.getChildren().addAll(turn,categories, scorebord,nameLabel,gridpane,button);	
 			primaryStage.setScene(scene);
-			primaryStage.show();
-			
+			primaryStage.show();	
 		}
 		catch(DomainException e){
 			JOptionPane.showMessageDialog(null, e.getMessage());
