@@ -37,10 +37,14 @@ public class DiceCreator extends StackPane  {
 		Rectangle rect = new Rectangle(50,50,Color.BLACK);
 		rect.setTranslateX(x1);
 		rect.setTranslateY(y);
+		rect.setOnMouseClicked(event -> this.MoveUp(y));
 		return rect;
 		
 	}
 	
+	private void MoveUp(int y){
+		y = y +100;
+	}
 	
 	public ArrayList<Text> createText(ArrayList<Integer> result, int x1, int y){
 		System.out.println(result);
