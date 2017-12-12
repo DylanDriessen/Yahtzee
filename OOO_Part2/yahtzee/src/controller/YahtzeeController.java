@@ -8,15 +8,14 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.board.Dice;
 import model.facade.IModelFacade;
 import view.board.ObserverInterface;
-import view.facade.IViewFacade;
+
 import view.gameframe.GameFrame;
 
 
@@ -28,12 +27,15 @@ import view.gameframe.GameFrame;
 		GameFrame frame = new GameFrame();
 		List<Label> labels = new ArrayList<>();;	
 		private ArrayList<ObserverInterface> observers = new ArrayList<>();
+		ArrayList<Integer> result = new ArrayList<>();
 
 		
 		public YahtzeeController(IModelFacade model, Stage primaryStage) {
 			this.model = model;
 			this.setDices();
+			
 			this.notifyObserver();
+			
 			try {
 				this.start(primaryStage);
 			} catch (Exception e1) {
@@ -75,26 +77,21 @@ import view.gameframe.GameFrame;
 		private void setDices(){
 			int i = 0;
 			for(int j = 0; j <= 4; j++){
-				Label l = new Label();
-				l.setText("0");
-				
-				labels.add(i, l);
-				i++;
+				result.add(0);
 			}
+			System.out.println(result);
 		}
 		
 		private void rollDices(){
 			model.rollDices();
-			int i = 0;
-			for(Dice d: model.getAllDices()){
-				Label l = new Label();
-				l.setText(Integer.toString(d.getEyes()));
-				
-				labels.set(i, l);
-				
-				i++;
+			ArrayList<Dice> dices = model.getAllDices();
+			int j = 0;
+			for(int i = dices.size()-1; i >=0; i--){
+				result.set(j, dices.get(i).getEyes());
+				j++;
 			}
 				
+		
 			this.notifyObserver();
 			
 		}
@@ -102,6 +99,7 @@ import view.gameframe.GameFrame;
 		private Button RollButton(){
 			Button btn = new Button("Roll Dices");
 			btn.setOnMouseClicked(event -> this.rollDices());
+			
 			btn.setTranslateX(300);
 			btn.setTranslateY(300);
 			return btn;
@@ -117,23 +115,23 @@ import view.gameframe.GameFrame;
 			}
 		}
 		
-		private void makeFrames(ArrayList<String> result){
+		private void makeFrames(ArrayList<String> resultNaam){
 			Stage stage = new Stage();
 			
-			String naam = result.get(0);
+			String naam = resultNaam.get(0);
 			
-			frame.makeFrameWithRoll(stage, naam, this.labels, this.RollButton());
-			for(int i = 1; i <= result.size(); i++){
-				String naam2 = result.get(i);
-				Stage stage2 = new Stage();
-				frame.makeFrameWithRoll(stage2, naam2, this.labels, this.RollButton());
-				
-			}
+			frame.makeFrameWithRoll(stage, naam, this.RollButton(), result);
+//			for(int i = 1; i <= result.size(); i++){
+//				String naam2 = result.get(i);
+//				Stage stage2 = new Stage();
+//				frame.makeFrameWithRoll(stage2, naam2, result, this.RollButton());
+//				
+//			}
 		}
 
 		@Override
 		public void register(ObserverInterface newObserver) {
-			observers.add(newObserver);
+			observers.add((GameFrame)newObserver );
 		}
 
 		@Override
@@ -144,10 +142,8 @@ import view.gameframe.GameFrame;
 
 		@Override
 		public void notifyObserver() {
-			System.out.println("u mama");
-			for(ObserverInterface o: observers){
-				o.update(labels);
-			}
+			System.out.println("test");
+			frame.update(result);
 			
 		}
 

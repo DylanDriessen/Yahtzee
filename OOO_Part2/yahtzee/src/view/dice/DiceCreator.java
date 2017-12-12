@@ -9,6 +9,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 import view.board.ObserverInterface;
 
 public class DiceCreator extends StackPane implements ObserverInterface {
@@ -19,28 +21,40 @@ public class DiceCreator extends StackPane implements ObserverInterface {
 	private int y = 200;
 	private Pane root = new Pane();
 	List<Label> labels = new ArrayList<>();
-	private SubjectInterface controller;
+	ArrayList<Integer> result;
 	
 	
 	
 	
-	// maakt de diceVorm aan
-	public DiceCreator(Pane root2, SubjectInterface subject){
-		this.controller = subject;
-		controller.register(this);
-		update(labels);
-		System.out.println(labels);	 
-		this.prepareLabels(labels);
-		for(int i = 0; i <= 4; i++){
-			labels.get(i).setTranslateX(x1);
-			labels.get(i).setTranslateY(y);
-			x1 = x1 + 100;
-			this.setAlignment(Pos.CENTER);
-			root2.getChildren().add(labels.get(i));
-			System.out.println(labels.size());
-			this.root = root2;
-		}
+	
+	public DiceCreator(){
+		
+		
+		
 	}
+	
+	public StackPane createDice(ArrayList<Integer> result){
+		StackPane pane = new StackPane();
+		System.out.println(result);
+		int j = 0;
+		for(int i = 0; i <=4; i++){
+			Rectangle rect = new Rectangle(50,50, Color.BLACK);
+			Text text = new Text(Integer.toString(result.get(i)));
+			text.setFill(Color.WHITE);
+			text.setTranslateX(x1);
+			text.setTranslateY(y);
+			rect.setTranslateX(x1);
+			rect.setTranslateY(y);
+			x1 = x1+100;
+			j++;
+			pane.getChildren().addAll(rect,text);
+		}
+		
+		x1 =100;
+		return pane;
+	}
+		
+	
 
 	public Boolean RemoveDice(){
 		boolean up = true;
@@ -49,35 +63,13 @@ public class DiceCreator extends StackPane implements ObserverInterface {
 		
 	}
 
-	public void prepareLabels(List<Label> result) {	
-		
-//		for(int i = 0; i <= 4; i++){
-//
-//			Label label = new Label();
-//			label.setTextFill(Color.WHITE);
-//			label.setStyle("-fx-background-color: black; -fx-padding: 10px 20px 10px 20px;");
-//			result.add(label);
-//			System.out.println(result.size());
-//		}
-		
-		int i = 0;
-		for (Label label : result){
-			label.setTextFill(Color.WHITE);
-			label.setStyle("-fx-background-color: black; -fx-padding: 10px 20px 10px 20px;");
-			
-			i++;
-		}
-	}
-
-	public Pane returnRoot(){
-		return root;
-	}
-
 	@Override
-	public void update(List<Label> labels) {
-		this.labels = labels;
+	public void update(ArrayList<Integer> result) {
+		this.result = result;
 		
 	}
+
+	
 	
 	
 //	public void rollAllDices(List<Dice> result, List<Label> labels){

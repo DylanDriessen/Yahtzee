@@ -8,8 +8,7 @@ import javafx.stage.Stage;
 import model.facade.IModelFacade;
 import model.facade.ModelFacade;
 //import view.Speelbord;
-import view.facade.IViewFacade;
-import view.facade.ViewFacade;
+
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 
@@ -21,7 +20,7 @@ public class Main extends Application{
 	public void start(Stage primaryStage) {
 		try {
 			IModelFacade model = new ModelFacade();
-			IViewFacade view = new ViewFacade();
+			
 			controller = new YahtzeeController(model, primaryStage);
 		} catch(Exception e) {
 			JOptionPane.showInputDialog(null, "Het spel kon niet gestart worden wegens een probleem met het opstarten.\n" + e.getMessage());
