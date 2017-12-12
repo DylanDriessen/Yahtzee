@@ -60,14 +60,8 @@ public class GameFrame implements ObserverInterface {
 			turn.setOnMouseClicked(event -> this.getNextPlayer());
 			gridpane.add(dices, 0, 0);
 			ComboBox<Categories> categories = buttons.categories();
-<<<<<<< HEAD
 			Label nameLabel = buttons.setName(currentName);
 			Label current = buttons.setCurrentName(name);
-//			GridPane scorebord = scoreboard.setCategories();
-//			scorebord.setTranslateX(50);
-			root.getChildren().addAll(turn,categories,nameLabel,current,gridpane,button/*, scorebord*/);	
-=======
-			Label nameLabel = buttons.setName(name);
 			Pane scorebord = scoreboard.setCategories();
 			scorebord.setTranslateX(900);
 			scorebord.setTranslateY(150);
@@ -75,8 +69,7 @@ public class GameFrame implements ObserverInterface {
 //			roll.setOnMouseClicked(event -> this.tabelSpelers());// NIET JUIST
 //			GridPane scorebord = scoreboard.setCategories();
 //			scorebord.setTranslateX(50);
-			root.getChildren().addAll(turn,categories,nameLabel,gridpane,button,scorebord);	
->>>>>>> ff45afebc209c0b1540c86cedbbe7979e9912e65
+			root.getChildren().addAll(turn,categories,current,nameLabel,gridpane,button,scorebord);	
 			primaryStage.setScene(scene);
 			primaryStage.show();	
 		}

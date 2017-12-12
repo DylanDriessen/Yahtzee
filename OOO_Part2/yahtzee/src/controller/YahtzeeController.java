@@ -155,10 +155,6 @@ import view.gameframe.GameFrame;
 			for(ObserverInterface observer : observers) {
 				observer.update(result);
 			}
-<<<<<<< HEAD
-=======
-
->>>>>>> ff45afebc209c0b1540c86cedbbe7979e9912e65
 
 			
 		}
