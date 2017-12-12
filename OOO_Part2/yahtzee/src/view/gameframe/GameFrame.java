@@ -16,6 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
@@ -66,12 +67,16 @@ public class GameFrame implements ObserverInterface {
 			gridpane.add(dices, 0, 0);
 			ComboBox<Categories> categories = buttons.categories();
 			Label nameLabel = buttons.setName(name);
+			Pane scorebord = scoreboard.setCategories();
+			scorebord.setTranslateX(900);
+			scorebord.setTranslateY(150);
+//			Button roll = this.rollButton();
+//			roll.setOnMouseClicked(event -> this.tabelSpelers());// NIET JUIST
 //			GridPane scorebord = scoreboard.setCategories();
 //			scorebord.setTranslateX(50);
 			root.getChildren().addAll(turn,categories,nameLabel,gridpane,button/*, scorebord*/);	
 			primaryStage.setScene(scene);
-			primaryStage.show();
-			
+			primaryStage.show();	
 		}
 		catch(DomainException e){
 			JOptionPane.showMessageDialog(null, e.getMessage());
