@@ -2,11 +2,8 @@ package view.gameframe;
 
 
 import java.util.ArrayList;
-import java.util.List;
-
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import controller.SubjectInterface;
 import exception.DomainException;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -16,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
@@ -25,14 +23,10 @@ import view.board.BoardCreator;
 import view.board.ObserverInterface;
 import view.buttons.Buttons;
 import view.dice.DiceCreator;
-
-
-
 import view.scoreboard.Scoreboard;
 
 public class GameFrame implements ObserverInterface {
 	Buttons buttons = new Buttons();
-	SubjectInterface i;
 	BoardCreator board = new BoardCreator();
 	Group root = board.newGroup();
 	Scene scene = board.newScene(root);
@@ -49,6 +43,7 @@ public class GameFrame implements ObserverInterface {
 			int length = result.size() -1;
 			for(int i = 0; i <= 4; i++){
 				Rectangle rect = creator.createBackDice(x1, y);
+				
 				x1 = x1+100;
 				length--;
 				dices.getChildren().addAll(rect);
@@ -65,20 +60,37 @@ public class GameFrame implements ObserverInterface {
 			turn.setOnMouseClicked(event -> this.getNextPlayer());
 			gridpane.add(dices, 0, 0);
 			ComboBox<Categories> categories = buttons.categories();
+<<<<<<< HEAD
 			Label nameLabel = buttons.setName(currentName);
 			Label current = buttons.setCurrentName(name);
 //			GridPane scorebord = scoreboard.setCategories();
 //			scorebord.setTranslateX(50);
 			root.getChildren().addAll(turn,categories,nameLabel,current,gridpane,button/*, scorebord*/);	
+=======
+			Label nameLabel = buttons.setName(name);
+			Pane scorebord = scoreboard.setCategories();
+			scorebord.setTranslateX(900);
+			scorebord.setTranslateY(150);
+//			Button roll = this.rollButton();
+//			roll.setOnMouseClicked(event -> this.tabelSpelers());// NIET JUIST
+//			GridPane scorebord = scoreboard.setCategories();
+//			scorebord.setTranslateX(50);
+			root.getChildren().addAll(turn,categories,nameLabel,gridpane,button,scorebord);	
+>>>>>>> ff45afebc209c0b1540c86cedbbe7979e9912e65
 			primaryStage.setScene(scene);
-			primaryStage.show();
-			
+			primaryStage.show();	
 		}
 		catch(DomainException e){
 			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 	}
 	
+	public boolean MoveUp(){
+		boolean up = true;
+		y = y + 100;
+		System.out.println(y);
+		return  up;
+	}
 //	public void makeFrameWithoutRoll(Stage primaryStage, String naam, Scoreboard scoreboard){
 //		try{
 //			Group root = board.newGroup();
