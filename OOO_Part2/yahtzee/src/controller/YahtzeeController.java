@@ -20,22 +20,27 @@ import view.gameframe.GameFrame;
 
 
 	
-	public class YahtzeeController extends Application implements SubjectInterface{
+	public class YahtzeeController extends Application implements SubjectInterface {
 		
 		private IModelFacade model;
 		Stage primaryStage = new Stage();
 		GameFrame frame = new GameFrame();
-		List<Label> labels = new ArrayList<>();;	
+		
+
 		private ArrayList<ObserverInterface> observers = new ArrayList<>();
 		ArrayList<Integer> result = new ArrayList<>();
+
+		
 
 		
 		public YahtzeeController(IModelFacade model, Stage primaryStage) {
 			this.model = model;
 			this.setDices();
+
 			
 			this.notifyObserver();
 			
+
 			try {
 				this.start(primaryStage);
 			} catch (Exception e1) {
@@ -69,7 +74,7 @@ import view.gameframe.GameFrame;
 	        }
 	        btn.setOnMouseClicked(event -> {this.getNames(field.getText());
 	        stage.close();}); // namen toevoegen aan Game
-	        startBtn.setOnMouseClicked(event -> this.makeFrames(model.getALLPlayersNames()));
+	        startBtn.setOnMouseClicked(event -> {stage.close();this.makeFrames(model.getALLPlayersNames());});
 	        root.getChildren().addAll(btn,startBtn,field);
 	        stage.show();
 		}
@@ -84,17 +89,17 @@ import view.gameframe.GameFrame;
 		
 		private void rollDices(){
 			model.rollDices();
+
 			ArrayList<Dice> dices = model.getAllDices();
 			int j = 0;
 			for(int i = dices.size()-1; i >=0; i--){
 				result.set(j, dices.get(i).getEyes());
 				j++;
 			}
-				
-		
 			this.notifyObserver();
-			
 		}
+		
+		
 		
 		private Button RollButton(){
 			Button btn = new Button("Roll Dices");
@@ -132,19 +137,23 @@ import view.gameframe.GameFrame;
 		@Override
 		public void register(ObserverInterface newObserver) {
 			observers.add((GameFrame)newObserver );
-		}
 
+		}
 		@Override
-		public void unregister(ObserverInterface deleteObserver) {
-			int index = observers.indexOf(deleteObserver);
-			observers.remove(index);
+		public void unregister(ObserverInterface o) {
+			// TODO Auto-generated method stub
+			
 		}
 
 		@Override
 		public void notifyObserver() {
+
 			System.out.println("test");
 			frame.update(result);
+
 			
 		}
+
+		
 
 	}

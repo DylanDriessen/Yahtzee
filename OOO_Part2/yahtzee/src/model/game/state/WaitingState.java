@@ -28,7 +28,5 @@ public class WaitingState implements GameState {
 	@Override
 	public String toString() {
 		return "WaitingState";
-	}
-	
-	
+	}	
 }

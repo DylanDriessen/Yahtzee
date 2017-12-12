@@ -4,7 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import model.score.Categories;;
+import model.score.Categories;
 
 public class Buttons {
 

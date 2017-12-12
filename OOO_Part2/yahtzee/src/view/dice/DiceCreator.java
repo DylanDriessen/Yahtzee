@@ -13,13 +13,14 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import view.board.ObserverInterface;
 
-public class DiceCreator extends StackPane implements ObserverInterface {
+public class DiceCreator extends StackPane  {
 	
 	
 	private int x1 = 100;
 	private int x2 = 100;
 	private int y = 200;
 	private Pane root = new Pane();
+
 	List<Label> labels = new ArrayList<>();
 	ArrayList<Integer> result;
 	
@@ -48,11 +49,12 @@ public class DiceCreator extends StackPane implements ObserverInterface {
 			x1 = x1+100;
 			j++;
 			pane.getChildren().addAll(rect,text);
+
 		}
-		
 		x1 =100;
 		return pane;
 	}
+		
 		
 	
 
@@ -63,11 +65,20 @@ public class DiceCreator extends StackPane implements ObserverInterface {
 		
 	}
 
-	@Override
-	public void update(ArrayList<Integer> result) {
-		this.result = result;
+
 		
-	}
+//		for(int i = 0; i <= 4; i++){
+//
+//			Label label = new Label();
+//			label.setTextFill(Color.WHITE);
+//			label.setStyle("-fx-background-color: black; -fx-padding: 10px 20px 10px 20px;");
+//			result.add(label);
+//			System.out.println(result.size());
+//		}
+	
+
+
+	
 
 	
 	

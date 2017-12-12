@@ -26,13 +26,8 @@ public class NewState implements GameState {
 			throw new DomainException("This player has not played yet");
 		}
 	
-	
-	
 		@Override
 		public String toString() {
 			return "NewState";
 		}
-	
-
-	
 }
