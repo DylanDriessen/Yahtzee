@@ -24,6 +24,13 @@ public class Buttons {
 		return categories;
 	}
 	
+	public Label setCurrentName(String naam){
+		Label name = new Label("Dit is het speelbord van "+naam + " ");
+		name.setTranslateX(50);
+		name.setTranslateY(100);
+		return name;
+	}
+	
 	public Label setName(String naam){
 		Label name = new Label(naam + " is aan de beurt");
 		name.setTranslateX(600);

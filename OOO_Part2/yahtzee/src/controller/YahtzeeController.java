@@ -2,11 +2,13 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -14,6 +16,7 @@ import model.board.Dice;
 import model.facade.IModelFacade;
 import model.player.Player;
 import view.board.ObserverInterface;
+
 import view.gameframe.GameFrame;
 
 
@@ -104,6 +107,7 @@ import view.gameframe.GameFrame;
 		private Button RollButton(){
 			Button btn = new Button("Roll Dices");
 			btn.setOnMouseClicked(event -> this.rollDices());
+			
 			btn.setTranslateX(300);
 			btn.setTranslateY(300);
 			return btn;
@@ -125,8 +129,9 @@ import view.gameframe.GameFrame;
 				GameFrame gameFrame = new GameFrame();
 				Stage stage = new Stage();
 				String naam = name;
+				String currentName = model.getCurrentPlayer().getNaam();
 				this.observers.add(gameFrame);
-				gameFrame.makeFrameWithRoll(stage, naam, this.RollButton(), result);
+				gameFrame.makeFrameWithRoll(stage, naam,currentName, this.RollButton(), result);
 			}
 			
 		}
@@ -138,14 +143,18 @@ import view.gameframe.GameFrame;
 		}
 		@Override
 		public void unregister(ObserverInterface o) {
-			
+			// TODO Auto-generated method stub
 			
 		}
 
 		@Override
 		public void notifyObserver() {
+
 			System.out.println("test");
 			frame.update(result);
+			for(ObserverInterface observer : observers) {
+				observer.update(result);
+			}
 
 			
 		}

@@ -42,7 +42,7 @@ public class GameFrame implements ObserverInterface {
 	private int y= 200;
 	StackPane dices = new StackPane();
 
-	public void makeFrameWithRoll(Stage primaryStage, String name, Button button, ArrayList<Integer> result){
+	public void makeFrameWithRoll(Stage primaryStage, String name, String currentName, Button button, ArrayList<Integer> result){
 			Scoreboard scoreboard = new Scoreboard();
 		try{
 			ArrayList<Text> textLijst = creator.createText(result, x1, y);
@@ -62,12 +62,14 @@ public class GameFrame implements ObserverInterface {
 //			StackPane dices = creator.createDice(result);
 			primaryStage.setTitle("Yahtzee");
 			Button turn = buttons.turn();
+			turn.setOnMouseClicked(event -> this.getNextPlayer());
 			gridpane.add(dices, 0, 0);
 			ComboBox<Categories> categories = buttons.categories();
-			Label nameLabel = buttons.setName(name);
+			Label nameLabel = buttons.setName(currentName);
+			Label current = buttons.setCurrentName(name);
 //			GridPane scorebord = scoreboard.setCategories();
 //			scorebord.setTranslateX(50);
-			root.getChildren().addAll(turn,categories,nameLabel,gridpane,button/*, scorebord*/);	
+			root.getChildren().addAll(turn,categories,nameLabel,current,gridpane,button/*, scorebord*/);	
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			
@@ -113,6 +115,9 @@ public class GameFrame implements ObserverInterface {
 
 			
 	}
+	public void getNextPlayer(){
+		
+	}
 	
 
 	public JTable getScoreboard(){
@@ -157,21 +162,4 @@ public class GameFrame implements ObserverInterface {
 		return btn;
 	}
 	
-	
-
-	
-		
-
 	}
-
-	
-
-
-	
-	
-	
-	
-	
-	
-
-

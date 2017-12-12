@@ -73,7 +73,7 @@ public class Player {
 		this.turn = turn;
 	}
 	
-	public boolean getTrun() {
+	public boolean getTurn() {
 		return this.turn;
 	}
 	

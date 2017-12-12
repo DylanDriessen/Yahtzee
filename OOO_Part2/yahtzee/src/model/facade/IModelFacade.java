@@ -16,5 +16,6 @@ public interface IModelFacade {
 	ArrayList<String> getALLPlayersNames();
 	void rollDices();
 	ArrayList<Dice> getAllDices();
+	int GetTurnsLeft();
 	}
 
