@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import controller.SubjectInterface;
 import exception.DomainException;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -33,7 +32,6 @@ import view.scoreboard.Scoreboard;
 
 public class GameFrame implements ObserverInterface {
 	Buttons buttons = new Buttons();
-	SubjectInterface i;
 	BoardCreator board = new BoardCreator();
 	Group root = board.newGroup();
 	Scene scene = board.newScene(root);
@@ -74,7 +72,7 @@ public class GameFrame implements ObserverInterface {
 //			roll.setOnMouseClicked(event -> this.tabelSpelers());// NIET JUIST
 //			GridPane scorebord = scoreboard.setCategories();
 //			scorebord.setTranslateX(50);
-			root.getChildren().addAll(turn,categories,nameLabel,gridpane,button/*, scorebord*/);	
+			root.getChildren().addAll(turn,categories,nameLabel,gridpane,button,scorebord);	
 			primaryStage.setScene(scene);
 			primaryStage.show();	
 		}
