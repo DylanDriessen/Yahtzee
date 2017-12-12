@@ -1,7 +1,5 @@
-/model/
-/controller/
-<<<<<<< HEAD
-/view/
 /application/
-=======
->>>>>>> master
+/controller/
+/exception/
+/model/
+/view/

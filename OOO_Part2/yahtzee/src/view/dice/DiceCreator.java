@@ -9,6 +9,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 import view.board.ObserverInterface;
 
 public class DiceCreator extends StackPane  {
@@ -18,23 +20,67 @@ public class DiceCreator extends StackPane  {
 	private int x2 = 100;
 	private int y = 200;
 	private Pane root = new Pane();
-	List<Label> labels = new ArrayList<Label>();
-	private SubjectInterface controller;
+
+	List<Label> labels = new ArrayList<>();
+	ArrayList<Integer> result;
 	
-	// maakt de diceVorm aan
-	public DiceCreator(Pane root2, List<Label> labels){
-		System.out.println(labels);
-		this.prepareLabels(labels);
-		for(int i = 0; i <= 4; i++){
-			labels.get(i).setTranslateX(x1);
-			labels.get(i).setTranslateY(y);
-			x1 = x1 + 100;
-			this.setAlignment(Pos.CENTER);
-			root2.getChildren().add(labels.get(i));
-			System.out.println(labels.size());
-			this.root = root2;
-		}
+	
+	
+	
+	
+	public DiceCreator(){
+		
+}
+	
+	
+	public Rectangle createBackDice(int x1 , int y){
+		Rectangle rect = new Rectangle(50,50,Color.BLACK);
+		rect.setTranslateX(x1);
+		rect.setTranslateY(y);
+		return rect;
+		
 	}
+	
+	
+	public ArrayList<Text> createText(ArrayList<Integer> result, int x1, int y){
+		System.out.println(result);
+		ArrayList<Text> textLijst = new ArrayList<>();
+		for(int i = 0; i <=result.size()-1; i++){
+		Text text = new Text(Integer.toString(result.get(i)));
+		text.setFill(Color.WHITE);
+		text.setTranslateX(x1);
+		text.setTranslateY(y);
+		textLijst.add(text);
+		x1 = x1+100;
+		}
+		return textLijst;
+	
+	}
+	
+	
+//	public StackPane createDice(ArrayList<Integer> result){
+//		StackPane pane = new StackPane();
+//		System.out.println(result);
+//		int j = 0;
+//		for(int i = 0; i <=4; i++){
+//			Rectangle rect = new Rectangle(50,50, Color.BLACK);
+//			Text text = new Text(Integer.toString(result.get(i)));
+//			text.setFill(Color.WHITE);
+//			text.setTranslateX(x1);
+//			text.setTranslateY(y);
+//			rect.setTranslateX(x1);
+//			rect.setTranslateY(y);
+//			x1 = x1+100;
+//			j++;
+//			pane.getChildren().addAll(rect,text);
+//
+//		}
+//		x1 =100;
+//		return pane;
+//	}
+		
+		
+	
 
 	public Boolean RemoveDice(){
 		boolean up = true;
@@ -43,39 +89,7 @@ public class DiceCreator extends StackPane  {
 		
 	}
 
-	public void prepareLabels(List<Label> result) {	
-		
-//		for(int i = 0; i <= 4; i++){
-//
-//			Label label = new Label();
-//			label.setTextFill(Color.WHITE);
-//			label.setStyle("-fx-background-color: black; -fx-padding: 10px 20px 10px 20px;");
-//			result.add(label);
-//			System.out.println(result.size());
-//		}
-		
-		int i = 0;
-		for (Label label : result){
-			label.setTextFill(Color.WHITE);
-			label.setStyle("-fx-background-color: black; -fx-padding: 10px 20px 10px 20px;");
-			
-			i++;
-		}
-	}
 
-	public Pane returnRoot(){
-		return root;
-	}
-
-	
-	
-	
-//	public void rollAllDices(List<Dice> result, List<Label> labels){
-//	
-//			for(int i=0;i<result.size();i++){
-//					result.get(i).roll();
-//					labels.get(i).setText(Integer.toString(result.get(i).getEyes()));
-//		//System.out.println(dices.get(i).getEyes());
-//	}	
+		
 }
 

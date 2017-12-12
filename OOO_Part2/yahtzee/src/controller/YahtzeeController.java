@@ -2,19 +2,17 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.board.Dice;
 import model.facade.IModelFacade;
+import model.player.Player;
 import view.board.ObserverInterface;
 import view.gameframe.GameFrame;
 
@@ -25,13 +23,23 @@ import view.gameframe.GameFrame;
 		private IModelFacade model;
 		Stage primaryStage = new Stage();
 		GameFrame frame = new GameFrame();
-		List<Label> labels = new ArrayList<>();;	
-		private ArrayList<GameFrame> observers = new ArrayList<>();
+		
+
+		private ArrayList<ObserverInterface> observers = new ArrayList<>();
+		ArrayList<Integer> result = new ArrayList<>();
+		ArrayList<String> playerNames;
+
+		
 
 		
 		public YahtzeeController(IModelFacade model, Stage primaryStage) {
 			this.model = model;
 			this.setDices();
+
+			
+			this.notifyObserver();
+			
+
 			try {
 				this.start(primaryStage);
 			} catch (Exception e1) {
@@ -63,9 +71,10 @@ import view.gameframe.GameFrame;
 	    		root.getChildren().add(naam);
 	    		y += 30;
 	        }
+	        this.playerNames = model.getALLPlayersNames();
 	        btn.setOnMouseClicked(event -> {this.getNames(field.getText());
 	        stage.close();}); // namen toevoegen aan Game
-	        startBtn.setOnMouseClicked(event -> this.makeFrames(model.getALLPlayersNames()));
+	        startBtn.setOnMouseClicked(event -> {stage.close();this.makeFrames(model.getALLPlayersNames());});
 	        root.getChildren().addAll(btn,startBtn,field);
 	        stage.show();
 		}
@@ -73,28 +82,24 @@ import view.gameframe.GameFrame;
 		private void setDices(){
 			int i = 0;
 			for(int j = 0; j <= 4; j++){
-				Label l = new Label();
-				l.setText("0");
-				
-				labels.add(i, l);
-				i++;
+				result.add(0);
 			}
+			System.out.println(result);
 		}
 		
 		private void rollDices(){
 			model.rollDices();
-			int i = 0;
-			for(Dice d: model.getAllDices()){
-				Label l = new Label();
-				l.setText(Integer.toString(d.getEyes()));
-				
-				labels.set(i, l);
-				notifyObserver();
-				i++;
+
+			ArrayList<Dice> dices = model.getAllDices();
+			int j = 0;
+			for(int i = dices.size()-1; i >=0; i--){
+				result.set(j, dices.get(i).getEyes());
+				j++;
 			}
-				
-			
+			this.notifyObserver();
 		}
+		
+		
 		
 		private Button RollButton(){
 			Button btn = new Button("Roll Dices");
@@ -114,35 +119,34 @@ import view.gameframe.GameFrame;
 			}
 		}
 		
-		private void makeFrames(ArrayList<String> result){
-			Stage stage = new Stage();
-			
-			String naam = result.get(0);
-			
-			frame.makeFrameWithRoll(stage, naam, this.labels, this.RollButton());
-			for(int i = 1; i <= result.size(); i++){
-				String naam2 = result.get(i);
-				Stage stage2 = new Stage();
-				frame.makeFrameWithRoll(stage2, naam2, this.labels, this.RollButton());
-				
+		private void makeFrames(ArrayList<String> resultNaam){
+	
+			for (String name : playerNames) {
+				GameFrame gameFrame = new GameFrame();
+				Stage stage = new Stage();
+				String naam = name;
+				this.observers.add(gameFrame);
+				gameFrame.makeFrameWithRoll(stage, naam, this.RollButton(), result);
 			}
+			
 		}
 
 		@Override
-		public void register(ObserverInterface o) {
-			this.observers.add((GameFrame)o);
-			
-		}
+		public void register(ObserverInterface newObserver) {
+			observers.add((GameFrame)newObserver );
 
+		}
 		@Override
 		public void unregister(ObserverInterface o) {
-			// TODO Auto-generated method stub
+			
 			
 		}
 
 		@Override
 		public void notifyObserver() {
-			frame.update (labels);
+			System.out.println("test");
+			frame.update(result);
+
 			
 		}
 
