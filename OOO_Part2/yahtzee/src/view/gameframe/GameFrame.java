@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.plaf.synth.SynthScrollBarUI;
+
 import controller.SubjectInterface;
 import exception.DomainException;
 import javafx.scene.Group;
@@ -40,28 +42,36 @@ public class GameFrame implements ObserverInterface {
 	private int x1 = 100;
 	private int y= 200;
 	StackPane dices = new StackPane();
-	
+	ArrayList<Integer> opzijGezet;
 
 	public void makeFrameWithRoll(Stage primaryStage, String name, Button button, ArrayList<Integer> result){
-			
+			opzijGezet = new ArrayList<>();
 			Scoreboard scoreboard = new Scoreboard();
 		try{
+			this.setDices(result);
 			ArrayList<Text> textLijst = creator.createText(result, x1, y);
 			int length = result.size() -1;
-			for(int i = 0; i <= 4; i++){
-				Rectangle rect = creator.createBackDice(x1, y);
-				
-				x1 = x1+100;
-				length--;
-				dices.getChildren().addAll(rect);
-			}
+//			for(int i = 0; i <= 4; i++){
+//				Rectangle rect = creator.createBackDice(x1, y);
+//				
+//				rect.setOnMouseClicked(event -> this.MoveUp(x1,y));
+//				x1 = x1+100;
+//				length--;
+//				dices.getChildren().addAll(rect);
+//			}
+			
+			Rectangle dice1 = creator.dice1();
+			Rectangle dice2 = creator.dice2();
+			Rectangle dice3 = creator.dice3();
+			Rectangle dice4 = creator.dice4();
+			Rectangle dice5 = creator.dice5();
+			
+			dices.getChildren().addAll(dice1,dice2,dice3,dice4,dice5);
 			
 			for(Text t: textLijst){
 				dices.getChildren().add(t);
 			}
 			
-			
-//			StackPane dices = creator.createDice(result);
 			primaryStage.setTitle("Yahtzee");
 			Button turn = buttons.turn();
 			gridpane.add(dices, 0, 0);
@@ -70,11 +80,7 @@ public class GameFrame implements ObserverInterface {
 			Pane scorebord = scoreboard.setCategories();
 			scorebord.setTranslateX(900);
 			scorebord.setTranslateY(150);
-//			Button roll = this.rollButton();
-//			roll.setOnMouseClicked(event -> this.tabelSpelers());// NIET JUIST
-//			GridPane scorebord = scoreboard.setCategories();
-//			scorebord.setTranslateX(50);
-			root.getChildren().addAll(turn,categories,nameLabel,gridpane,button/*, scorebord*/);	
+			root.getChildren().addAll(turn,categories,nameLabel,gridpane,button, scorebord);	
 			primaryStage.setScene(scene);
 			primaryStage.show();	
 		}
@@ -83,50 +89,58 @@ public class GameFrame implements ObserverInterface {
 		}
 	}
 	
-	public boolean MoveUp(){
-		boolean up = true;
-		y = y + 100;
-		System.out.println(y);
-		return  up;
+
+	
+	public void makeFrameWithoutRoll(Stage primaryStage, String naam){
+		try{
+			Group root = board.newGroup();
+			Scene scene = board.newScene(root);
+			GridPane gridpane = board.maakGrid();
+			primaryStage.setTitle("Yahtzee");
+			Label name = buttons.setName(naam);
+			root.getChildren().addAll(name,gridpane);
+
+			primaryStage.setScene(scene);
+			primaryStage.show();
+			
+		}
+		catch(DomainException e){
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
 	}
-//	public void makeFrameWithoutRoll(Stage primaryStage, String naam, Scoreboard scoreboard){
-//		try{
-//			Group root = board.newGroup();
-//			Scene scene = board.newScene(root);
-//			GridPane gridpane = board.maakGrid();
-//			content = new MakeContent(); // constructor wordt opgeroepen voor zwarte vierkanten 
-////			Pane dices = content.maakContent(); // dices worden aagnemaakt
-//			primaryStage.setTitle("Yahtzee");
-////			gridpane.add(dices, 0, 0); // hier worden de dices toegevoegd
-//			Label name = buttons.setName(naam);
-//			root.getChildren().addAll(name,gridpane);
-//
-//			primaryStage.setScene(scene);
-//			primaryStage.show();
-//			
-//		}
-//		catch(DomainException e){
-//			JOptionPane.showMessageDialog(null, e.getMessage());
-//		}
-//	}
+	
+	private void createFiveDices(){
+		Rectangle dice1 = creator.dice1();
+		Rectangle dice2 = creator.dice2();
+		Rectangle dice3 = creator.dice3();
+		Rectangle dice4 = creator.dice4();
+		Rectangle dice5 = creator.dice5();
+		dices.getChildren().addAll(dice1,dice2,dice3,dice4,dice5);
+	}
 
 	@Override
 	public void update(ArrayList<Integer> waardes) {
+		
 		int x1 = 100;
 		ArrayList<Text> textLijstUpdate = creator.createText(waardes, x1, y);
 		dices.getChildren().clear();
-
+		this.createFiveDices();
 		for(Text t: textLijstUpdate){
-			Rectangle rect = creator.createBackDice(x1, y);
-			dices.getChildren().addAll(rect,t);
+			
+			dices.getChildren().add(t);
+			System.out.println(dices.getChildren());
 			x1 = x1 +100;
+	}
+}
+	
+	private void setDices(ArrayList<Integer> result){
+		
+		for(int j = 0; j <= 4; j++){
+			result.add(0);
 		}
 		
-
-			
 	}
 	
-
 	public JTable getScoreboard(){
 		return null;
 	}
@@ -169,14 +183,7 @@ public class GameFrame implements ObserverInterface {
 		return btn;
 	}
 
-	
-	
-	
-
-	
-		
-
-	}
+}
 
 	
 

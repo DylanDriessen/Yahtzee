@@ -31,11 +31,4 @@ public class Buttons {
 		return name;
 	}
 	
-	public Button next(){
-		Button next = new Button("next Player");
-		next.setTranslateX(55);
-		next.setTranslateY(55);
-		return next;
-	}
-	
 }

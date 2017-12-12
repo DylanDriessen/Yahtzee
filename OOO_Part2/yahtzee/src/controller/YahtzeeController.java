@@ -34,10 +34,10 @@ import view.gameframe.GameFrame;
 		
 		public YahtzeeController(IModelFacade model, Stage primaryStage) {
 			this.model = model;
-			this.setDices();
-
-			
-			this.notifyObserver();
+//			this.setDices();
+//
+//			
+//			this.notifyObserver();
 			
 
 			try {
@@ -73,12 +73,13 @@ import view.gameframe.GameFrame;
 	        }
 	        this.playerNames = model.getALLPlayersNames();
 	        btn.setOnMouseClicked(event -> {this.getNames(field.getText());
-	        stage.close();}); // namen toevoegen aan Game
+	        stage.close();}); 
 	        startBtn.setOnMouseClicked(event -> {stage.close();this.makeFrames(model.getALLPlayersNames());});
 	        root.getChildren().addAll(btn,startBtn,field);
 	        stage.show();
 		}
 		
+		// kan in klasses worden gezet
 		private void setDices(){
 			int i = 0;
 			for(int j = 0; j <= 4; j++){
@@ -87,6 +88,7 @@ import view.gameframe.GameFrame;
 			System.out.println(result);
 		}
 		
+		//Kan ik in klasses zetten
 		private void rollDices(){
 			model.rollDices();
 
@@ -114,13 +116,11 @@ import view.gameframe.GameFrame;
 			try {
 				start(primaryStage);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				
 			}
 		}
 		
 		private void makeFrames(ArrayList<String> resultNaam){
-	
 			for (String name : playerNames) {
 				GameFrame gameFrame = new GameFrame();
 				Stage stage = new Stage();
