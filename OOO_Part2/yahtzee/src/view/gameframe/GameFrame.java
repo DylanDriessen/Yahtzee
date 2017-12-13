@@ -43,7 +43,11 @@ public class GameFrame implements ObserverInterface, CategoryObserverInterface {
 	private int y= 200;
 	StackPane dices = new StackPane();
 	ArrayList<Integer> opzijGezet;
+<<<<<<< HEAD
 	String category;
+=======
+	StackPane clickButtons = new StackPane();
+>>>>>>> 390c0879a5521bbe993f4e5afae8fbc406e3f078
 
 
 			
@@ -68,16 +72,22 @@ public class GameFrame implements ObserverInterface, CategoryObserverInterface {
 			}
 			
 			primaryStage.setTitle("Yahtzee");
+<<<<<<< HEAD
 			Button turn = buttons.turn();
 			gridpane.add(dices, 0, 0);
 			ComboBox<Categories> categories = buttons.categories();
 			categories.setOnAction(event -> {this.updateCategory(); category = categories.getValue().toString();});
+=======
+			gridpane.add(dices, 0, 0);
+			addButtons();
+			gridpane.add(clickButtons, 2,2);
+>>>>>>> 390c0879a5521bbe993f4e5afae8fbc406e3f078
 			Label nameLabel = buttons.setName(currentName);
 			Label current = buttons.setCurrentName(name);
 			Pane scorebord = scoreboard.setCategories();
 			scorebord.setTranslateX(900);
 			scorebord.setTranslateY(150);
-			root.getChildren().addAll(turn,categories,current,nameLabel,gridpane,button,scorebord);	
+			root.getChildren().addAll(current,nameLabel,gridpane,button,scorebord);	
 
 			primaryStage.setScene(scene);
 			primaryStage.show();	
@@ -126,13 +136,24 @@ public class GameFrame implements ObserverInterface, CategoryObserverInterface {
 			dices.getChildren().add(t);
 			System.out.println(dices.getChildren());
 			x1 = x1 +100;
+		}
 	}
+	
+	public void addButtons() {
+		ComboBox<Categories> categories = buttons.categories();
+		Button turn = buttons.turn();
+		turn.setOnMouseClicked(event -> this.getNextPlayer());
+		clickButtons.getChildren().addAll(turn, categories);
+	}
+<<<<<<< HEAD
 }
 	@Override
 	public void updateCategory() {
 		// TODO Auto-generated method stub
 		
 	}
+=======
+>>>>>>> 390c0879a5521bbe993f4e5afae8fbc406e3f078
 	
 	private void setDices(ArrayList<Integer> result){
 		
