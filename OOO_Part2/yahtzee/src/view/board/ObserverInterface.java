@@ -11,5 +11,4 @@ public interface ObserverInterface {
 
 
 	public void update(ArrayList<Integer> result);
-
 }

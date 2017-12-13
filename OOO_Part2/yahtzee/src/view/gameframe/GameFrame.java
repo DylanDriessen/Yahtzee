@@ -25,13 +25,14 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.score.Categories;
 import view.board.BoardCreator;
+import view.board.CategoryObserverInterface;
 import view.board.ObserverInterface;
 import view.buttons.Buttons;
 import view.dice.DiceCreator;
 
 import view.scoreboard.Scoreboard;
 
-public class GameFrame implements ObserverInterface {
+public class GameFrame implements ObserverInterface, CategoryObserverInterface {
 	Buttons buttons = new Buttons();
 	BoardCreator board = new BoardCreator();
 	Group root = board.newGroup();
@@ -42,6 +43,7 @@ public class GameFrame implements ObserverInterface {
 	private int y= 200;
 	StackPane dices = new StackPane();
 	ArrayList<Integer> opzijGezet;
+	String category;
 
 
 			
@@ -67,9 +69,9 @@ public class GameFrame implements ObserverInterface {
 			
 			primaryStage.setTitle("Yahtzee");
 			Button turn = buttons.turn();
-			turn.setOnMouseClicked(event -> this.getNextPlayer());
 			gridpane.add(dices, 0, 0);
 			ComboBox<Categories> categories = buttons.categories();
+			categories.setOnAction(event -> {this.updateCategory(); category = categories.getValue().toString();});
 			Label nameLabel = buttons.setName(currentName);
 			Label current = buttons.setCurrentName(name);
 			Pane scorebord = scoreboard.setCategories();
@@ -84,8 +86,6 @@ public class GameFrame implements ObserverInterface {
 			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 	}
-	
-
 	
 	public void makeFrameWithoutRoll(Stage primaryStage, String naam){
 		try{
@@ -128,15 +128,17 @@ public class GameFrame implements ObserverInterface {
 			x1 = x1 +100;
 	}
 }
+	@Override
+	public void updateCategory() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	private void setDices(ArrayList<Integer> result){
 		
 		for(int j = 0; j <= 4; j++){
 			result.add(0);
 		}
-		
-	}
-	public void getNextPlayer(){
 		
 	}
 	
@@ -181,6 +183,5 @@ public class GameFrame implements ObserverInterface {
 	
 		return btn;
 	}
-
 
 }
