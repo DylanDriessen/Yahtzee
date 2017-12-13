@@ -70,8 +70,8 @@ import view.gameframe.GameFrame;
 	        this.playerNames = model.getALLPlayersNames();
 	        btn.setOnMouseClicked(event -> {this.getNames(field.getText());
 	        stage.close();}); 
-	        startBtn.setOnMouseClicked(event -> {stage.close();frame.addButtons();this.makeFrames(model.getALLPlayersNames());});
-//	        startBtn.setOnMouseClicked(event -> frame.addButtons() );
+	        //startBtn.setOnMouseClicked(event -> frame.addButtons() );
+	        startBtn.setOnMouseClicked(event -> {stage.close();this.makeFrames(model.getALLPlayersNames());((GameFrame) observers.get(0)).addButtons();});
 	        root.getChildren().addAll(btn,startBtn,field);
 	        stage.show();
 		}

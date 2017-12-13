@@ -7,6 +7,8 @@ import javax.swing.JTable;
 
 import javax.swing.plaf.synth.SynthScrollBarUI;
 
+import com.sun.prism.paint.Color;
+
 import controller.SubjectInterface;
 
 import exception.DomainException;
@@ -25,13 +27,14 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.score.Categories;
 import view.board.BoardCreator;
+import view.board.CategoryObserverInterface;
 import view.board.ObserverInterface;
 import view.buttons.Buttons;
 import view.dice.DiceCreator;
 
 import view.scoreboard.Scoreboard;
 
-public class GameFrame implements ObserverInterface {
+public class GameFrame implements ObserverInterface, CategoryObserverInterface {
 	Buttons buttons = new Buttons();
 	BoardCreator board = new BoardCreator();
 	Group root = board.newGroup();
@@ -42,12 +45,15 @@ public class GameFrame implements ObserverInterface {
 	private int y= 200;
 	StackPane dices = new StackPane();
 	ArrayList<Integer> opzijGezet;
+	String category;
+	StackPane clickButtons = new StackPane();
+
 
 
 			
 
 	public void makeFrameWithRoll(Stage primaryStage, String name, String currentName, Button button, ArrayList<Integer> result){
-		opzijGezet = new ArrayList<>();
+			opzijGezet = new ArrayList<>();
 			Scoreboard scoreboard = new Scoreboard();
 		try{
 			this.setDices(result);
@@ -63,16 +69,21 @@ public class GameFrame implements ObserverInterface {
 				dices.getChildren().add(t);
 			}
 			primaryStage.setTitle("Yahtzee");
-			
+			Button turn = buttons.turn();
 			gridpane.add(dices, 0, 0);
-			
+			ComboBox<Categories> categories = buttons.categories();
+			categories.setOnAction(event -> {this.updateCategory(); category = categories.getValue().toString();});
+			addButtons();
+			clickButtons.
+			gridpane.add(clickButtons, 0,0);
+
 			Label nameLabel = buttons.setName(currentName);
 			Label current = buttons.setCurrentName(name);
 			Pane scorebord = scoreboard.setCategories();
 			scorebord.setTranslateX(900);
 			scorebord.setTranslateY(150);
 			root.getChildren().addAll(current,nameLabel,gridpane,button,scorebord);	
-			
+
 			primaryStage.setScene(scene);
 			primaryStage.show();	
 		}
@@ -81,16 +92,10 @@ public class GameFrame implements ObserverInterface {
 		}
 	}
 	
-	public void addButtons(){
-		
-		Button turn = buttons.turn();
-		turn.setOnMouseClicked(event -> this.getNextPlayer());
-		ComboBox<Categories> categories = buttons.categories();
-		this.root.getChildren().addAll(turn,categories);
-		System.out.println(root.getChildren());
-		
-	}
+
 	
+	
+
 	public void makeFrameWithoutRoll(Stage primaryStage, String naam){
 		try{
 			Group root = board.newGroup();
@@ -132,19 +137,33 @@ public class GameFrame implements ObserverInterface {
 			dices.getChildren().add(t);
 			System.out.println(dices.getChildren());
 			x1 = x1 +100;
+		}
 	}
-}
 	
-	
-	
+
+	public void addButtons() {
+		ComboBox<Categories> categories = buttons.categories();
+		Button turn = buttons.turn();
+		turn.setOnMouseClicked(event -> this.getNextPlayer());
+		clickButtons.getChildren().addAll(turn, categories);
+	}
+
+	private Object getNextPlayer() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void updateCategory() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	private void setDices(ArrayList<Integer> result){
 		
 		for(int j = 0; j <= 4; j++){
 			result.add(0);
 		}
-		
-	}
-	public void getNextPlayer(){
 		
 	}
 	
@@ -189,6 +208,5 @@ public class GameFrame implements ObserverInterface {
 	
 		return btn;
 	}
-
 
 }
