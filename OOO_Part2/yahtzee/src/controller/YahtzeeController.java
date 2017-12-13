@@ -37,12 +37,6 @@ import view.gameframe.GameFrame;
 		
 		public YahtzeeController(IModelFacade model, Stage primaryStage) {
 			this.model = model;
-//			this.setDices();
-//
-//			
-//			this.notifyObserver();
-			
-
 			try {
 				this.start(primaryStage);
 			} catch (Exception e1) {
@@ -82,15 +76,8 @@ import view.gameframe.GameFrame;
 	        stage.show();
 		}
 		
-		// kan in klasses worden gezet
-		private void setDices(){
-			int i = 0;
-			for(int j = 0; j <= 4; j++){
-				result.add(0);
-			}
-			System.out.println(result);
-		}
 		
+
 		//Kan ik in klasses zetten
 		private void rollDices(){
 			model.rollDices();
@@ -103,6 +90,7 @@ import view.gameframe.GameFrame;
 			}
 			this.notifyObserver();
 		}
+	
 		
 		
 		
