@@ -42,6 +42,7 @@ public class GameFrame implements ObserverInterface {
 	private int y= 200;
 	StackPane dices = new StackPane();
 	ArrayList<Integer> opzijGezet;
+	StackPane clickButtons = new StackPane();
 
 
 			
@@ -66,16 +67,15 @@ public class GameFrame implements ObserverInterface {
 			}
 			
 			primaryStage.setTitle("Yahtzee");
-			Button turn = buttons.turn();
-			turn.setOnMouseClicked(event -> this.getNextPlayer());
 			gridpane.add(dices, 0, 0);
-			ComboBox<Categories> categories = buttons.categories();
+			addButtons();
+			gridpane.add(clickButtons, 2,2);
 			Label nameLabel = buttons.setName(currentName);
 			Label current = buttons.setCurrentName(name);
 			Pane scorebord = scoreboard.setCategories();
 			scorebord.setTranslateX(900);
 			scorebord.setTranslateY(150);
-			root.getChildren().addAll(turn,categories,current,nameLabel,gridpane,button,scorebord);	
+			root.getChildren().addAll(current,nameLabel,gridpane,button,scorebord);	
 
 			primaryStage.setScene(scene);
 			primaryStage.show();	
@@ -126,8 +126,15 @@ public class GameFrame implements ObserverInterface {
 			dices.getChildren().add(t);
 			System.out.println(dices.getChildren());
 			x1 = x1 +100;
+		}
 	}
-}
+	
+	public void addButtons() {
+		ComboBox<Categories> categories = buttons.categories();
+		Button turn = buttons.turn();
+		turn.setOnMouseClicked(event -> this.getNextPlayer());
+		clickButtons.getChildren().addAll(turn, categories);
+	}
 	
 	private void setDices(ArrayList<Integer> result){
 		
