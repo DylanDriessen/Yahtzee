@@ -54,4 +54,8 @@ Game game;
 		return 0;
 	}
 	
+	@Override
+	public Game getGame(){
+		return this.getGame();
+	}
 }

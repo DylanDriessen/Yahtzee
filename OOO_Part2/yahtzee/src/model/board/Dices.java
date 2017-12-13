@@ -15,6 +15,7 @@ public class Dices {
 		
 		dices.add(d);
 		}
+	
 	}
 	
 	public void rollDices(){
@@ -35,4 +36,6 @@ public class Dices {
 			dice.setState(dice.getNotRolled());
 		}
 	}
+	
+	
 }

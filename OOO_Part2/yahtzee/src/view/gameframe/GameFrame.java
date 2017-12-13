@@ -58,25 +58,21 @@ public class GameFrame implements ObserverInterface {
 			Rectangle dice3 = creator.dice3();
 			Rectangle dice4 = creator.dice4();
 			Rectangle dice5 = creator.dice5();
-			
 			dices.getChildren().addAll(dice1,dice2,dice3,dice4,dice5);
-			
 			for(Text t: textLijst){
 				dices.getChildren().add(t);
 			}
-			
 			primaryStage.setTitle("Yahtzee");
-			Button turn = buttons.turn();
-			turn.setOnMouseClicked(event -> this.getNextPlayer());
+			
 			gridpane.add(dices, 0, 0);
-			ComboBox<Categories> categories = buttons.categories();
+			
 			Label nameLabel = buttons.setName(currentName);
 			Label current = buttons.setCurrentName(name);
 			Pane scorebord = scoreboard.setCategories();
 			scorebord.setTranslateX(900);
 			scorebord.setTranslateY(150);
-			root.getChildren().addAll(turn,categories,current,nameLabel,gridpane,button,scorebord);	
-
+			root.getChildren().addAll(current,nameLabel,gridpane,button,scorebord);	
+			
 			primaryStage.setScene(scene);
 			primaryStage.show();	
 		}
@@ -85,7 +81,15 @@ public class GameFrame implements ObserverInterface {
 		}
 	}
 	
-
+	public void addButtons(){
+		
+		Button turn = buttons.turn();
+		turn.setOnMouseClicked(event -> this.getNextPlayer());
+		ComboBox<Categories> categories = buttons.categories();
+		this.root.getChildren().addAll(turn,categories);
+		System.out.println(root.getChildren());
+		
+	}
 	
 	public void makeFrameWithoutRoll(Stage primaryStage, String naam){
 		try{
@@ -104,6 +108,8 @@ public class GameFrame implements ObserverInterface {
 			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 	}
+	
+	
 	
 	private void createFiveDices(){
 		Rectangle dice1 = creator.dice1();
@@ -128,6 +134,8 @@ public class GameFrame implements ObserverInterface {
 			x1 = x1 +100;
 	}
 }
+	
+	
 	
 	private void setDices(ArrayList<Integer> result){
 		

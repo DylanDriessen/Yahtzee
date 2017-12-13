@@ -1,27 +1,24 @@
 package controller;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import model.ObserverInterfaces.DiceObserver;
 import model.board.Dice;
 import model.facade.IModelFacade;
-import model.player.Player;
 import view.board.ObserverInterface;
-
 import view.gameframe.GameFrame;
 
 
 	
-	public class YahtzeeController extends Application implements SubjectInterface {
+	public class YahtzeeController extends Application implements SubjectInterface,DiceObserver {
 		
 		private IModelFacade model;
 		Stage primaryStage = new Stage();
@@ -33,7 +30,9 @@ import view.gameframe.GameFrame;
 		ArrayList<String> playerNames;
 
 		
-
+		public YahtzeeController(){
+			
+		}
 		
 		public YahtzeeController(IModelFacade model, Stage primaryStage) {
 			this.model = model;
@@ -71,7 +70,8 @@ import view.gameframe.GameFrame;
 	        this.playerNames = model.getALLPlayersNames();
 	        btn.setOnMouseClicked(event -> {this.getNames(field.getText());
 	        stage.close();}); 
-	        startBtn.setOnMouseClicked(event -> {stage.close();this.makeFrames(model.getALLPlayersNames());});
+	        startBtn.setOnMouseClicked(event -> {stage.close();frame.addButtons();this.makeFrames(model.getALLPlayersNames());});
+//	        startBtn.setOnMouseClicked(event -> frame.addButtons() );
 	        root.getChildren().addAll(btn,startBtn,field);
 	        stage.show();
 		}
@@ -92,16 +92,14 @@ import view.gameframe.GameFrame;
 		}
 	
 		
-		
-		
 		private Button RollButton(){
 			Button btn = new Button("Roll Dices");
 			btn.setOnMouseClicked(event -> this.rollDices());
-			
 			btn.setTranslateX(300);
 			btn.setTranslateY(300);
 			return btn;
 		}
+		
 		
 		private void getNames(String text) {
 			model.addPlayer(text);
@@ -132,19 +130,23 @@ import view.gameframe.GameFrame;
 		@Override
 		public void unregister(ObserverInterface o) {
 			// TODO Auto-generated method stub
-			
 		}
 
 		@Override
 		public void notifyObserver() {
-
-			System.out.println("test");
 			frame.update(result);
 			for(ObserverInterface observer : observers) {
 				observer.update(result);
 			}
+		}
 
-			
+
+		@Override
+		public void update(int i) {
+			System.out.println("kaka");
+			System.out.println(i);
+			 model.getGame().getAllDices().get(i).setState(model.getGame().getAllDices().get(i).getNotRollable());
+			 System.out.println(model.getGame().getAllDices().get(i).getState().toString());
 		}
 
 		

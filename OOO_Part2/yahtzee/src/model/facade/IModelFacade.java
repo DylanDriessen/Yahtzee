@@ -3,8 +3,7 @@ package model.facade;
 import java.util.ArrayList;
 
 import model.board.Dice;
-
-
+import model.game.Game;
 import model.player.Player;
 
 public interface IModelFacade {
@@ -17,5 +16,6 @@ public interface IModelFacade {
 	void rollDices();
 	ArrayList<Dice> getAllDices();
 	int GetTurnsLeft();
+	Game getGame();
 	}
 
