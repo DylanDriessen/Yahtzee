@@ -103,4 +103,8 @@ public class Game {
  		}
 		return games;	
  	}
+ 	
+ 	public void resetDices(){
+ 		dices.resetDices();
+ 	}
  }

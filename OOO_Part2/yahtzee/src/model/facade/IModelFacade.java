@@ -20,5 +20,6 @@ public interface IModelFacade {
 	public int getIndexCurrentPlayer();
 	public void setNextPlayer();
 	Game getGame();
+	void resetDices();
 	}
 

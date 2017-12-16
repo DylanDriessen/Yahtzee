@@ -98,6 +98,14 @@ import view.gameframe.GameFrame;
 			button.setOnMouseClicked(event -> this.rollDices());
 			nextButton.setOnMouseClicked(event -> {getCurrentPlayerFrame().removeButtons();
 													getNextPlayerFrame().addButtons();setButtonClickEvent();});
+			model.resetDices();
+			ArrayList<Dice> dices = model.getAllDices();
+			int j = 0;
+			for(int i = dices.size()-1; i >=0; i--){
+				result.set(j, dices.get(i).getEyes());
+				j++;
+			}
+			notifyObserver();
 		}
 		
 		private GameFrame getCurrentPlayerFrame() {

@@ -67,4 +67,8 @@ Game game;
 	public void setNextPlayer() {
 		game.nextPlayer();
 	}
+	@Override
+	public void resetDices() {
+		game.resetDices();
+	}
 }
