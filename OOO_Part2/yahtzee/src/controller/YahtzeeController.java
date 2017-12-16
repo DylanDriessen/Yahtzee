@@ -117,14 +117,6 @@ import view.gameframe.GameFrame;
 			System.out.println("the current player is " + model.getIndexCurrentPlayer());
 			return (GameFrame) this.observers.get(model.getIndexCurrentPlayer());
 		}
-			
-		private Button RollButton(){
-			Button btn = new Button("Roll Dices");
-			btn.setOnMouseClicked(event -> this.rollDices());
-			btn.setTranslateX(300);
-			btn.setTranslateY(300);
-			return btn;
-		}
 		
 		private void getNames(String text) {
 			model.addPlayer(text);

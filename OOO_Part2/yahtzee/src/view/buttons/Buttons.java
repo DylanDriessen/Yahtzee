@@ -38,4 +38,11 @@ public class Buttons {
 		return name;
 	}
 	
+	public Button RollButton(){
+		Button btn = new Button("Roll Dices");
+		btn.setTranslateX(300);
+		btn.setTranslateY(300);
+		return btn;
+	}
+	
 }

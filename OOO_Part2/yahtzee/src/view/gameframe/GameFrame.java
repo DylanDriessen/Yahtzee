@@ -140,9 +140,7 @@ public class GameFrame implements ObserverInterface, CategoryObserverInterface {
 	public void addButtons() {
 		ComboBox<Categories> categories = buttons.categories();
 		Button turn = buttons.turn();
-		Button btn = new Button("Roll Dices");
-		btn.setTranslateX(360);
-		btn.setTranslateY(520);
+		Button btn = buttons.RollButton();
 		clickButtons.getChildren().addAll(turn, categories, btn);
 	}
 	
