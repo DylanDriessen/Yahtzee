@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.ObserverInterfaces.DiceObserver;
 import model.board.Dice;
@@ -71,8 +72,20 @@ import view.gameframe.GameFrame;
 	        this.playerNames = model.getALLPlayersNames();
 	        btn.setOnMouseClicked(event -> {this.getNames(field.getText());
 	        stage.close();}); 
-	        startBtn.setOnMouseClicked(event -> {stage.close();this.makeFrames(model.getALLPlayersNames());
-	        									((GameFrame) observers.get(0)).addButtons();setButtonClickEvent();model.start();});
+	        startBtn.setOnMouseClicked(event -> {
+	        	try {
+	        		model.start();
+	        		stage.close();
+		        	this.makeFrames(model.getALLPlayersNames());
+		        	((GameFrame) observers.get(0)).addButtons();setButtonClickEvent();
+	        	} catch (Exception e) {
+	        		Text text = new Text();
+	        		text.setText(e.getMessage());
+	        		text.setTranslateY(230);
+	        		text.setTranslateX(30);
+	        		root.getChildren().add(text);
+	        	}
+	        	});
 	        root.getChildren().addAll(btn,startBtn,field);
 	        stage.show();
 	        
