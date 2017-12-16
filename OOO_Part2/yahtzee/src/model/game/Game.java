@@ -79,7 +79,8 @@ public class Game {
  	}
  	
  	private void setIndexNextPlayer(){
- 		if(this.indexNextPlayer >= players.size()){ // mogelijke fout mss = weg
+ 		System.out.println(players.size());
+ 		if(this.indexNextPlayer >= players.size()-1){ // mogelijke fout mss = weg
  			this.indexNextPlayer = 0;
  		}
  		else{

@@ -12,7 +12,9 @@ import com.sun.prism.paint.Color;
 import controller.SubjectInterface;
 
 import exception.DomainException;
+import javafx.collections.ObservableList;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -52,8 +54,8 @@ public class GameFrame implements ObserverInterface, CategoryObserverInterface {
 
 			
 
-	public void makeFrameWithRoll(Stage primaryStage, String name, String currentName, Button button, ArrayList<Integer> result){
-			opzijGezet = new ArrayList<>();
+	public void makeFrameWithRoll(Stage primaryStage, String name, String currentName, ArrayList<Integer> result){
+		opzijGezet = new ArrayList<>();
 			Scoreboard scoreboard = new Scoreboard();
 		try{
 			this.setDices(result);
@@ -71,18 +73,13 @@ public class GameFrame implements ObserverInterface, CategoryObserverInterface {
 			primaryStage.setTitle("Yahtzee");
 			Button turn = buttons.turn();
 			gridpane.add(dices, 0, 0);
-			ComboBox<Categories> categories = buttons.categories();
-			categories.setOnAction(event -> {this.updateCategory(); category = categories.getValue().toString();});
-			addButtons();
-			clickButtons.
-			gridpane.add(clickButtons, 0,0);
-
+			gridpane.add(clickButtons, 2,2);
 			Label nameLabel = buttons.setName(currentName);
 			Label current = buttons.setCurrentName(name);
 			Pane scorebord = scoreboard.setCategories();
 			scorebord.setTranslateX(900);
 			scorebord.setTranslateY(150);
-			root.getChildren().addAll(current,nameLabel,gridpane,button,scorebord);	
+			root.getChildren().addAll(current,nameLabel,gridpane,scorebord);	
 
 			primaryStage.setScene(scene);
 			primaryStage.show();	
@@ -139,14 +136,25 @@ public class GameFrame implements ObserverInterface, CategoryObserverInterface {
 			x1 = x1 +100;
 		}
 	}
-	
-
+	 //NextButten implementatie
 	public void addButtons() {
 		ComboBox<Categories> categories = buttons.categories();
 		Button turn = buttons.turn();
-		turn.setOnMouseClicked(event -> this.getNextPlayer());
-		clickButtons.getChildren().addAll(turn, categories);
+		Button btn = new Button("Roll Dices");
+		btn.setTranslateX(360);
+		btn.setTranslateY(520);
+		clickButtons.getChildren().addAll(turn, categories, btn);
 	}
+	
+	public ObservableList<Node> getButtons() {
+		if(this.clickButtons.getChildren().isEmpty()) throw new DomainException("No buttons present");
+		return this.clickButtons.getChildren();
+	}
+	
+	public void removeButtons() {
+		this.clickButtons.getChildren().clear();
+	}
+	
 
 	private Object getNextPlayer() {
 		// TODO Auto-generated method stub
@@ -166,6 +174,7 @@ public class GameFrame implements ObserverInterface, CategoryObserverInterface {
 		}
 		
 	}
+	
 	
 	public JTable getScoreboard(){
 		return null;

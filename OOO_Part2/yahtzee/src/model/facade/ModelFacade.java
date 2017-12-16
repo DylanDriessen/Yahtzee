@@ -59,4 +59,12 @@ Game game;
 	public Game getGame(){
 		return this.getGame();
 	}
+	@Override
+	public int getIndexCurrentPlayer() {
+		return game.getIndexNextPersonalGame();
+	}
+	@Override
+	public void setNextPlayer() {
+		game.nextPlayer();
+	}
 }

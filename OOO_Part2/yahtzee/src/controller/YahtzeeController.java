@@ -70,8 +70,8 @@ import view.gameframe.GameFrame;
 	        this.playerNames = model.getALLPlayersNames();
 	        btn.setOnMouseClicked(event -> {this.getNames(field.getText());
 	        stage.close();}); 
-	        //startBtn.setOnMouseClicked(event -> frame.addButtons() );
-	        startBtn.setOnMouseClicked(event -> {stage.close();this.makeFrames(model.getALLPlayersNames());((GameFrame) observers.get(0)).addButtons();});
+	        startBtn.setOnMouseClicked(event -> {stage.close();this.makeFrames(model.getALLPlayersNames());
+	        									((GameFrame) observers.get(0)).addButtons();setButtonClickEvent();});
 	        root.getChildren().addAll(btn,startBtn,field);
 	        stage.show();
 		}
@@ -92,6 +92,23 @@ import view.gameframe.GameFrame;
 		}
 	
 		
+		private void setButtonClickEvent() {
+			Button nextButton = (Button)getCurrentPlayerFrame().getButtons().get(0);
+			Button button = (Button)getCurrentPlayerFrame().getButtons().get(2);
+			button.setOnMouseClicked(event -> this.rollDices());
+			nextButton.setOnMouseClicked(event -> {getCurrentPlayerFrame().removeButtons();
+													getNextPlayerFrame().addButtons();setButtonClickEvent();});
+		}
+		
+		private GameFrame getCurrentPlayerFrame() {
+			return (GameFrame) this.observers.get(model.getIndexCurrentPlayer());
+		}
+		
+		private GameFrame getNextPlayerFrame() {
+			model.setNextPlayer();
+			System.out.println("the current player is " + model.getIndexCurrentPlayer());
+			return (GameFrame) this.observers.get(model.getIndexCurrentPlayer());
+			
 		private Button RollButton(){
 			Button btn = new Button("Roll Dices");
 			btn.setOnMouseClicked(event -> this.rollDices());
@@ -99,7 +116,6 @@ import view.gameframe.GameFrame;
 			btn.setTranslateY(300);
 			return btn;
 		}
-		
 		
 		private void getNames(String text) {
 			model.addPlayer(text);
@@ -117,7 +133,7 @@ import view.gameframe.GameFrame;
 				String naam = name;
 				String currentName = model.getCurrentPlayer().getNaam();
 				this.observers.add(gameFrame);
-				gameFrame.makeFrameWithRoll(stage, naam,currentName, this.RollButton(), result);
+				gameFrame.makeFrameWithRoll(stage, naam,currentName, result);
 			}
 			
 		}

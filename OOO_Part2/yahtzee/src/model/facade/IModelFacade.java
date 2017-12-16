@@ -17,6 +17,8 @@ public interface IModelFacade {
 	void rollDices();
 	ArrayList<Dice> getAllDices();
 	int GetTurnsLeft();
+	public int getIndexCurrentPlayer();
+	public void setNextPlayer();
 	Game getGame();
 	}
 
