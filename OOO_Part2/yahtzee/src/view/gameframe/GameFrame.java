@@ -160,7 +160,7 @@ public class GameFrame implements ObserverInterface, CategoryObserverInterface {
 	}
 
 	@Override
-	public void updateCategory() {
+	public void updateCategory(String category) {
 		// TODO Auto-generated method stub
 		
 	}
