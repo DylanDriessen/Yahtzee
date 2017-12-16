@@ -24,10 +24,14 @@ public class Game {
 	}
 	
 	public void Start(){
+		System.out.println();
  		if (players.size()<=1){
  			throw new IllegalArgumentException("Minimum 2 players required");
  		}
- 		else this.setIndexNextPlayer();
+ 		else {
+ 			this.turn = new Turn(3, this.getCurrentPlayer(), this.catagories, this.dices);
+ 			System.out.println("Turn is aangemaakt");
+ 		}
  	}
 	
 	public void nextPlayer() {
@@ -106,5 +110,9 @@ public class Game {
  	
  	public void resetDices(){
  		dices.resetDices();
+ 	}
+ 	
+ 	public Turn getTurn() {
+ 		return this.turn;
  	}
  }

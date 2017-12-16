@@ -68,11 +68,11 @@ public class Player {
 		
 	}
 	
-	public void setTurn(boolean turn) {
+	public void setIsTurn(boolean turn) {
 		this.turn = turn;
 	}
 	
-	public boolean getTurn() {
+	public boolean getIsTurn() {
 		return this.turn;
 	}
 	

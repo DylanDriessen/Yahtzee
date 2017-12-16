@@ -21,5 +21,6 @@ public interface IModelFacade {
 	public void setNextPlayer();
 	Game getGame();
 	void resetDices();
+	void reduceChance();
 	}
 

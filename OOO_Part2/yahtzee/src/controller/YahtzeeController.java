@@ -2,6 +2,7 @@ package controller;
 
 import java.util.ArrayList;
 
+import exception.DomainException;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -71,9 +72,10 @@ import view.gameframe.GameFrame;
 	        btn.setOnMouseClicked(event -> {this.getNames(field.getText());
 	        stage.close();}); 
 	        startBtn.setOnMouseClicked(event -> {stage.close();this.makeFrames(model.getALLPlayersNames());
-	        									((GameFrame) observers.get(0)).addButtons();setButtonClickEvent();});
+	        									((GameFrame) observers.get(0)).addButtons();setButtonClickEvent();model.start();});
 	        root.getChildren().addAll(btn,startBtn,field);
 	        stage.show();
+	        
 		}
 		
 		
@@ -87,6 +89,12 @@ import view.gameframe.GameFrame;
 			for(int i = dices.size()-1; i >=0; i--){
 				result.set(j, dices.get(i).getEyes());
 				j++;
+			}
+			try {
+				model.reduceChance();
+			} catch(DomainException e) {
+				getCurrentPlayerFrame().addError(e.getMessage());
+				getCurrentPlayerFrame().getButtons().remove(2);
 			}
 			this.notifyObserver();
 		}
@@ -114,7 +122,6 @@ import view.gameframe.GameFrame;
 		
 		private GameFrame getNextPlayerFrame() {
 			model.setNextPlayer();
-			System.out.println("the current player is " + model.getIndexCurrentPlayer());
 			return (GameFrame) this.observers.get(model.getIndexCurrentPlayer());
 		}
 		

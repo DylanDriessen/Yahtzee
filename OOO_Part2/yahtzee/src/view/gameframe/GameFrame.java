@@ -153,7 +153,13 @@ public class GameFrame implements ObserverInterface, CategoryObserverInterface {
 		this.clickButtons.getChildren().clear();
 	}
 	
-
+	public void addError(String string) {
+		Text text = new Text();
+		text.setText(string);
+		text.setTranslateX(200);
+		text.setTranslateY(200);
+		this.clickButtons.getChildren().add(text);
+	}
 	private Object getNextPlayer() {
 		// TODO Auto-generated method stub
 		return null;
