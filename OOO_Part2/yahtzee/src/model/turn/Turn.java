@@ -41,9 +41,8 @@ public class Turn {
 		}
 	}
 	
-	public void rollDices() {
-		if (chances == 0) throw new DomainException("You have already spend all your chances");
-		this.dices.rollDices();
+	public void reduceChance() {
+		if (chances == 1) throw new DomainException("You have spend all your chances");
 		chances--;
 	}
 	

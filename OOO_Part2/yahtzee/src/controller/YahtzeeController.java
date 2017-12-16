@@ -2,6 +2,7 @@ package controller;
 
 import java.util.ArrayList;
 
+import exception.DomainException;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -9,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.ObserverInterfaces.DiceObserver;
 import model.board.Dice;
@@ -70,10 +72,23 @@ import view.gameframe.GameFrame;
 	        this.playerNames = model.getALLPlayersNames();
 	        btn.setOnMouseClicked(event -> {this.getNames(field.getText());
 	        stage.close();}); 
-	        startBtn.setOnMouseClicked(event -> {stage.close();this.makeFrames(model.getALLPlayersNames());
-	        									((GameFrame) observers.get(0)).addButtons();setButtonClickEvent();});
+	        startBtn.setOnMouseClicked(event -> {
+	        	try {
+	        		model.start();
+	        		stage.close();
+		        	this.makeFrames(model.getALLPlayersNames());
+		        	((GameFrame) observers.get(0)).addButtons();setButtonClickEvent();
+	        	} catch (Exception e) {
+	        		Text text = new Text();
+	        		text.setText(e.getMessage());
+	        		text.setTranslateY(230);
+	        		text.setTranslateX(30);
+	        		root.getChildren().add(text);
+	        	}
+	        	});
 	        root.getChildren().addAll(btn,startBtn,field);
 	        stage.show();
+	        
 		}
 		
 		
@@ -87,6 +102,12 @@ import view.gameframe.GameFrame;
 			for(int i = dices.size()-1; i >=0; i--){
 				result.set(j, dices.get(i).getEyes());
 				j++;
+			}
+			try {
+				model.reduceChance();
+			} catch(DomainException e) {
+				getCurrentPlayerFrame().addError(e.getMessage());
+				getCurrentPlayerFrame().getButtons().remove(2);
 			}
 			this.notifyObserver();
 		}
@@ -114,7 +135,6 @@ import view.gameframe.GameFrame;
 		
 		private GameFrame getNextPlayerFrame() {
 			model.setNextPlayer();
-			System.out.println("the current player is " + model.getIndexCurrentPlayer());
 			return (GameFrame) this.observers.get(model.getIndexCurrentPlayer());
 		}
 		

@@ -16,7 +16,6 @@ Game game;
 	@Override
 	public void addPlayer(String naam) {
 		game.addPlayer(naam);
-		System.out.println("text");
 	}
 	@Override
 	public Player getNextPlayer() {
@@ -70,5 +69,9 @@ Game game;
 	@Override
 	public void resetDices() {
 		game.resetDices();
+	}
+	@Override
+	public void reduceChance() {
+		game.getTurn().reduceChance();
 	}
 }
