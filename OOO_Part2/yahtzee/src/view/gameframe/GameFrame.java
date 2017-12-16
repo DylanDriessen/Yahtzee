@@ -139,6 +139,8 @@ public class GameFrame implements ObserverInterface, CategoryObserverInterface {
 	 //NextButten implementatie
 	public void addButtons() {
 		ComboBox<Categories> categories = buttons.categories();
+		categories.setOnAction(event -> {category = categories.getSelectionModel().getSelectedItem().toString();updateCategory(category);
+		System.out.println(category);});
 		Button turn = buttons.turn();
 		Button btn = buttons.RollButton();
 		clickButtons.getChildren().addAll(turn, categories, btn);
@@ -159,10 +161,6 @@ public class GameFrame implements ObserverInterface, CategoryObserverInterface {
 		text.setTranslateX(200);
 		text.setTranslateY(200);
 		this.clickButtons.getChildren().add(text);
-	}
-	private Object getNextPlayer() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
