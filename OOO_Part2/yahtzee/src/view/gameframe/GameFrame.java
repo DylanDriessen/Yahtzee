@@ -29,14 +29,13 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.score.Categories;
 import view.board.BoardCreator;
-import view.board.CategoryObserverInterface;
 import view.board.ObserverInterface;
 import view.buttons.Buttons;
 import view.dice.DiceCreator;
 
 import view.scoreboard.Scoreboard;
 
-public class GameFrame implements ObserverInterface, CategoryObserverInterface {
+public class GameFrame implements ObserverInterface {
 	Buttons buttons = new Buttons();
 	BoardCreator board = new BoardCreator();
 	Group root = board.newGroup();
@@ -159,12 +158,6 @@ public class GameFrame implements ObserverInterface, CategoryObserverInterface {
 		text.setTranslateX(200);
 		text.setTranslateY(200);
 		this.clickButtons.getChildren().add(text);
-	}
-
-	@Override
-	public void updateCategory(String category) {
-		
-		
 	}
 
 	private void setDices(ArrayList<Integer> result){

@@ -13,19 +13,16 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import model.ObserverInterfaces.CategoryObserver;
 import model.ObserverInterfaces.DiceObserver;
-import model.ObserverInterfaces.SubjectCategoryInterface;
 import model.board.Dice;
 import model.facade.IModelFacade;
 import model.score.Categories;
-import view.board.CategoryObserverInterface;
 import view.board.ObserverInterface;
 import view.gameframe.GameFrame;
 
 
 	
-	public class YahtzeeController extends Application implements SubjectInterface,DiceObserver,CategoryObserver, SubjectCategoryInterface {
+	public class YahtzeeController extends Application implements SubjectInterface,DiceObserver {
 		
 		private IModelFacade model;
 		Stage primaryStage = new Stage();
@@ -33,7 +30,6 @@ import view.gameframe.GameFrame;
 		
 
 		private ArrayList<ObserverInterface> observers = new ArrayList<>();
-		private ArrayList<CategoryObserverInterface> categoryObservers = new ArrayList<>();
 		ArrayList<Integer> result = new ArrayList<>();
 		ArrayList<String> playerNames;
 		String category;
@@ -125,7 +121,7 @@ import view.gameframe.GameFrame;
 			Button button = (Button)getCurrentPlayerFrame().getButtons().get(2);
 			ComboBox<Categories> categories = (ComboBox<Categories>)getCurrentPlayerFrame().getButtons().get(1);
 			categories.setOnAction(event -> {category = categories.getSelectionModel().getSelectedItem().toString();model.deleteCategory(category);
-			System.out.println(category);});
+			});
 			button.setOnMouseClicked(event -> this.rollDices());
 			nextButton.setOnMouseClicked(event -> {getCurrentPlayerFrame().removeButtons();
 													getNextPlayerFrame().addButtons();setButtonClickEvent();});
@@ -137,13 +133,6 @@ import view.gameframe.GameFrame;
 				j++;
 			}
 			notifyObserver();
-		}
-		
-		private void setCategoryEvent(){
-			ComboBox<Categories> categories = (ComboBox<Categories>)getCurrentPlayerFrame().getButtons().get(1);
-			categories.setOnAction(event -> {category = categories.getSelectionModel().getSelectedItem().toString();model.deleteCategory(category);
-			System.out.println(category);});
-			notifyCategoryObserver();
 		}
 		
 		private GameFrame getCurrentPlayerFrame() {
@@ -205,19 +194,6 @@ import view.gameframe.GameFrame;
 			 System.out.println(model.getGame().getAllDices().get(i).getState().toString());
 		}
 
-		@Override
-		public void updateCategory(String category) {
-			System.out.println("alejopa");
-			model.deleteCategory(category);
-		}
-
-		@Override
-		public void notifyCategoryObserver() {
-			frame.updateCategory(category);
-			for(CategoryObserverInterface categoryObserver: categoryObservers){
-				categoryObserver.updateCategory(category);
-			}
-		}
 
 		
 
