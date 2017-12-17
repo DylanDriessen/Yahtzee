@@ -8,6 +8,7 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
@@ -16,6 +17,7 @@ import javafx.stage.Stage;
 import model.ObserverInterfaces.DiceObserver;
 import model.board.Dice;
 import model.facade.IModelFacade;
+import model.score.Categories;
 import view.board.ObserverInterface;
 import view.gameframe.GameFrame;
 
@@ -31,6 +33,7 @@ import view.gameframe.GameFrame;
 		private ArrayList<ObserverInterface> observers = new ArrayList<>();
 		ArrayList<Integer> result = new ArrayList<>();
 		ArrayList<String> playerNames;
+		String category;
 
 		
 		public YahtzeeController(){
@@ -219,8 +222,11 @@ import view.gameframe.GameFrame;
 
 		@Override
 		public void update(int i) {
+			System.out.println("kaka");
+			System.out.println(i);
 			 model.getGame().getAllDices().get(i).setState(model.getGame().getAllDices().get(i).getNotRollable());
 		}
+
 
 		
 

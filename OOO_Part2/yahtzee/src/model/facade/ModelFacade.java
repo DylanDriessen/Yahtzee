@@ -73,4 +73,14 @@ Game game;
 	public void reduceChance() {
 		game.getTurn().reduceChance();
 	}
+	@Override
+	public int getscore(String category) {
+		System.out.println(game.getTurn().getPointsCategory(category));
+		return game.getTurn().getPointsCategory(category);
+	}
+	@Override
+	public void deleteCategory(String Category) {
+		System.out.println(Category);
+	}
+	
 }

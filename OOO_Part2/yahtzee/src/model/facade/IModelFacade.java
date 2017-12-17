@@ -22,5 +22,7 @@ public interface IModelFacade {
 	Game getGame();
 	void resetDices();
 	void reduceChance();
+	int getscore(String category);
+	void deleteCategory(String Category);
 	}
 
