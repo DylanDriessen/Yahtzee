@@ -41,7 +41,6 @@ public class DiceCreator extends StackPane implements SubjectDiceInterface  {
 		Rectangle rect = new Rectangle(50,50,Color.BLACK);
 		rect.setTranslateX(100);
 		rect.setTranslateY(200);
-		rect.setOnMouseClicked(event -> {rect.setTranslateY(100);this.notifyDiceObserver(i);});
 		return rect;
 		
 	}
@@ -51,7 +50,6 @@ public class DiceCreator extends StackPane implements SubjectDiceInterface  {
 		Rectangle rect = new Rectangle(50,50,Color.BLACK);
 		rect.setTranslateX(200);
 		rect.setTranslateY(200);
-		rect.setOnMouseClicked(event -> {rect.setTranslateY(100);this.notifyDiceObserver(i);});
 		return rect;
 	}
 	
@@ -59,7 +57,6 @@ public class DiceCreator extends StackPane implements SubjectDiceInterface  {
 		Rectangle rect = new Rectangle(50,50,Color.BLACK);
 		rect.setTranslateX(300);
 		rect.setTranslateY(200);
-		rect.setOnMouseClicked(event -> rect.setTranslateY(100));
 		return rect;
 	}
 	
@@ -67,7 +64,6 @@ public class DiceCreator extends StackPane implements SubjectDiceInterface  {
 		Rectangle rect = new Rectangle(50,50,Color.BLACK);
 		rect.setTranslateX(400);
 		rect.setTranslateY(200);
-		rect.setOnMouseClicked(event -> rect.setTranslateY(100));
 		return rect;
 	}
 	
@@ -75,7 +71,6 @@ public class DiceCreator extends StackPane implements SubjectDiceInterface  {
 		Rectangle rect = new Rectangle(50,50,Color.BLACK);
 		rect.setTranslateX(500);
 		rect.setTranslateY(200);
-		rect.setOnMouseClicked(event -> rect.setTranslateY(100));
 		return rect;
 	}
 	

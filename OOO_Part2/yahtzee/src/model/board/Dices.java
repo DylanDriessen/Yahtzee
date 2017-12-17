@@ -20,10 +20,15 @@ public class Dices {
 	
 	public void rollDices(){
 		for(Dice d: dices){
-			if(!d.getState().toString().equals("NotRollableState") || !d.getState().toString().equals("DiceChosenState")) {
-				d.roll();
+			System.out.println(d.getState().toString()+" "+d.getEyes());
+			if(!d.getState().toString().equals("DiceChosenState")) {
+				if(!d.getState().toString().equals("NotRollableState")) {
+					d.roll();
+					System.out.println(d.getState().toString()+" has rolled");
+				}
 			}
 		}
+		System.out.println("Done");
 	}
 	
 	public ArrayList<Dice> getDices(){

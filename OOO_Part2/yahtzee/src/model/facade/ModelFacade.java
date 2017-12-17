@@ -37,7 +37,6 @@ Game game;
 	}
 	@Override
 	public ArrayList<String> getALLPlayersNames() {
-		System.out.println("test");
 		return game.getAllPlayersNames();
 	}
 	@Override

@@ -60,13 +60,7 @@ public class GameFrame implements ObserverInterface, CategoryObserverInterface {
 		try{
 			this.setDices(result);
 			ArrayList<Text> textLijst = creator.createText(result, x1, y);
-			int length = result.size() -1;
-			Rectangle dice1 = creator.dice1();
-			Rectangle dice2 = creator.dice2();
-			Rectangle dice3 = creator.dice3();
-			Rectangle dice4 = creator.dice4();
-			Rectangle dice5 = creator.dice5();
-			dices.getChildren().addAll(dice1,dice2,dice3,dice4,dice5);
+			createFiveDices();
 			for(Text t: textLijst){
 				dices.getChildren().add(t);
 			}
@@ -89,30 +83,6 @@ public class GameFrame implements ObserverInterface, CategoryObserverInterface {
 		}
 	}
 	
-
-	
-	
-
-	public void makeFrameWithoutRoll(Stage primaryStage, String naam){
-		try{
-			Group root = board.newGroup();
-			Scene scene = board.newScene(root);
-			GridPane gridpane = board.maakGrid();
-			primaryStage.setTitle("Yahtzee");
-			Label name = buttons.setName(naam);
-			root.getChildren().addAll(name,gridpane);
-
-			primaryStage.setScene(scene);
-			primaryStage.show();
-			
-		}
-		catch(DomainException e){
-			JOptionPane.showMessageDialog(null, e.getMessage());
-		}
-	}
-	
-	
-	
 	private void createFiveDices(){
 		Rectangle dice1 = creator.dice1();
 		Rectangle dice2 = creator.dice2();
@@ -121,19 +91,30 @@ public class GameFrame implements ObserverInterface, CategoryObserverInterface {
 		Rectangle dice5 = creator.dice5();
 		dices.getChildren().addAll(dice1,dice2,dice3,dice4,dice5);
 	}
+	
+	public ObservableList<Node> getVisualDices(){
+		return this.dices.getChildren();
+	}
+	
+	public Rectangle translateRectangle(Node node) {
+		if(node instanceof Rectangle) {
+			return (Rectangle)node;
+		}
+		return null;
+	}
+	
+	public Text translateText(Node node) {
+		if(node instanceof Text) {
+			return (Text)node;
+		}
+		return null;
+	}
+
 
 	@Override
 	public void update(ArrayList<Integer> waardes) {
-		
-		int x1 = 100;
-		ArrayList<Text> textLijstUpdate = creator.createText(waardes, x1, y);
-		dices.getChildren().clear();
-		this.createFiveDices();
-		for(Text t: textLijstUpdate){
-			
-			dices.getChildren().add(t);
-			System.out.println(dices.getChildren());
-			x1 = x1 +100;
+		for(int i = 5; i < dices.getChildren().size(); i++) {
+			((Text)dices.getChildren().get(i)).setText(Integer.toString(waardes.get(i-5)));
 		}
 	}
 	 //NextButten implementatie
@@ -213,13 +194,4 @@ public class GameFrame implements ObserverInterface, CategoryObserverInterface {
         startBtn.setTranslateY(115);
         return startBtn;
 	}
-	
-	public  Button rollButton(){
-		Button btn = new Button("Roll Dices");
-		btn.setTranslateX(300);
-		btn.setTranslateY(300);
-	
-		return btn;
-	}
-
 }

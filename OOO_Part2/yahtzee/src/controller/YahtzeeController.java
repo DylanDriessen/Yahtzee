@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import exception.DomainException;
 import javafx.application.Application;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -77,7 +78,11 @@ import view.gameframe.GameFrame;
 	        		model.start();
 	        		stage.close();
 		        	this.makeFrames(model.getALLPlayersNames());
-		        	((GameFrame) observers.get(0)).addButtons();setButtonClickEvent();
+		        	((GameFrame) observers.get(0)).addButtons();
+		        	setButtonClickEvent();
+		        	for(ObserverInterface o : observers) {
+		        		setClicableDices((GameFrame)o);
+		        	}
 	        	} catch (Exception e) {
 	        		Text text = new Text();
 	        		text.setText(e.getMessage());
@@ -91,9 +96,6 @@ import view.gameframe.GameFrame;
 	        
 		}
 		
-		
-
-		//Kan ik in klasses zetten
 		private void rollDices(){
 			model.rollDices();
 
@@ -116,9 +118,18 @@ import view.gameframe.GameFrame;
 		private void setButtonClickEvent() {
 			Button nextButton = (Button)getCurrentPlayerFrame().getButtons().get(0);
 			Button button = (Button)getCurrentPlayerFrame().getButtons().get(2);
-			button.setOnMouseClicked(event -> this.rollDices());
-			nextButton.setOnMouseClicked(event -> {getCurrentPlayerFrame().removeButtons();
-													getNextPlayerFrame().addButtons();setButtonClickEvent();});
+			button.setOnMouseClicked(event -> {
+				this.rollDices();
+				setClicableDices(getCurrentPlayerFrame());
+				});
+			
+			nextButton.setOnMouseClicked(event -> {
+				resetDices(getCurrentPlayerFrame());
+				getCurrentPlayerFrame().removeButtons();
+				getNextPlayerFrame().addButtons();
+				setButtonClickEvent();
+				});
+			
 			model.resetDices();
 			ArrayList<Dice> dices = model.getAllDices();
 			int j = 0;
@@ -147,6 +158,8 @@ import view.gameframe.GameFrame;
 			}
 		}
 		
+		
+		
 		private void makeFrames(ArrayList<String> resultNaam){
 			for (String name : playerNames) {
 				GameFrame gameFrame = new GameFrame();
@@ -158,6 +171,32 @@ import view.gameframe.GameFrame;
 			}
 			
 		}
+		
+		private void setClicableDices(GameFrame gameFrame) {
+			for(Node node : gameFrame.getVisualDices()) {
+				if(gameFrame.translateRectangle(node)!=null) {
+					gameFrame.translateRectangle(node).setOnMouseClicked(event -> 
+					{
+						gameFrame.translateRectangle(node).setTranslateY(100);				
+						gameFrame.translateText(gameFrame.getVisualDices().get(gameFrame.getVisualDices().indexOf(node)+5)).setTranslateY(100);
+						model.getAllDices().get(gameFrame.getVisualDices().indexOf(node)).setState(
+								model.getAllDices().get(gameFrame.getVisualDices().indexOf(node)).getDiceChosen());
+								System.out.println("The index is " + gameFrame.getVisualDices().indexOf(node));
+					});
+				}
+			}
+		}
+		
+		private void resetDices(GameFrame gameFrame) {
+			for (Node node : gameFrame.getVisualDices()) {
+				if(gameFrame.translateRectangle(node)!=null) {
+					gameFrame.translateRectangle(node).setTranslateY(200);
+				}
+				if(gameFrame.translateText(node)!=null) {
+					gameFrame.translateText(node).setTranslateY(200);
+				}
+			}
+		}
 
 		@Override
 		public void register(ObserverInterface newObserver) {
@@ -166,7 +205,7 @@ import view.gameframe.GameFrame;
 		}
 		@Override
 		public void unregister(ObserverInterface o) {
-			// TODO Auto-generated method stub
+			observers.remove(o);
 		}
 
 		@Override
@@ -180,10 +219,7 @@ import view.gameframe.GameFrame;
 
 		@Override
 		public void update(int i) {
-			System.out.println("kaka");
-			System.out.println(i);
 			 model.getGame().getAllDices().get(i).setState(model.getGame().getAllDices().get(i).getNotRollable());
-			 System.out.println(model.getGame().getAllDices().get(i).getState().toString());
 		}
 
 		
