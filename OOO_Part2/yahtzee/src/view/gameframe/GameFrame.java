@@ -73,7 +73,7 @@ public class GameFrame implements ObserverInterface, CategoryObserverInterface {
 			primaryStage.setTitle("Yahtzee");
 			Button turn = buttons.turn();
 			gridpane.add(dices, 0, 0);
-			gridpane.add(clickButtons, 2,2);
+			gridpane.add(clickButtons, 2,20);
 			Label nameLabel = buttons.setName(currentName);
 			Label current = buttons.setCurrentName(name);
 			Pane scorebord = scoreboard.setCategories();
