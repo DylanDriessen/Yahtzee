@@ -139,8 +139,6 @@ public class GameFrame implements ObserverInterface, CategoryObserverInterface {
 	 //NextButten implementatie
 	public void addButtons() {
 		ComboBox<Categories> categories = buttons.categories();
-		categories.setOnAction(event -> {category = categories.getSelectionModel().getSelectedItem().toString();updateCategory(category);
-		System.out.println(category);});
 		Button turn = buttons.turn();
 		Button btn = buttons.RollButton();
 		clickButtons.getChildren().addAll(turn, categories, btn);
@@ -165,7 +163,7 @@ public class GameFrame implements ObserverInterface, CategoryObserverInterface {
 
 	@Override
 	public void updateCategory(String category) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 

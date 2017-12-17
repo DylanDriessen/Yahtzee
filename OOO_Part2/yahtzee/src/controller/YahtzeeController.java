@@ -7,20 +7,25 @@ import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.ObserverInterfaces.CategoryObserver;
 import model.ObserverInterfaces.DiceObserver;
+import model.ObserverInterfaces.SubjectCategoryInterface;
 import model.board.Dice;
 import model.facade.IModelFacade;
+import model.score.Categories;
+import view.board.CategoryObserverInterface;
 import view.board.ObserverInterface;
 import view.gameframe.GameFrame;
 
 
 	
-	public class YahtzeeController extends Application implements SubjectInterface,DiceObserver {
+	public class YahtzeeController extends Application implements SubjectInterface,DiceObserver,CategoryObserver, SubjectCategoryInterface {
 		
 		private IModelFacade model;
 		Stage primaryStage = new Stage();
@@ -28,8 +33,10 @@ import view.gameframe.GameFrame;
 		
 
 		private ArrayList<ObserverInterface> observers = new ArrayList<>();
+		private ArrayList<CategoryObserverInterface> categoryObservers = new ArrayList<>();
 		ArrayList<Integer> result = new ArrayList<>();
 		ArrayList<String> playerNames;
+		String category;
 
 		
 		public YahtzeeController(){
@@ -116,6 +123,9 @@ import view.gameframe.GameFrame;
 		private void setButtonClickEvent() {
 			Button nextButton = (Button)getCurrentPlayerFrame().getButtons().get(0);
 			Button button = (Button)getCurrentPlayerFrame().getButtons().get(2);
+			ComboBox<Categories> categories = (ComboBox<Categories>)getCurrentPlayerFrame().getButtons().get(1);
+			categories.setOnAction(event -> {category = categories.getSelectionModel().getSelectedItem().toString();model.deleteCategory(category);
+			System.out.println(category);});
 			button.setOnMouseClicked(event -> this.rollDices());
 			nextButton.setOnMouseClicked(event -> {getCurrentPlayerFrame().removeButtons();
 													getNextPlayerFrame().addButtons();setButtonClickEvent();});
@@ -127,6 +137,13 @@ import view.gameframe.GameFrame;
 				j++;
 			}
 			notifyObserver();
+		}
+		
+		private void setCategoryEvent(){
+			ComboBox<Categories> categories = (ComboBox<Categories>)getCurrentPlayerFrame().getButtons().get(1);
+			categories.setOnAction(event -> {category = categories.getSelectionModel().getSelectedItem().toString();model.deleteCategory(category);
+			System.out.println(category);});
+			notifyCategoryObserver();
 		}
 		
 		private GameFrame getCurrentPlayerFrame() {
@@ -182,8 +199,24 @@ import view.gameframe.GameFrame;
 		public void update(int i) {
 			System.out.println("kaka");
 			System.out.println(i);
+			System.out.println("alejopa");
+			model.deleteCategory(category);
 			 model.getGame().getAllDices().get(i).setState(model.getGame().getAllDices().get(i).getNotRollable());
 			 System.out.println(model.getGame().getAllDices().get(i).getState().toString());
+		}
+
+		@Override
+		public void updateCategory(String category) {
+			System.out.println("alejopa");
+			model.deleteCategory(category);
+		}
+
+		@Override
+		public void notifyCategoryObserver() {
+			frame.updateCategory(category);
+			for(CategoryObserverInterface categoryObserver: categoryObservers){
+				categoryObserver.updateCategory(category);
+			}
 		}
 
 		

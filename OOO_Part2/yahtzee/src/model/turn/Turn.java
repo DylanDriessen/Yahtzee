@@ -80,4 +80,8 @@ public class Turn {
 		return this.dices;
 	}
 	
+	public int getPointsCategory(String category){
+		return this.getPointsCategory(category);
+	}
+	
 }
