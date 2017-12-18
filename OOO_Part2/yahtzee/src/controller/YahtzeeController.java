@@ -118,6 +118,9 @@ import view.gameframe.GameFrame;
 		private void setButtonClickEvent() {
 			Button nextButton = (Button)getCurrentPlayerFrame().getButtons().get(0);
 			Button button = (Button)getCurrentPlayerFrame().getButtons().get(2);
+            ComboBox<Categories> categories = (ComboBox<Categories>)getCurrentPlayerFrame().getButtons().get(1);
+            categories.setOnAction(event -> {category = categories.getSelectionModel().getSelectedItem().toString();model.deleteCategory(category);
+            });
 			button.setOnMouseClicked(event -> {
 				this.rollDices();
 				});
