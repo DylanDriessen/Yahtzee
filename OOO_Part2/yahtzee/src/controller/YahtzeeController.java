@@ -105,7 +105,7 @@ import view.gameframe.GameFrame;
 			ArrayList<Dice> dices = model.getAllDices();
 			int j = 0;
 			for(int i = dices.size()-1; i >=0; i--){
-				result.set(j, dices.get(i).getEyes());
+				result.set(i, dices.get(i).getEyes()); //Veranderd naar i -> om visueel dobbelsteen opzij te zetten
 				j++;
 			}
 			try {
