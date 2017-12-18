@@ -154,6 +154,11 @@ import view.gameframe.GameFrame;
 			
 		}
 
+		public int getScores() {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+
 		
 
 	}
