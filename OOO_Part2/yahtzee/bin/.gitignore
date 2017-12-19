@@ -1,5 +1,13 @@
-/application/
 /controller/
-/exception/
 /model/
 /view/
+/Facade.ucls
+/GameStates.ucls
+/Grand UML.ucls
+/MVC.ucls
+/Model.ucls
+/Observer.ucls
+/State.ucls
+/Strategy.ucls
+/application/
+/view.ucls

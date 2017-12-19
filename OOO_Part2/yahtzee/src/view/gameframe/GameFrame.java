@@ -12,6 +12,7 @@ import com.sun.prism.paint.Color;
 import controller.SubjectInterface;
 
 import exception.DomainException;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -50,7 +51,7 @@ public class GameFrame implements ObserverInterface {
 	StackPane clickButtons = new StackPane();
 	Scoreboard scoreboard = new Scoreboard();
 
-	public void makeFrameWithRoll(Stage primaryStage, String name, String currentName, ArrayList<Integer> result){
+	public void makeFrameWithRoll(Stage primaryStage, String name, String currentName, ArrayList<Integer> result, int score){
 		opzijGezet = new ArrayList<>();		
 		try{
 			this.setDices(result);
@@ -62,6 +63,7 @@ public class GameFrame implements ObserverInterface {
 			primaryStage.setTitle("Yahtzee");
 			gridpane.add(dices, 0, 0);
 			gridpane.add(clickButtons, 2,20);
+			gridpane.add(scoreboard.getScoreboard(score), 100, 21);
 			Label nameLabel = buttons.setName(currentName);
 			Label current = buttons.setCurrentName(name);
 			root.getChildren().addAll(current,nameLabel,gridpane);	
@@ -142,12 +144,12 @@ public class GameFrame implements ObserverInterface {
 	}
 	
 	
-	public TableView<Categories> getScoreboard(){
-		TableView<Categories> score = scoreboard.getScoreboard();
-		score.setTranslateX(500);
-		score.setTranslateY(500);
-		return score;
-	}
+//	public TableView<Categories> getScoreboard(){
+//		TableView<Categories> score = scoreboard.getScoreboard();
+//		score.setTranslateX(500);
+//		score.setTranslateY(500);
+//		return score;
+//	}
 	
 	public TextField spelerField(){
 		TextField field = new TextField("What's your name");

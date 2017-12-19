@@ -9,6 +9,7 @@ public class SimpleCatagoryStrategy {
 	List<Dice> dices;
 	
 	public Category catagory(Categories category) {
+		
 		if (category.equals(Categories.ACES)){
 			return new Aces();
 		} else if(category.equals(Categories.TWOS)){

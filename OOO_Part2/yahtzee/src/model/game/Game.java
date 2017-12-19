@@ -21,6 +21,7 @@ public class Game {
 		this.players = new ArrayList<>();
 		this.setIndexNextPlayer();
 		this.dices = new Dices(5);
+		this.catagories = new SimpleCatagoryStrategy();
 	}
 	
 	public void Start(){

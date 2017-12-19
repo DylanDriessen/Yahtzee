@@ -1,5 +1,7 @@
 package model.turn;
 
+import java.util.Locale.Category;
+
 import exception.DomainException;
 import model.board.Dice;
 import model.board.Dices;
@@ -81,7 +83,10 @@ public class Turn {
 	}
 	
 	public int getPointsCategory(String category){
-		return this.getPointsCategory(category);
+		for(Categories c : Categories.values()) {
+			if(c.toString().equals(category.toUpperCase()))return this.getScore(c);
+		}
+		return 0;
 	}
 	
 }

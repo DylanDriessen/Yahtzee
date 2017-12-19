@@ -1,6 +1,8 @@
 package view.scoreboard;
 
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import model.score.Categories;
@@ -13,7 +15,7 @@ public class Scoreboard {
 
 	}
 	
-	public TableView<Categories> getScoreboard(){
+	public TableView<Categories> getScoreboard(int score){
 		TableView<Categories> table = new TableView<Categories>();
 
 		TableColumn<Categories, String> catCol = new TableColumn<>("Categorie");
@@ -21,9 +23,9 @@ public class Scoreboard {
 		catCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCategorie()));
 
 		//Score kolom
-		TableColumn<SimpleCatagoryStrategy, Category> scoreCol = new TableColumn<>("Score");
+		TableColumn<SimpleCatagoryStrategy, Integer> scoreCol = new TableColumn<>("Score");
 		scoreCol.setMinWidth(100);
-//		scoreCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().catagory(category)));
+//		scoreCol.setCellValueFactory(cellData -> score);
 
 		table.getItems().addAll(Categories.values());
 		table.getColumns().add(catCol);

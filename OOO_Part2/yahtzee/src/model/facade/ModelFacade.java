@@ -81,6 +81,7 @@ Game game;
 	@Override
 	public void deleteCategory(String Category) {
 		System.out.println(Category);
+		System.out.println(game.getTurn().getPointsCategory(Category));
 	}
 	
 }

@@ -171,10 +171,10 @@ import view.scoreboard.Scoreboard;
 				String naam = name;
 				String currentName = model.getCurrentPlayer().getNaam();
 				this.observers.add(gameFrame);
-				gameFrame.makeFrameWithRoll(stage, naam,currentName, result);
+				gameFrame.makeFrameWithRoll(stage, naam,currentName, result, 200);
 			}
-			
 		}
+			
 		
 		private void setClicableDices(GameFrame gameFrame) {
 			for(Node node : gameFrame.getVisualDices()) {
@@ -207,6 +207,10 @@ import view.scoreboard.Scoreboard;
 					gameFrame.translateText(node).setTranslateY(200);
 				}
 			}
+		}
+		
+		private void setTableScore() {
+			
 		}
 
 		@Override
