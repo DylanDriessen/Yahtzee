@@ -135,9 +135,9 @@ public class GameFrame implements ObserverInterface {
 
 	private void setDices(ArrayList<Integer> result){
 		
-		for(int j = 0; j <= 4; j++){
-			result.add(0);
-		}
+		
+		if (result == null || result.isEmpty())for(int j = 0; j <= 4; j++)result.add(0);
+		
 		
 	}
 	
