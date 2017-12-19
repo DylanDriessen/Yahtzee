@@ -115,4 +115,8 @@ public class Game {
  	public Turn getTurn() {
  		return this.turn;
  	}
+ 	
+ 	public String getChosenCategory() {
+ 		return this.turn.getChosenCategory();
+ 	}
  }

@@ -162,7 +162,9 @@ import view.scoreboard.Scoreboard;
 			}
 		}
 		
-		
+		private String getChosenCategory() {
+			return model.getChosenCategory();
+		}
 		
 		private void makeFrames(ArrayList<String> resultNaam){
 			for (String name : playerNames) {
@@ -171,7 +173,7 @@ import view.scoreboard.Scoreboard;
 				String naam = name;
 				String currentName = model.getCurrentPlayer().getNaam();
 				this.observers.add(gameFrame);
-				gameFrame.makeFrameWithRoll(stage, naam,currentName, result, 200);
+				gameFrame.makeFrameWithRoll(stage, naam,currentName, result, 0, getChosenCategory());
 			}
 		}
 			

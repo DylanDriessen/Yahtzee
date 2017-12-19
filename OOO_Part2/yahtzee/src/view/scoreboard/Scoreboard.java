@@ -15,7 +15,7 @@ public class Scoreboard {
 
 	}
 	
-	public TableView<Categories> getScoreboard(int score){
+	public TableView<Categories> getScoreboard(int score, String category){
 		TableView<Categories> table = new TableView<Categories>();
 
 		TableColumn<Categories, String> catCol = new TableColumn<>("Categorie");
@@ -32,4 +32,5 @@ public class Scoreboard {
 		
 		return table;
 	}
+	
 }
