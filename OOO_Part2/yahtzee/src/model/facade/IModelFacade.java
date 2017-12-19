@@ -24,5 +24,6 @@ public interface IModelFacade {
 	void reduceChance();
 	int getscore(String category);
 	void deleteCategory(String Category);
+	String getChosenCategory();
 	}
 

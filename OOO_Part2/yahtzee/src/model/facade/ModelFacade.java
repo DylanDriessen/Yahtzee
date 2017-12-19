@@ -83,5 +83,9 @@ Game game;
 		System.out.println(Category);
 		System.out.println(game.getTurn().getPointsCategory(Category));
 	}
+	@Override
+	public String getChosenCategory() {
+		return game.getChosenCategory();
+	}
 	
 }

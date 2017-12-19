@@ -51,7 +51,7 @@ public class GameFrame implements ObserverInterface {
 	StackPane clickButtons = new StackPane();
 	Scoreboard scoreboard = new Scoreboard();
 
-	public void makeFrameWithRoll(Stage primaryStage, String name, String currentName, ArrayList<Integer> result, int score){
+	public void makeFrameWithRoll(Stage primaryStage, String name, String currentName, ArrayList<Integer> result, int score, String category){
 		opzijGezet = new ArrayList<>();		
 		try{
 			this.setDices(result);
@@ -63,7 +63,7 @@ public class GameFrame implements ObserverInterface {
 			primaryStage.setTitle("Yahtzee");
 			gridpane.add(dices, 0, 0);
 			gridpane.add(clickButtons, 2,20);
-			gridpane.add(scoreboard.getScoreboard(score), 100, 21);
+			gridpane.add(scoreboard.getScoreboard(score, category), 100, 21);
 			Label nameLabel = buttons.setName(currentName);
 			Label current = buttons.setCurrentName(name);
 			root.getChildren().addAll(current,nameLabel,gridpane);	

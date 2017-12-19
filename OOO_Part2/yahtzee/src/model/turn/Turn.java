@@ -15,6 +15,7 @@ public class Turn {
 	Player player;
 	SimpleCatagoryStrategy category;
 	Dices dices;
+	Categories chosenCategory;
 	
 	public Turn(int chances, Player player, SimpleCatagoryStrategy category, Dices dices) {
 		setChances(chances);
@@ -33,8 +34,17 @@ public class Turn {
 		if (!contains) throw new DomainException("This category has already been chosen");
 		
 		int points = this.getCatagory().catagory(category).getPoints(dices.getDices());
+		setChosenCategory(category);
 		this.player.removeCategory(category);
 		return points;
+	}
+	
+	public void setChosenCategory(Categories category) {
+		this.chosenCategory =  category;
+	}
+
+	public String getChosenCategory() {
+		return chosenCategory.toString();
 	}
 	
 	public void setChosenDice(Dice chosenDice) {
