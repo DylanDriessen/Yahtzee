@@ -84,9 +84,6 @@ import view.scoreboard.Scoreboard;
 		        	this.makeFrames(model.getALLPlayersNames());
 		        	((GameFrame) observers.get(0)).addButtons();
 		        	setButtonClickEvent();
-		        	for(ObserverInterface o : observers) {
-		        		setClicableDices((GameFrame)o);
-		        	}
 	        	} catch (Exception e) {
 	        		Text text = new Text();
 	        		text.setText(e.getMessage());
@@ -102,11 +99,11 @@ import view.scoreboard.Scoreboard;
 		
 		private void rollDices(){
 			model.rollDices();
-
+			setClicableDices(getCurrentPlayerFrame());
 			ArrayList<Dice> dices = model.getAllDices();
 			int j = 0;
 			for(int i = dices.size()-1; i >=0; i--){
-				result.set(j, dices.get(i).getEyes());
+				result.set(i, dices.get(i).getEyes()); //Veranderd naar i -> om visueel dobbelsteen opzij te zetten
 				j++;
 			}
 			try {
@@ -122,13 +119,16 @@ import view.scoreboard.Scoreboard;
 		private void setButtonClickEvent() {
 			Button nextButton = (Button)getCurrentPlayerFrame().getButtons().get(0);
 			Button button = (Button)getCurrentPlayerFrame().getButtons().get(2);
+            ComboBox<Categories> categories = (ComboBox<Categories>)getCurrentPlayerFrame().getButtons().get(1);
+            categories.setOnAction(event -> {category = categories.getSelectionModel().getSelectedItem().toString();model.deleteCategory(category);
+            });
 			button.setOnMouseClicked(event -> {
 				this.rollDices();
-				setClicableDices(getCurrentPlayerFrame());
 				});
 			
 			nextButton.setOnMouseClicked(event -> {
 				resetDices(getCurrentPlayerFrame());
+				setUnClicableDices(getCurrentPlayerFrame());
 				getCurrentPlayerFrame().removeButtons();
 				getNextPlayerFrame().addButtons();
 				setButtonClickEvent();
@@ -185,8 +185,15 @@ import view.scoreboard.Scoreboard;
 						gameFrame.translateText(gameFrame.getVisualDices().get(gameFrame.getVisualDices().indexOf(node)+5)).setTranslateY(100);
 						model.getAllDices().get(gameFrame.getVisualDices().indexOf(node)).setState(
 								model.getAllDices().get(gameFrame.getVisualDices().indexOf(node)).getDiceChosen());
-								System.out.println("The index is " + gameFrame.getVisualDices().indexOf(node));
 					});
+				}
+			}
+		}
+		
+		private void setUnClicableDices(GameFrame gameFrame) {
+			for(Node node : gameFrame.getVisualDices()) {
+				if(gameFrame.translateRectangle(node)!=null) {
+					gameFrame.translateRectangle(node).setOnMouseClicked(event -> {});
 				}
 			}
 		}

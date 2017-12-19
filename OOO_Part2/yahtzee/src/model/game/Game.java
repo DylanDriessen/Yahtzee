@@ -30,7 +30,6 @@ public class Game {
  		}
  		else {
  			this.turn = new Turn(3, this.getCurrentPlayer(), this.catagories, this.dices);
- 			System.out.println("Turn is aangemaakt");
  		}
  	}
 	

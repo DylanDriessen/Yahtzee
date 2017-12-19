@@ -60,7 +60,6 @@ public class GameFrame implements ObserverInterface {
 				dices.getChildren().add(t);
 			}
 			primaryStage.setTitle("Yahtzee");
-			Button turn = buttons.turn();
 			gridpane.add(dices, 0, 0);
 			gridpane.add(clickButtons, 2,20);
 			Label nameLabel = buttons.setName(currentName);
