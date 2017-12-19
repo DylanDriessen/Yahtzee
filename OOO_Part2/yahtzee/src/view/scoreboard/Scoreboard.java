@@ -8,6 +8,7 @@ import javafx.scene.control.TableView;
 import model.score.Categories;
 import model.score.Category;
 import model.score.SimpleCatagoryStrategy;
+import model.turn.Turn;
 
 public class Scoreboard {
 
@@ -15,7 +16,7 @@ public class Scoreboard {
 
 	}
 	
-	public TableView<Categories> getScoreboard(int score, String category){
+	public TableView<Categories> getScoreboard(int score, Categories category){
 		TableView<Categories> table = new TableView<Categories>();
 
 		TableColumn<Categories, String> catCol = new TableColumn<>("Categorie");
@@ -23,9 +24,9 @@ public class Scoreboard {
 		catCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCategorie()));
 
 		//Score kolom
-		TableColumn<Categories, String> scoreCol = new TableColumn<>("Score");
+		TableColumn<Turn, Number> scoreCol = new TableColumn<>("Score");
 		scoreCol.setMinWidth(100);
-		scoreCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getScore())));
+		scoreCol.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getScore(category)));
 
 		table.getItems().addAll(Categories.values());
 		table.getColumns().addAll(catCol, scoreCol);
