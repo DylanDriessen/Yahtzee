@@ -24,10 +24,14 @@ public class Game {
 	}
 	
 	public void Start(){
+		System.out.println();
  		if (players.size()<=1){
  			throw new IllegalArgumentException("Minimum 2 players required");
  		}
- 		else this.setIndexNextPlayer();
+ 		else {
+ 			this.turn = new Turn(3, this.getCurrentPlayer(), this.catagories, this.dices);
+ 			System.out.println("Turn is aangemaakt");
+ 		}
  	}
 	
 	public void nextPlayer() {
@@ -79,7 +83,8 @@ public class Game {
  	}
  	
  	private void setIndexNextPlayer(){
- 		if(this.indexNextPlayer >= players.size()){ // mogelijke fout mss = weg
+ 		System.out.println(players.size());
+ 		if(this.indexNextPlayer >= players.size()-1){ // mogelijke fout mss = weg
  			this.indexNextPlayer = 0;
  		}
  		else{
@@ -101,5 +106,13 @@ public class Game {
  			games.add(players.get(i).getNaam());
  		}
 		return games;	
+ 	}
+ 	
+ 	public void resetDices(){
+ 		dices.resetDices();
+ 	}
+ 	
+ 	public Turn getTurn() {
+ 		return this.turn;
  	}
  }

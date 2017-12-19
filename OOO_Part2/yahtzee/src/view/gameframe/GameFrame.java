@@ -2,13 +2,19 @@ package view.gameframe;
 
 
 import java.util.ArrayList;
-import java.util.List;
-
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+
+import javax.swing.plaf.synth.SynthScrollBarUI;
+
+import com.sun.prism.paint.Color;
+
 import controller.SubjectInterface;
+
 import exception.DomainException;
+import javafx.collections.ObservableList;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -27,13 +33,10 @@ import view.board.ObserverInterface;
 import view.buttons.Buttons;
 import view.dice.DiceCreator;
 
-
-
 import view.scoreboard.Scoreboard;
 
 public class GameFrame implements ObserverInterface {
 	Buttons buttons = new Buttons();
-	SubjectInterface i;
 	BoardCreator board = new BoardCreator();
 	Group root = board.newGroup();
 	Scene scene = board.newScene(root);
@@ -42,35 +45,28 @@ public class GameFrame implements ObserverInterface {
 	private int x1 = 100;
 	private int y= 200;
 	StackPane dices = new StackPane();
+	ArrayList<Integer> opzijGezet;
+	String category;
+	StackPane clickButtons = new StackPane();
+	Scoreboard scoreboard = new Scoreboard();
 
-	public void makeFrameWithRoll(Stage primaryStage, String name, Button button, ArrayList<Integer> result){
-			Scoreboard scoreboard = new Scoreboard();
+	public void makeFrameWithRoll(Stage primaryStage, String name, String currentName, ArrayList<Integer> result){
+		opzijGezet = new ArrayList<>();		
 		try{
+			this.setDices(result);
 			ArrayList<Text> textLijst = creator.createText(result, x1, y);
-			int length = result.size() -1;
-			for(int i = 0; i <= 4; i++){
-				Rectangle rect = creator.createBackDice(x1, y);
-				
-				x1 = x1+100;
-				length--;
-				dices.getChildren().addAll(rect);
-			}
-			
+			createFiveDices();
 			for(Text t: textLijst){
 				dices.getChildren().add(t);
 			}
-			
-			
-//			StackPane dices = creator.createDice(result);
 			primaryStage.setTitle("Yahtzee");
 			Button turn = buttons.turn();
 			gridpane.add(dices, 0, 0);
-			ComboBox<Categories> categories = buttons.categories();
-			Label nameLabel = buttons.setName(name);
-//			Pane scorebord = scoreboard.;
-//			scorebord.setTranslateX(900);
-//			scorebord.setTranslateY(150);
-			root.getChildren().addAll(turn,categories,nameLabel,gridpane,button/*, scorebord*/);	
+			gridpane.add(clickButtons, 2,20);
+			Label nameLabel = buttons.setName(currentName);
+			Label current = buttons.setCurrentName(name);
+			root.getChildren().addAll(current,nameLabel,gridpane);	
+
 			primaryStage.setScene(scene);
 			primaryStage.show();	
 		}
@@ -79,52 +75,79 @@ public class GameFrame implements ObserverInterface {
 		}
 	}
 	
-	public boolean MoveUp(){
-		boolean up = true;
-		y = y + 100;
-		System.out.println(y);
-		return  up;
+	private void createFiveDices(){
+		Rectangle dice1 = creator.dice1();
+		Rectangle dice2 = creator.dice2();
+		Rectangle dice3 = creator.dice3();
+		Rectangle dice4 = creator.dice4();
+		Rectangle dice5 = creator.dice5();
+		dices.getChildren().addAll(dice1,dice2,dice3,dice4,dice5);
 	}
-//	public void makeFrameWithoutRoll(Stage primaryStage, String naam, Scoreboard scoreboard){
-//		try{
-//			Group root = board.newGroup();
-//			Scene scene = board.newScene(root);
-//			GridPane gridpane = board.maakGrid();
-//			content = new MakeContent(); // constructor wordt opgeroepen voor zwarte vierkanten 
-////			Pane dices = content.maakContent(); // dices worden aagnemaakt
-//			primaryStage.setTitle("Yahtzee");
-////			gridpane.add(dices, 0, 0); // hier worden de dices toegevoegd
-//			Label name = buttons.setName(naam);
-//			root.getChildren().addAll(name,gridpane);
-//
-//			primaryStage.setScene(scene);
-//			primaryStage.show();
-//			
-//		}
-//		catch(DomainException e){
-//			JOptionPane.showMessageDialog(null, e.getMessage());
-//		}
-//	}
+	
+	public ObservableList<Node> getVisualDices(){
+		return this.dices.getChildren();
+	}
+	
+	public Rectangle translateRectangle(Node node) {
+		if(node instanceof Rectangle) {
+			return (Rectangle)node;
+		}
+		return null;
+	}
+	
+	public Text translateText(Node node) {
+		if(node instanceof Text) {
+			return (Text)node;
+		}
+		return null;
+	}
+
 
 	@Override
 	public void update(ArrayList<Integer> waardes) {
-		int x1 = 100;
-		ArrayList<Text> textLijstUpdate = creator.createText(waardes, x1, y);
-		dices.getChildren().clear();
-
-		for(Text t: textLijstUpdate){
-			Rectangle rect = creator.createBackDice(x1, y);
-			dices.getChildren().addAll(rect,t);
-			x1 = x1 +100;
+		for(int i = 5; i < dices.getChildren().size(); i++) {
+			((Text)dices.getChildren().get(i)).setText(Integer.toString(waardes.get(i-5)));
 		}
-		
-
-			
+	}
+	 //NextButten implementatie
+	public void addButtons() {
+		ComboBox<Categories> categories = buttons.categories();
+		Button turn = buttons.turn();
+		Button btn = buttons.RollButton();
+		clickButtons.getChildren().addAll(turn, categories, btn);
 	}
 	
+	public ObservableList<Node> getButtons() {
+		if(this.clickButtons.getChildren().isEmpty()) throw new DomainException("No buttons present");
+		return this.clickButtons.getChildren();
+	}
+	
+	public void removeButtons() {
+		this.clickButtons.getChildren().clear();
+	}
+	
+	public void addError(String string) {
+		Text text = new Text();
+		text.setText(string);
+		text.setTranslateX(200);
+		text.setTranslateY(200);
+		this.clickButtons.getChildren().add(text);
+	}
 
-	public JTable getScoreboard(){
-		return null;
+	private void setDices(ArrayList<Integer> result){
+		
+		for(int j = 0; j <= 4; j++){
+			result.add(0);
+		}
+		
+	}
+	
+	
+	public TableView<Categories> getScoreboard(){
+		TableView<Categories> score = scoreboard.getScoreboard();
+		score.setTranslateX(500);
+		score.setTranslateY(500);
+		return score;
 	}
 	
 	public TextField spelerField(){
@@ -156,30 +179,4 @@ public class GameFrame implements ObserverInterface {
         startBtn.setTranslateY(115);
         return startBtn;
 	}
-	
-	public  Button rollButton(){
-		Button btn = new Button("Roll Dices");
-		btn.setTranslateX(300);
-		btn.setTranslateY(300);
-	
-		return btn;
-	}
-	
-	
-
-	
-		
-
-	}
-
-	
-
-
-	
-	
-	
-	
-	
-	
-
-
+}

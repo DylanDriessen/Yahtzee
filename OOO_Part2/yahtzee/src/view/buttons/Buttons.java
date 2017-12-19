@@ -24,6 +24,13 @@ public class Buttons {
 		return categories;
 	}
 	
+	public Label setCurrentName(String naam){
+		Label name = new Label("Dit is het speelbord van "+naam + " ");
+		name.setTranslateX(50);
+		name.setTranslateY(100);
+		return name;
+	}
+	
 	public Label setName(String naam){
 		Label name = new Label(naam + " is aan de beurt");
 		name.setTranslateX(600);
@@ -31,11 +38,11 @@ public class Buttons {
 		return name;
 	}
 	
-	public Button next(){
-		Button next = new Button("next Player");
-		next.setTranslateX(55);
-		next.setTranslateY(55);
-		return next;
+	public Button RollButton(){
+		Button btn = new Button("Roll Dices");
+		btn.setTranslateX(300);
+		btn.setTranslateY(300);
+		return btn;
 	}
 	
 }

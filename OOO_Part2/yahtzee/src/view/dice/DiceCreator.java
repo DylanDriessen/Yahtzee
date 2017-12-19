@@ -3,7 +3,10 @@ package view.dice;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.plaf.synth.SynthScrollBarUI;
+
 import controller.SubjectInterface;
+import controller.YahtzeeController;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
@@ -11,16 +14,16 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import model.ObserverInterfaces.DiceObserver;
+import model.ObserverInterfaces.SubjectDiceInterface;
 import view.board.ObserverInterface;
 
-public class DiceCreator extends StackPane  {
+public class DiceCreator extends StackPane implements SubjectDiceInterface  {
 	
 	
-	private int x1 = 100;
-	private int x2 = 100;
+	
 	private int y = 200;
-	private Pane root = new Pane();
-
+	private DiceObserver o; 
 	List<Label> labels = new ArrayList<>();
 	ArrayList<Integer> result;
 	
@@ -30,20 +33,54 @@ public class DiceCreator extends StackPane  {
 	
 	public DiceCreator(){
 		
-}
+		}
 	
 	
-	public Rectangle createBackDice(int x1 , int y){
+	public Rectangle dice1(){
+		int i = 0;
 		Rectangle rect = new Rectangle(50,50,Color.BLACK);
-		rect.setTranslateX(x1);
-		rect.setTranslateY(y);
-		rect.setOnMouseClicked(event -> this.MoveUp(y));
+		rect.setTranslateX(100);
+		rect.setTranslateY(200);
 		return rect;
 		
 	}
 	
-	private void MoveUp(int y){
-		y = y +100;
+	public Rectangle dice2(){
+		int i = 1;
+		Rectangle rect = new Rectangle(50,50,Color.BLACK);
+		rect.setTranslateX(200);
+		rect.setTranslateY(200);
+		return rect;
+	}
+	
+	public Rectangle dice3(){
+		Rectangle rect = new Rectangle(50,50,Color.BLACK);
+		rect.setTranslateX(300);
+		rect.setTranslateY(200);
+		return rect;
+	}
+	
+	public Rectangle dice4(){
+		Rectangle rect = new Rectangle(50,50,Color.BLACK);
+		rect.setTranslateX(400);
+		rect.setTranslateY(200);
+		return rect;
+	}
+	
+	public Rectangle dice5(){
+		Rectangle rect = new Rectangle(50,50,Color.BLACK);
+		rect.setTranslateX(500);
+		rect.setTranslateY(200);
+		return rect;
+	}
+	
+	public Rectangle createUpDice(int x1, int y2){
+		Rectangle rect = new Rectangle(50,50,Color.BLACK);
+		rect.setRotate(360);
+		rect.setTranslateX(x1);
+		rect.setTranslateY(y2);
+		return rect;
+		
 	}
 	
 	public ArrayList<Text> createText(ArrayList<Integer> result, int x1, int y){
@@ -86,13 +123,23 @@ public class DiceCreator extends StackPane  {
 		
 	
 
-	public Boolean RemoveDice(){
-		boolean up = true;
-		y = y + 200;
-		return up;
+	
+
+
+	
+
+
+	@Override
+	public void notifyDiceObserver(int i) {
+			
+		System.out.println("KAK IN EE NZAK");
 		
+		o.update(i);
+
 	}
 
+
+	
 
 		
 }

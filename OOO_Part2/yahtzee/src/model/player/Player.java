@@ -15,16 +15,15 @@ public class Player {
 	private boolean turn = false;
 	private HashMap<Integer, List<Integer>> dicesThrown = new HashMap<>();
 	private int score;
-	private ArrayList<Categories> categories;
+	private ArrayList<Categories> categories = new ArrayList<>();
 
 	public Player(String naam){
 		this.setNaam(naam);
 		this.score = 0;
 		
-//		Categories[] categoriesEnum = Categories.values();
-//		for (Categories category : categoriesEnum) {
-//			this.categories.add(category);
-//		}
+		for (Categories category : Categories.values()) {
+			this.categories.add(category);
+		}
 	}
 	
 	public Player() {
@@ -69,11 +68,11 @@ public class Player {
 		
 	}
 	
-	public void setTurn(boolean turn) {
+	public void setIsTurn(boolean turn) {
 		this.turn = turn;
 	}
 	
-	public boolean getTrun() {
+	public boolean getIsTurn() {
 		return this.turn;
 	}
 	

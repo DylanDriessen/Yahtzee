@@ -35,7 +35,7 @@ public class Dice extends StackPane {
 	}
 
 	public void roll(){
-		state.rollDice();
+		this.state.rollDice();
 		
 	}
 	
