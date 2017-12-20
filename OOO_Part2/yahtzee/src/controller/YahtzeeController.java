@@ -213,12 +213,12 @@ import view.wrapper.CategoryScore;
 			}
 		}
 		
-		public void getScores() {
-			List<CategoryScore> scores = new ArrayList<>();
-			for(Categories cat : Categories.values()) {
-				scores.add(new CategoryScore(cat, turn.getScore(cat)));
-			}
-		}
+//		public void getScores() {
+//			List<CategoryScore> scores = new ArrayList<>();
+//			for(Categories cat : Categories.values()) {
+//				scores.add(new CategoryScore(cat, turn.getScore(cat)));
+//			}
+//		}
 
 		@Override
 		public void register(ObserverInterface newObserver) {
@@ -244,6 +244,6 @@ import view.wrapper.CategoryScore;
 			System.out.println("kaka");
 			System.out.println(i);
 			model.getGame().getAllDices().get(i).setState(model.getGame().getAllDices().get(i).getNotRollable());
-			getScores();
+//			getScores();
 		}
 }
