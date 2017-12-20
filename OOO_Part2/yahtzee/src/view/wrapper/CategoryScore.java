@@ -6,6 +6,10 @@ public class CategoryScore {
     
 	private Categories category;
 	private int score;
+	
+	public CategoryScore(){
+		
+	}
 		    
 	public CategoryScore(Categories cat, int score) {
 		this.category = cat;

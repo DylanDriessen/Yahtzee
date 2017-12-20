@@ -213,12 +213,12 @@ import view.wrapper.CategoryScore;
 			}
 		}
 		
-//		public void getScores() {
-//			List<CategoryScore> scores = new ArrayList<>();
-//			for(Categories cat : Categories.values()) {
-//				scores.add(new CategoryScore(cat, turn.getScore(cat)));
-//			}
-//		}
+		public void getScores() {
+			List<CategoryScore> scores = new ArrayList<>();
+			for(Categories cat : Categories.values()) {
+				scores.add(new CategoryScore(cat, turn.getScore(cat)));
+			}
+		}
 
 		@Override
 		public void register(ObserverInterface newObserver) {

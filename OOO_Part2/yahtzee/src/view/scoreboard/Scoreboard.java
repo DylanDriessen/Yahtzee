@@ -13,8 +13,7 @@ import view.wrapper.CategoryScore;
 
 public class Scoreboard {
 	
-	YahtzeeController controller;
-	CategoryScore cs;
+	CategoryScore cs = new CategoryScore();
 
 	public Scoreboard(){
 
@@ -22,18 +21,12 @@ public class Scoreboard {
 	
 	public TableView<CategoryScore> getScoreboard(Turn turn){
 		System.out.println("test");
-
-		//Data source voor table opbouwen
-		
-//		List<CategoryScore> scores = new ArrayList<>();
-//		for(Categories cat : Categories.values()) {
-//			scores.add(new CategoryScore(cat, turn.getScore(cat)));
-//		}
 		
 		List<CategoryScore> scores = new ArrayList<>();
-    
+//		scores = controller.getScores();
+		System.out.println("krijgt scores");
 		TableView<CategoryScore> table = new TableView<>();
-
+	
 		TableColumn<CategoryScore, String> catCol = new TableColumn<>("Categorie");
 		catCol.setMinWidth(100);
 		catCol.setCellValueFactory(new PropertyValueFactory("category")); //Weet niet of javafx dit automatisch naar string gaat casten
@@ -42,10 +35,11 @@ public class Scoreboard {
 		TableColumn<CategoryScore, Number> scoreCol = new TableColumn<>("Score");
 		scoreCol.setMinWidth(100);
 		scoreCol.setCellValueFactory(new PropertyValueFactory("score"));
-
-		table.setItems((ObservableList<CategoryScore>) scores);
+//		table.setItems((ObservableList<CategoryScore>) scores);
+		System.out.println(cs);
+		System.out.println("table return");
     	table.getColumns().setAll(catCol, scoreCol);
-                 
+
 		return table;
 	}
  }

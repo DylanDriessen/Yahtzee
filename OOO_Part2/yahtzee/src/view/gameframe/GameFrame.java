@@ -55,7 +55,9 @@ public class GameFrame implements ObserverInterface {
 			primaryStage.setTitle("Yahtzee");
 			gridpane.add(dices, 0, 0);
 			gridpane.add(clickButtons, 2,20);
-//			gridpane.add(scoreboard.getScoreboard(turn), 100, 21);
+			System.out.println("Voor scoreboard");
+			gridpane.add(scoreboard.getScoreboard(turn), 100, 21);
+			System.out.println("Na scoreboard");
 			Label nameLabel = buttons.setName(currentName);
 			Label current = buttons.setCurrentName(name);
 			root.getChildren().addAll(current,nameLabel,gridpane);	
