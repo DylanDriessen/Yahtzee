@@ -1,5 +1,4 @@
 package model.score;
-import java.util.ArrayList;
 import java.util.List;
 
 import model.board.*;

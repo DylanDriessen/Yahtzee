@@ -1,7 +1,5 @@
 package model.score;
 
-import model.turn.Turn;
-
 public enum Categories {
 	
 	ACES("Aces", null),
@@ -20,7 +18,6 @@ public enum Categories {
 	
 	private String categorie;
 	private String score;
-	private Turn turn;
 	
 	Categories(String categorie, String score){
 		this.categorie = categorie;

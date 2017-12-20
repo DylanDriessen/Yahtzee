@@ -3,16 +3,7 @@ package view.gameframe;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-
-import javax.swing.plaf.synth.SynthScrollBarUI;
-
-import com.sun.prism.paint.Color;
-
-import controller.SubjectInterface;
-
 import exception.DomainException;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -23,12 +14,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.score.Categories;
+import model.turn.Turn;
 import view.board.BoardCreator;
 import view.board.ObserverInterface;
 import view.buttons.Buttons;
@@ -50,6 +41,7 @@ public class GameFrame implements ObserverInterface {
 	String category;
 	StackPane clickButtons = new StackPane();
 	Scoreboard scoreboard = new Scoreboard();
+	Turn turn;
 
 	public void makeFrameWithRoll(Stage primaryStage, String name, String currentName, ArrayList<Integer> result, int score, String category){
 		opzijGezet = new ArrayList<>();		
@@ -63,7 +55,7 @@ public class GameFrame implements ObserverInterface {
 			primaryStage.setTitle("Yahtzee");
 			gridpane.add(dices, 0, 0);
 			gridpane.add(clickButtons, 2,20);
-			gridpane.add(scoreboard.getScoreboard(score, category), 100, 21);
+			gridpane.add(scoreboard.getScoreboard(turn), 100, 21);
 			Label nameLabel = buttons.setName(currentName);
 			Label current = buttons.setCurrentName(name);
 			root.getChildren().addAll(current,nameLabel,gridpane);	
@@ -142,14 +134,6 @@ public class GameFrame implements ObserverInterface {
 		
 		
 	}
-	
-	
-//	public TableView<Categories> getScoreboard(){
-//		TableView<Categories> score = scoreboard.getScoreboard();
-//		score.setTranslateX(500);
-//		score.setTranslateY(500);
-//		return score;
-//	}
 	
 	public TextField spelerField(){
 		TextField field = new TextField("What's your name");

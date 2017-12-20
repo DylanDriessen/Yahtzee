@@ -1,7 +1,7 @@
 package controller;
 
 import java.util.ArrayList;
-
+import java.util.List;
 import exception.DomainException;
 import javafx.application.Application;
 import javafx.scene.Group;
@@ -18,9 +18,10 @@ import model.ObserverInterfaces.DiceObserver;
 import model.board.Dice;
 import model.facade.IModelFacade;
 import model.score.Categories;
+import model.turn.Turn;
 import view.board.ObserverInterface;
 import view.gameframe.GameFrame;
-import view.scoreboard.Scoreboard;
+import view.wrapper.CategoryScore;
 
 
 	
@@ -29,7 +30,8 @@ import view.scoreboard.Scoreboard;
 		private IModelFacade model;
 		Stage primaryStage = new Stage();
 		GameFrame frame = new GameFrame();
-		
+		Turn turn;
+		CategoryScore cs;
 
 		private ArrayList<ObserverInterface> observers = new ArrayList<>();
 		ArrayList<Integer> result = new ArrayList<>();
@@ -211,8 +213,11 @@ import view.scoreboard.Scoreboard;
 			}
 		}
 		
-		private void setTableScore() {
-			
+		public void getScores() {
+			List<CategoryScore> scores = new ArrayList<>();
+			for(Categories cat : Categories.values()) {
+				scores.add(new CategoryScore(cat, turn.getScore(cat)));
+			}
 		}
 
 		@Override
@@ -238,9 +243,7 @@ import view.scoreboard.Scoreboard;
 		public void update(int i) {
 			System.out.println("kaka");
 			System.out.println(i);
-			 model.getGame().getAllDices().get(i).setState(model.getGame().getAllDices().get(i).getNotRollable());
+			model.getGame().getAllDices().get(i).setState(model.getGame().getAllDices().get(i).getNotRollable());
+			getScores();
 		}
-
-		
-
-	}
+}

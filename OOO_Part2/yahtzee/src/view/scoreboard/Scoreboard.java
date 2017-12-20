@@ -1,37 +1,52 @@
 package view.scoreboard;
 
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
+import java.util.ArrayList;
+import java.util.List;
+
+import controller.YahtzeeController;
+import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import model.score.Categories;
-import model.score.Category;
-import model.score.SimpleCatagoryStrategy;
+import javafx.scene.control.cell.PropertyValueFactory;
 import model.turn.Turn;
+import view.wrapper.CategoryScore;
 
 public class Scoreboard {
+	
+	YahtzeeController controller;
+	CategoryScore cs;
 
 	public Scoreboard(){
 
 	}
 	
-	public TableView<Categories> getScoreboard(int score, Categories category){
-		TableView<Categories> table = new TableView<Categories>();
+	public TableView<CategoryScore> getScoreboard(Turn turn){
+		System.out.println("test");
 
-		TableColumn<Categories, String> catCol = new TableColumn<>("Categorie");
+		//Data source voor table opbouwen
+		
+//		List<CategoryScore> scores = new ArrayList<>();
+//		for(Categories cat : Categories.values()) {
+//			scores.add(new CategoryScore(cat, turn.getScore(cat)));
+//		}
+		
+		List<CategoryScore> scores = new ArrayList<>();
+    
+		TableView<CategoryScore> table = new TableView<>();
+
+		TableColumn<CategoryScore, String> catCol = new TableColumn<>("Categorie");
 		catCol.setMinWidth(100);
-		catCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCategorie()));
+		catCol.setCellValueFactory(new PropertyValueFactory("category")); //Weet niet of javafx dit automatisch naar string gaat casten
 
 		//Score kolom
-		TableColumn<Turn, Number> scoreCol = new TableColumn<>("Score");
+		TableColumn<CategoryScore, Number> scoreCol = new TableColumn<>("Score");
 		scoreCol.setMinWidth(100);
-		scoreCol.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getScore(category)));
+		scoreCol.setCellValueFactory(new PropertyValueFactory("score"));
 
-		table.getItems().addAll(Categories.values());
-		table.getColumns().addAll(catCol, scoreCol);
-		
+		table.setItems((ObservableList<CategoryScore>) scores);
+    	table.getColumns().setAll(catCol, scoreCol);
+                 
 		return table;
 	}
-	
-}
+ }
+  
