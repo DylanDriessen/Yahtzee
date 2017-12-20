@@ -43,7 +43,7 @@ public class GameFrame implements ObserverInterface {
 	Scoreboard scoreboard = new Scoreboard();
 	Turn turn;
 
-	public void makeFrameWithRoll(Stage primaryStage, String name, String currentName, ArrayList<Integer> result, int score, String category){
+	public void makeFrameWithRoll(Stage primaryStage, String name, String currentName, ArrayList<Integer> result, int score){
 		opzijGezet = new ArrayList<>();		
 		try{
 			this.setDices(result);

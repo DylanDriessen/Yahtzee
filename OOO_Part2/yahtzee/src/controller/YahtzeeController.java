@@ -175,7 +175,7 @@ import view.wrapper.CategoryScore;
 				String naam = name;
 				String currentName = model.getCurrentPlayer().getNaam();
 				this.observers.add(gameFrame);
-				gameFrame.makeFrameWithRoll(stage, naam,currentName, result, 0, getChosenCategory());
+				gameFrame.makeFrameWithRoll(stage, naam,currentName, result, 0);
 			}
 		}
 			
