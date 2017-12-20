@@ -16,7 +16,7 @@ public class Scoreboard {
 
 	}
 	
-	public TableView<Categories> getScoreboard(int score, Categories category){
+	public TableView<Categories> getScoreboard(int score/*, Categories category*/){
 		TableView<Categories> table = new TableView<Categories>();
 
 		TableColumn<Categories, String> catCol = new TableColumn<>("Categorie");
@@ -24,9 +24,9 @@ public class Scoreboard {
 		catCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCategorie()));
 
 		//Score kolom
-		TableColumn<Turn, Number> scoreCol = new TableColumn<>("Score");
+		TableColumn<Categories, Number> scoreCol = new TableColumn<>("Score");
 		scoreCol.setMinWidth(100);
-		scoreCol.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getScore(category)));
+//		scoreCol.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getScore(category)));
 
 		table.getItems().addAll(Categories.values());
 		table.getColumns().addAll(catCol, scoreCol);
