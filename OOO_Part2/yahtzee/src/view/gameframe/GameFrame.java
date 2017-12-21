@@ -40,11 +40,10 @@ public class GameFrame implements ObserverInterface {
 	ArrayList<Integer> opzijGezet;
 	String category;
 	StackPane clickButtons = new StackPane();
-	Scoreboard scoreboard = new Scoreboard();
-	Turn turn;
-
-	public void makeFrameWithRoll(Stage primaryStage, String name, String currentName, ArrayList<Integer> result, int score){
-		opzijGezet = new ArrayList<>();		
+	int scoreX;
+	int scoreY;
+	public void makeFrameWithRoll(Stage primaryStage, String name, String currentName, ArrayList<Integer> result, int score, ArrayList<Categories> categories){
+		clickButtons.setTranslateY(10);
 		try{
 			this.setDices(result);
 			ArrayList<Text> textLijst = creator.createText(result, x1, y);
@@ -54,9 +53,9 @@ public class GameFrame implements ObserverInterface {
 			}
 			primaryStage.setTitle("Yahtzee");
 			gridpane.add(dices, 0, 0);
-			gridpane.add(clickButtons, 2,20);
+			gridpane.add(clickButtons, 0,10);
 			System.out.println("Voor scoreboard");
-			gridpane.add(scoreboard.getScoreboard(turn), 100, 21);
+			makeScoreboard(categories, 80, 0);
 			System.out.println("Na scoreboard");
 			Label nameLabel = buttons.setName(currentName);
 			Label current = buttons.setCurrentName(name);
@@ -96,6 +95,40 @@ public class GameFrame implements ObserverInterface {
 		}
 		return null;
 	}
+	//Make Scoreboard
+	private void makeScoreboard(ArrayList<Categories> categoryList, int colum, int row) {
+		this.scoreX = colum;
+		this.scoreY = row;
+		Text categoryTitle = new Text();
+		categoryTitle.setText("Categories");
+		Text scoreTitle = new Text();
+		scoreTitle.setText("Score");
+		this.gridpane.add(categoryTitle, colum, row);
+		for (int i = 0; i < categoryList.size(); i++) {
+			Text text = new Text();
+			text.setText(categoryList.get(i).toString() + ":  ");
+			this.gridpane.add(text, colum, row + 1 + i);
+			Text score = new Text();
+			score.setText("0");
+			this.gridpane.add(score, colum + 1, row + 1 + i);
+		}
+	}
+	
+	public void updateScoreboard(int score, int place) {
+		this.gridpane.getChildren().remove(getNodeFromGridPane(gridpane, scoreX+1, scoreY+1+place));
+		Text text = new Text();
+		text.setText(Integer.toString(score));
+		this.gridpane.add(text, scoreX+1, scoreY+1+place);
+	}
+	
+	private Node getNodeFromGridPane(GridPane gridPane, int col, int row) {
+	    for (Node node : gridPane.getChildren()) {
+	        if (GridPane.getColumnIndex(node) == col && GridPane.getRowIndex(node) == row) {
+	            return node;
+	        }
+	    }
+	    return null;
+	}
 
 
 	@Override
@@ -130,11 +163,7 @@ public class GameFrame implements ObserverInterface {
 	}
 
 	private void setDices(ArrayList<Integer> result){
-		
-		
 		if (result == null || result.isEmpty())for(int j = 0; j <= 4; j++)result.add(0);
-		
-		
 	}
 	
 	public TextField spelerField(){

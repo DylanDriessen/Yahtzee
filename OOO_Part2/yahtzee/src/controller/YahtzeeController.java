@@ -122,13 +122,15 @@ import view.wrapper.CategoryScore;
 			Button nextButton = (Button)getCurrentPlayerFrame().getButtons().get(0);
 			Button button = (Button)getCurrentPlayerFrame().getButtons().get(2);
             ComboBox<Categories> categories = (ComboBox<Categories>)getCurrentPlayerFrame().getButtons().get(1);
-            categories.setOnAction(event -> {category = categories.getSelectionModel().getSelectedItem().toString();model.deleteCategory(category);
+            categories.setOnAction(event -> {category = categories.getSelectionModel().getSelectedItem().toString();
+            								model.deleteCategory(category);
             });
 			button.setOnMouseClicked(event -> {
 				this.rollDices();
 				});
 			
 			nextButton.setOnMouseClicked(event -> {
+				notifyScoreboardObserver(5, 3); //Hier moeten (Score voor categorie, plaats van categorie in lijst[zie op enum]) komen
 				resetDices(getCurrentPlayerFrame());
 				setUnClicableDices(getCurrentPlayerFrame());
 				getCurrentPlayerFrame().removeButtons();
@@ -175,7 +177,7 @@ import view.wrapper.CategoryScore;
 				String naam = name;
 				String currentName = model.getCurrentPlayer().getNaam();
 				this.observers.add(gameFrame);
-				gameFrame.makeFrameWithRoll(stage, naam,currentName, result, 0);
+				gameFrame.makeFrameWithRoll(stage, naam,currentName, result, 0, model.playerCategories(name));
 			}
 		}
 			
@@ -245,5 +247,12 @@ import view.wrapper.CategoryScore;
 			System.out.println(i);
 			model.getGame().getAllDices().get(i).setState(model.getGame().getAllDices().get(i).getNotRollable());
 //			getScores();
+		}
+		
+		public void notifyScoreboardObserver(int score, int place) {
+			for(ObserverInterface o : observers) {
+				GameFrame g = (GameFrame)o;
+				g.updateScoreboard(score, place);
+			}
 		}
 }

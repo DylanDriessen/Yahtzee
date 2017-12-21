@@ -6,6 +6,7 @@ import java.util.Locale.Category;
 import model.board.Dice;
 import model.game.Game;
 import model.player.Player;
+import model.score.Categories;
 public class ModelFacade implements IModelFacade {
 	
 Game game;
@@ -86,6 +87,10 @@ Game game;
 	@Override
 	public String getChosenCategory() {
 		return game.getChosenCategory();
+	}
+	@Override
+	public ArrayList<Categories> playerCategories(String name) {
+		return game.playerCategories(name);
 	}
 	
 }

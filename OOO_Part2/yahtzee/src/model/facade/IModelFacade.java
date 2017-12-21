@@ -6,6 +6,7 @@ import java.util.Locale.Category;
 import model.board.Dice;
 import model.game.Game;
 import model.player.Player;
+import model.score.Categories;
 
 public interface IModelFacade {
 	void addPlayer(String naam);
@@ -25,5 +26,6 @@ public interface IModelFacade {
 	int getscore(String category);
 	void deleteCategory(String Category);
 	String getChosenCategory();
+	ArrayList<Categories> playerCategories(String name);
 	}
 

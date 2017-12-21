@@ -119,4 +119,12 @@ public class Game {
  	public String getChosenCategory() {
  		return this.turn.getChosenCategory();
  	}
+ 	
+ 	public ArrayList<Categories> playerCategories(String name){
+ 		Player player = new Player();
+ 		for (Player p : players) {
+ 			if(p.getNaam().equals(name)) player = p;
+ 		}
+ 		return player.getCategories();
+ 	}
  }
