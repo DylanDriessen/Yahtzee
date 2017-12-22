@@ -92,5 +92,9 @@ Game game;
 	public ArrayList<Categories> playerCategories(String name) {
 		return game.playerCategories(name);
 	}
+	@Override
+	public int getIndexNextPlayer() {
+		return game.getIndexNextPlayer();
+	}
 	
 }

@@ -28,7 +28,8 @@ public class Game {
  			throw new IllegalArgumentException("Minimum 2 players required");
  		}
  		else {
- 			nextPlayer();
+ 			indexNextPlayer = 1;
+ 			this.turn = new Turn(3, this.getCurrentPlayer(), this.catagories, this.dices);
  		}
  	}
 	
@@ -51,9 +52,7 @@ public class Game {
 	public void addScore(Categories category) {
 		this.getCurrentPlayer().addScore(this.turn.getScore(category));
 	}
- 	
-	//Old Methods
-	
+ 		
 	public ArrayList<String> getAllNames(){
 		ArrayList<String> persons = new ArrayList<>();
 		for (Player player: players){
@@ -70,6 +69,10 @@ public class Game {
  	
  	public void deletePlayer(Player player){
  		players.remove(player);
+ 	}
+ 	
+ 	public int getIndexNextPlayer() {
+ 		return indexNextPlayer;
  	}
  	
  	public int getIndexCurrentPlayer(){
@@ -92,10 +95,7 @@ public class Game {
  	}
  	
  	public Player getCurrentPlayer(){
- 		if (indexNextPlayer <= 0){
- 			return players.get(0);
- 		}
- 		return players.get(indexNextPlayer-1);
+ 		return players.get(getIndexCurrentPlayer());
  	}
  	
  	

@@ -1,5 +1,7 @@
 package view.buttons;
 
+import java.util.ArrayList;
+
 import javafx.collections.FXCollections;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -14,9 +16,9 @@ public class Buttons {
 		return turn;
 	}
 	
-	public ComboBox<Categories> categories(){
+	public ComboBox<Categories> categories(ArrayList<Categories> arrayList){
 		ComboBox<Categories> categories = new ComboBox<>();
-		categories.setItems(FXCollections.observableArrayList(Categories.values()));
+		categories.setItems(FXCollections.observableArrayList(arrayList));
 		categories.setPromptText("Categories");
 		categories.setPrefSize(120, 36);
 		return categories;

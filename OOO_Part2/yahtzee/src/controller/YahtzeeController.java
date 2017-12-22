@@ -84,8 +84,7 @@ import view.wrapper.CategoryScore;
 	        		model.start();
 	        		stage.close();
 		        	this.makeFrames(model.getALLPlayersNames());
-		        	System.out.println(model.getALLPlayersNames().get(0));
-		        	((GameFrame) observers.get(0)).addButtons();
+		        	((GameFrame) observers.get(0)).addButtons(model.getCurrentPlayer().getCategories());
 		        	setButtonClickEvent();
 	        	} catch (Exception e) {
 	        		Text text = new Text();
@@ -140,7 +139,11 @@ import view.wrapper.CategoryScore;
 					resetDices(getCurrentPlayerFrame());
 					setUnClicableDices(getCurrentPlayerFrame());
 					getCurrentPlayerFrame().removeButtons();
-					getNextPlayerFrame().addButtons();
+					getNextPlayerFrame().addButtons(model.getNextPlayer().getCategories());
+					System.out.println(model.getCurrentPlayer().getNaam());
+					model.setNextPlayer();
+					System.out.println(model.getCurrentPlayer().getNaam());
+					System.out.println(model.getIndexCurrentPlayer());
 					setButtonClickEvent();
 				} catch(NullPointerException e) {
 					getCurrentPlayerFrame().resetErrors();
@@ -163,8 +166,7 @@ import view.wrapper.CategoryScore;
 		}
 		
 		private GameFrame getNextPlayerFrame() {
-			model.setNextPlayer();
-			return (GameFrame) this.observers.get(model.getIndexCurrentPlayer());
+			return (GameFrame) this.observers.get(model.getIndexNextPlayer());
 		}
 		
 		private void getNames(String text) {

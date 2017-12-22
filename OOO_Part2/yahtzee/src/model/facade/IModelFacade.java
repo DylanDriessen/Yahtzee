@@ -27,5 +27,6 @@ public interface IModelFacade {
 	void deleteCategory(String Category);
 	String getChosenCategory();
 	ArrayList<Categories> playerCategories(String name);
+	int getIndexNextPlayer();
 	}
 

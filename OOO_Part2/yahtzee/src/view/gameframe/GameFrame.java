@@ -148,8 +148,8 @@ public class GameFrame implements ObserverInterface {
 	}
 
 	//NextButten implementatie
-	public void addButtons() {
-		ComboBox<Categories> categories = buttons.categories();
+	public void addButtons(ArrayList<Categories> arrayList) {
+		ComboBox<Categories> categories = buttons.categories(arrayList);
 		Button turn = buttons.turn();
 		Button btn = buttons.RollButton();
 		clickButtons.getChildren().addAll(btn, categories, turn);
