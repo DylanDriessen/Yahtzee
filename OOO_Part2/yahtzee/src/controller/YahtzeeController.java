@@ -133,6 +133,7 @@ import view.wrapper.CategoryScore;
 			
 			nextButton.setOnMouseClicked(event -> {
 				try {
+					model.getCurrentPlayer().addScore(model.getscore(category));
 					notifyScoreboardObserver(model.getscore(category), Categories.valueOf(category).getScore());
 					notifyGameFrames();
 					getCurrentPlayerFrame().resetErrors();
@@ -140,10 +141,7 @@ import view.wrapper.CategoryScore;
 					setUnClicableDices(getCurrentPlayerFrame());
 					getCurrentPlayerFrame().removeButtons();
 					getNextPlayerFrame().addButtons(model.getNextPlayer().getCategories());
-					System.out.println(model.getCurrentPlayer().getNaam());
 					model.setNextPlayer();
-					System.out.println(model.getCurrentPlayer().getNaam());
-					System.out.println(model.getIndexCurrentPlayer());
 					setButtonClickEvent();
 				} catch(NullPointerException e) {
 					getCurrentPlayerFrame().resetErrors();
@@ -258,7 +256,7 @@ import view.wrapper.CategoryScore;
 		}
 		
 		public void notifyScoreboardObserver(int score, int place) {
-			getCurrentPlayerFrame().updateScoreboard(score, place);
+			getCurrentPlayerFrame().updateScoreboard(score, place, model.getCurrentPlayer().getScore());
 		}
 		
 		public void notifyGameFrames() {

@@ -144,9 +144,23 @@ public class GameFrame implements ObserverInterface {
 			this.gridpane.add(score, colum + 1, row + 1 + i);
 			
 		}
+		
+		Label fullScore = new Label();
+		fullScore.setStyle("-fx-background-color:black;-fx-text-fill: white;");
+		fullScore.setPrefSize(50, 27);
+		fullScore.setPadding(new Insets(0,0,0,5));
+		fullScore.setText("0");
+		gridpane.add(fullScore, colum + 1, row + categoryList.size()+1);
+		
+		Label fullScoreTitle = new Label();
+		fullScoreTitle.setStyle("-fx-background-color:black;-fx-text-fill: white;");
+		fullScoreTitle.setPrefSize(150, 27);
+		fullScoreTitle.setPadding(new Insets(0,0,0,5));
+		fullScoreTitle.setText("Total Score:  ");
+		gridpane.add(fullScoreTitle, colum, row + categoryList.size()+1);
 	}
 	
-	public void updateScoreboard(int score, int place) {
+	public void updateScoreboard(int score, int place, int currentPlayerTotalScore) {
 		this.gridpane.getChildren().remove(getNodeFromGridPane(gridpane, scoreX+1, scoreY+1+place));
 		Label text = new Label();
 		text.setText(Integer.toString(score));
@@ -154,6 +168,13 @@ public class GameFrame implements ObserverInterface {
 		text.setPrefSize(50, 27);
 		text.setPadding(new Insets(0,0,0,5));
 		this.gridpane.add(text, scoreX+1, scoreY+1+place);
+		
+		Label fullScoreTitle = new Label();
+		fullScoreTitle.setStyle("-fx-background-color:black;-fx-text-fill: white;");
+		fullScoreTitle.setPrefSize(50, 27);
+		fullScoreTitle.setPadding(new Insets(0,0,0,5));
+		fullScoreTitle.setText(Integer.toString(currentPlayerTotalScore));
+		gridpane.add(fullScoreTitle, scoreX + 1, scoreY + 14);
 	}
 	
 	private Node getNodeFromGridPane(GridPane gridPane, int col, int row) {
