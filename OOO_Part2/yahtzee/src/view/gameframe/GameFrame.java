@@ -69,7 +69,7 @@ public class GameFrame implements ObserverInterface {
 			primaryStage.setTitle("Yahtzee");
 			
 			gridpane.add(dices, 0, 0);
-			gridpane.add(clickButtons, 10, 20);
+			gridpane.add(clickButtons, 10, 15);
 			gridpane.add(nameLabel, 10, 0);
 			gridpane.add(current, 10, 10);
 			gridpane.add(errorList, 10, 9);
@@ -116,25 +116,43 @@ public class GameFrame implements ObserverInterface {
 	private void makeScoreboard(ArrayList<Categories> categoryList, int colum, int row) {
 		this.scoreX = colum;
 		this.scoreY = row;
-		Text categoryTitle = new Text();
+		Label categoryTitle = new Label();
 		categoryTitle.setText("Categories");
-		Text scoreTitle = new Text();
+		categoryTitle.setStyle("-fx-background-color:black;-fx-text-fill: white;");
+		categoryTitle.setPrefSize(150, 36);
+		categoryTitle.setPadding(new Insets(0,0,0,5));
+		Label scoreTitle = new Label();
 		scoreTitle.setText("Score");
+		scoreTitle.setStyle("-fx-background-color:black;-fx-text-fill: white;");
+		scoreTitle.setPrefSize(50, 36);
+		scoreTitle.setPadding(new Insets(0,0,0,5));
 		this.gridpane.add(categoryTitle, colum, row);
+		this.gridpane.add(scoreTitle, colum + 1, row);
 		for (int i = 0; i < categoryList.size(); i++) {
-			Text text = new Text();
+			Label text = new Label();
 			text.setText(categoryList.get(i).toString() + ":  ");
+			text.setStyle("-fx-background-color: #FFFF;-fx-border-color:black");
+			text.setPrefSize(150, 27);
+			text.setPadding(new Insets(0,0,0,5));
 			this.gridpane.add(text, colum, row + 1 + i);
-			Text score = new Text();
+			Label score = new Label();
 			score.setText("0");
+			score.setStyle("-fx-background-color: #FFFF;-fx-border-color:black");
+			score.setPrefSize(50, 27);
+			score.setPadding(new Insets(0,0,0,5));
+			
 			this.gridpane.add(score, colum + 1, row + 1 + i);
+			
 		}
 	}
 	
 	public void updateScoreboard(int score, int place) {
 		this.gridpane.getChildren().remove(getNodeFromGridPane(gridpane, scoreX+1, scoreY+1+place));
-		Text text = new Text();
+		Label text = new Label();
 		text.setText(Integer.toString(score));
+		text.setStyle("-fx-background-color: #FFFF;-fx-border-color:black");
+		text.setPrefSize(50, 27);
+		text.setPadding(new Insets(0,0,0,5));
 		this.gridpane.add(text, scoreX+1, scoreY+1+place);
 	}
 	
