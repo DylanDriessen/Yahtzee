@@ -3,6 +3,7 @@ package view.buttons;
 import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -25,14 +26,20 @@ public class Buttons {
 	}
 	
 	public Label setName(String naam){
-		Label name = new Label("Dit is het speelbord van "+naam + " ");
-		name.setPrefSize(400, 36);;
+		Label name = new Label("THIS IS THE BOARD OF: "+naam);
+		name.setPrefSize(500, 36);
+		name.setStyle("-fx-text-fill: black; -fx-font-size: 17; -fx-font-weight: bold;");
+		name.setPadding(new Insets(0,0,0,5));
 		return name;
 	}
 	
 	public Label setCurrentName(String naam){
-		Label name = new Label(naam + " is aan de beurt");
+		Label name = new Label("current player: "+ naam);
 		name.setPrefSize(400, 36);
+		name.setPrefSize(400, 36);
+		name.setStyle("-fx-text-fill: black; -fx-font-size: 17; -fx-font-weight: 600;");
+		name.setPrefSize(400, 36);
+		name.setPadding(new Insets(0,0,0,5));
 		return name;
 	}
 	

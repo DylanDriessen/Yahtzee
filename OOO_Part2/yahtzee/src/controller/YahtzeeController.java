@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.Closeable;
 import java.util.ArrayList;
 import java.util.List;
 import exception.DomainException;
@@ -21,7 +22,7 @@ import model.score.Categories;
 import model.turn.Turn;
 import view.board.ObserverInterface;
 import view.gameframe.GameFrame;
-import view.wrapper.CategoryScore;
+import view.gameframe.WelcomeScreen;
 
 
 	
@@ -30,10 +31,8 @@ import view.wrapper.CategoryScore;
 		private IModelFacade model;
 		Stage primaryStage = new Stage();
 		GameFrame frame = new GameFrame();
-		Turn turn;
-		CategoryScore cs;
-
-		private ArrayList<ObserverInterface> observers = new ArrayList<>();
+		WelcomeScreen welcomeScreen;
+		ArrayList<ObserverInterface> observers = new ArrayList<>();
 		ArrayList<Integer> result = new ArrayList<>();
 		ArrayList<String> playerNames;
 		String category;
@@ -59,43 +58,44 @@ import view.wrapper.CategoryScore;
 
 		@Override
 		public void start(Stage primaryStage) throws Exception {
+			//Old method
+//			Stage stage = new Stage();
+//	        Group root = new Group();	
+//	        Scene scene = new Scene(root, 400, 400, Color.BEIGE);
+//	        stage.setScene(scene);
+//	        Button btn = nameButon();
+//	        Button startBtn = frame.startGame();
+//	        TextField field = frame.spelerField();
+//	        int y = 180;
+//	        for(int i = 0; i < model.getALLPlayersNames().size(); i++){
+//	        	Label naam = new Label();
+//	        	naam.setText(model.getALLPlayersNames().get(i));
+//	        	naam.setTranslateX(35);
+//	    		naam.setTranslateY(y);
+//	    		root.getChildren().add(naam);
+//	    		y += 30;
+//	        }
 			
-			Stage stage = new Stage();
-	        Group root = new Group();	
-	        Scene scene = new Scene(root, 400, 400, Color.BEIGE);
-	        stage.setScene(scene);
-	        Button btn = frame.nameButon();
-	        Button startBtn = frame.startGame();
-	        TextField field = frame.spelerField();
-	        int y = 180;
-	        for(int i = 0; i < model.getALLPlayersNames().size(); i++){
-	        	Label naam = new Label();
-	        	naam.setText(model.getALLPlayersNames().get(i));
-	        	naam.setTranslateX(35);
-	    		naam.setTranslateY(y);
-	    		root.getChildren().add(naam);
-	    		y += 30;
-	        }
-	        this.playerNames = model.getALLPlayersNames();
-	        btn.setOnMouseClicked(event -> {this.getNames(field.getText());
-	        stage.close();}); 
-	        startBtn.setOnMouseClicked(event -> {
+			//New mehtod
+			this.playerNames = model.getALLPlayersNames();
+			this.welcomeScreen = new WelcomeScreen(playerNames);
+	        welcomeScreen.getButtons().getChildren().get(0).setOnMouseClicked(event -> {this.getNames(welcomeScreen.getTextField().getText());});
+	        welcomeScreen.getButtons().getChildren().get(1).setOnMouseClicked(event -> {
 	        	try {
 	        		model.start();
-	        		stage.close();
+	        		welcomeScreen.getStage().close();
 		        	this.makeFrames(model.getALLPlayersNames());
 		        	((GameFrame) observers.get(0)).addButtons(model.getCurrentPlayer().getCategories());
 		        	setButtonClickEvent();
 	        	} catch (Exception e) {
-	        		Text text = new Text();
+	        		Label text = new Label();
 	        		text.setText(e.getMessage());
-	        		text.setTranslateY(230);
-	        		text.setTranslateX(30);
-	        		root.getChildren().add(text);
+	        		text.setStyle("-fx-text-fill: red;");
+	        		welcomeScreen.getGridPane().add(text, 0, 3);
 	        	}
 	        	});
-	        root.getChildren().addAll(btn,startBtn,field);
-	        stage.show();
+	        welcomeScreen.getRoot().getChildren().addAll(welcomeScreen.getGridPane());
+	        welcomeScreen.getStage().show();
 	        
 		}
 		
@@ -170,6 +170,7 @@ import view.wrapper.CategoryScore;
 		private void getNames(String text) {
 			model.addPlayer(text);
 			try {
+				welcomeScreen.getStage().close();
 				start(primaryStage);
 			} catch (Exception e) {
 				
@@ -221,13 +222,7 @@ import view.wrapper.CategoryScore;
 			}
 		}
 		
-		public void getScores() {
-			List<CategoryScore> scores = new ArrayList<>();
-			for(Categories cat : Categories.values()) {
-				scores.add(new CategoryScore(cat, turn.getScore(cat)));
-			}
-		}
-
+		
 		@Override
 		public void register(ObserverInterface newObserver) {
 			observers.add((GameFrame)newObserver );

@@ -2,6 +2,8 @@ package view.gameframe;
 
 
 import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JOptionPane;
 
 import com.sun.prism.impl.TextureResourcePool;
@@ -22,6 +24,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -31,8 +34,6 @@ import view.board.BoardCreator;
 import view.board.ObserverInterface;
 import view.buttons.Buttons;
 import view.dice.DiceCreator;
-
-import view.scoreboard.Scoreboard;
 
 public class GameFrame implements ObserverInterface {
 	Buttons buttons = new Buttons();
@@ -50,7 +51,7 @@ public class GameFrame implements ObserverInterface {
 	int scoreX;
 	int scoreY;
 	VBox errorList = new VBox();
-	
+
 	public void makeFrameWithRoll(Stage primaryStage, String name, String currentName, ArrayList<Integer> result, int score, ArrayList<Categories> categories){
 		clickButtons.setPadding(new Insets(5,5,5,5));
 		clickButtons.setSpacing(10);
@@ -71,9 +72,9 @@ public class GameFrame implements ObserverInterface {
 			gridpane.add(dices, 0, 0);
 			gridpane.add(clickButtons, 10, 15);
 			gridpane.add(nameLabel, 10, 0);
-			gridpane.add(current, 10, 10);
-			gridpane.add(errorList, 10, 9);
-			makeScoreboard(categories, 30, 0);
+			gridpane.add(current, 10, 1);
+			gridpane.add(errorList, 10, 7);
+			makeScoreboard(categories, 25, 0);
 			root.getChildren().addAll(gridpane);	
 
 			primaryStage.setScene(scene);
@@ -121,6 +122,7 @@ public class GameFrame implements ObserverInterface {
 		categoryTitle.setStyle("-fx-background-color:black;-fx-text-fill: white;");
 		categoryTitle.setPrefSize(150, 36);
 		categoryTitle.setPadding(new Insets(0,0,0,5));
+		
 		Label scoreTitle = new Label();
 		scoreTitle.setText("Score");
 		scoreTitle.setStyle("-fx-background-color:black;-fx-text-fill: white;");
@@ -128,21 +130,21 @@ public class GameFrame implements ObserverInterface {
 		scoreTitle.setPadding(new Insets(0,0,0,5));
 		this.gridpane.add(categoryTitle, colum, row);
 		this.gridpane.add(scoreTitle, colum + 1, row);
+		
 		for (int i = 0; i < categoryList.size(); i++) {
 			Label text = new Label();
 			text.setText(categoryList.get(i).toString() + ":  ");
 			text.setStyle("-fx-background-color: #FFFF;-fx-border-color:black");
 			text.setPrefSize(150, 27);
 			text.setPadding(new Insets(0,0,0,5));
-			this.gridpane.add(text, colum, row + 1 + i);
+			gridpane.add(text, colum, row + 1 + i);
+			
 			Label score = new Label();
 			score.setText("0");
 			score.setStyle("-fx-background-color: #FFFF;-fx-border-color:black");
 			score.setPrefSize(50, 27);
 			score.setPadding(new Insets(0,0,0,5));
-			
-			this.gridpane.add(score, colum + 1, row + 1 + i);
-			
+			gridpane.add(score, colum + 1, row + 1 + i);
 		}
 		
 		Label fullScore = new Label();
@@ -159,7 +161,7 @@ public class GameFrame implements ObserverInterface {
 		fullScoreTitle.setText("Total Score:  ");
 		gridpane.add(fullScoreTitle, colum, row + categoryList.size()+1);
 	}
-	
+	//Scorebord observer
 	public void updateScoreboard(int score, int place, int currentPlayerTotalScore) {
 		this.gridpane.getChildren().remove(getNodeFromGridPane(gridpane, scoreX+1, scoreY+1+place));
 		Label text = new Label();
@@ -204,8 +206,9 @@ public class GameFrame implements ObserverInterface {
 	}
 	
 	public void addError(String string) {
-		Text text = new Text();
+		Label text = new Label();
 		text.setText(string);
+		text.setStyle("-fx-text-fill: red; -fx-font-size: 15; -fx-font-weight: bold;");
 		errorList.getChildren().add(text);
 	}
 	
@@ -218,27 +221,46 @@ public class GameFrame implements ObserverInterface {
 		if (result == null || result.isEmpty())for(int j = 0; j <= 4; j++)result.add(0);
 	}
 	
-	//Startup Screen Buttons
-	public TextField spelerField(){
-		TextField field = new TextField("What's your name");
-		 field.setTranslateX(55);
-	     field.setTranslateY(55);
-	     return field;
-	  }
+//	public List<Button> generateWelcomScreen(){
+//		Stage stage = new Stage();
+//        Group root = new Group();	
+//        Scene scene = new Scene(root, 400, 400, Color.BEIGE);
+//        stage.setScene(scene);
+//        Button btn = nameButon();
+//        Button startBtn = frame.startGame();
+//        TextField field = frame.spelerField();
+//        int y = 180;
+//        for(int i = 0; i < model.getALLPlayersNames().size(); i++){
+//        	Label naam = new Label();
+//        	naam.setText(model.getALLPlayersNames().get(i));
+//        	naam.setTranslateX(35);
+//    		naam.setTranslateY(y);
+//    		root.getChildren().add(naam);
+//    		y += 30;
+//        }
+//	}
 	
-	public Button nameButon(){
-		Button btn = new Button("Enter the game");
-		 btn.setTranslateX(155);
-	     btn.setTranslateY(115);
-	     return btn;
-	}
-	
-	public Button startGame(){
-		Button startBtn = new Button("Start Game");
-		startBtn.setTranslateX(35);
-        startBtn.setTranslateY(115);
-        return startBtn;
-	}
+//	//Startup Screen Buttons
+//	public TextField spelerField(){
+//		TextField field = new TextField("What's your name");
+//		 field.setTranslateX(55);
+//	     field.setTranslateY(55);
+//	     return field;
+//	  }
+//	
+//	public Button nameButon(){
+//		Button btn = new Button("Enter the game");
+//		 btn.setTranslateX(155);
+//	     btn.setTranslateY(115);
+//	     return btn;
+//	}
+//	
+//	public Button startGame(){
+//		Button startBtn = new Button("Start Game");
+//		startBtn.setTranslateX(35);
+//        startBtn.setTranslateY(115);
+//        return startBtn;
+//	}
 	
 	@Override
 	public void update(ArrayList<Integer> waardes) {
@@ -248,9 +270,13 @@ public class GameFrame implements ObserverInterface {
 	}
 	
 	public void updateCurrentName(String currentName) {
-		gridpane.getChildren().remove(getNodeFromGridPane(gridpane, 10, 10));
-		Text text = new Text();
-		text.setText(currentName + " is aan de beurt");
-		gridpane.add(text, 10, 10);
+		gridpane.getChildren().remove(getNodeFromGridPane(gridpane, 10, 1));
+		Label name = new Label();
+		name.setText("current player: " + currentName);
+		name.setPrefSize(400, 36);
+		name.setStyle("-fx-text-fill: black; -fx-font-size: 15; -fx-font-weight: 600");
+		name.setPrefSize(400, 36);
+		name.setPadding(new Insets(0,0,0,5));
+		gridpane.add(name, 10, 1);
 	}
 }
