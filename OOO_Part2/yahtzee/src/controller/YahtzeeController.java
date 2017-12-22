@@ -112,15 +112,15 @@ import view.wrapper.CategoryScore;
 				model.reduceChance();
 			} catch(DomainException e) {
 				getCurrentPlayerFrame().addError(e.getMessage());
-				getCurrentPlayerFrame().getButtons().remove(2);
+				getCurrentPlayerFrame().getButtons().remove(0);
 			}
 			this.notifyObserver();
 		}
 	
 		
 		private void setButtonClickEvent() {
-			Button nextButton = (Button)getCurrentPlayerFrame().getButtons().get(0);
-			Button button = (Button)getCurrentPlayerFrame().getButtons().get(2);
+			Button nextButton = (Button)getCurrentPlayerFrame().getButtons().get(2);
+			Button button = (Button)getCurrentPlayerFrame().getButtons().get(0);
             ComboBox<Categories> categories = (ComboBox<Categories>)getCurrentPlayerFrame().getButtons().get(1);
             categories.setOnAction(event -> {category = categories.getSelectionModel().getSelectedItem().toString();
             								model.deleteCategory(category);
@@ -132,15 +132,21 @@ import view.wrapper.CategoryScore;
 				});
 			
 			nextButton.setOnMouseClicked(event -> {
-				System.out.println("SCore" + model.getscore(category));
-				System.out.println("category" + Categories.valueOf(category).getScore());
-
-				notifyScoreboardObserver(model.getscore(category), Categories.valueOf(category).getScore());
-				resetDices(getCurrentPlayerFrame());
-				setUnClicableDices(getCurrentPlayerFrame());
-				getCurrentPlayerFrame().removeButtons();
-				getNextPlayerFrame().addButtons();
-				setButtonClickEvent();
+				boolean clickedError = false;
+				try {
+					notifyScoreboardObserver(model.getscore(category), Categories.valueOf(category).getScore());
+					getCurrentPlayerFrame().resetErrors();
+					resetDices(getCurrentPlayerFrame());
+					setUnClicableDices(getCurrentPlayerFrame());
+					getCurrentPlayerFrame().removeButtons();
+					getNextPlayerFrame().addButtons();
+					setButtonClickEvent();
+				} catch(NullPointerException e) {
+					getCurrentPlayerFrame().resetErrors();
+					getCurrentPlayerFrame().addError("Select a category");
+					
+				}
+				
 				});
 			
 			model.resetDices();

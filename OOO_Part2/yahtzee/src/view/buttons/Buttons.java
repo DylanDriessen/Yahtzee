@@ -10,8 +10,7 @@ public class Buttons {
 
 	public Button turn(){
 		Button turn = new Button("Next players turn");
-		turn.setTranslateX(500);
-		turn.setTranslateY(360);
+		turn.setPrefSize(150, 36);
 		return turn;
 	}
 	
@@ -19,29 +18,25 @@ public class Buttons {
 		ComboBox<Categories> categories = new ComboBox<>();
 		categories.setItems(FXCollections.observableArrayList(Categories.values()));
 		categories.setPromptText("Categories");
-		categories.setTranslateX(290);
-		categories.setTranslateY(350);
+		categories.setPrefSize(120, 36);
 		return categories;
 	}
 	
 	public Label setCurrentName(String naam){
 		Label name = new Label("Dit is het speelbord van "+naam + " ");
-		name.setTranslateX(50);
-		name.setTranslateY(100);
+		name.setPrefSize(400, 36);;
 		return name;
 	}
 	
 	public Label setName(String naam){
 		Label name = new Label(naam + " is aan de beurt");
-		name.setTranslateX(600);
-		name.setTranslateY(200);
+		name.setPrefSize(400, 36);
 		return name;
 	}
 	
 	public Button RollButton(){
 		Button btn = new Button("Roll Dices");
-		btn.setTranslateX(300);
-		btn.setTranslateY(300);
+		btn.setPrefSize(100, 36);
 		return btn;
 	}
 	

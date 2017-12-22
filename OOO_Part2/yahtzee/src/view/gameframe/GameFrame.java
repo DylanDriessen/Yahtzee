@@ -3,8 +3,12 @@ package view.gameframe;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+
+import com.sun.prism.impl.TextureResourcePool;
+
 import exception.DomainException;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -13,8 +17,11 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -39,11 +46,17 @@ public class GameFrame implements ObserverInterface {
 	StackPane dices = new StackPane();
 	ArrayList<Integer> opzijGezet;
 	String category;
-	StackPane clickButtons = new StackPane();
+	HBox clickButtons = new HBox();
 	int scoreX;
 	int scoreY;
+	VBox errorList = new VBox();
+	
 	public void makeFrameWithRoll(Stage primaryStage, String name, String currentName, ArrayList<Integer> result, int score, ArrayList<Categories> categories){
-		clickButtons.setTranslateY(10);
+		clickButtons.setPadding(new Insets(5,5,5,5));
+		clickButtons.setSpacing(10);
+		clickButtons.setPrefWidth(420);
+		
+
 		try{
 			this.setDices(result);
 			ArrayList<Text> textLijst = creator.createText(result, x1, y);
@@ -53,13 +66,14 @@ public class GameFrame implements ObserverInterface {
 			}
 			primaryStage.setTitle("Yahtzee");
 			gridpane.add(dices, 0, 0);
-			gridpane.add(clickButtons, 0,10);
-			System.out.println("Voor scoreboard");
-			makeScoreboard(categories, 80, 0);
-			System.out.println("Na scoreboard");
+			gridpane.add(clickButtons, 10, 20);
+			makeScoreboard(categories, 30, 0);
 			Label nameLabel = buttons.setName(currentName);
 			Label current = buttons.setCurrentName(name);
-			root.getChildren().addAll(current,nameLabel,gridpane);	
+			gridpane.add(nameLabel, 10, 0);
+			gridpane.add(current, 10, 10);
+			gridpane.add(errorList, 10, 9);
+			root.getChildren().addAll(gridpane);	
 
 			primaryStage.setScene(scene);
 			primaryStage.show();	
@@ -142,7 +156,7 @@ public class GameFrame implements ObserverInterface {
 		ComboBox<Categories> categories = buttons.categories();
 		Button turn = buttons.turn();
 		Button btn = buttons.RollButton();
-		clickButtons.getChildren().addAll(turn, categories, btn);
+		clickButtons.getChildren().addAll(btn, categories, turn);
 	}
 	
 	public ObservableList<Node> getButtons() {
@@ -157,9 +171,11 @@ public class GameFrame implements ObserverInterface {
 	public void addError(String string) {
 		Text text = new Text();
 		text.setText(string);
-		text.setTranslateX(200);
-		text.setTranslateY(200);
-		this.clickButtons.getChildren().add(text);
+		errorList.getChildren().add(text);
+	}
+	
+	public void resetErrors() {
+		errorList.getChildren().clear();
 	}
 
 	private void setDices(ArrayList<Integer> result){
