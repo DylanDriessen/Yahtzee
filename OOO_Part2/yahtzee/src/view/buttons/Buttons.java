@@ -22,13 +22,13 @@ public class Buttons {
 		return categories;
 	}
 	
-	public Label setCurrentName(String naam){
+	public Label setName(String naam){
 		Label name = new Label("Dit is het speelbord van "+naam + " ");
 		name.setPrefSize(400, 36);;
 		return name;
 	}
 	
-	public Label setName(String naam){
+	public Label setCurrentName(String naam){
 		Label name = new Label(naam + " is aan de beurt");
 		name.setPrefSize(400, 36);
 		return name;

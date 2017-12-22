@@ -64,15 +64,16 @@ public class GameFrame implements ObserverInterface {
 			for(Text t: textLijst){
 				dices.getChildren().add(t);
 			}
+			Label nameLabel = buttons.setName(name);
+			Label current = buttons.setCurrentName(currentName);
 			primaryStage.setTitle("Yahtzee");
+			
 			gridpane.add(dices, 0, 0);
 			gridpane.add(clickButtons, 10, 20);
-			makeScoreboard(categories, 30, 0);
-			Label nameLabel = buttons.setName(currentName);
-			Label current = buttons.setCurrentName(name);
 			gridpane.add(nameLabel, 10, 0);
 			gridpane.add(current, 10, 10);
 			gridpane.add(errorList, 10, 9);
+			makeScoreboard(categories, 30, 0);
 			root.getChildren().addAll(gridpane);	
 
 			primaryStage.setScene(scene);
@@ -83,6 +84,7 @@ public class GameFrame implements ObserverInterface {
 		}
 	}
 	
+	//Create and return dices
 	private void createFiveDices(){
 		Rectangle dice1 = creator.dice1();
 		Rectangle dice2 = creator.dice2();
@@ -96,6 +98,7 @@ public class GameFrame implements ObserverInterface {
 		return this.dices.getChildren();
 	}
 	
+	//Check for type of node
 	public Rectangle translateRectangle(Node node) {
 		if(node instanceof Rectangle) {
 			return (Rectangle)node;
@@ -144,14 +147,7 @@ public class GameFrame implements ObserverInterface {
 	    return null;
 	}
 
-
-	@Override
-	public void update(ArrayList<Integer> waardes) {
-		for(int i = 5; i < dices.getChildren().size(); i++) {
-			((Text)dices.getChildren().get(i)).setText(Integer.toString(waardes.get(i-5)));
-		}
-	}
-	 //NextButten implementatie
+	//NextButten implementatie
 	public void addButtons() {
 		ComboBox<Categories> categories = buttons.categories();
 		Button turn = buttons.turn();
@@ -178,24 +174,18 @@ public class GameFrame implements ObserverInterface {
 		errorList.getChildren().clear();
 	}
 
+	//Reset Dices
 	private void setDices(ArrayList<Integer> result){
 		if (result == null || result.isEmpty())for(int j = 0; j <= 4; j++)result.add(0);
 	}
 	
+	//Startup Screen Buttons
 	public TextField spelerField(){
 		TextField field = new TextField("What's your name");
 		 field.setTranslateX(55);
 	     field.setTranslateY(55);
 	     return field;
 	  }
-	
-	public TableView<String> tabelSpelers(){
-		TableView<String> table = new TableView<>();
-		table.setTranslateX(35);
-		table.setTranslateY(180);
-		return table;
-	}
-	
 	
 	public Button nameButon(){
 		Button btn = new Button("Enter the game");
@@ -204,11 +194,24 @@ public class GameFrame implements ObserverInterface {
 	     return btn;
 	}
 	
-	
 	public Button startGame(){
 		Button startBtn = new Button("Start Game");
 		startBtn.setTranslateX(35);
         startBtn.setTranslateY(115);
         return startBtn;
+	}
+	
+	@Override
+	public void update(ArrayList<Integer> waardes) {
+		for(int i = 5; i < dices.getChildren().size(); i++) {
+			((Text)dices.getChildren().get(i)).setText(Integer.toString(waardes.get(i-5)));
+		}
+	}
+	
+	public void updateCurrentName(String currentName) {
+		gridpane.getChildren().remove(getNodeFromGridPane(gridpane, 10, 10));
+		Text text = new Text();
+		text.setText(currentName + " is aan de beurt");
+		gridpane.add(text, 10, 10);
 	}
 }

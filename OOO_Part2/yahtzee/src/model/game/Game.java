@@ -19,24 +19,22 @@ public class Game {
  	
 	public Game(){
 		this.players = new ArrayList<>();
-		this.setIndexNextPlayer();
 		this.dices = new Dices(5);
 		this.catagories = new SimpleCatagoryStrategy();
 	}
 	
 	public void Start(){
-		System.out.println();
  		if (players.size()<=1){
  			throw new IllegalArgumentException("Minimum 2 players required");
  		}
  		else {
- 			this.turn = new Turn(3, this.getCurrentPlayer(), this.catagories, this.dices);
+ 			nextPlayer();
  		}
  	}
 	
 	public void nextPlayer() {
+		setIndexNextPlayer();
 		this.turn = new Turn(3, this.getCurrentPlayer(), this.catagories, this.dices);
-		this.setIndexNextPlayer();
 	}
 	
 	public void rollDices() {
@@ -74,8 +72,11 @@ public class Game {
  		players.remove(player);
  	}
  	
- 	public int getIndexNextPersonalGame(){
- 		return indexNextPlayer;
+ 	public int getIndexCurrentPlayer(){
+ 		if(indexNextPlayer == 0) {
+ 			return players.size()-1;
+ 		}
+ 		return indexNextPlayer -1;
  	}
  	
  	public Player getNextPlayer(){
@@ -83,18 +84,16 @@ public class Game {
  	}
  	
  	private void setIndexNextPlayer(){
- 		System.out.println(players.size());
- 		if(this.indexNextPlayer >= players.size()-1){ // mogelijke fout mss = weg
- 			this.indexNextPlayer = 0;
- 		}
- 		else{
- 			this.indexNextPlayer++;
+ 		if(indexNextPlayer == players.size()-1) {
+ 			indexNextPlayer = 0;
+ 		} else {
+ 			indexNextPlayer++;
  		}
  	}
  	
  	public Player getCurrentPlayer(){
  		if (indexNextPlayer <= 0){
- 			return players.get(players.size()-1);
+ 			return players.get(0);
  		}
  		return players.get(indexNextPlayer-1);
  	}

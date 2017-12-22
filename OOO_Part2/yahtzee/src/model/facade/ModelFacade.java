@@ -60,7 +60,7 @@ Game game;
 	}
 	@Override
 	public int getIndexCurrentPlayer() {
-		return game.getIndexNextPersonalGame();
+		return game.getIndexCurrentPlayer();
 	}
 	@Override
 	public void setNextPlayer() {

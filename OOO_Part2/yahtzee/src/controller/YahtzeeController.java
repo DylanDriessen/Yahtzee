@@ -84,6 +84,7 @@ import view.wrapper.CategoryScore;
 	        		model.start();
 	        		stage.close();
 		        	this.makeFrames(model.getALLPlayersNames());
+		        	System.out.println(model.getALLPlayersNames().get(0));
 		        	((GameFrame) observers.get(0)).addButtons();
 		        	setButtonClickEvent();
 	        	} catch (Exception e) {
@@ -132,9 +133,9 @@ import view.wrapper.CategoryScore;
 				});
 			
 			nextButton.setOnMouseClicked(event -> {
-				boolean clickedError = false;
 				try {
 					notifyScoreboardObserver(model.getscore(category), Categories.valueOf(category).getScore());
+					notifyGameFrames();
 					getCurrentPlayerFrame().resetErrors();
 					resetDices(getCurrentPlayerFrame());
 					setUnClicableDices(getCurrentPlayerFrame());
@@ -144,9 +145,7 @@ import view.wrapper.CategoryScore;
 				} catch(NullPointerException e) {
 					getCurrentPlayerFrame().resetErrors();
 					getCurrentPlayerFrame().addError("Select a category");
-					
 				}
-				
 				});
 			
 			model.resetDices();
@@ -175,10 +174,6 @@ import view.wrapper.CategoryScore;
 			} catch (Exception e) {
 				
 			}
-		}
-		
-		private String getChosenCategory() {
-			return model.getChosenCategory();
 		}
 		
 		private void makeFrames(ArrayList<String> resultNaam){
@@ -262,5 +257,11 @@ import view.wrapper.CategoryScore;
 		
 		public void notifyScoreboardObserver(int score, int place) {
 			getCurrentPlayerFrame().updateScoreboard(score, place);
+		}
+		
+		public void notifyGameFrames() {
+			for (ObserverInterface o : observers) {
+				((GameFrame)o).updateCurrentName(model.getNextPlayer().getNaam());
+			}
 		}
 }
