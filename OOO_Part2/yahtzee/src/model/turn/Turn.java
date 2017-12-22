@@ -27,10 +27,10 @@ public class Turn {
 		boolean contains = false;
 		
 		for(Categories playerCategory : player.getCategories()) {
-			if (playerCategory.toString().equals(category.toString())) contains = true;
+			if (playerCategory.toString().toUpperCase().equals(category.toString().toUpperCase())) contains = true;
 		}
 		
-		if (!contains) throw new DomainException("This category has already been chosen");
+//		if (!contains) throw new DomainException("This category has already been chosen/Is not availble");
 		
 		int points = this.getCatagory().catagory(category).getPoints(dices.getDices());
 		setChosenCategory(category);

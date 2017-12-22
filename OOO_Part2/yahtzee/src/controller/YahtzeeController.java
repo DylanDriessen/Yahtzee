@@ -124,13 +124,18 @@ import view.wrapper.CategoryScore;
             ComboBox<Categories> categories = (ComboBox<Categories>)getCurrentPlayerFrame().getButtons().get(1);
             categories.setOnAction(event -> {category = categories.getSelectionModel().getSelectedItem().toString();
             								model.deleteCategory(category);
+            								
+            								
             });
 			button.setOnMouseClicked(event -> {
 				this.rollDices();
 				});
 			
 			nextButton.setOnMouseClicked(event -> {
-				notifyScoreboardObserver(5, 3); //Hier moeten (Score voor categorie, plaats van categorie in lijst[zie op enum]) komen
+				System.out.println("SCore" + model.getscore(category));
+				System.out.println("category" + Categories.valueOf(category).getScore());
+
+				notifyScoreboardObserver(model.getscore(category), Categories.valueOf(category).getScore());
 				resetDices(getCurrentPlayerFrame());
 				setUnClicableDices(getCurrentPlayerFrame());
 				getCurrentPlayerFrame().removeButtons();
@@ -250,9 +255,6 @@ import view.wrapper.CategoryScore;
 		}
 		
 		public void notifyScoreboardObserver(int score, int place) {
-			for(ObserverInterface o : observers) {
-				GameFrame g = (GameFrame)o;
-				g.updateScoreboard(score, place);
-			}
+			getCurrentPlayerFrame().updateScoreboard(score, place);
 		}
 }
