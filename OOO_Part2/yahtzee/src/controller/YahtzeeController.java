@@ -36,6 +36,7 @@ import view.gameframe.WelcomeScreen;
 		ArrayList<Integer> result = new ArrayList<>();
 		ArrayList<String> playerNames;
 		String category;
+		boolean categoryChosen = false;
 
 		
 		public YahtzeeController(){
@@ -106,10 +107,10 @@ import view.gameframe.WelcomeScreen;
 			
 			
             ComboBox<Categories> categories = (ComboBox<Categories>)getCurrentPlayerFrame().getButtons().get(1);
-            categories.setOnAction(event -> {category = categories.getSelectionModel().getSelectedItem().toString();
-            								model.deleteCategory(category);
-            								
-            								
+            categories.setOnAction(event -> {
+            	category = categories.getSelectionModel().getSelectedItem().toString();
+            	model.deleteCategory(category);
+            	categoryChosen = true;
             });
             getCurrentPlayerFrame().getButtons().get(0).setOnMouseClicked(event -> {
 				this.rollDices();
@@ -117,7 +118,7 @@ import view.gameframe.WelcomeScreen;
 			
 			getCurrentPlayerFrame().getButtons().get(2).setOnMouseClicked(event -> {
 				try {
-					if(model.getChancesTurn() == 3) throw new DomainException("Select a category");
+					if(model.getChancesTurn() == 3 || category == null || !categoryChosen) throw new DomainException("Select a category");
 					model.getCurrentPlayer().addScore(model.getscore(category));
 					notifyScoreboardObserver(model.getscore(category), Categories.valueOf(category).getScore());
 					notifyGameFrames();
@@ -127,6 +128,7 @@ import view.gameframe.WelcomeScreen;
 					getCurrentPlayerFrame().removeButtons();
 					getNextPlayerFrame().addButtons(model.getNextPlayer().getCategories());
 					model.setNextPlayer();
+					categoryChosen = false;
 					setButtonClickEvent();
 				} catch(DomainException e) {
 					getCurrentPlayerFrame().resetErrors();
@@ -186,6 +188,10 @@ import view.gameframe.WelcomeScreen;
 					});
 				}
 			}
+		}
+		
+		private void setChosenDiceClickable() {
+			
 		}
 		
 		private void setUnClicableDices(GameFrame gameFrame) {
