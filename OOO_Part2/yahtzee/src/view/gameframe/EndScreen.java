@@ -8,10 +8,8 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -24,8 +22,6 @@ public class EndScreen {
     Button btn = exitButton();
     Button startBtn = startGame();
     GridPane gridpane = new GridPane();
-    int y = 180;
-    TextField text;
     HBox buttons = new HBox();
 	
     public EndScreen(String winner, String Loser){
@@ -61,10 +57,6 @@ public class EndScreen {
     
     public Stage getStage() {
     	return this.stage;
-    }
-    
-    public TextField getTextField() {
-    	return this.text;
     }
     
     public HBox getButtons(){
