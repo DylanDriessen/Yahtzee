@@ -29,5 +29,6 @@ public interface IModelFacade {
 	ArrayList<Categories> playerCategories(String name);
 	int getIndexNextPlayer();
 	int getChancesTurn();
+	boolean gameFinished();
 	}
 

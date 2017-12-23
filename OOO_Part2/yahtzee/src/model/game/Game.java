@@ -16,6 +16,7 @@ public class Game {
 	private Dices dices;
 	private SimpleCatagoryStrategy catagories;
 	private Turn turn;
+	private int totalTurns = 13;
  	
 	public Game(){
 		this.players = new ArrayList<>();
@@ -88,6 +89,7 @@ public class Game {
  	
  	private void setIndexNextPlayer(){
  		if(indexNextPlayer == players.size()-1) {
+ 			totalTurns--;
  			indexNextPlayer = 0;
  		} else {
  			indexNextPlayer++;
@@ -129,5 +131,14 @@ public class Game {
  			if(p.getNaam().equals(name)) player = p;
  		}
  		return player.getCategories();
+ 	}
+ 
+ 	public boolean rondesOver(){
+ 		if(totalTurns == 0){
+ 			return true;
+ 		}
+ 		System.out.println("hello");
+ 		System.out.println(totalTurns+"test");
+		return false;
  	}
  }
