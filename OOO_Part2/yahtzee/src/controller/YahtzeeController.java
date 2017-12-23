@@ -129,8 +129,8 @@ import view.gameframe.WelcomeScreen;
 					getCurrentPlayerFrame().removeButtons();
 					getNextPlayerFrame().addButtons(model.getNextPlayer().getCategories());
 					model.setNextPlayer();
-					model.gameFinished();
 					categoryChosen = false;
+					System.out.println(model.gameFinished());
 					setButtonClickEvent();
 				} catch(DomainException e) {
 					getCurrentPlayerFrame().resetErrors();
@@ -149,6 +149,8 @@ import view.gameframe.WelcomeScreen;
 		}
 		
 		private void getEndFrame() {
+//			GameFrame gameFrame = new GameFrame();
+//			Stage stage = new Stage();
 			System.out.println("einde");
 			
 		}

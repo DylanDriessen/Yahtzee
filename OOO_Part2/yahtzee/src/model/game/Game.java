@@ -16,13 +16,12 @@ public class Game {
 	private Dices dices;
 	private SimpleCatagoryStrategy catagories;
 	private Turn turn;
-	private int rondes = 13;
+	private int totalTurns = 13;
  	
 	public Game(){
 		this.players = new ArrayList<>();
 		this.dices = new Dices(5);
 		this.catagories = new SimpleCatagoryStrategy();
-		this.setRondes(rondes);
 	}
 	
 	public void Start(){
@@ -90,6 +89,7 @@ public class Game {
  	
  	private void setIndexNextPlayer(){
  		if(indexNextPlayer == players.size()-1) {
+ 			totalTurns--;
  			indexNextPlayer = 0;
  		} else {
  			indexNextPlayer++;
@@ -132,20 +132,13 @@ public class Game {
  		}
  		return player.getCategories();
  	}
- 	private void setRondes(int rondes){
- 		for (int i = 0; i<= players.size(); i++){
- 			rondes = rondes+13;
- 			System.out.println(players.size());
- 		}
- 		this.rondes = rondes;
- 	}
+ 
  	public boolean rondesOver(){
- 		if(rondes == 0){
+ 		if(totalTurns == 0){
  			return true;
  		}
- 		rondes--;
  		System.out.println("hello");
- 		System.out.println(rondes);
+ 		System.out.println(totalTurns+"test");
 		return false;
  	}
  }

@@ -102,8 +102,9 @@ Game game;
 	}
 	@Override
 	public boolean gameFinished() {
-		if(!game.rondesOver())return false;
-		System.out.println(game.rondesOver());
+		if(!game.rondesOver()){
+			return false;
+		}
 		return true;
 	}
 }
