@@ -2,12 +2,7 @@ package view.gameframe;
 
 
 import java.util.ArrayList;
-import java.util.List;
-
 import javax.swing.JOptionPane;
-
-import com.sun.prism.impl.TextureResourcePool;
-
 import exception.DomainException;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -17,19 +12,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.score.Categories;
-import model.turn.Turn;
 import view.board.BoardCreator;
 import view.board.ObserverInterface;
 import view.buttons.Buttons;
@@ -138,8 +128,15 @@ public class GameFrame implements ObserverInterface, endGameObserver {
 		scoreTitle.setStyle("-fx-background-color:black;-fx-text-fill: white;");
 		scoreTitle.setPrefSize(50, 36);
 		scoreTitle.setPadding(new Insets(0,0,0,5));
+		
+		Label predictedScoreTitle = new Label();
+		predictedScoreTitle.setText("Predicted Score");
+		predictedScoreTitle.setStyle("-fx-background-color:black;-fx-text-fill: white;");
+		predictedScoreTitle.setPrefSize(120, 36);
+		predictedScoreTitle.setPadding(new Insets(0,0,0,5));
 		this.gridpane.add(categoryTitle, colum, row);
 		this.gridpane.add(scoreTitle, colum + 1, row);
+		this.gridpane.add(predictedScoreTitle, colum + 2, row);
 		
 		for (int i = 0; i < categoryList.size(); i++) {
 			Label text = new Label();
@@ -155,6 +152,13 @@ public class GameFrame implements ObserverInterface, endGameObserver {
 			score.setPrefSize(50, 27);
 			score.setPadding(new Insets(0,0,0,5));
 			gridpane.add(score, colum + 1, row + 1 + i);
+			
+			Label predictedScore = new Label();
+			predictedScore.setText("0");
+			predictedScore.setStyle("-fx-background-color: #FFFF;-fx-border-color:black");
+			predictedScore.setPrefSize(120, 27);
+			predictedScore.setPadding(new Insets(0,0,0,5));
+			gridpane.add(predictedScore, colum + 2, row + 1 + i);
 		}
 		
 		Label fullScore = new Label();
@@ -187,6 +191,18 @@ public class GameFrame implements ObserverInterface, endGameObserver {
 		fullScoreTitle.setPadding(new Insets(0,0,0,5));
 		fullScoreTitle.setText(Integer.toString(currentPlayerTotalScore));
 		gridpane.add(fullScoreTitle, scoreX + 1, scoreY + 14);
+	}
+	
+	public void updatePredictionsScoreboard(int score, int place, int currentPlayerTotalScore) {
+		
+		this.gridpane.getChildren().remove(getNodeFromGridPane(gridpane, scoreX+2, scoreY+1+place));
+		Label predictedText = new Label();
+		predictedText.setText(Integer.toString(score));
+		predictedText.setStyle("-fx-background-color: #FFFF;-fx-border-color:black");
+		predictedText.setPrefSize(120, 27);
+		predictedText.setPadding(new Insets(0,0,0,5));
+		this.gridpane.add(predictedText, scoreX+2, scoreY+1+place);
+		
 	}
 	
 	private Node getNodeFromGridPane(GridPane gridPane, int col, int row) {
@@ -265,4 +281,6 @@ public class GameFrame implements ObserverInterface, endGameObserver {
 		gridpane.add(scoretext, 9, 8);
 
 	}
+
+
 }

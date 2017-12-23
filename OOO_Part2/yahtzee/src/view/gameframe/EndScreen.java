@@ -26,7 +26,7 @@ public class EndScreen {
 	
     public EndScreen(String winner, String Loser){
     	Label gwinner = new Label("The winner is "+ winner);
-    	Label gloser = new Label("The Loser is "+ Loser );
+    	Label gloser = new Label("The loser is "+ Loser );
     	Label end = new Label("This is the end of the game");
     	end.setFont(new Font(20));
     	end.setTextFill(Color.BLACK);
