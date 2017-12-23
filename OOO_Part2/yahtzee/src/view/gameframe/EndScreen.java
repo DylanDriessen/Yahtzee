@@ -13,6 +13,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class EndScreen {
@@ -31,6 +32,8 @@ public class EndScreen {
     	Label gwinner = new Label("The winner is "+ winner);
     	Label gloser = new Label("The Loser is "+ Loser );
     	Label end = new Label("This is the end of the game");
+    	end.setFont(new Font(20));
+    	end.setTextFill(Color.BLACK);
     	gridpane.setPadding(new Insets(35));
     	buttons.setAlignment(Pos.CENTER);
     	buttons.getChildren().add(btn);
