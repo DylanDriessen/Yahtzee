@@ -100,5 +100,10 @@ Game game;
 	public int getChancesTurn() {
 		return game.getChancesTurn();
 	}
-	
+	@Override
+	public boolean gameFinished() {
+		if(!game.rondesOver())return false;
+		System.out.println(game.rondesOver());
+		return true;
+	}
 }
