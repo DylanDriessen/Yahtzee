@@ -76,12 +76,10 @@ Game game;
 	}
 	@Override
 	public int getscore(String category) {
-		System.out.println(game.getTurn().getPointsCategory(category));
 		return game.getTurn().getPointsCategory(category);
 	}
 	@Override
 	public void deleteCategory(String Category) {
-		System.out.println(Category);
 		System.out.println(game.getTurn().getPointsCategory(Category));
 	}
 	@Override
@@ -95,6 +93,14 @@ Game game;
 	@Override
 	public int getIndexNextPlayer() {
 		return game.getIndexNextPlayer();
+	}
+	@Override
+	public int getHighestScore() {
+		return game.getHighestScore();
+	}
+	@Override
+	public String getPlayerHighestScore() {
+		return game.getPlayerWithHighestScore();
 	}
 	
 }

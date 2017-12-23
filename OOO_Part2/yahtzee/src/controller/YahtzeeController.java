@@ -23,16 +23,18 @@ import model.turn.Turn;
 import view.board.ObserverInterface;
 import view.gameframe.GameFrame;
 import view.gameframe.WelcomeScreen;
+import view.gameframe.endGameObserver;
 
 
 	
-	public class YahtzeeController extends Application implements SubjectInterface,DiceObserver {
+	public class YahtzeeController extends Application implements SubjectInterface,DiceObserver,endGameObservable {
 		
 		private IModelFacade model;
 		Stage primaryStage = new Stage();
 		GameFrame frame = new GameFrame();
 		WelcomeScreen welcomeScreen;
 		ArrayList<ObserverInterface> observers = new ArrayList<>();
+		ArrayList<endGameObserver> endGames = new ArrayList<>();
 		ArrayList<Integer> result = new ArrayList<>();
 		ArrayList<String> playerNames;
 		String category;
@@ -114,7 +116,11 @@ import view.gameframe.WelcomeScreen;
             });
             
             end.setOnMouseClicked(event -> {
+            	getCurrentPlayerFrame().removeButtons();
+            	getCurrentPlayerFrame().removeDices();
             	
+            	notifyText(model.getPlayerHighestScore(), model.getHighestScore());
+            
             });
 			button.setOnMouseClicked(event -> {
 				this.rollDices();
@@ -212,6 +218,7 @@ import view.gameframe.WelcomeScreen;
 		}
 		
 		
+		
 		@Override
 		public void register(ObserverInterface newObserver) {
 			observers.add((GameFrame)newObserver );
@@ -233,19 +240,32 @@ import view.gameframe.WelcomeScreen;
 
 		@Override
 		public void update(int i) {
-			System.out.println("kaka");
-			System.out.println(i);
+			
 			model.getGame().getAllDices().get(i).setState(model.getGame().getAllDices().get(i).getNotRollable());
 //			getScores();
 		}
 		
+		
+		
 		public void notifyScoreboardObserver(int score, int place) {
 			getCurrentPlayerFrame().updateScoreboard(score, place, model.getCurrentPlayer().getScore());
 		}
+		
 		
 		public void notifyGameFrames() {
 			for (ObserverInterface o : observers) {
 				((GameFrame)o).updateCurrentName(model.getNextPlayer().getNaam());
 			}
 		}
+
+
+		@Override
+		public void notifyText(String name, int score) {
+			getCurrentPlayerFrame().updateEndGame(name, score);
+			
+		}
+		
+		
+		
+		
 }

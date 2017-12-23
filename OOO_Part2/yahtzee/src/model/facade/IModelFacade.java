@@ -28,5 +28,7 @@ public interface IModelFacade {
 	String getChosenCategory();
 	ArrayList<Categories> playerCategories(String name);
 	int getIndexNextPlayer();
+	int getHighestScore();
+	String getPlayerHighestScore();
 	}
 

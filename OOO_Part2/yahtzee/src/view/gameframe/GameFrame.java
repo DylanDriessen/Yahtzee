@@ -35,7 +35,7 @@ import view.board.ObserverInterface;
 import view.buttons.Buttons;
 import view.dice.DiceCreator;
 
-public class GameFrame implements ObserverInterface {
+public class GameFrame implements ObserverInterface, endGameObserver {
 	Buttons buttons = new Buttons();
 	BoardCreator board = new BoardCreator();
 	Group root = board.newGroup();
@@ -51,6 +51,7 @@ public class GameFrame implements ObserverInterface {
 	int scoreX;
 	int scoreY;
 	VBox errorList = new VBox();
+	Label scoretext = new Label(); 
 
 	public void makeFrameWithRoll(Stage primaryStage, String name, String currentName, ArrayList<Integer> result, int score, ArrayList<Categories> categories){
 		clickButtons.setPadding(new Insets(5,5,5,5));
@@ -68,7 +69,10 @@ public class GameFrame implements ObserverInterface {
 			Label nameLabel = buttons.setName(name);
 			Label current = buttons.setCurrentName(currentName);
 			primaryStage.setTitle("Yahtzee");
+			scoretext.setStyle("-fx-text-fill: black; -fx-font-size: 15; -fx-font-weight: 600");
+			scoretext.setPrefSize(400, 36);
 			
+			gridpane.add(scoretext, 9, 8);
 			gridpane.add(dices, 0, 0);
 			gridpane.add(clickButtons, 10, 15);
 			gridpane.add(nameLabel, 10, 0);
@@ -85,6 +89,12 @@ public class GameFrame implements ObserverInterface {
 		}
 	}
 	
+	public Label MakeText(String naam, int score ){
+		scoretext = new Label();
+		String text = naam + Integer.toString(score);
+		scoretext.setText(text);
+		return scoretext;
+	}
 	//Create and return dices
 	private void createFiveDices(){
 		Rectangle dice1 = creator.dice1();
@@ -222,6 +232,10 @@ public class GameFrame implements ObserverInterface {
 		if (result == null || result.isEmpty())for(int j = 0; j <= 4; j++)result.add(0);
 	}
 	
+	public void removeDices(){
+		dices.getChildren().clear();
+	}
+	
 
 	@Override
 	public void update(ArrayList<Integer> waardes) {
@@ -239,5 +253,16 @@ public class GameFrame implements ObserverInterface {
 		name.setPrefSize(400, 36);
 		name.setPadding(new Insets(0,0,0,5));
 		gridpane.add(name, 10, 1);
+	}
+
+	@Override
+	public void updateEndGame(String naam, int score) {
+		scoretext = new Label();
+		scoretext.setStyle("-fx-text-fill: black; -fx-font-size: 15; -fx-font-weight: 600");
+		scoretext.setPrefSize(400, 36);
+		String fullScore = naam + " " + Integer.toString(score);
+		scoretext.setText(fullScore);
+		gridpane.add(scoretext, 9, 8);
+
 	}
 }

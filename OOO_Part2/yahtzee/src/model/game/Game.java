@@ -42,6 +42,28 @@ public class Game {
 		this.dices.rollDices();;
 	}
 	
+	public int getHighestScore(){
+		int score = 0;
+		for(Player p: players){
+			
+			if(score < p.getScore()){
+				score = p.getScore();
+			}
+			
+		}
+		return score;
+	}
+	
+	public String getPlayerWithHighestScore(){
+		String player = null;
+		int score = 0;
+		for(Player p: players){
+			if(score < p.getScore()){
+				player = p.getNaam();
+			}
+		}
+		return player;
+	}
 	public ArrayList<Dice> getAllDices(){
 		return this.dices.getDices();
 	}
