@@ -28,5 +28,6 @@ public interface IModelFacade {
 	String getChosenCategory();
 	ArrayList<Categories> playerCategories(String name);
 	int getIndexNextPlayer();
+	int getChancesTurn();
 	}
 

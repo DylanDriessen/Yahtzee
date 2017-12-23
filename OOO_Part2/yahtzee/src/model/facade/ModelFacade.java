@@ -96,5 +96,9 @@ Game game;
 	public int getIndexNextPlayer() {
 		return game.getIndexNextPlayer();
 	}
+	@Override
+	public int getChancesTurn() {
+		return game.getChancesTurn();
+	}
 	
 }

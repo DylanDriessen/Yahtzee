@@ -115,6 +115,10 @@ public class Game {
  		return this.turn;
  	}
  	
+ 	public int getChancesTurn() {
+ 		return turn.getChances();
+ 	}
+ 	
  	public String getChosenCategory() {
  		return this.turn.getChosenCategory();
  	}

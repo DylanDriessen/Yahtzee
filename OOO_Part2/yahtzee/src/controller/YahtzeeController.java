@@ -117,6 +117,7 @@ import view.gameframe.WelcomeScreen;
 			
 			getCurrentPlayerFrame().getButtons().get(2).setOnMouseClicked(event -> {
 				try {
+					if(model.getChancesTurn() == 3) throw new DomainException("Select a category");
 					model.getCurrentPlayer().addScore(model.getscore(category));
 					notifyScoreboardObserver(model.getscore(category), Categories.valueOf(category).getScore());
 					notifyGameFrames();
@@ -127,9 +128,9 @@ import view.gameframe.WelcomeScreen;
 					getNextPlayerFrame().addButtons(model.getNextPlayer().getCategories());
 					model.setNextPlayer();
 					setButtonClickEvent();
-				} catch(NullPointerException e) {
+				} catch(DomainException e) {
 					getCurrentPlayerFrame().resetErrors();
-					getCurrentPlayerFrame().addError("Select a category");
+					getCurrentPlayerFrame().addError(e.getMessage());
 				}
 				});
 			
