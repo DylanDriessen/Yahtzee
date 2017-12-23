@@ -193,7 +193,8 @@ public class GameFrame implements ObserverInterface {
 		ComboBox<Categories> categories = buttons.categories(arrayList);
 		Button turn = buttons.turn();
 		Button btn = buttons.RollButton();
-		clickButtons.getChildren().addAll(btn, categories, turn);
+		Button end = buttons.endGame();
+		clickButtons.getChildren().addAll(btn, categories, turn, end);
 	}
 	
 	public ObservableList<Node> getButtons() {
@@ -221,47 +222,7 @@ public class GameFrame implements ObserverInterface {
 		if (result == null || result.isEmpty())for(int j = 0; j <= 4; j++)result.add(0);
 	}
 	
-//	public List<Button> generateWelcomScreen(){
-//		Stage stage = new Stage();
-//        Group root = new Group();	
-//        Scene scene = new Scene(root, 400, 400, Color.BEIGE);
-//        stage.setScene(scene);
-//        Button btn = nameButon();
-//        Button startBtn = frame.startGame();
-//        TextField field = frame.spelerField();
-//        int y = 180;
-//        for(int i = 0; i < model.getALLPlayersNames().size(); i++){
-//        	Label naam = new Label();
-//        	naam.setText(model.getALLPlayersNames().get(i));
-//        	naam.setTranslateX(35);
-//    		naam.setTranslateY(y);
-//    		root.getChildren().add(naam);
-//    		y += 30;
-//        }
-//	}
-	
-//	//Startup Screen Buttons
-//	public TextField spelerField(){
-//		TextField field = new TextField("What's your name");
-//		 field.setTranslateX(55);
-//	     field.setTranslateY(55);
-//	     return field;
-//	  }
-//	
-//	public Button nameButon(){
-//		Button btn = new Button("Enter the game");
-//		 btn.setTranslateX(155);
-//	     btn.setTranslateY(115);
-//	     return btn;
-//	}
-//	
-//	public Button startGame(){
-//		Button startBtn = new Button("Start Game");
-//		startBtn.setTranslateX(35);
-//        startBtn.setTranslateY(115);
-//        return startBtn;
-//	}
-	
+
 	@Override
 	public void update(ArrayList<Integer> waardes) {
 		for(int i = 5; i < dices.getChildren().size(); i++) {

@@ -58,23 +58,7 @@ import view.gameframe.WelcomeScreen;
 
 		@Override
 		public void start(Stage primaryStage) throws Exception {
-			//Old method
-//			Stage stage = new Stage();
-//	        Group root = new Group();	
-//	        Scene scene = new Scene(root, 400, 400, Color.BEIGE);
-//	        stage.setScene(scene);
-//	        Button btn = nameButon();
-//	        Button startBtn = frame.startGame();
-//	        TextField field = frame.spelerField();
-//	        int y = 180;
-//	        for(int i = 0; i < model.getALLPlayersNames().size(); i++){
-//	        	Label naam = new Label();
-//	        	naam.setText(model.getALLPlayersNames().get(i));
-//	        	naam.setTranslateX(35);
-//	    		naam.setTranslateY(y);
-//	    		root.getChildren().add(naam);
-//	    		y += 30;
-//	        }
+		
 			
 			//New mehtod
 			this.playerNames = model.getALLPlayersNames();
@@ -121,11 +105,16 @@ import view.gameframe.WelcomeScreen;
 		private void setButtonClickEvent() {
 			Button nextButton = (Button)getCurrentPlayerFrame().getButtons().get(2);
 			Button button = (Button)getCurrentPlayerFrame().getButtons().get(0);
+			Button end = (Button)getCurrentPlayerFrame().getButtons().get(3);
             ComboBox<Categories> categories = (ComboBox<Categories>)getCurrentPlayerFrame().getButtons().get(1);
             categories.setOnAction(event -> {category = categories.getSelectionModel().getSelectedItem().toString();
             								model.deleteCategory(category);
             								
             								
+            });
+            
+            end.setOnMouseClicked(event -> {
+            	
             });
 			button.setOnMouseClicked(event -> {
 				this.rollDices();

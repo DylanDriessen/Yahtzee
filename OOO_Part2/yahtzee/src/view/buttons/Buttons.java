@@ -49,4 +49,10 @@ public class Buttons {
 		return btn;
 	}
 	
+	public Button endGame(){
+		Button btn = new Button("End Game");
+		btn.setPrefSize(80, 36);
+		return btn;
+	}
+	
 }
