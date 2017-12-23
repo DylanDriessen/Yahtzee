@@ -112,9 +112,7 @@ import view.gameframe.endGameObserver;
 //			Button end = (Button)getCurrentPlayerFrame().getButtons().get(3);
             ComboBox<Categories> categories = (ComboBox<Categories>)getCurrentPlayerFrame().getButtons().get(1);
             categories.setOnAction(event -> {category = categories.getSelectionModel().getSelectedItem().toString();
-            								model.deleteCategory(category);
-            								
-            								
+            								model.deleteCategory(category);							
             });
             
             getCurrentPlayerFrame().getButtons().get(3).setOnMouseClicked(event -> {

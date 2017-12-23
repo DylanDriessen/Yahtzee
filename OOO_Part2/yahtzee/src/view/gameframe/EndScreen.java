@@ -29,19 +29,20 @@ public class EndScreen {
 	
     public EndScreen(String winner){
     	Label gwinner = new Label("The winner is "+ winner);
+    	Label end = new Label("This is the end of the game");
     	gridpane.setPadding(new Insets(35));
     	buttons.setAlignment(Pos.CENTER);
     	buttons.getChildren().add(btn);
     	buttons.getChildren().add(startBtn);
-    	buttons.getChildren().add(gwinner);
         stage.setScene(scene);
 	    gridpane.setHgap(400);
 	    gridpane.setVgap(10);
         gridpane.setGridLinesVisible(false);
         buttons.setSpacing(10);
         buttons.setPadding(new Insets(5,5,5,5));
-        buttons.getChildren().get(2).relocate(30, 30);
-        gridpane.add(buttons, 0, 2);
+        gridpane.add(end, 0, 1);
+        gridpane.add(gwinner, 0, 3);
+        gridpane.add(buttons, 0, 5);
         root.getChildren().addAll(gridpane);
     }
 
