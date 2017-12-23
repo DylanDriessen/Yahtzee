@@ -27,8 +27,9 @@ public class EndScreen {
     TextField text;
     HBox buttons = new HBox();
 	
-    public EndScreen(String winner){
+    public EndScreen(String winner, String Loser){
     	Label gwinner = new Label("The winner is "+ winner);
+    	Label gloser = new Label("The Loser is "+ Loser );
     	Label end = new Label("This is the end of the game");
     	gridpane.setPadding(new Insets(35));
     	buttons.setAlignment(Pos.CENTER);
@@ -41,8 +42,9 @@ public class EndScreen {
         buttons.setSpacing(10);
         buttons.setPadding(new Insets(5,5,5,5));
         gridpane.add(end, 0, 1);
+        gridpane.add(gloser, 0, 5);
         gridpane.add(gwinner, 0, 3);
-        gridpane.add(buttons, 0, 5);
+        gridpane.add(buttons, 0, 7);
         root.getChildren().addAll(gridpane);
     }
 

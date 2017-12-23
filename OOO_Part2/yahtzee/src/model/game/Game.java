@@ -16,7 +16,7 @@ public class Game {
 	private Dices dices;
 	private SimpleCatagoryStrategy catagories;
 	private Turn turn;
-	private int totalTurns = 13;
+	private int totalTurns = 1;
  	
 	public Game(){
 		this.players = new ArrayList<>();
@@ -168,5 +168,16 @@ public class Game {
  			}
  		}
  		return winner +" with "+ score+" points.";
+ 	}
+ 	public String getLoser(){
+ 		String loser = null;
+ 		int score = 99999999;
+ 		for(Player player: players){
+ 			if(player.getScore()<score){
+ 				loser = player.getNaam();
+ 				score = player.getScore();
+ 			}
+ 		}
+ 		return loser +" with "+ score+" points.";
  	}
  }

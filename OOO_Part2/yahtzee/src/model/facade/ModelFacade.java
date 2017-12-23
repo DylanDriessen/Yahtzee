@@ -114,5 +114,9 @@ Game game;
 		System.out.println(game.getWinner());
 		return game.getWinner();
 	}
+	@Override
+	public String getLoser() {
+		return game.getLoser();
+	}
 
 }

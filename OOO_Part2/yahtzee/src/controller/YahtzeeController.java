@@ -127,12 +127,12 @@ import view.gameframe.endGameObserver;
 				});
             getCurrentPlayerFrame().getButtons().get(2).setOnMouseClicked(event -> {
 				try {
-					if(model.gameFinished()){
-						getEndFrame(model.getWinner());
-					}
 					model.getCurrentPlayer().addScore(model.getscore(category));
 					notifyScoreboardObserver(model.getscore(category), Categories.valueOf(category).getScore());
 					notifyGameFrames();
+					if(model.gameFinished()){
+						getEndFrame(model.getWinner(), model.getLoser());
+					}
 					getCurrentPlayerFrame().resetErrors();
 					resetDices(getCurrentPlayerFrame());
 					setUnClicableDices(getCurrentPlayerFrame());
@@ -164,8 +164,8 @@ import view.gameframe.endGameObserver;
 			return (GameFrame) this.observers.get(model.getIndexNextPlayer());
 		}
 		
-		private void getEndFrame(String winner) {
-			this.endscreen = new EndScreen(winner);
+		private void getEndFrame(String winner, String loser) {
+			this.endscreen = new EndScreen(winner, loser);
 			System.out.println("einde");
 	        endscreen.getStage().show();
 		}
