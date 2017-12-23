@@ -28,21 +28,19 @@ public class EndScreen {
     HBox buttons = new HBox();
 	
     public EndScreen(String winner){
+    	Label gwinner = new Label("The winner is "+ winner);
+    	gridpane.setPadding(new Insets(35));
     	buttons.setAlignment(Pos.CENTER);
     	buttons.getChildren().add(btn);
     	buttons.getChildren().add(startBtn);
+    	buttons.getChildren().add(gwinner);
         stage.setScene(scene);
-    	Label gwinner = new Label("And the winner is "+ winner);
-    	gwinner.setPrefSize(300, 30);
-		gwinner.setStyle("-fx-text-fill: black; -fx-font-size: 17; -fx-font-weight: bold;");
-		gwinner.setPadding(new Insets(0,0,0,5));
-    	gridpane.setPadding(new Insets(35));
 	    gridpane.setHgap(400);
 	    gridpane.setVgap(10);
         gridpane.setGridLinesVisible(false);
         buttons.setSpacing(10);
         buttons.setPadding(new Insets(5,5,5,5));
-        gridpane.add(gwinner, 4, 4);
+        buttons.getChildren().get(2).relocate(30, 30);
         gridpane.add(buttons, 0, 2);
         root.getChildren().addAll(gridpane);
     }
@@ -79,6 +77,5 @@ public class EndScreen {
 		startBtn.setPrefSize(150, 25);
         return startBtn;
 	}
-
 }
 
