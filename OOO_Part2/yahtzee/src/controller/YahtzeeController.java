@@ -119,19 +119,19 @@ import view.gameframe.WelcomeScreen;
 	
 		
 		private void setButtonClickEvent() {
-			Button nextButton = (Button)getCurrentPlayerFrame().getButtons().get(2);
-			Button button = (Button)getCurrentPlayerFrame().getButtons().get(0);
+			
+			
             ComboBox<Categories> categories = (ComboBox<Categories>)getCurrentPlayerFrame().getButtons().get(1);
             categories.setOnAction(event -> {category = categories.getSelectionModel().getSelectedItem().toString();
             								model.deleteCategory(category);
             								
             								
             });
-			button.setOnMouseClicked(event -> {
+            getCurrentPlayerFrame().getButtons().get(0).setOnMouseClicked(event -> {
 				this.rollDices();
 				});
 			
-			nextButton.setOnMouseClicked(event -> {
+			getCurrentPlayerFrame().getButtons().get(2).setOnMouseClicked(event -> {
 				try {
 					model.getCurrentPlayer().addScore(model.getscore(category));
 					notifyScoreboardObserver(model.getscore(category), Categories.valueOf(category).getScore());
