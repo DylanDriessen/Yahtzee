@@ -38,6 +38,21 @@ public class Turn {
 		return points;
 	}
 	
+	public int getPredictedScore(Categories category) {
+		boolean contains = false;
+		
+		for(Categories playerCategory : player.getCategories()) {
+			if (playerCategory.toString().toUpperCase().equals(category.toString().toUpperCase())) contains = true;
+		}
+		
+//		if (!contains) throw new DomainException("This category has already been chosen/Is not availble");
+		
+		int points = this.getCatagory().catagory(category).getPoints(dices.getDices());
+		setChosenCategory(category);
+		return points;
+	}
+	
+	
 	public void setChosenCategory(Categories category) {
 		this.chosenCategory =  category;
 	}
@@ -97,5 +112,14 @@ public class Turn {
 		}
 		return 0;
 	}
+	
+	public int getPointsPredictedCategory(String category){
+		for(Categories c : Categories.values()) {
+			if(c.toString().equals(category.toUpperCase()))return this.getPredictedScore(c);
+		}
+		return 0;
+	}
+	
+	
 	
 }
