@@ -2,11 +2,8 @@ package view.gameframe;
 
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JOptionPane;
-
-import com.sun.prism.impl.TextureResourcePool;
 
 import exception.DomainException;
 import javafx.collections.ObservableList;
@@ -17,19 +14,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.score.Categories;
-import model.turn.Turn;
 import view.board.BoardCreator;
 import view.board.ObserverInterface;
 import view.buttons.Buttons;
@@ -44,7 +36,7 @@ public class GameFrame implements ObserverInterface {
 	DiceCreator creator = new DiceCreator();
 	private int x1 = 100;
 	private int y= 200;
-	StackPane dices = new StackPane();
+	Pane dices = new Pane();
 	ArrayList<Integer> opzijGezet;
 	String category;
 	HBox clickButtons = new HBox();
@@ -69,7 +61,7 @@ public class GameFrame implements ObserverInterface {
 			Label current = buttons.setCurrentName(currentName);
 			primaryStage.setTitle("Yahtzee");
 			
-			gridpane.add(dices, 0, 0);
+			gridpane.add(dices, 10, 5);
 			gridpane.add(clickButtons, 10, 15);
 			gridpane.add(nameLabel, 10, 0);
 			gridpane.add(current, 10, 1);
@@ -92,6 +84,8 @@ public class GameFrame implements ObserverInterface {
 		Rectangle dice3 = creator.dice3();
 		Rectangle dice4 = creator.dice4();
 		Rectangle dice5 = creator.dice5();
+		dices.setPrefHeight(40);
+		dices.setPrefWidth(200);
 		dices.getChildren().addAll(dice1,dice2,dice3,dice4,dice5);
 	}
 	
@@ -100,14 +94,14 @@ public class GameFrame implements ObserverInterface {
 	}
 	
 	//Check for type of node
-	public Rectangle translateRectangle(Node node) {
+	public Rectangle returnRectangle(Node node) {
 		if(node instanceof Rectangle) {
 			return (Rectangle)node;
 		}
 		return null;
 	}
 	
-	public Text translateText(Node node) {
+	public Text returnText(Node node) {
 		if(node instanceof Text) {
 			return (Text)node;
 		}

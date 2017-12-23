@@ -95,6 +95,7 @@ import view.gameframe.WelcomeScreen;
 			}
 			try {
 				model.reduceChance();
+				changeStateChosenDices();
 			} catch(DomainException e) {
 				getCurrentPlayerFrame().addError(e.getMessage());
 				getCurrentPlayerFrame().getButtons().remove(0);
@@ -178,37 +179,58 @@ import view.gameframe.WelcomeScreen;
 		
 		private void setClicableDices(GameFrame gameFrame) {
 			for(Node node : gameFrame.getVisualDices()) {
-				if(gameFrame.translateRectangle(node)!=null) {
-					gameFrame.translateRectangle(node).setOnMouseClicked(event -> 
+				if(gameFrame.returnRectangle(node)!=null){
+					
+					gameFrame.returnRectangle(node).setOnMouseClicked(event -> 
 					{
-						gameFrame.translateRectangle(node).setTranslateY(100);				
-						gameFrame.translateText(gameFrame.getVisualDices().get(gameFrame.getVisualDices().indexOf(node)+5)).setTranslateY(100);
+						gameFrame.returnRectangle(node).setTranslateY(-100);				
+						gameFrame.returnText(gameFrame.getVisualDices().get(gameFrame.getVisualDices().indexOf(node)+5)).setTranslateY(-100);
 						model.getAllDices().get(gameFrame.getVisualDices().indexOf(node)).setState(
 								model.getAllDices().get(gameFrame.getVisualDices().indexOf(node)).getDiceChosen());
+						setChosenDiceClickable(node);
 					});
+					
 				}
 			}
 		}
 		
-		private void setChosenDiceClickable() {
-			
+		private void setChosenDiceClickable(Node node) {
+			int i = getCurrentPlayerFrame().getVisualDices().indexOf(node);
+			if(model.getAllDices().get(i).getState().toString().equals(model.getAllDices().get(0).getNotRollable().toString())) {
+				throw new DomainException("Dice cannot be rolled again");
+			} else {
+				getCurrentPlayerFrame().returnRectangle(node).setOnMouseClicked(event -> {
+					getCurrentPlayerFrame().returnRectangle(node).setTranslateY(0);				
+					getCurrentPlayerFrame().returnText(getCurrentPlayerFrame().getVisualDices().get(getCurrentPlayerFrame().getVisualDices().indexOf(node)+5)).setTranslateY(0);
+					model.getAllDices().get(getCurrentPlayerFrame().getVisualDices().indexOf(node)).setState(
+							model.getAllDices().get(getCurrentPlayerFrame().getVisualDices().indexOf(node)).getRollable());
+				});
+			}
 		}
 		
 		private void setUnClicableDices(GameFrame gameFrame) {
 			for(Node node : gameFrame.getVisualDices()) {
-				if(gameFrame.translateRectangle(node)!=null) {
-					gameFrame.translateRectangle(node).setOnMouseClicked(event -> {});
+				if(gameFrame.returnRectangle(node)!=null) {
+					gameFrame.returnRectangle(node).setOnMouseClicked(event -> {});
+				}
+			}
+		}
+		
+		private void changeStateChosenDices() {
+			for (int i = 0; i < model.getAllDices().size(); i++) {
+				if(model.getAllDices().get(i).getState().toString().equals(model.getAllDices().get(1).getDiceChosen().toString())) {
+					model.getAllDices().get(i).setState(model.getAllDices().get(i).getNotRollable());
 				}
 			}
 		}
 		
 		private void resetDices(GameFrame gameFrame) {
 			for (Node node : gameFrame.getVisualDices()) {
-				if(gameFrame.translateRectangle(node)!=null) {
-					gameFrame.translateRectangle(node).setTranslateY(200);
+				if(gameFrame.returnRectangle(node)!=null) {
+					gameFrame.returnRectangle(node).setTranslateY(0);
 				}
-				if(gameFrame.translateText(node)!=null) {
-					gameFrame.translateText(node).setTranslateY(200);
+				if(gameFrame.returnText(node)!=null) {
+					gameFrame.returnText(node).setTranslateY(0);
 				}
 			}
 		}
