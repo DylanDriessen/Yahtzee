@@ -21,6 +21,7 @@ import model.facade.IModelFacade;
 import model.score.Categories;
 import model.turn.Turn;
 import view.board.ObserverInterface;
+import view.gameframe.EndScreen;
 import view.gameframe.GameFrame;
 import view.gameframe.WelcomeScreen;
 import view.gameframe.endGameObserver;
@@ -33,6 +34,7 @@ import view.gameframe.endGameObserver;
 		Stage primaryStage = new Stage();
 		GameFrame frame = new GameFrame();
 		WelcomeScreen welcomeScreen;
+		EndScreen endscreen;
 		ArrayList<ObserverInterface> observers = new ArrayList<>();
 		ArrayList<endGameObserver> endGames = new ArrayList<>();
 		ArrayList<Integer> result = new ArrayList<>();
@@ -127,6 +129,9 @@ import view.gameframe.endGameObserver;
 				});
             getCurrentPlayerFrame().getButtons().get(2).setOnMouseClicked(event -> {
 				try {
+					if(model.gameFinished()){
+						getEndFrame(model.getWinner());
+					}
 					model.getCurrentPlayer().addScore(model.getscore(category));
 					notifyScoreboardObserver(model.getscore(category), Categories.valueOf(category).getScore());
 					notifyGameFrames();
@@ -160,6 +165,13 @@ import view.gameframe.endGameObserver;
 		private GameFrame getNextPlayerFrame() {
 			return (GameFrame) this.observers.get(model.getIndexNextPlayer());
 		}
+		
+		private void getEndFrame(String winner) {
+			this.endscreen = new EndScreen(winner);
+			System.out.println("einde");
+	        endscreen.getStage().show();
+		}
+
 		
 		private void getNames(String text) {
 			model.addPlayer(text);

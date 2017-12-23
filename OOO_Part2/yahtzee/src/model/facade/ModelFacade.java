@@ -102,5 +102,17 @@ Game game;
 	public String getPlayerHighestScore() {
 		return game.getPlayerWithHighestScore();
 	}
-	
+	@Override
+	public boolean gameFinished() {
+		if(!game.rondesOver()){
+			return false;
+		}
+		return true;
+	}
+	@Override
+	public String getWinner() {
+		System.out.println(game.getWinner());
+		return game.getWinner();
+	}
+
 }

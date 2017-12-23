@@ -30,5 +30,7 @@ public interface IModelFacade {
 	int getIndexNextPlayer();
 	int getHighestScore();
 	String getPlayerHighestScore();
+	String getWinner();
+	boolean gameFinished();
 	}
 
