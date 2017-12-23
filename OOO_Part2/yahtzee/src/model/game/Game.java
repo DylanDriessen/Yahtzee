@@ -16,7 +16,7 @@ public class Game {
 	private Dices dices;
 	private SimpleCatagoryStrategy catagories;
 	private Turn turn;
-	private int totalTurns = 13;
+	private int totalTurns = 12;
  	
 	public Game(){
 		this.players = new ArrayList<>();
