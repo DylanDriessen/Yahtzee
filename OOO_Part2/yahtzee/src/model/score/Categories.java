@@ -1,5 +1,7 @@
 package model.score;
 
+import java.util.List;
+
 public enum Categories {
 	
 	ACES("Aces", 0),
@@ -35,5 +37,11 @@ public enum Categories {
 	public int getScore(){
 		return score;
 	}
-
+	
+	public String getCategorie(int score){
+		if(score == this.score){
+			return categorie;
+		}
+		return categorie;
+	}
 }

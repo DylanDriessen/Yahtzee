@@ -120,12 +120,20 @@ import view.gameframe.endGameObserver;
             	getCurrentPlayerFrame().removeDices();
             	
             	notifyText(model.getPlayerHighestScore(), model.getHighestScore());
-            
             });
             getCurrentPlayerFrame().getButtons().get(0).setOnMouseClicked(event -> {
 				this.rollDices();
+				//probeersel
+				try{
+					for(int i = 0; i < Categories.values().length; i++){
+						notifyPredictions(model.getscore(Categories.values()[i].toString()), i );		
+					}
+				}catch(NullPointerException e){
+					getCurrentPlayerFrame().resetErrors();
+					getCurrentPlayerFrame().addError("Predicted score error");
+				}
 				});
-            getCurrentPlayerFrame().getButtons().get(2).setOnMouseClicked(event -> {
+            		getCurrentPlayerFrame().getButtons().get(2).setOnMouseClicked(event -> {
 				try {
 					model.getCurrentPlayer().addScore(model.getscore(category));
 					notifyScoreboardObserver(model.getscore(category), Categories.valueOf(category).getScore());
@@ -258,6 +266,10 @@ import view.gameframe.endGameObserver;
 		
 		public void notifyScoreboardObserver(int score, int place) {
 			getCurrentPlayerFrame().updateScoreboard(score, place, model.getCurrentPlayer().getScore());
+		}
+		
+		public void notifyPredictions(int score, int place){
+			getCurrentPlayerFrame().updatePredictionsScoreboard(score, place, model.getCurrentPlayer().getScore());
 		}
 		
 		
