@@ -51,7 +51,7 @@ public class Buttons {
 	
 	public Button endGame(){
 		Button btn = new Button("End Game");
-		btn.setPrefSize(80, 36);
+		btn.setPrefSize(100, 36);
 		return btn;
 	}
 	
