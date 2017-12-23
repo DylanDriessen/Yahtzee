@@ -58,23 +58,7 @@ import view.gameframe.WelcomeScreen;
 
 		@Override
 		public void start(Stage primaryStage) throws Exception {
-			//Old method
-//			Stage stage = new Stage();
-//	        Group root = new Group();	
-//	        Scene scene = new Scene(root, 400, 400, Color.BEIGE);
-//	        stage.setScene(scene);
-//	        Button btn = nameButon();
-//	        Button startBtn = frame.startGame();
-//	        TextField field = frame.spelerField();
-//	        int y = 180;
-//	        for(int i = 0; i < model.getALLPlayersNames().size(); i++){
-//	        	Label naam = new Label();
-//	        	naam.setText(model.getALLPlayersNames().get(i));
-//	        	naam.setTranslateX(35);
-//	    		naam.setTranslateY(y);
-//	    		root.getChildren().add(naam);
-//	    		y += 30;
-//	        }
+		
 			
 			//New mehtod
 			this.playerNames = model.getALLPlayersNames();
