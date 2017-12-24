@@ -9,31 +9,30 @@ public class LargeStraight implements Category {
 
 	@Override
 	public int getPoints(List<Dice> dices) {
-		int i = 0;
-		int total = 0;
-		int diceEyes = 1;
+		boolean een = false;
+		boolean twee = false;
+		boolean drie = false;
+		boolean vier = false;
+		boolean vijf = false;
+		boolean zes = false;
 		for(Dice dice : dices) {
-			if(dice.getEyes() == diceEyes) { 
-				total++;
-				diceEyes++;
+			if(dice.getEyes() == 1) { 
+				een = true;
 			}
 		}
-		if(total >= 5) i = total;
-		
-		total = 0;
-		diceEyes = 2;
-		for(Dice dice : dices) {
-			if(dice.getEyes() == diceEyes) { 
-				total++;
-				diceEyes++;
+		for(Dice dice : dices){
+			if(dice.getEyes() == 6){
+				zes = true;
 			}
 		}
-		if(total >= 5) i = total;
-		
-		
-		
-		if(i < 5) return 0;
-		
-		return 40;
-	}
-}
+		for(Dice dice : dices){
+				if(dice.getEyes() == 2)twee=true;
+				if(dice.getEyes() == 3)drie =true;
+				if(dice.getEyes() == 4)vier = true;
+				if(dice.getEyes() == 5)vijf = true;
+			}
+		if(twee == true && drie == true && vier ==true && vijf == true && (een ==true || zes == true)){
+			return 40;
+		}
+		else return 0;
+	}}
