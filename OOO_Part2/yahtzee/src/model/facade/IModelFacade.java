@@ -35,5 +35,6 @@ public interface IModelFacade {
 	String getLoser();
 	boolean gameFinished();
 	int getChancesTurn();
+	void removeAllPlayers();
 	}
 

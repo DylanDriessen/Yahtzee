@@ -181,6 +181,26 @@ import view.gameframe.endGameObserver;
 			this.endscreen = new EndScreen(winner, loser);
 			System.out.println("einde");
 	        endscreen.getStage().show();
+	        endscreen.getButtons().getChildren().get(0).setOnMouseClicked(event -> {
+	        	for(ObserverInterface o : observers) {
+	        		((GameFrame)o).closeFrame();
+	        		endscreen.getStage().close();
+	        	}
+	        });
+	        
+	        endscreen.getButtons().getChildren().get(1).setOnMouseClicked(event -> {
+	        	Stage stage = new Stage();
+	        	for(ObserverInterface o : observers) {
+	        		((GameFrame)o).closeFrame();
+	        		endscreen.getStage().close();
+	        	}
+	        	try {
+	        		model.removeAllPlayers();
+					start(stage);
+				} catch (Exception e) {
+					throw new DomainException("Restart does not work");
+				}
+	        });
 		}
 
 		

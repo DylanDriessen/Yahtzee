@@ -184,4 +184,10 @@ public class Game {
  	public int getChancesTurn() {
  		return turn.getChances();
  	}
+ 	
+ 	public void removeAllPlayers() {
+ 		for(Player player : players) {
+ 			players.remove(player);
+ 		}
+ 	}
  }

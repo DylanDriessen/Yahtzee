@@ -44,12 +44,13 @@ public class GameFrame implements ObserverInterface, endGameObserver {
 	int scoreY;
 	VBox errorList = new VBox();
 	Label scoretext = new Label(); 
+	Stage primaryStage;
 
 	public void makeFrameWithRoll(Stage primaryStage, String name, String currentName, ArrayList<Integer> result, int score, ArrayList<Categories> categories){
 		clickButtons.setPadding(new Insets(5,5,5,5));
 		clickButtons.setSpacing(10);
 		clickButtons.setPrefWidth(420);
-		
+		this.primaryStage = primaryStage;
 
 		try{
 			this.setDices(result);
@@ -60,7 +61,7 @@ public class GameFrame implements ObserverInterface, endGameObserver {
 			}
 			Label nameLabel = buttons.setName(name);
 			Label current = buttons.setCurrentName(currentName);
-			primaryStage.setTitle("Yahtzee");
+			this.primaryStage.setTitle("Yahtzee");
 			scoretext.setStyle("-fx-text-fill: black; -fx-font-size: 15; -fx-font-weight: 600");
 			scoretext.setPrefSize(400, 36);
 			
@@ -73,8 +74,8 @@ public class GameFrame implements ObserverInterface, endGameObserver {
 			makeScoreboard(categories, 15, 0);
 			root.getChildren().addAll(gridpane);	
 
-			primaryStage.setScene(scene);
-			primaryStage.show();	
+			this.primaryStage.setScene(scene);
+			this.primaryStage.show();	
 		}
 		catch(DomainException e){
 			JOptionPane.showMessageDialog(null, e.getMessage());
@@ -254,6 +255,10 @@ public class GameFrame implements ObserverInterface, endGameObserver {
 	
 	public void removeDices(){
 		dices.getChildren().clear();
+	}
+	
+	public void closeFrame() {
+		this.primaryStage.close();
 	}
 	
 
