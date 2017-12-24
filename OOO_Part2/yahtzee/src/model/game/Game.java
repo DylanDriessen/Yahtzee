@@ -16,7 +16,7 @@ public class Game {
 	private Dices dices;
 	private SimpleCatagoryStrategy catagories;
 	private Turn turn;
-	private int totalTurns = 12;
+	private int totalTurns = 13;
  	
 	public Game(){
 		this.players = new ArrayList<>();
@@ -178,5 +178,11 @@ public class Game {
  	
  	public int getChancesTurn() {
  		return turn.getChances();
+ 	}
+ 	
+ 	public void removeAllPlayers() {
+ 		for(Player player : players) {
+ 			players.remove(player);
+ 		}
  	}
  }

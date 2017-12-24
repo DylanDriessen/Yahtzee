@@ -121,5 +121,9 @@ Game game;
 	public int getChancesTurn() {
 		return game.getChancesTurn();
 	}
+	@Override
+	public void removeAllPlayers() {
+		game.removeAllPlayers();
+	}
 
 }
