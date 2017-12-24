@@ -9,39 +9,55 @@ public class SmallStraight implements Category {
 
 	@Override
 	public int getPoints(List<Dice> dices) {
-		int i = 0;
-		int total = 0;
-		int diceEyes = 1;
-		for(Dice dice : dices) {
-			if(dice.getEyes() == diceEyes) { 
-				total++;
-				diceEyes++;
-			}
+		boolean one = false;
+		boolean two = false;
+		boolean three = false;
+		boolean four = false;
+		boolean five = false;
+		boolean six = false;
+		
+		for(int i = 0; i < dices.size(); i++) {
+			if(dices.get(i).getEyes() == 1) one = true;
+			if(dices.get(i).getEyes() == 2) two = true;
+			if(dices.get(i).getEyes() == 3) three = true;
+			if(dices.get(i).getEyes() == 4) four = true;
 		}
-		if(total >= 4) i = total;
 		
-		total = 0;
-		diceEyes = 2;
-		for(Dice dice : dices) {
-			if(dice.getEyes() == diceEyes) { 
-				total++;
-				diceEyes++;
-			}
+		if(one && two && three && four) return 30;
+		
+		one = false;
+		two = false;
+		three = false;
+		four = false;
+		
+		for(int i = 0; i < dices.size(); i++) {
+			if(dices.get(i).getEyes() == 5) five = true;
+			if(dices.get(i).getEyes() == 2) two = true;
+			if(dices.get(i).getEyes() == 3) three = true;
+			if(dices.get(i).getEyes() == 4) four = true;
 		}
-		if(total >= 4) i = total;
 		
-		total = 0;
-		diceEyes = 3;
-		for(Dice dice : dices) {
-			if(dice.getEyes() == diceEyes) { 
-				total++;
-				diceEyes++;
-			}
+		if(five && two && three && four) return 30;
+		
+		five = false;
+		two = false;
+		three = false;
+		four = false;
+		
+		for(int i = 0; i < dices.size(); i++) {
+			if(dices.get(i).getEyes() == 5) five = true;
+			if(dices.get(i).getEyes() == 2) six = true;
+			if(dices.get(i).getEyes() == 3) three = true;
+			if(dices.get(i).getEyes() == 4) four = true;
 		}
-		if(total >= 4) i = total;
 		
-		if(i < 4) return 0;
+		if(five && six && three && four) return 30;
 		
-		return 30;
+		five = false;
+		six = false;
+		three = false;
+		four = false;
+		
+		return 0;
 	}
 }
