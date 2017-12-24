@@ -308,7 +308,7 @@ public class YahtzeeController extends Application implements SubjectInterface, 
 	
 	@Override
 	public void notifyPredictions(int score, int place) {
-		getCurrentPlayerFrame().updatePredictionsScoreboard(score, place, model.getCurrentPlayer().getScore());
+		getCurrentPlayerFrame().updatePredictionsScoreboard(score, place);
 	}
 	
 	@Override

@@ -272,7 +272,7 @@ public class GameFrame implements ObserverInterface, endGameObserver {
 	}
 	
 	@Override
-	public void updatePredictionsScoreboard(int score, int place, int currentPlayerTotalScore) {
+	public void updatePredictionsScoreboard(int score, int place) {
 		this.gridpane.getChildren().remove(getNodeFromGridPane(gridpane, scoreX+2, scoreY+1+place));
 		Label predictedText = new Label();
 		predictedText.setText(Integer.toString(score));

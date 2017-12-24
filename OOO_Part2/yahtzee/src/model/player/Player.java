@@ -11,6 +11,7 @@ public class Player {
 	private int score;
 	private ArrayList<Categories> categories = new ArrayList<>();
 	private int timesYahtzee = 0;
+	private int yahtzeeScore = 0;
 
 	public Player(String naam){
 		this.setNaam(naam);
@@ -40,6 +41,14 @@ public class Player {
 	
 	public void addTimesYahtzee(int i) {
 		this.timesYahtzee  = timesYahtzee + i;
+	}
+	
+	public void setYahzeeScore(int i) {
+		this.yahtzeeScore = i ;
+	}
+	
+	public int getYahzeeScore() {
+		return yahtzeeScore;
 	}
 	
 	public void removeCategory(Categories categoryToRemove) {

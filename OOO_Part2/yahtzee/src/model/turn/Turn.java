@@ -28,7 +28,9 @@ public class Turn {
 	public int getScore(Categories category) {
 		int sameDices = 0;
 		ArrayList<Integer> diceEyes = new ArrayList<>();
-		
+		if(category.equals(Categories.YAHTZEE)) {
+			player.setYahzeeScore(this.getCatagory().catagory(category).getPoints(dices.getDices()));
+		}
 		for(int i = 0; i < dices.getDices().size(); i++) {
 			diceEyes.add(dices.getDices().get(i).getEyes());
 		}
@@ -40,15 +42,13 @@ public class Turn {
 		int points = 0;
 		boolean containsC = false;
 		for(Categories c : player.getCategories()) {
-			System.out.println("Contains " + c.toString());
 			if(c.toString().trim().equals("YAHTZEE")) {
 				player.addTimesYahtzee(1);
 				containsC = true;
 			}
 		}
 		if(containsC == false && sameDices == 5) {
-			if (player.getTimesYahtzee() == 2) {
-			System.out.println("Does not contain yahtzee");
+			if (player.getTimesYahtzee() == 2 && player.getYahzeeScore() != 0) {
 			points = points + 100;
 			player.addTimesYahtzee(1);
 			} else {
@@ -58,13 +58,10 @@ public class Turn {
 		points = points + this.getCatagory().catagory(category).getPoints(dices.getDices());
 		setChosenCategory(category);
 		this.player.removeCategory(category);
-		System.out.println("Gegeven punten: " + points);
 		return points;
 	}
 	
-	public int getPredictedScore(Categories category) {		
-//		if (!contains) throw new DomainException("This category has already been chosen/Is not availble");
-		
+	public int getPredictedScore(Categories category) {				
 		int points = this.getCatagory().catagory(category).getPoints(dices.getDices());
 		setChosenCategory(category);
 		return points;
