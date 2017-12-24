@@ -184,18 +184,18 @@ import view.gameframe.endGameObserver;
 	        endscreen.getButtons().getChildren().get(0).setOnMouseClicked(event -> {
 	        	for(ObserverInterface o : observers) {
 	        		((GameFrame)o).closeFrame();
-	        		endscreen.getStage().close();
 	        	}
+        		endscreen.getStage().close();
 	        });
 	        
 	        endscreen.getButtons().getChildren().get(1).setOnMouseClicked(event -> {
 	        	Stage stage = new Stage();
 	        	for(ObserverInterface o : observers) {
 	        		((GameFrame)o).closeFrame();
-	        		endscreen.getStage().close();
 	        	}
 	        	try {
 	        		model.removeAllPlayers();
+	        		endscreen.getStage().close();
 					start(stage);
 				} catch (Exception e) {
 					throw new DomainException("Restart does not work");
