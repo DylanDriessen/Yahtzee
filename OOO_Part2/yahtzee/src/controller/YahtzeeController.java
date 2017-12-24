@@ -142,10 +142,7 @@ public class YahtzeeController extends Application implements SubjectInterface, 
 
 	// When dices are being rolled
 	private void rollDices() {
-//		model.rollDices();
-		for(Dice d : model.getAllDices()) {
-			d.setEyes(1);
-		}
+		model.rollDices();
 		setClicableDices(getCurrentPlayerFrame());
 		ArrayList<Dice> dices = model.getAllDices();
 		for (int i = dices.size() - 1; i >= 0; i--) {

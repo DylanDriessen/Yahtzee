@@ -66,7 +66,7 @@ public class Turn {
 		boolean contains = false;
 		
 		for(Categories playerCategory : player.getCategories()) {
-			if (playerCategory.toString().toUpperCase().equals(category.toString().toUpperCase())) contains = true;
+			if (playerCategory.toString().toUpperCase().equals(Categories.YAHTZEE_BONUS.toString())) player.getCategories().remove(playerCategory);
 		}
 		
 //		if (!contains) throw new DomainException("This category has already been chosen/Is not availble");
