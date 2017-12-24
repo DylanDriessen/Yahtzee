@@ -12,19 +12,23 @@ public class FullHouse implements Category {
 		int threeSameDices = 0;
 		int twoSameDices = 0;
 		int testDice = 0;
-		
+
 		for (Dice dice : dices) {
 			testDice = 0;
 			for (Dice dice2 : dices) {
-				if(dice.getEyes() == dice2.getEyes()) testDice++;
+				if (dice.getEyes() == dice2.getEyes())
+					testDice++;
 			}
-			
-			if (testDice == 3) threeSameDices = testDice;
-			if (testDice == 2) twoSameDices = testDice;
+
+			if (testDice == 3)
+				threeSameDices = testDice;
+			if (testDice == 2)
+				twoSameDices = testDice;
 		}
-		
-		if(twoSameDices == 0 || threeSameDices == 0) return 0;
-		
+
+		if (twoSameDices == 0 || threeSameDices == 0)
+			return 0;
+
 		return 25;
 	}
 

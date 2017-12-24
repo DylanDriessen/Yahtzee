@@ -11,24 +11,26 @@ public class ThreeOfAKind implements Category {
 		int score = 0;
 		int sameDice = 0;
 		int diceNeeded = 0;
-		
-		for(Dice dice : dices) {
+
+		for (Dice dice : dices) {
 			sameDice = 0;
-			
-			for(Dice dice2 : dices) {
-				if(dice.getEyes() == dice2.getEyes()) sameDice++;
+
+			for (Dice dice2 : dices) {
+				if (dice.getEyes() == dice2.getEyes())
+					sameDice++;
 			}
-			
-			if (sameDice >= 3) diceNeeded = dice.getEyes();
+
+			if (sameDice >= 3)
+				diceNeeded = dice.getEyes();
 		}
-		
-		
-		if(diceNeeded == 0) return 0;
-		
-		for(Dice dice : dices) {
+
+		if (diceNeeded == 0)
+			return 0;
+
+		for (Dice dice : dices) {
 			score = score + dice.getEyes();
 		}
-		
+
 		return score;
 	}
 

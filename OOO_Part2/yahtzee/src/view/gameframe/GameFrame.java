@@ -81,13 +81,7 @@ public class GameFrame implements ObserverInterface, endGameObserver {
 			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 	}
-	//Wordt niet gebruikt?
-	public Label MakeText(String naam, int score ){
-		scoretext = new Label();
-		String text = naam + Integer.toString(score);
-		scoretext.setText(text);
-		return scoretext;
-	}
+	
 	//Create and return dices
 	private void createFiveDices(){
 		Rectangle dice1 = creator.dice1();
@@ -100,6 +94,7 @@ public class GameFrame implements ObserverInterface, endGameObserver {
 		dices.getChildren().addAll(dice1,dice2,dice3,dice4,dice5);
 	}
 	
+	//Gives list of rectangles and labels
 	public ObservableList<Node> getVisualDices(){
 		return this.dices.getChildren();
 	}
@@ -118,7 +113,8 @@ public class GameFrame implements ObserverInterface, endGameObserver {
 		}
 		return null;
 	}
-	//Make Scoreboard
+	
+	//Make score board
 	private void makeScoreboard(ArrayList<Categories> categoryList, int colum, int row) {
 		this.scoreX = colum;
 		this.scoreY = row;
@@ -180,7 +176,8 @@ public class GameFrame implements ObserverInterface, endGameObserver {
 		fullScoreTitle.setText("Total Score:  ");
 		gridpane.add(fullScoreTitle, colum, row + categoryList.size()+1);
 	}
-	//Scorebord observer
+	
+	//Score board update method
 	public void updateScoreboard(int score, int place, int currentPlayerTotalScore) {
 		this.gridpane.getChildren().remove(getNodeFromGridPane(gridpane, scoreX+1, scoreY+1+place));
 		Label text = new Label();
@@ -198,8 +195,8 @@ public class GameFrame implements ObserverInterface, endGameObserver {
 		gridpane.add(fullScoreTitle, scoreX + 1, scoreY + 14);
 	}
 	
+	//Score board update predictions method
 	public void updatePredictionsScoreboard(int score, int place, int currentPlayerTotalScore) {
-		
 		this.gridpane.getChildren().remove(getNodeFromGridPane(gridpane, scoreX+2, scoreY+1+place));
 		Label predictedText = new Label();
 		predictedText.setText(Integer.toString(score));
@@ -210,6 +207,7 @@ public class GameFrame implements ObserverInterface, endGameObserver {
 		
 	}
 	
+	//Returns specific node in gridpane
 	private Node getNodeFromGridPane(GridPane gridPane, int col, int row) {
 	    for (Node node : gridPane.getChildren()) {
 	        if (GridPane.getColumnIndex(node) == col && GridPane.getRowIndex(node) == row) {
@@ -219,7 +217,7 @@ public class GameFrame implements ObserverInterface, endGameObserver {
 	    return null;
 	}
 
-	//NextButten implementatie
+	//Buttons implementation
 	public void addButtons(ArrayList<Categories> arrayList) {
 		ComboBox<Categories> categories = buttons.categories(arrayList);
 		Button turn = buttons.turn();
@@ -248,20 +246,23 @@ public class GameFrame implements ObserverInterface, endGameObserver {
 		errorList.getChildren().clear();
 	}
 
-	//Reset Dices
+	//Reset numbers Dices
 	private void setDices(ArrayList<Integer> result){
 		if (result == null || result.isEmpty())for(int j = 0; j <= 4; j++)result.add(0);
 	}
 	
+	//Remove all nodes from dices
 	public void removeDices(){
 		dices.getChildren().clear();
 	}
 	
+	//Close gameframe
 	public void closeFrame() {
 		this.primaryStage.close();
 	}
 	
-
+	
+	//Update methods
 	@Override
 	public void update(ArrayList<Integer> waardes) {
 		for(int i = 5; i < dices.getChildren().size(); i++) {
