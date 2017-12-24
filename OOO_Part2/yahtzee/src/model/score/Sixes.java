@@ -2,6 +2,7 @@ package model.score;
 
 import java.util.List;
 
+
 import model.board.Dice;
 
 public class Sixes implements Category {

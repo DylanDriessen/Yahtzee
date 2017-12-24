@@ -2,7 +2,6 @@ package model.board;
 
 import java.util.ArrayList;
 
-import model.dice.state.NotRolledState;
 
 public class Dices {
 	private ArrayList<Dice> dices = new ArrayList<>();

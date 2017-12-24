@@ -1,19 +1,13 @@
 package model.player;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
 
-import exception.DomainException;
+
 import model.score.Categories;
 
 public class Player {
 	
 	private String naam;
-	private String id;
-	private boolean turn = false;
-	private HashMap<Integer, List<Integer>> dicesThrown = new HashMap<>();
 	private int score;
 	private ArrayList<Categories> categories = new ArrayList<>();
 

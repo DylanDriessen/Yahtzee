@@ -1,6 +1,7 @@
 package model.score;
 
 
+
 public enum Categories {
 	
 	ACES("Aces", 0),

@@ -6,7 +6,7 @@ import model.board.Dice;
 
 public class SimpleCatagoryStrategy {
 	Category category;
-	List<Dice> dices;
+	
 	
 	public Category catagory(Categories category) {
 		
