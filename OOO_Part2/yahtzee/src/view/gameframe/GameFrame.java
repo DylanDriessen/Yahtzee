@@ -78,7 +78,7 @@ public class GameFrame implements ObserverInterface, endGameObserver {
 			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 	}
-	
+	//Wordt niet gebruikt?
 	public Label MakeText(String naam, int score ){
 		scoretext = new Label();
 		String text = naam + Integer.toString(score);
