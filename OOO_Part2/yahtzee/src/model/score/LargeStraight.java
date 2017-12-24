@@ -31,7 +31,7 @@ public class LargeStraight implements Category {
 				if(dice.getEyes() == 4)vier = true;
 				if(dice.getEyes() == 5)vijf = true;
 			}
-		if(twee == true && drie == true && vier ==true && vijf == true && (een ==true || zes == true)){
+		if((een ==true || zes == true)&&twee == true && drie == true && vier ==true && vijf == true){
 			return 40;
 		}
 		else return 0;

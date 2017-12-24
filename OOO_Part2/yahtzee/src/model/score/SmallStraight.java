@@ -23,7 +23,7 @@ public class SmallStraight implements Category {
 			if(dice.getEyes() == 5)vijf = true;
 			if(dice.getEyes() == 6)zes = true;
 		}
-	if((drie == true && vier ==true && vijf == true && (twee ==true || zes == true))||(een == true && twee ==true && drie == true && vier ==true)){
+	if(((twee ==true || zes == true)&&drie == true && vier ==true && vijf == true)||(een == true && twee ==true && drie == true && vier ==true)){
 		return 30;
 	}
 	else return 0;
