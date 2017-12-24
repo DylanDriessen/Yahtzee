@@ -59,33 +59,6 @@ public class Player {
 		this.naam = naam;
 	}
 	
-	public String getId(){
-		return id;
-	}
-	
-	public void setID(){
-		this.id = UUID.randomUUID().toString();
-		
-	}
-	
-	public void setIsTurn(boolean turn) {
-		this.turn = turn;
-	}
-	
-	public boolean getIsTurn() {
-		return this.turn;
-	}
-	
-	public void addDicesThrown(int turn, List<Integer> diceEyes) {
-		if (diceEyes == null || diceEyes.isEmpty()) {
-			throw new DomainException("No diceEyes given");
-		}
-		dicesThrown.put(turn, diceEyes);
-	}
-	
-	public HashMap<Integer, List<Integer>> getDicesThrown(){
-		return this.dicesThrown;
-	}
-	
+
 }
 
