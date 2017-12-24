@@ -1,6 +1,8 @@
 package model.turn;
 
 
+import java.util.ArrayList;
+
 import exception.DomainException;
 import model.board.Dice;
 import model.board.Dices;
@@ -24,17 +26,39 @@ public class Turn {
 	}
 	
 	public int getScore(Categories category) {
-		boolean contains = false;
+		int sameDices = 0;
+		ArrayList<Integer> diceEyes = new ArrayList<>();
 		
-		for(Categories playerCategory : player.getCategories()) {
-			if (playerCategory.toString().toUpperCase().equals(category.toString().toUpperCase())) contains = true;
+		for(int i = 0; i < dices.getDices().size(); i++) {
+			diceEyes.add(dices.getDices().get(i).getEyes());
 		}
 		
-//		if (!contains) throw new DomainException("This category has already been chosen/Is not availble");
-		
-		int points = this.getCatagory().catagory(category).getPoints(dices.getDices());
+		int firstDice = diceEyes.get(0);
+		for (Integer j : diceEyes) {
+			if(j == firstDice) sameDices++;
+		}
+		int points = 0;
+		boolean containsC = false;
+		for(Categories c : player.getCategories()) {
+			System.out.println("Contains " + c.toString());
+			if(c.toString().trim().equals("YAHTZEE")) {
+				player.addTimesYahtzee(1);
+				containsC = true;
+			}
+		}
+		if(containsC == false && sameDices == 5) {
+			if (player.getTimesYahtzee() == 2) {
+			System.out.println("Does not contain yahtzee");
+			points = points + 100;
+			player.addTimesYahtzee(1);
+			} else {
+				player.addTimesYahtzee(1);
+			}
+		}
+		points = points + this.getCatagory().catagory(category).getPoints(dices.getDices());
 		setChosenCategory(category);
 		this.player.removeCategory(category);
+		System.out.println("Gegeven punten: " + points);
 		return points;
 	}
 	

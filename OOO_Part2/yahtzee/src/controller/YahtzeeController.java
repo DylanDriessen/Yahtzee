@@ -61,7 +61,9 @@ public class YahtzeeController extends Application implements SubjectInterface, 
 				model.start();
 				welcomeScreen.getStage().close();
 				this.makeFrames(model.getALLPlayersNames());
-				((GameFrame) observers.get(0)).addButtons(model.getCurrentPlayer().getCategories());
+				ArrayList<Categories> categoryList = model.getCurrentPlayer().getCategories();
+				categoryList.remove(13);
+				((GameFrame) observers.get(0)).addButtons(categoryList);
 				setButtonClickEvent();
 			} catch (Exception e) {
 				Label text = new Label();
@@ -107,8 +109,9 @@ public class YahtzeeController extends Application implements SubjectInterface, 
 			try {
 				if (model.getChancesTurn() == 3 || category == null || !categoryChosen)
 					throw new DomainException("Select a category");
-				model.getCurrentPlayer().addScore(model.getscore(category));
-				notifyScoreboardObserver(model.getscore(category), Categories.valueOf(category).getScore());
+				int score = model.getscore(category);
+				model.getCurrentPlayer().addScore(score);
+				notifyScoreboardObserver(score, Categories.valueOf(category).getScore());
 				notifyGameFrames();
 				if (model.gameFinished()) {
 					getEndFrame(model.getWinner(), model.getLoser());
@@ -139,13 +142,14 @@ public class YahtzeeController extends Application implements SubjectInterface, 
 
 	// When dices are being rolled
 	private void rollDices() {
-		model.rollDices();
+//		model.rollDices();
+		for(Dice d : model.getAllDices()) {
+			d.setEyes(1);
+		}
 		setClicableDices(getCurrentPlayerFrame());
 		ArrayList<Dice> dices = model.getAllDices();
-		int j = 0;
 		for (int i = dices.size() - 1; i >= 0; i--) {
 			result.set(i, dices.get(i).getEyes());
-			j++;
 		}
 		try {
 			model.reduceChance();

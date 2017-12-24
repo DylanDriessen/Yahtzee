@@ -36,6 +36,8 @@ public class SimpleCatagoryStrategy {
 			return new Chance();
 		} else if(category.equals(Categories.YAHTZEE)){
 			return new Yahtzee();
+		}else if(category.equals(Categories.YAHTZEE_BONUS)){
+			return new YahtzeeBonus();
 		}
 		return null;
 	}

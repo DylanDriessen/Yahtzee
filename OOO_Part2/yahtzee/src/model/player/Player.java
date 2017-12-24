@@ -10,6 +10,7 @@ public class Player {
 	private String naam;
 	private int score;
 	private ArrayList<Categories> categories = new ArrayList<>();
+	private int timesYahtzee = 0;
 
 	public Player(String naam){
 		this.setNaam(naam);
@@ -27,6 +28,18 @@ public class Player {
 		for (Categories category : categoriesEnum) {
 			this.categories.add(category);
 		}
+	}
+	
+	public void setTimesYahtzee(int i) {
+		this.timesYahtzee = i;
+	}
+	
+	public int getTimesYahtzee() {
+		return timesYahtzee;
+	}
+	
+	public void addTimesYahtzee(int i) {
+		this.timesYahtzee  = timesYahtzee + i;
 	}
 	
 	public void removeCategory(Categories categoryToRemove) {

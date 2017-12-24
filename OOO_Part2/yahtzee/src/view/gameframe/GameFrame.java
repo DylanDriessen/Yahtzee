@@ -50,6 +50,7 @@ public class GameFrame implements ObserverInterface, endGameObserver {
 		clickButtons.setPadding(new Insets(5,5,5,5));
 		clickButtons.setSpacing(10);
 		clickButtons.setPrefWidth(420);
+		clickButtons.setPrefHeight(45);
 		this.primaryStage = primaryStage;
 
 		try{
@@ -267,7 +268,7 @@ public class GameFrame implements ObserverInterface, endGameObserver {
 		fullScoreTitle.setPrefSize(50, 27);
 		fullScoreTitle.setPadding(new Insets(0,0,0,5));
 		fullScoreTitle.setText(Integer.toString(currentPlayerTotalScore));
-		gridpane.add(fullScoreTitle, scoreX + 1, scoreY + 14);
+		gridpane.add(fullScoreTitle, scoreX + 1, scoreY + 15);
 	}
 	
 	@Override

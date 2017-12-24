@@ -16,7 +16,8 @@ public enum Categories {
 	SMALL_STRAIGHT("Small straight", 9),
 	LARGE_STRAIGHT("Large straight", 10),
 	YAHTZEE("Yahtzee", 11),
-	CHANCE("Chance", 12);
+	CHANCE("Chance", 12), 
+	YAHTZEE_BONUS("Yahtzee bonus", 13);
 	
 	private String categorie;
 	private int score;
