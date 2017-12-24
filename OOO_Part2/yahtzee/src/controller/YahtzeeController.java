@@ -232,6 +232,7 @@ import view.gameframe.endGameObserver;
 					getCurrentPlayerFrame().returnText(getCurrentPlayerFrame().getVisualDices().get(getCurrentPlayerFrame().getVisualDices().indexOf(node)+5)).setTranslateY(0);
 					model.getAllDices().get(getCurrentPlayerFrame().getVisualDices().indexOf(node)).setState(
 							model.getAllDices().get(getCurrentPlayerFrame().getVisualDices().indexOf(node)).getRollable());
+					changeStateChosenDices();
 				});
 			}
 		}
