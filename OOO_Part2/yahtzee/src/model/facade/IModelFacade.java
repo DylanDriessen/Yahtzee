@@ -24,6 +24,7 @@ public interface IModelFacade {
 	void resetDices();
 	void reduceChance();
 	int getscore(String category);
+	int getPredictedScore(String category);
 	void deleteCategory(String Category);
 	String getChosenCategory();
 	ArrayList<Categories> playerCategories(String name);

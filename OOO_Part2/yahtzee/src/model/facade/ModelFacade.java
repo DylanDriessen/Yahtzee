@@ -79,6 +79,10 @@ Game game;
 		return game.getTurn().getPointsCategory(category);
 	}
 	@Override
+	public int getPredictedScore(String category) {
+		return game.getTurn().getPointsPredictedCategory(category);
+	}
+	@Override
 	public void deleteCategory(String Category) {
 		System.out.println(game.getTurn().getPointsCategory(Category));
 	}
