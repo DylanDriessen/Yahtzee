@@ -122,5 +122,9 @@ Game game;
 	public String getLoser() {
 		return game.getLoser();
 	}
+	@Override
+	public int getChancesTurn() {
+		return game.getChancesTurn();
+	}
 
 }

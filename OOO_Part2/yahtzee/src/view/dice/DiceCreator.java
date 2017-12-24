@@ -39,8 +39,8 @@ public class DiceCreator extends StackPane implements SubjectDiceInterface  {
 	public Rectangle dice1(){
 		int i = 0;
 		Rectangle rect = new Rectangle(50,50,Color.BLACK);
-		rect.setTranslateX(100);
-		rect.setTranslateY(200);
+		rect.setX(100);
+		rect.setY(0);
 		return rect;
 		
 	}
@@ -48,29 +48,29 @@ public class DiceCreator extends StackPane implements SubjectDiceInterface  {
 	public Rectangle dice2(){
 		int i = 1;
 		Rectangle rect = new Rectangle(50,50,Color.BLACK);
-		rect.setTranslateX(200);
-		rect.setTranslateY(200);
+		rect.setX(200);
+		rect.setY(0);
 		return rect;
 	}
 	
 	public Rectangle dice3(){
 		Rectangle rect = new Rectangle(50,50,Color.BLACK);
-		rect.setTranslateX(300);
-		rect.setTranslateY(200);
+		rect.setX(300);
+		rect.setY(0);
 		return rect;
 	}
 	
 	public Rectangle dice4(){
 		Rectangle rect = new Rectangle(50,50,Color.BLACK);
-		rect.setTranslateX(400);
-		rect.setTranslateY(200);
+		rect.setX(400);
+		rect.setY(0);
 		return rect;
 	}
 	
 	public Rectangle dice5(){
 		Rectangle rect = new Rectangle(50,50,Color.BLACK);
-		rect.setTranslateX(500);
-		rect.setTranslateY(200);
+		rect.setX(500);
+		rect.setY(0);
 		return rect;
 	}
 	
@@ -89,8 +89,8 @@ public class DiceCreator extends StackPane implements SubjectDiceInterface  {
 		for(int i = 0; i <=result.size()-1; i++){
 		Text text = new Text(Integer.toString(result.get(i)));
 		text.setFill(Color.WHITE);
-		text.setTranslateX(x1);
-		text.setTranslateY(y);
+		text.setX(x1+22);
+		text.setY(27);
 		textLijst.add(text);
 		x1 = x1+100;
 		}
@@ -143,4 +143,3 @@ public class DiceCreator extends StackPane implements SubjectDiceInterface  {
 
 		
 }
-
