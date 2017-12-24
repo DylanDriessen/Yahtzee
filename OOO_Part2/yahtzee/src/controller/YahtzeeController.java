@@ -129,7 +129,7 @@ import view.gameframe.endGameObserver;
 				//probeersel
 				try{
 					for(int i = 0; i < Categories.values().length; i++){
-						notifyPredictions(model.getscore(Categories.values()[i].toString()), i );		
+						notifyPredictions(model.getPredictedScore(Categories.values()[i].toString()), i );		
 					}
 				}catch(NullPointerException e){
 					getCurrentPlayerFrame().resetErrors();
