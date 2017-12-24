@@ -2,7 +2,7 @@ package model.game;
 
 import java.util.ArrayList;
 
-import exception.DomainException;
+
 import model.board.Dice;
 import model.board.Dices;
 import model.player.Player;
@@ -16,7 +16,7 @@ public class Game {
 	private Dices dices;
 	private SimpleCatagoryStrategy catagories;
 	private Turn turn;
-	private int totalTurns = 12;
+	private int totalTurns = 13;
  	
 	public Game(){
 		this.players = new ArrayList<>();
@@ -68,31 +68,29 @@ public class Game {
 	public ArrayList<Dice> getAllDices(){
 		return this.dices.getDices();
 	}
-	public void chooseDice(Dice dice) {
-		this.turn.setChosenDice(dice);
-	}
-	
-	public void addScore(Categories category) {
-		this.getCurrentPlayer().addScore(this.turn.getScore(category));
-	}
- 		
-	public ArrayList<String> getAllNames(){
-		ArrayList<String> persons = new ArrayList<>();
-		for (Player player: players){
-			persons.add(player.getNaam());
-		}
-		System.out.println(persons);
-		return persons;
-	}
+//	public void chooseDice(Dice dice) {
+//		this.turn.setChosenDice(dice);
+//	}
+//	
+//	public void addScore(Categories category) {
+//		this.getCurrentPlayer().addScore(this.turn.getScore(category));
+//	}
+// 		
+//	public ArrayList<String> getAllNames(){
+//		ArrayList<String> persons = new ArrayList<>();
+//		for (Player player: players){
+//			persons.add(player.getNaam());
+//		}
+//		System.out.println(persons);
+//		return persons;
+//	}
 	
 	public void addPlayer(String naam){
 		Player player = new Player(naam);
 		this.players.add(player);
  	}
  	
- 	public void deletePlayer(Player player){
- 		players.remove(player);
- 	}
+ 	
  	
  	public int getIndexNextPlayer() {
  		return indexNextPlayer;
@@ -139,9 +137,6 @@ public class Game {
  		return this.turn;
  	}
  	
- 	public String getChosenCategory() {
- 		return this.turn.getChosenCategory();
- 	}
  	
  	public ArrayList<Categories> playerCategories(String name){
  		Player player = new Player();
@@ -183,5 +178,11 @@ public class Game {
  	
  	public int getChancesTurn() {
  		return turn.getChances();
+ 	}
+ 	
+ 	public void removeAllPlayers() {
+ 		for(Player player : players) {
+ 			players.remove(player);
+ 		}
  	}
  }

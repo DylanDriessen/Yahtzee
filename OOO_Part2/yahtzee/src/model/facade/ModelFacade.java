@@ -1,7 +1,7 @@
 package model.facade;
 
 import java.util.ArrayList;
-import java.util.Locale.Category;
+
 
 import model.board.Dice;
 import model.game.Game;
@@ -49,15 +49,14 @@ Game game;
 	public ArrayList<Dice> getAllDices() {
 		return game.getAllDices();
 	}
-	@Override
-	public int GetTurnsLeft() {
-		return 0;
-	}
-	
+//	@Override
+//	public int GetTurnsLeft() {
+//		return 0;
+//	}
+//	
 	@Override
 	public Game getGame(){
-		return this.getGame();
-	}
+	return this.getGame();	}
 	@Override
 	public int getIndexCurrentPlayer() {
 		return game.getIndexCurrentPlayer();
@@ -86,10 +85,7 @@ Game game;
 	public void deleteCategory(String Category) {
 		System.out.println(game.getTurn().getPointsCategory(Category));
 	}
-	@Override
-	public String getChosenCategory() {
-		return game.getChosenCategory();
-	}
+	
 	@Override
 	public ArrayList<Categories> playerCategories(String name) {
 		return game.playerCategories(name);
@@ -115,7 +111,6 @@ Game game;
 	}
 	@Override
 	public String getWinner() {
-		System.out.println(game.getWinner());
 		return game.getWinner();
 	}
 	@Override
@@ -125,6 +120,10 @@ Game game;
 	@Override
 	public int getChancesTurn() {
 		return game.getChancesTurn();
+	}
+	@Override
+	public void removeAllPlayers() {
+		game.removeAllPlayers();
 	}
 
 }

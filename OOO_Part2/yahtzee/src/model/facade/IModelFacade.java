@@ -1,7 +1,7 @@
 package model.facade;
 
 import java.util.ArrayList;
-import java.util.Locale.Category;
+
 
 import model.board.Dice;
 import model.game.Game;
@@ -17,7 +17,7 @@ public interface IModelFacade {
 	ArrayList<String> getALLPlayersNames();
 	void rollDices();
 	ArrayList<Dice> getAllDices();
-	int GetTurnsLeft();
+//	int GetTurnsLeft();
 	public int getIndexCurrentPlayer();
 	public void setNextPlayer();
 	Game getGame();
@@ -26,7 +26,7 @@ public interface IModelFacade {
 	int getscore(String category);
 	int getPredictedScore(String category);
 	void deleteCategory(String Category);
-	String getChosenCategory();
+	
 	ArrayList<Categories> playerCategories(String name);
 	int getIndexNextPlayer();
 	int getHighestScore();
@@ -35,5 +35,6 @@ public interface IModelFacade {
 	String getLoser();
 	boolean gameFinished();
 	int getChancesTurn();
+	void removeAllPlayers();
 	}
 
