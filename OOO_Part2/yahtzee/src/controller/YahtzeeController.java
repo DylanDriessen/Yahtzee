@@ -274,7 +274,7 @@ public class YahtzeeController extends Application implements SubjectInterface, 
 		}
 	}
 
-	// Observers with interface
+	// Observers notify methods
 	@Override
 	public void register(ObserverInterface newObserver) {
 		observers.add((GameFrame) newObserver);
@@ -300,15 +300,17 @@ public class YahtzeeController extends Application implements SubjectInterface, 
 
 	}
 
-	// Observers without interface
+	@Override
 	public void notifyScoreboardObserver(int score, int place) {
 		getCurrentPlayerFrame().updateScoreboard(score, place, model.getCurrentPlayer().getScore());
 	}
-
+	
+	@Override
 	public void notifyPredictions(int score, int place) {
 		getCurrentPlayerFrame().updatePredictionsScoreboard(score, place, model.getCurrentPlayer().getScore());
 	}
-
+	
+	@Override
 	public void notifyGameFrames() {
 		for (ObserverInterface o : observers) {
 			((GameFrame) o).updateCurrentName(model.getNextPlayer().getNaam());

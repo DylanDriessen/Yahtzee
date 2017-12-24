@@ -177,36 +177,6 @@ public class GameFrame implements ObserverInterface, endGameObserver {
 		gridpane.add(fullScoreTitle, colum, row + categoryList.size()+1);
 	}
 	
-	//Score board update method
-	public void updateScoreboard(int score, int place, int currentPlayerTotalScore) {
-		this.gridpane.getChildren().remove(getNodeFromGridPane(gridpane, scoreX+1, scoreY+1+place));
-		Label text = new Label();
-		text.setText(Integer.toString(score));
-		text.setStyle("-fx-background-color: #FFFF;-fx-border-color:black");
-		text.setPrefSize(50, 27);
-		text.setPadding(new Insets(0,0,0,5));
-		this.gridpane.add(text, scoreX+1, scoreY+1+place);
-		
-		Label fullScoreTitle = new Label();
-		fullScoreTitle.setStyle("-fx-background-color:black;-fx-text-fill: white;");
-		fullScoreTitle.setPrefSize(50, 27);
-		fullScoreTitle.setPadding(new Insets(0,0,0,5));
-		fullScoreTitle.setText(Integer.toString(currentPlayerTotalScore));
-		gridpane.add(fullScoreTitle, scoreX + 1, scoreY + 14);
-	}
-	
-	//Score board update predictions method
-	public void updatePredictionsScoreboard(int score, int place, int currentPlayerTotalScore) {
-		this.gridpane.getChildren().remove(getNodeFromGridPane(gridpane, scoreX+2, scoreY+1+place));
-		Label predictedText = new Label();
-		predictedText.setText(Integer.toString(score));
-		predictedText.setStyle("-fx-background-color: #FFFF;-fx-border-color:black");
-		predictedText.setPrefSize(120, 27);
-		predictedText.setPadding(new Insets(0,0,0,5));
-		this.gridpane.add(predictedText, scoreX+2, scoreY+1+place);
-		
-	}
-	
 	//Returns specific node in gridpane
 	private Node getNodeFromGridPane(GridPane gridPane, int col, int row) {
 	    for (Node node : gridPane.getChildren()) {
@@ -270,6 +240,7 @@ public class GameFrame implements ObserverInterface, endGameObserver {
 		}
 	}
 	
+	@Override
 	public void updateCurrentName(String currentName) {
 		gridpane.getChildren().remove(getNodeFromGridPane(gridpane, 5, 1));
 		Label name = new Label();
@@ -279,6 +250,36 @@ public class GameFrame implements ObserverInterface, endGameObserver {
 		name.setPrefSize(400, 36);
 		name.setPadding(new Insets(0,0,0,5));
 		gridpane.add(name, 5, 1);
+	}
+	
+	@Override
+	public void updateScoreboard(int score, int place, int currentPlayerTotalScore) {
+		this.gridpane.getChildren().remove(getNodeFromGridPane(gridpane, scoreX+1, scoreY+1+place));
+		Label text = new Label();
+		text.setText(Integer.toString(score));
+		text.setStyle("-fx-background-color: #FFFF;-fx-border-color:black");
+		text.setPrefSize(50, 27);
+		text.setPadding(new Insets(0,0,0,5));
+		this.gridpane.add(text, scoreX+1, scoreY+1+place);
+		
+		Label fullScoreTitle = new Label();
+		fullScoreTitle.setStyle("-fx-background-color:black;-fx-text-fill: white;");
+		fullScoreTitle.setPrefSize(50, 27);
+		fullScoreTitle.setPadding(new Insets(0,0,0,5));
+		fullScoreTitle.setText(Integer.toString(currentPlayerTotalScore));
+		gridpane.add(fullScoreTitle, scoreX + 1, scoreY + 14);
+	}
+	
+	@Override
+	public void updatePredictionsScoreboard(int score, int place, int currentPlayerTotalScore) {
+		this.gridpane.getChildren().remove(getNodeFromGridPane(gridpane, scoreX+2, scoreY+1+place));
+		Label predictedText = new Label();
+		predictedText.setText(Integer.toString(score));
+		predictedText.setStyle("-fx-background-color: #FFFF;-fx-border-color:black");
+		predictedText.setPrefSize(120, 27);
+		predictedText.setPadding(new Insets(0,0,0,5));
+		this.gridpane.add(predictedText, scoreX+2, scoreY+1+place);
+		
 	}
 
 	@Override

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public interface ObserverInterface {
 
-
-	public void update(ArrayList<Integer> result);
+	void updatePredictionsScoreboard(int score, int place, int currentPlayerTotalScore);
+	void updateScoreboard(int score, int place, int currentPlayerTotalScore);
+	void update(ArrayList<Integer> result);
+	void updateCurrentName(String currentName);
 }
