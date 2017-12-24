@@ -18,9 +18,7 @@ public class Yahtzee implements Category {
 				if (dice.getEyes() == dice2.getEyes())
 					sameDice++;
 			}
-
-			if (sameDice == 6)
-				yathzee = true;
+			if (sameDice == 5) yathzee = true;
 		}
 
 		if (!yathzee)
