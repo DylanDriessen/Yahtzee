@@ -40,7 +40,7 @@ import view.gameframe.endGameObserver;
 		ArrayList<Integer> result = new ArrayList<>();
 		ArrayList<String> playerNames;
 		String category;
-
+		boolean categoryChosen = false;
 		
 		public YahtzeeController(){
 			
@@ -98,6 +98,7 @@ import view.gameframe.endGameObserver;
 			}
 			try {
 				model.reduceChance();
+				changeStateChosenDices(getCurrentPlayerFrame());
 			} catch(DomainException e) {
 				getCurrentPlayerFrame().addError(e.getMessage());
 				getCurrentPlayerFrame().getButtons().remove(0);
@@ -112,12 +113,14 @@ import view.gameframe.endGameObserver;
 //			Button end = (Button)getCurrentPlayerFrame().getButtons().get(3);
             ComboBox<Categories> categories = (ComboBox<Categories>)getCurrentPlayerFrame().getButtons().get(1);
             categories.setOnAction(event -> {category = categories.getSelectionModel().getSelectedItem().toString();
-            								model.deleteCategory(category);							
+            								model.deleteCategory(category);	
+            								categoryChosen = true;
             });
             
             getCurrentPlayerFrame().getButtons().get(3).setOnMouseClicked(event -> {
             	getCurrentPlayerFrame().removeButtons();
             	getCurrentPlayerFrame().removeDices();
+            	getEndFrame(model.getWinner(), model.getLoser());
             	
             	notifyText(model.getPlayerHighestScore(), model.getHighestScore());
             });
@@ -126,7 +129,7 @@ import view.gameframe.endGameObserver;
 				//probeersel
 				try{
 					for(int i = 0; i < Categories.values().length; i++){
-						notifyPredictions(model.getPredictedScore(Categories.values()[i].toString()), i );		
+						notifyPredictions(model.getscore(Categories.values()[i].toString()), i );		
 					}
 				}catch(NullPointerException e){
 					getCurrentPlayerFrame().resetErrors();
@@ -135,6 +138,7 @@ import view.gameframe.endGameObserver;
 				});
             		getCurrentPlayerFrame().getButtons().get(2).setOnMouseClicked(event -> {
 				try {
+					if(model.getChancesTurn() == 3 || category == null || !categoryChosen) throw new DomainException("Select a category");
 					model.getCurrentPlayer().addScore(model.getscore(category));
 					notifyScoreboardObserver(model.getscore(category), Categories.valueOf(category).getScore());
 					notifyGameFrames();
@@ -147,10 +151,11 @@ import view.gameframe.endGameObserver;
 					getCurrentPlayerFrame().removeButtons();
 					getNextPlayerFrame().addButtons(model.getNextPlayer().getCategories());
 					model.setNextPlayer();
+					categoryChosen = false;
 					setButtonClickEvent();
-				} catch(NullPointerException e) {
+				} catch(DomainException e) {
 					getCurrentPlayerFrame().resetErrors();
-					getCurrentPlayerFrame().addError("Select a category");
+					getCurrentPlayerFrame().addError(e.getMessage());
 				}
 				});
 			
@@ -203,33 +208,55 @@ import view.gameframe.endGameObserver;
 		
 		private void setClicableDices(GameFrame gameFrame) {
 			for(Node node : gameFrame.getVisualDices()) {
-				if(gameFrame.translateRectangle(node)!=null) {
-					gameFrame.translateRectangle(node).setOnMouseClicked(event -> 
+				if(gameFrame.returnRectangle(node)!=null){
+					gameFrame.returnRectangle(node).setOnMouseClicked(event -> 
 					{
-						gameFrame.translateRectangle(node).setTranslateY(100);				
-						gameFrame.translateText(gameFrame.getVisualDices().get(gameFrame.getVisualDices().indexOf(node)+5)).setTranslateY(100);
+						gameFrame.returnRectangle(node).setTranslateY(-100);				
+						gameFrame.returnText(gameFrame.getVisualDices().get(gameFrame.getVisualDices().indexOf(node)+5)).setTranslateY(-100);
 						model.getAllDices().get(gameFrame.getVisualDices().indexOf(node)).setState(
 								model.getAllDices().get(gameFrame.getVisualDices().indexOf(node)).getDiceChosen());
+						setChosenDiceClickable(node);
 					});
 				}
 			}
 		}
 		
+		private void setChosenDiceClickable(Node node) {
+				getCurrentPlayerFrame().returnRectangle(node).setOnMouseClicked(event -> {
+					getCurrentPlayerFrame().returnRectangle(node).setTranslateY(0);				
+					getCurrentPlayerFrame().returnText(getCurrentPlayerFrame().getVisualDices().get(getCurrentPlayerFrame().getVisualDices().indexOf(node)+5)).setTranslateY(0);
+					model.getAllDices().get(getCurrentPlayerFrame().getVisualDices().indexOf(node)).setState(
+							model.getAllDices().get(getCurrentPlayerFrame().getVisualDices().indexOf(node)).getRollable());
+					setClicableDices(getCurrentPlayerFrame());
+				});
+
+		
+	}
+		
 		private void setUnClicableDices(GameFrame gameFrame) {
 			for(Node node : gameFrame.getVisualDices()) {
-				if(gameFrame.translateRectangle(node)!=null) {
-					gameFrame.translateRectangle(node).setOnMouseClicked(event -> {});
+				if(gameFrame.returnRectangle(node)!=null) {
+					gameFrame.returnRectangle(node).setOnMouseClicked(event -> {});
+				}
+			}
+		}
+		
+		private void changeStateChosenDices(GameFrame gameFrame) {
+			for (int i = 0; i < model.getAllDices().size(); i++) {
+				if(model.getAllDices().get(i).getState().toString().equals(model.getAllDices().get(1).getDiceChosen().toString())) {
+					model.getAllDices().get(i).setState(model.getAllDices().get(i).getNotRollable());
+					gameFrame.getVisualDices().get(i).setOnMouseClicked(event -> {});
 				}
 			}
 		}
 		
 		private void resetDices(GameFrame gameFrame) {
 			for (Node node : gameFrame.getVisualDices()) {
-				if(gameFrame.translateRectangle(node)!=null) {
-					gameFrame.translateRectangle(node).setTranslateY(200);
+				if(gameFrame.returnRectangle(node)!=null) {
+					gameFrame.returnRectangle(node).setTranslateY(0);
 				}
-				if(gameFrame.translateText(node)!=null) {
-					gameFrame.translateText(node).setTranslateY(200);
+				if(gameFrame.returnText(node)!=null) {
+					gameFrame.returnText(node).setTranslateY(0);
 				}
 			}
 		}

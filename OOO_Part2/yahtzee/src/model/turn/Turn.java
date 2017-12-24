@@ -52,7 +52,6 @@ public class Turn {
 		return points;
 	}
 	
-	
 	public void setChosenCategory(Categories category) {
 		this.chosenCategory =  category;
 	}
@@ -119,7 +118,5 @@ public class Turn {
 		}
 		return 0;
 	}
-	
-	
 	
 }

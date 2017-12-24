@@ -2,7 +2,9 @@ package view.gameframe;
 
 
 import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
+
 import exception.DomainException;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -14,7 +16,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
@@ -34,7 +36,7 @@ public class GameFrame implements ObserverInterface, endGameObserver {
 	DiceCreator creator = new DiceCreator();
 	private int x1 = 100;
 	private int y= 200;
-	StackPane dices = new StackPane();
+	Pane dices = new Pane();
 	ArrayList<Integer> opzijGezet;
 	String category;
 	HBox clickButtons = new HBox();
@@ -63,12 +65,12 @@ public class GameFrame implements ObserverInterface, endGameObserver {
 			scoretext.setPrefSize(400, 36);
 			
 			gridpane.add(scoretext, 9, 8);
-			gridpane.add(dices, 0, 0);
-			gridpane.add(clickButtons, 10, 15);
-			gridpane.add(nameLabel, 10, 0);
-			gridpane.add(current, 10, 1);
-			gridpane.add(errorList, 10, 7);
-			makeScoreboard(categories, 25, 0);
+			gridpane.add(dices, 5, 5);
+			gridpane.add(clickButtons, 5, 15);
+			gridpane.add(nameLabel, 5, 0);
+			gridpane.add(current, 5, 1);
+			gridpane.add(errorList, 5, 7);
+			makeScoreboard(categories, 15, 0);
 			root.getChildren().addAll(gridpane);	
 
 			primaryStage.setScene(scene);
@@ -92,6 +94,8 @@ public class GameFrame implements ObserverInterface, endGameObserver {
 		Rectangle dice3 = creator.dice3();
 		Rectangle dice4 = creator.dice4();
 		Rectangle dice5 = creator.dice5();
+		dices.setPrefHeight(40);
+		dices.setPrefWidth(200);
 		dices.getChildren().addAll(dice1,dice2,dice3,dice4,dice5);
 	}
 	
@@ -100,14 +104,14 @@ public class GameFrame implements ObserverInterface, endGameObserver {
 	}
 	
 	//Check for type of node
-	public Rectangle translateRectangle(Node node) {
+	public Rectangle returnRectangle(Node node) {
 		if(node instanceof Rectangle) {
 			return (Rectangle)node;
 		}
 		return null;
 	}
 	
-	public Text translateText(Node node) {
+	public Text returnText(Node node) {
 		if(node instanceof Text) {
 			return (Text)node;
 		}
@@ -261,14 +265,14 @@ public class GameFrame implements ObserverInterface, endGameObserver {
 	}
 	
 	public void updateCurrentName(String currentName) {
-		gridpane.getChildren().remove(getNodeFromGridPane(gridpane, 10, 1));
+		gridpane.getChildren().remove(getNodeFromGridPane(gridpane, 5, 1));
 		Label name = new Label();
 		name.setText("current player: " + currentName);
 		name.setPrefSize(400, 36);
 		name.setStyle("-fx-text-fill: black; -fx-font-size: 15; -fx-font-weight: 600");
 		name.setPrefSize(400, 36);
 		name.setPadding(new Insets(0,0,0,5));
-		gridpane.add(name, 10, 1);
+		gridpane.add(name, 5, 1);
 	}
 
 	@Override
