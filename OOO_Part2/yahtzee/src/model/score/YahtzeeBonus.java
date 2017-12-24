@@ -8,7 +8,7 @@ public class YahtzeeBonus implements Category {
 
 	@Override
 	public int getPoints(List<Dice> dices) {
-		return 100;
+		return 0;
 	}
 	
 	
