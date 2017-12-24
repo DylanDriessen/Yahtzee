@@ -2,7 +2,6 @@ package model.score;
 
 import java.util.List;
 
-import exception.DomainException;
 import model.board.Dice;
 
 public class ThreeOfAKind implements Category {

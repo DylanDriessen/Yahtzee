@@ -1,6 +1,6 @@
 package model.score;
 
-import java.util.List;
+
 
 public enum Categories {
 	

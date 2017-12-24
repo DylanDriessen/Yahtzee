@@ -2,9 +2,7 @@ package model.score;
 
 import java.util.List;
 
-import exception.DomainException;
 import model.board.Dice;
-import model.board.Dices;
 
 public class Yahtzee implements Category {
 

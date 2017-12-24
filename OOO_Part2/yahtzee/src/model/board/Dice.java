@@ -1,6 +1,5 @@
 package model.board;
 
-import java.util.Random;
 import javafx.scene.layout.StackPane;
 import model.dice.state.DiceChosenState;
 import model.dice.state.DiceState;
