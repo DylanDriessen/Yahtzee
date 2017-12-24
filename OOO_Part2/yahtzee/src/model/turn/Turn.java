@@ -62,13 +62,7 @@ public class Turn {
 		return points;
 	}
 	
-	public int getPredictedScore(Categories category) {
-		boolean contains = false;
-		
-		for(Categories playerCategory : player.getCategories()) {
-			if (playerCategory.toString().toUpperCase().equals(Categories.YAHTZEE_BONUS.toString())) player.getCategories().remove(playerCategory);
-		}
-		
+	public int getPredictedScore(Categories category) {		
 //		if (!contains) throw new DomainException("This category has already been chosen/Is not availble");
 		
 		int points = this.getCatagory().catagory(category).getPoints(dices.getDices());
