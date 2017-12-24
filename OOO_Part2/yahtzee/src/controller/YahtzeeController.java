@@ -120,6 +120,7 @@ import view.gameframe.endGameObserver;
             getCurrentPlayerFrame().getButtons().get(3).setOnMouseClicked(event -> {
             	getCurrentPlayerFrame().removeButtons();
             	getCurrentPlayerFrame().removeDices();
+            	getEndFrame(model.getWinner(), model.getLoser());
             	
             	notifyText(model.getPlayerHighestScore(), model.getHighestScore());
             });
@@ -128,7 +129,7 @@ import view.gameframe.endGameObserver;
 				//probeersel
 				try{
 					for(int i = 0; i < Categories.values().length; i++){
-						notifyPredictions(model.getPredictedScore(Categories.values()[i].toString()), i );		
+						notifyPredictions(model.getscore(Categories.values()[i].toString()), i );		
 					}
 				}catch(NullPointerException e){
 					getCurrentPlayerFrame().resetErrors();
