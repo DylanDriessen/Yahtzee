@@ -180,4 +180,8 @@ public class Game {
  		}
  		return loser +" with "+ score+" points.";
  	}
+ 	
+ 	public int getChancesTurn() {
+ 		return turn.getChances();
+ 	}
  }
