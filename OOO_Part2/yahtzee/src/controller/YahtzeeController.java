@@ -98,6 +98,7 @@ import view.gameframe.endGameObserver;
 			}
 			try {
 				model.reduceChance();
+				changeStateChosenDices(getCurrentPlayerFrame());
 			} catch(DomainException e) {
 				getCurrentPlayerFrame().addError(e.getMessage());
 				getCurrentPlayerFrame().getButtons().remove(0);
@@ -136,7 +137,6 @@ import view.gameframe.endGameObserver;
 				});
             		getCurrentPlayerFrame().getButtons().get(2).setOnMouseClicked(event -> {
 				try {
-
 					if(model.getChancesTurn() == 3 || category == null || !categoryChosen) throw new DomainException("Select a category");
 					model.getCurrentPlayer().addScore(model.getscore(category));
 					notifyScoreboardObserver(model.getscore(category), Categories.valueOf(category).getScore());
@@ -208,7 +208,6 @@ import view.gameframe.endGameObserver;
 		private void setClicableDices(GameFrame gameFrame) {
 			for(Node node : gameFrame.getVisualDices()) {
 				if(gameFrame.returnRectangle(node)!=null){
-					
 					gameFrame.returnRectangle(node).setOnMouseClicked(event -> 
 					{
 						gameFrame.returnRectangle(node).setTranslateY(-100);				
@@ -217,25 +216,21 @@ import view.gameframe.endGameObserver;
 								model.getAllDices().get(gameFrame.getVisualDices().indexOf(node)).getDiceChosen());
 						setChosenDiceClickable(node);
 					});
-					
 				}
 			}
 		}
 		
 		private void setChosenDiceClickable(Node node) {
-			int i = getCurrentPlayerFrame().getVisualDices().indexOf(node);
-			if(model.getAllDices().get(i).getState().toString().equals(model.getAllDices().get(0).getNotRollable().toString())) {
-				throw new DomainException("Dice cannot be rolled again");
-			} else {
 				getCurrentPlayerFrame().returnRectangle(node).setOnMouseClicked(event -> {
 					getCurrentPlayerFrame().returnRectangle(node).setTranslateY(0);				
 					getCurrentPlayerFrame().returnText(getCurrentPlayerFrame().getVisualDices().get(getCurrentPlayerFrame().getVisualDices().indexOf(node)+5)).setTranslateY(0);
 					model.getAllDices().get(getCurrentPlayerFrame().getVisualDices().indexOf(node)).setState(
 							model.getAllDices().get(getCurrentPlayerFrame().getVisualDices().indexOf(node)).getRollable());
-					changeStateChosenDices();
+					setClicableDices(getCurrentPlayerFrame());
 				});
-			}
-		}
+
+		
+	}
 		
 		private void setUnClicableDices(GameFrame gameFrame) {
 			for(Node node : gameFrame.getVisualDices()) {
@@ -245,10 +240,11 @@ import view.gameframe.endGameObserver;
 			}
 		}
 		
-		private void changeStateChosenDices() {
+		private void changeStateChosenDices(GameFrame gameFrame) {
 			for (int i = 0; i < model.getAllDices().size(); i++) {
 				if(model.getAllDices().get(i).getState().toString().equals(model.getAllDices().get(1).getDiceChosen().toString())) {
 					model.getAllDices().get(i).setState(model.getAllDices().get(i).getNotRollable());
+					gameFrame.getVisualDices().get(i).setOnMouseClicked(event -> {});
 				}
 			}
 		}
